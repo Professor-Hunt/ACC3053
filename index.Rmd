@@ -1,0 +1,19 @@
+---
+title: "ACC3053"
+description: |
+  Welcome to the website for Mississippi State's Accounting Systems 2.
+author:
+  - name: Joshua O.S. Hunt 
+    url: https://professor-hunt.com
+    affiliation: Mississippi State University
+    affiliation_url: https://www.business.msstate.edu/academics/adkerson-school-accountancy 
+date: "`r Sys.Date()`"
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+# This Website will continue to evolve. I am running my course through our LMS (canvas), but I am providing this website and source code for other professors and students to use.

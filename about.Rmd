@@ -1,0 +1,14 @@
+---
+title: "About this site"
+description: |
+  Some additional details about the website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+This is a course website for ACC 3053 Accounting information systems 2. This course has transitioned into an introduction to Accounting Data Analytics due to demands from employers and changes to the CPA exam.
+
+This is course is build mainly from big 4 accounting firm case studies. I am converting several case studies to R, but the data, content, learning objectives, etc will basically stay the same. MsState uses R in our business school and I use it in my research, so using R fits well with this course.

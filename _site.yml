@@ -1,0 +1,29 @@
+name: "ACC3053"
+title: "ACC3053"
+description: |
+  ACC3053
+output_dir: "docs"
+navbar:
+  logo:
+    image: images/VERTICAL_WEB_white.png
+  search: true
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Syllabus"
+      href: syllabus.html
+    - text: "Modules"
+      menu:
+        - text: "Module 0"
+          href: Module_0.html
+        - text: "Module 1"
+          href: Module_1.html
+    - text: "Lagniappe Material"
+      menu:
+        - text: "Module 1"
+          href: Module_1_A.html
+            
+output: distill::distill_article
+theme: "theme.css"

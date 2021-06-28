@@ -1,0 +1,22 @@
+---
+title: "Syllabus"
+description: |
+  This is the course syllabus in HTML format.
+author:
+  - name: Joshua O.S. Hunt 
+    url: https://professor-hunt.com
+    affiliation: Mississippi State University
+    affiliation_url: https://www.business.msstate.edu/academics/adkerson-school-accountancy 
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# This will contain a syllabus
+
+::: {.highlight}
+**UNDER CONSTRUCTION**
+:::
