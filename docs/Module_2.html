@@ -2433,7 +2433,6 @@ Lagniappe Material
 <li><a href="#module-objectives">Module Objectives</a>
 <ul>
 <li><a href="#why-excel">Why excel?</a></li>
-<li><a href="#key-terms">Key terms</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2449,7 +2448,7 @@ Lagniappe Material
 <li><p>Demonstrate knowledge of leading practices for presenting findings in Excel</p></li>
 </ul>
 <h2 id="why-excel">Why excel?</h2>
-<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 15px;">
 <div>
 <ul>
 <li>We have no choice… everybody uses it! - this is the hard <u><strong>truth</strong></u></li>
@@ -2458,7 +2457,7 @@ Lagniappe Material
 </ul>
 </div>
 <div>
-<p><img src="images/excel_logo.png" style="width:35.0%" /></p>
+<p><img src="images/excel_logo.png" style="width:40.0%" /></p>
 </div>
 </div>
 <ul>
@@ -2473,45 +2472,154 @@ Lagniappe Material
 <li>Limited scalability</li>
 </ul>
 <p><strong><em>Keep it simple and ask the Internet!</em></strong></p>
-<h2 id="key-terms">Key terms</h2>
+<h3 id="key-terms">Key terms</h3>
 <table>
 <colgroup>
-<col style="width: 6%" />
-<col style="width: 93%" />
+<col style="width: 15%" />
+<col style="width: 84%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>Term</th>
-<th>Definition</th>
+<th><span class="math inline">\(\color{red}{\text{Term}}\)</span></th>
+<th><span class="math inline">\(\color{red}{\text{Definition}}\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Workbook</td>
+<td><strong>Workbook</strong></td>
 <td>An Excel file is referred to as a workbook</td>
 </tr>
 <tr class="even">
-<td>Worksheet</td>
+<td><strong>Worksheet</strong></td>
 <td>A single “tab” or “sheet” within a Workbook</td>
 </tr>
 <tr class="odd">
-<td>Cell</td>
+<td><strong>Cell</strong></td>
 <td>The boxes within the worksheet where information is stored. Cells are referenced by column letters (A, B, C, …) and row numbers (1, 2, 3, …) like a map:</td>
 </tr>
 <tr class="even">
 <td></td>
-<td></td>
+<td><ul>
+<li><span class="math inline">\(\color{red}{\text{A1}}\)</span></li>
+<li><span class="math inline">\(\color{red}{\text{BX800}}\)</span></li>
+<li><span class="math inline">\(\color{red}{\text{EEE20}}\)</span></li>
+</ul></td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
+<td><strong>Range</strong></td>
+<td>A contiguous set of cells referenced by the top left and bottom right cells, separated by a colon (:):</td>
 </tr>
 <tr class="even">
 <td></td>
-<td></td>
+<td><ul>
+<li><span class="math inline">\(\color{red}{\text{A1:D23}}\)</span></li>
+<li><span class="math inline">\(\color{red}{\text{BA2:CT8}}\)</span></li>
+</ul></td>
 </tr>
 </tbody>
 </table>
+<h3 id="cell-references">Cell References</h3>
+<ul>
+<li><p>Excel formulas can reference different cells</p></li>
+<li><p>Changes to the referenced cells result in updates to value calculated by the formula</p>
+<p><img src="images/Cell_references.png" style="width:100.0%" /></p>
+<h4 id="inputs-within-functions-can-be-either-a-single-cell-reference-or-a-block-of-cells-referred-to-as-a-range.">Inputs within functions can be either a single cell reference or a block of cells referred to as a range.</h4></li>
+</ul>
+<p>The two example below provide the same result:</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 47%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>=SUM(C1,C2,C3)</strong></th>
+<th><p><strong>Single cells selection-</strong></p>
+<span class="math inline">\(\color{red}{\text{Use the Ctrl Key}}\)</span></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>=SUM(C1:C3)</strong></td>
+<td><p><strong>Range selection-</strong></p>
+<p><span class="math inline">\(\color{red}{\text{use Shift Key or Drag with mouse}}\)</span></p></td>
+<td><img src="images/Cell_ref_B.png" style="width:100.0%" /></td>
+</tr>
+</tbody>
+</table>
+<p>Note: should a row be inserted between C1 and C3, then example 1 will still provide the same results, however example two will extend to add 4 cells.</p>
+<h4 id="absolute-cell-references">Absolute cell references</h4>
+<p>Absolute referencing is a way of referring to cells within formulas so that once copied, the cell reference remains fixed to a particular cell</p>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 63%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><img src="images/abs_cell_ref_A.png" style="width:100.0%" /></td>
+<td><p><strong>Relative referencing</strong></p>
+<p>As a formula is copied along, the row/column numbers adjust accordingly</p></td>
+</tr>
+<tr class="even">
+<td><img src="images/abs_cell_ref_B.png" style="width:100.0%" /></td>
+<td><p><strong>Absolute referencing</strong></p>
+<p>As a formula is copied along, it continues to refer to the same cell as before</p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="absolute-cell-referencing">Absolute cell referencing</h4>
+<p>With absolute cell referencing, a dollar sign ($) appears in the cell reference:</p>
+<ul>
+<li>=B4 Refers to column B and row 4,</li>
+</ul>
+<p>But this will vary if the formula is copied across a range of cells <span class="math inline">\(\color{red}{\text{(relative reference)}}\)</span></p>
+<ul>
+<li>=$B4 Will always refer to column B, but row reference can vary</li>
+<li>=B$4 Will always refer to row 4, but column reference can vary</li>
+<li>=$B$4 Will always refer to column B and row 4</li>
+</ul>
+<p><span class="math inline">\(\color{red}{\text{(absolute reference)}}\)</span></p>
+<p>Keyboard shortcut F4 cycles through the four absolute cell reference options</p>
+<h3 id="formulas">Formulas</h3>
+<ul>
+<li><p>Excel calculations are specified with formulas in each cell</p></li>
+<li><p>To create a formula, type an equals sign (=) followed by the function and required arguments</p>
+<p><u>Order of Operations</u></p></li>
+</ul>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 5px;">
+<div>
+<table style="width:62%;">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Brackets</td>
+<td>( )</td>
+</tr>
+<tr class="even">
+<td>Exponent</td>
+<td>^</td>
+</tr>
+<tr class="odd">
+<td>Division/Multiplication</td>
+<td>/ *</td>
+</tr>
+<tr class="even">
+<td>Addition/Subtraction</td>
+<td>+ -</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div>
+<p><img src="images/formulas.png" style="width:60.0%" /></p>
+</div>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
@@ -2526,6 +2634,15 @@ Lagniappe Material
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
