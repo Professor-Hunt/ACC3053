@@ -1,0 +1,72 @@
+---
+title: "Module 2"
+description: |
+  This module is a re-introduction to Excel.
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Excel
+
+![](images/excel_meme.png){width="40%"}
+
+I may trash talk excel 😈, but I would argue that it is the most used tool for accountants. Accountants are the **original** data scientists[^1] and their weapon of choice has been excel. A large portion of this class will be using R, **BUT** I hope to show you that R and Excel can work together. At the very least you will learn how to do everything we see in this module in R and you can decide which tool you want to use. 😏 This case study is provided by [PWC](https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html). It was developed for a [masters level course](https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html), but I am adapting it for our class.
+
+[^1]: in my opinion 😄
+
+# Module Objectives
+
+-   Demonstrate knowledge of data quality concepts
+
+-   Demonstrate knowledge of key terms and capabilities in Excel
+
+-   Demonstrate how to use Excel to acquire, transform, analyze, and visualize data
+
+-   Demonstrate knowledge of leading practices for presenting findings in Excel
+
+## Why excel?
+
+::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+<div>
+
+-   We have no choice... everybody uses it! - this is the hard [**truth**]{.ul}
+-   Easy-to-use \<- debatable 😅
+-   Many different functions
+
+</div>
+
+<div>
+
+![](images/excel_logo.png){width="35%"}
+
+</div>
+:::
+
+-   Advanced capabilities through add-ins
+-   Easy to explore and manipulate the data
+-   Can present data and analysis together
+-   Integrated with common desktop applications
+
+***But...***
+
+-   Significant potential for human error
+-   Limited scalability
+
+***Keep it simple and ask the Internet!***
+
+## Key terms
+
+| Term      | Definition                                                                                                                                                   |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Workbook  | An Excel file is referred to as a workbook                                                                                                                   |
+| Worksheet | A single "tab" or "sheet" within a Workbook                                                                                                                  |
+| Cell      | The boxes within the worksheet where information is stored. Cells are referenced by column letters (A, B, C, ...) and row numbers (1, 2, 3, ...) like a map: |
+|           |                                                                                                                                                              |
+|           |                                                                                                                                                              |
+|           |                                                                                                                                                              |
