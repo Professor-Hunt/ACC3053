@@ -473,7 +473,7 @@ Load the data from 'payroll_data.txt' and 'reference_data.txt' into two tabs in 
 
     <p>
 
-    ```{r Excel_Exercise_1_1_A, echo=FALSE, out.width = '80%'}
+    ```{r Excel_Exercise_1_1_A, echo=FALSE, out.width = '100%'}
       knitr::include_graphics("images/Animation.gif")
     ```
 
@@ -533,7 +533,7 @@ Load the data from 'payroll_data.txt' and 'reference_data.txt' into two tabs in 
 
     <p>
 
-    ```{r Excel_Exercise_1_4_A, echo=FALSE, out.width = '80%'}
+    ```{r Excel_Exercise_1_4_A, echo=FALSE, out.width = '100%'}
       knitr::include_graphics("images/Excel_Exercise_1_4_A.png")
     ```
 
@@ -553,7 +553,7 @@ Load the data from 'payroll_data.txt' and 'reference_data.txt' into two tabs in 
 
     <p>
 
-    ```{r Excel_Exercise_1_5_A, echo=FALSE, out.width = '80%'}
+    ```{r Excel_Exercise_1_5_A, echo=FALSE, out.width = '100%'}
       knitr::include_graphics("images/Excel_Exercise_1_5_A.png")
     ```
 
@@ -573,7 +573,7 @@ Load the data from 'payroll_data.txt' and 'reference_data.txt' into two tabs in 
 
     <p>
 
-    ```{r Excel_Exercise_1_6_A, echo=FALSE, out.width = '80%'}
+    ```{r Excel_Exercise_1_6_A, echo=FALSE, out.width = '100%'}
       knitr::include_graphics("images/Excel_Exercise_1_6_A.png")
     ```
 
@@ -783,17 +783,17 @@ Examples
 
 Any function can be used with conditional operators in IF statements to test conditions
 
-\>	Greater than
+\> Greater than
 
-\<	Less than
+\< Less than
 
-\>=	Greater than and equal to
+\>= Greater than and equal to
 
-\<=	Less than and equal to
+\<= Less than and equal to
 
-\<\>	Not equal to
+\<\> Not equal to
 
-=	Equal to
+= Equal to
 
 ### NOTE:
 
@@ -818,11 +818,11 @@ Some of functions can be used only on numbers, some to dates and some to strings
 
 ### Logical operators
 
-=AND($\color{darkred}{\text{logical1}}$, $\color{red}{\text{logical2}}$, ...)	Gives **True** if all the conditions are met
+=AND($\color{darkred}{\text{logical1}}$, $\color{red}{\text{logical2}}$, ...) Gives **True** if all the conditions are met
 
-=OR($\color{darkred}{\text{logical1}}$, $\color{red}{\text{logical2}}$, ...)	Gives **True** if at least one condition is met
+=OR($\color{darkred}{\text{logical1}}$, $\color{red}{\text{logical2}}$, ...) Gives **True** if at least one condition is met
 
-=NOT($\color{darkred}{\text{logical}}$)		Gives **True** if the condition is not met
+=NOT($\color{darkred}{\text{logical}}$) Gives **True** if the condition is not met
 
 ![](images/logical_excel.png){width="100%"}
 
@@ -865,14 +865,377 @@ In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the 
 
 1.  Address any data quality issues identified previously.
 
+    👍
+
 2.  Create a new column with total compensation (salary plus overtime pay)... what is the average total compensation?
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_2_2_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_2_2_A.gif")
+    ```
+
+    </p>
+
+    </details>
 
 3.  Add a column for the employee's tenure at the company in years.
 
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_2_3_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_2_3_A.gif")
+    ```
+
+    </p>
+
+    </details>
+
 4.  It turns out that all of the NJ employees work for separate division called "Tasty New Jersey". Correct the Division column with this information.
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_2_4_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_2_4_A.png")
+    ```
+
+    ```{r Excel_Exercise_2_4_B, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_2_4_A.gif")
+    ```
+
+    </p>
+
+    </details>
 
 5.  Create a binary column (0/1) that identifies employees of the "Tasty" operating units.
 
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_2_5_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_2_5_A.png")
+    ```
+
+    </p>
+
+    </details>
+
 6.  Add columns for Job Position and Gender from the 'Reference Data' worksheet.
 
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_2_6_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_2_6_A.gif")
+    ```
+
+    </p>
+
+    </details>
+
 7.  Select a random 5% sample of employees to receive a survey.
+
+    <details>
+
+    <summary>
+
+    I had to search the web for this one
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_2_7_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_2_7_A.gif")
+    ```
+
+    </p>
+
+    </details>
+
+## Analyze data
+
+### Pivot tables
+
+::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+<div>
+
+-   A pivot table is an aggregation of a source table
+
+-   Supports summary statistics:
+
+    -   Count
+    -   Sum
+    -   Min/Max
+    -   Average
+
+</div>
+
+<div>
+
+![](images/pivot_table_excel.png){width="100%"}
+
+</div>
+:::
+
+-   This summary is presented in a table format which can be formatted and filtered
+
+-   A table with categories down the rows and across the columns is a cross table
+
++------------------------------------+-----------------------------+-------+-------+-------------+
+| $\color{red}{\text{Sum of Sales}}$ | $\color{red}{\text{Month}}$ |       |       |             |
++====================================+=============================+=======+=======+=============+
+| Salesperson                        | Jan                         | Feb   | Mar   | Grand Total |
++------------------------------------+-----------------------------+-------+-------+-------------+
+| Bert                               | 7508                        | 10360 | 6281  | 24149       |
++------------------------------------+-----------------------------+-------+-------+-------------+
+| Bill                               | 5113                        | 8916  | 7642  | 21671       |
++------------------------------------+-----------------------------+-------+-------+-------------+
+| Fred                               | 7561                        | 9735  | 11221 | 28517       |
++------------------------------------+-----------------------------+-------+-------+-------------+
+| Harry                              | 10513                       | 3583  | 9452  | 23548       |
++------------------------------------+-----------------------------+-------+-------+-------------+
+| Grand Total                        | 30695                       | 32594 | 34596 | 97885       |
++------------------------------------+-----------------------------+-------+-------+-------------+
+
+#### Customizing pivot tables
+
+![](images/Cust_pivot_excel.png){width="100%"}
+
+![](images/Cust_pivot_excel_2.png){width="100%"}
+
+### Analysis ToolPak
+
+Excel can be used for more advanced analysis than summary statistics and charts
+
+1.  Click the File tab, click Options, and then click the Add-Ins category
+2.  In the Manage box, select Excel Add-ins and then click 'Go'
+3.  In the Add-Ins box, check the 'Analysis ToolPak' and 'Solver' check boxes, and then click 'OK'
+4.  Go to the 'Data' tab and look for the Analysis section
+
+![](images/analysis_toolpak_excel.png){width="100%"}
+
+### Descriptive statistics
+
+![](images/desc_stat_excel.png){width="100%"}
+
+### Histograms
+
+A histogram depicts the frequency or probability distribution of a numeric variable across bins of equal width
+
+Variable distributions may appear statistically "normal" or display non-normal characteristics such as skewness or kurtosis
+
+Create a histogram through 'Data analysis' by specifying the bins in a separate range
+
+![](images/histogram_excel.png){width="100%"}
+
+### Correlation
+
+::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 5px;"}
+<div>
+
+-   The CORREL() function (and Data Analysis correlation option) quantify the direction and degree of the relationship between two variables
+
+-   Correlation coefficient is between -1 and 1:
+
+    -   **Negative values** indicate the variables are inversely related
+
+    -   **Positive values** indicate the variables are directly related
+
+    -   **Values close** to zero indicate a weak correlation
+
+    -   **Values close** to 1 indicate a strong correlation
+
+</div>
+
+<div>
+
+![](images/correlation_excel.png){width="100%"}
+
+</div>
+:::
+
+-   Correlation is often best visualized with a scatter plot
+
+### Linear regression (univariate)
+
+In addition to descriptive statistics, Excel can build and evaluate simple predictive models:
+
+1.  Select 'Regression' from the Data Analysis section
+2.  Select your dependent (Y) variable (to be predicted)
+3.  Select your independent (X) variable (used to predict the Y variable)
+4.  Check boxes for optional outputs (e.g. residuals, line fit plot)
+
+![](images/linear_reg_excel.png){width="100%"}
+
+#### Linear regression output
+
+![](images/reg_output_excel.png){width="100%"}
+
+## Exercise \#3
+
+In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the answers)😈}}$:
+
+1.  What is the average percentage of total compensation that is overtime pay, not including staff with no overtime pay?
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_3_1_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_3_1_A.gif")
+    ```
+
+    </p>
+
+    </details>
+
+2.  Create a pivot table with the following statistics by Operating Unit:
+
+    -   Number of employees
+    -   Average total compensation
+    -   Average tenure (in years)
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_3_2_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_3_2_A.gif")
+    ```
+
+    </p>
+
+    </details>
+
+3.  Add Job Title to the pivot table across the columns
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_3_3_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_3_3_A.png")
+    ```
+
+    </p>
+
+    </details>
+
+4.  What is the correlation between total compensation and tenure?
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_3_4_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_3_4_A.png")
+    ```
+
+    </p>
+
+    </details>
+
+5.  Create a histogram for total compensation... how would you characterize the distribution? What if you transform the data to reduce any skewness?
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_3_5_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_3_5_A.png")
+    ```
+
+    </p>
+
+    </details>
+
+6.  Create a linear regression model using tenure to predict total compensation... what is the adjusted R-squared value?
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_3_6_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_3_6_A.png")
+    ```
+
+    </p>
+
+    </details>
+
+## Present findings

@@ -2396,6 +2396,7 @@ Modules
 <div class="nav-dropdown-content">
 <a href="Module_0.html">Module 0</a>
 <a href="Module_1.html">Module 1</a>
+<a href="Module_2.html">Module 2</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2439,6 +2440,9 @@ Lagniappe Material
 <li><a href="#exercise---excel-1">Exercise - Excel #1</a></li>
 <li><a href="#transform-data">Transform Data</a></li>
 <li><a href="#exercise-excel-2">Exercise Excel #2</a></li>
+<li><a href="#analyze-data">Analyze data</a></li>
+<li><a href="#exercise-3">Exercise #3</a></li>
+<li><a href="#present-findings">Present findings</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2844,7 +2848,7 @@ Lagniappe Material
 </summary>
 <p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="images/Animation.gif" width="80%" /></p>
+<p><img src="images/Animation.gif" width="100%" /></p>
 </div>
 </p>
 </details></li>
@@ -2878,7 +2882,7 @@ Lagniappe Material
 </summary>
 <p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="images/Excel_Exercise_1_4_A.png" width="80%" /></p>
+<p><img src="images/Excel_Exercise_1_4_A.png" width="100%" /></p>
 </div>
 </p>
 </details></li>
@@ -2889,7 +2893,7 @@ Lagniappe Material
 </summary>
 <p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="images/Excel_Exercise_1_5_A.png" width="80%" /></p>
+<p><img src="images/Excel_Exercise_1_5_A.png" width="100%" /></p>
 </div>
 </p>
 </details></li>
@@ -2900,7 +2904,7 @@ Lagniappe Material
 </summary>
 <p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="images/Excel_Exercise_1_6_A.png" width="80%" /></p>
+<p><img src="images/Excel_Exercise_1_6_A.png" width="100%" /></p>
 </div>
 </p>
 </details></li>
@@ -3114,14 +3118,290 @@ Lagniappe Material
 <h2 id="exercise-excel-2">Exercise Excel #2</h2>
 <p>In ‘Payroll Data_&lt;NETID&gt;.xlsx’ <span class="math inline">\(\color{red}{\text{(please do not peek at the answers)😈}}\)</span> :</p>
 <ol type="1">
-<li><p>Address any data quality issues identified previously.</p></li>
-<li><p>Create a new column with total compensation (salary plus overtime pay)… what is the average total compensation?</p></li>
-<li><p>Add a column for the employee’s tenure at the company in years.</p></li>
-<li><p>It turns out that all of the NJ employees work for separate division called “Tasty New Jersey”. Correct the Division column with this information.</p></li>
-<li><p>Create a binary column (0/1) that identifies employees of the “Tasty” operating units.</p></li>
-<li><p>Add columns for Job Position and Gender from the ‘Reference Data’ worksheet.</p></li>
-<li><p>Select a random 5% sample of employees to receive a survey.</p></li>
+<li><p>Address any data quality issues identified previously.</p>
+<p>👍</p></li>
+<li><p>Create a new column with total compensation (salary plus overtime pay)… what is the average total compensation?</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_2_2_A.gif" width="100%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>Add a column for the employee’s tenure at the company in years.</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_2_3_A.gif" width="100%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>It turns out that all of the NJ employees work for separate division called “Tasty New Jersey”. Correct the Division column with this information.</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_2_4_A.png" width="100%" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_2_4_A.gif" width="100%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>Create a binary column (0/1) that identifies employees of the “Tasty” operating units.</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_2_5_A.png" width="100%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>Add columns for Job Position and Gender from the ‘Reference Data’ worksheet.</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_2_6_A.gif" width="100%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>Select a random 5% sample of employees to receive a survey.</p>
+<details>
+<summary>
+<p>I had to search the web for this one</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_2_7_A.gif" width="100%" /></p>
+</div>
+</p>
+</details></li>
 </ol>
+<h2 id="analyze-data">Analyze data</h2>
+<h3 id="pivot-tables">Pivot tables</h3>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div>
+<ul>
+<li><p>A pivot table is an aggregation of a source table</p></li>
+<li><p>Supports summary statistics:</p>
+<ul>
+<li>Count</li>
+<li>Sum</li>
+<li>Min/Max</li>
+<li>Average</li>
+</ul></li>
+</ul>
+</div>
+<div>
+<p><img src="images/pivot_table_excel.png" style="width:100.0%" /></p>
+</div>
+</div>
+<ul>
+<li><p>This summary is presented in a table format which can be formatted and filtered</p></li>
+<li><p>A table with categories down the rows and across the columns is a cross table</p></li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 30%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\color{red}{\text{Sum of Sales}}\)</span></th>
+<th><span class="math inline">\(\color{red}{\text{Month}}\)</span></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Salesperson</td>
+<td>Jan</td>
+<td>Feb</td>
+<td>Mar</td>
+<td>Grand Total</td>
+</tr>
+<tr class="even">
+<td>Bert</td>
+<td>7508</td>
+<td>10360</td>
+<td>6281</td>
+<td>24149</td>
+</tr>
+<tr class="odd">
+<td>Bill</td>
+<td>5113</td>
+<td>8916</td>
+<td>7642</td>
+<td>21671</td>
+</tr>
+<tr class="even">
+<td>Fred</td>
+<td>7561</td>
+<td>9735</td>
+<td>11221</td>
+<td>28517</td>
+</tr>
+<tr class="odd">
+<td>Harry</td>
+<td>10513</td>
+<td>3583</td>
+<td>9452</td>
+<td>23548</td>
+</tr>
+<tr class="even">
+<td>Grand Total</td>
+<td>30695</td>
+<td>32594</td>
+<td>34596</td>
+<td>97885</td>
+</tr>
+</tbody>
+</table>
+<h4 id="customizing-pivot-tables">Customizing pivot tables</h4>
+<p><img src="images/Cust_pivot_excel.png" style="width:100.0%" /></p>
+<p><img src="images/Cust_pivot_excel_2.png" style="width:100.0%" /></p>
+<h3 id="analysis-toolpak">Analysis ToolPak</h3>
+<p>Excel can be used for more advanced analysis than summary statistics and charts</p>
+<ol type="1">
+<li>Click the File tab, click Options, and then click the Add-Ins category</li>
+<li>In the Manage box, select Excel Add-ins and then click ‘Go’</li>
+<li>In the Add-Ins box, check the ‘Analysis ToolPak’ and ‘Solver’ check boxes, and then click ‘OK’</li>
+<li>Go to the ‘Data’ tab and look for the Analysis section</li>
+</ol>
+<p><img src="images/analysis_toolpak_excel.png" style="width:100.0%" /></p>
+<h3 id="descriptive-statistics">Descriptive statistics</h3>
+<p><img src="images/desc_stat_excel.png" style="width:100.0%" /></p>
+<h3 id="histograms">Histograms</h3>
+<p>A histogram depicts the frequency or probability distribution of a numeric variable across bins of equal width</p>
+<p>Variable distributions may appear statistically “normal” or display non-normal characteristics such as skewness or kurtosis</p>
+<p>Create a histogram through ‘Data analysis’ by specifying the bins in a separate range</p>
+<p><img src="images/histogram_excel.png" style="width:100.0%" /></p>
+<h3 id="correlation">Correlation</h3>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 5px;">
+<div>
+<ul>
+<li><p>The CORREL() function (and Data Analysis correlation option) quantify the direction and degree of the relationship between two variables</p></li>
+<li><p>Correlation coefficient is between -1 and 1:</p>
+<ul>
+<li><p><strong>Negative values</strong> indicate the variables are inversely related</p></li>
+<li><p><strong>Positive values</strong> indicate the variables are directly related</p></li>
+<li><p><strong>Values close</strong> to zero indicate a weak correlation</p></li>
+<li><p><strong>Values close</strong> to 1 indicate a strong correlation</p></li>
+</ul></li>
+</ul>
+</div>
+<div>
+<p><img src="images/correlation_excel.png" style="width:100.0%" /></p>
+</div>
+</div>
+<ul>
+<li>Correlation is often best visualized with a scatter plot</li>
+</ul>
+<h3 id="linear-regression-univariate">Linear regression (univariate)</h3>
+<p>In addition to descriptive statistics, Excel can build and evaluate simple predictive models:</p>
+<ol type="1">
+<li>Select ‘Regression’ from the Data Analysis section</li>
+<li>Select your dependent (Y) variable (to be predicted)</li>
+<li>Select your independent (X) variable (used to predict the Y variable)</li>
+<li>Check boxes for optional outputs (e.g. residuals, line fit plot)</li>
+</ol>
+<p><img src="images/linear_reg_excel.png" style="width:100.0%" /></p>
+<h4 id="linear-regression-output">Linear regression output</h4>
+<p><img src="images/reg_output_excel.png" style="width:100.0%" /></p>
+<h2 id="exercise-3">Exercise #3</h2>
+<p>In ‘Payroll Data_&lt;NETID&gt;.xlsx’ <span class="math inline">\(\color{red}{\text{(please do not peek at the answers)😈}}\)</span>:</p>
+<ol type="1">
+<li><p>What is the average percentage of total compensation that is overtime pay, not including staff with no overtime pay?</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_3_1_A.gif" width="100%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>Create a pivot table with the following statistics by Operating Unit:</p>
+<ul>
+<li>Number of employees</li>
+<li>Average total compensation</li>
+<li>Average tenure (in years)</li>
+</ul>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_3_2_A.gif" width="100%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>Add Job Title to the pivot table across the columns</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_3_3_A.png" width="100%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>What is the correlation between total compensation and tenure?</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_3_4_A.png" width="100%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>Create a histogram for total compensation… how would you characterize the distribution? What if you transform the data to reduce any skewness?</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_3_5_A.png" width="100%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>Create a linear regression model using tenure to predict total compensation… what is the adjusted R-squared value?</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_3_6_A.png" width="100%" /></p>
+</div>
+</p>
+</details></li>
+</ol>
+<h2 id="present-findings">Present findings</h2>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
