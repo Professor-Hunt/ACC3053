@@ -2433,13 +2433,19 @@ Lagniappe Material
 <li><a href="#module-objectives">Module Objectives</a>
 <ul>
 <li><a href="#why-excel">Why excel?</a></li>
+<li><a href="#acquire-data">Acquire data</a></li>
+<li><a href="#summary-statistics">Summary statistics</a></li>
+<li><a href="#can-we-rely-on-the-data">Can we rely on the data?</a></li>
+<li><a href="#exercise---excel-1">Exercise - Excel #1</a></li>
+<li><a href="#transform-data">Transform Data</a></li>
+<li><a href="#exercise-excel-2">Exercise Excel #2</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
 <h1 id="excel">Excel</h1>
 <p><img src="images/excel_meme.png" style="width:40.0%" /></p>
-<p>I may trash talk excel 😈, but I would argue that it is the most used tool for accountants. Accountants are the <strong>original</strong> data scientists<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and their weapon of choice has been excel. A large portion of this class will be using R, <strong>BUT</strong> I hope to show you that R and Excel can work together. At the very least you will learn how to do everything we see in this module in R and you can decide which tool you want to use. 😏 This case study is provided by <a href="https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html">PWC</a>. It was developed for a <a href="https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html">masters level course</a>, but I am adapting it for our class.</p>
+<p>I may trash talk excel 😈, but I would argue that it is the most used tool for accountants. Accountants are the <strong>original</strong> data scientists<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and their weapon of choice has been excel. A large portion of this class will be using R, <strong>BUT</strong> I hope to show you that R and Excel can work together. At the very least you will learn how to do everything we see in this module in R and you can decide which tool you want to use. 😏 This case study is provided by <a href="https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html">PWC</a>. It was developed for a <a href="https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html">masters level course</a>, but I am adapting it for our class. This should be a <strong>Review</strong> and I plan to move through this quickly. But, as always, you can slow me down with questions and comments.</p>
 <h1 id="module-objectives">Module Objectives</h1>
 <ul>
 <li><p>Demonstrate knowledge of data quality concepts</p></li>
@@ -2620,7 +2626,503 @@ Lagniappe Material
 <p><img src="images/formulas.png" style="width:60.0%" /></p>
 </div>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h3 id="functions">Functions</h3>
+<p>The fx button to the left of the formula bar opens a list of all available functions</p>
+<p><img src="images/functions.png" style="width:100.0%" /></p>
+<h4 id="arguments">Arguments</h4>
+<p>Functions take zero or more inputs or arguments</p>
+<p>=FUNCTION(Input1,Input2,…)</p>
+<p>Arguments can be:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td>Values</td>
+<td>1, 2, 3 or 1.2, 3.6, 2.1 or “x”, “y”, “z” or TRUE, FALSE</td>
+</tr>
+<tr class="even">
+<td>Cell References</td>
+<td>B91, A452, C3</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/function_args.png" style="width:100.0%" /></p>
+<h3 id="navigation-shortcuts-windows">Navigation shortcuts (Windows)</h3>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 69%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Ctrl + ➡️(⬅️,⬆️,⬇️)</td>
+<td>navigate to the last non-empty cell in that direction</td>
+</tr>
+<tr class="even">
+<td>Ctrl + Shift + ➡️(⬅️,⬆️,⬇️)</td>
+<td>select a block of cells to last non-empty cell in that direction</td>
+</tr>
+<tr class="odd">
+<td>Ctrl + Space</td>
+<td>select the entire column of the cell you have selected</td>
+</tr>
+<tr class="even">
+<td>Shift + Space</td>
+<td>select the entire row of the cell you have selected</td>
+</tr>
+</tbody>
+</table>
+<h2 id="acquire-data">Acquire data</h2>
+<h3 id="getting-data-into-excel">Getting data into excel</h3>
+<ul>
+<li><p>Excel files have the extension .xlsx or .xls (older versions)</p></li>
+<li><p>Excel can also import data from delimited text files</p>
+<ul>
+<li><p>Some comma-separated values files can be opened directly by Excel</p></li>
+<li><p>Tab-separated values can be copy-and-pasted directly into an Excel worksheet</p></li>
+<li><p>Delimited text can also be copy-and-pasted into Excel and then separated with text-to-columns</p></li>
+</ul></li>
+</ul>
+<p><img src="images/get_data_into_excel.png" style="width:100.0%" /></p>
+<h4 id="example---delimited-text">Example - Delimited text</h4>
+<p><img src="images/delimited_txt_ex.png" style="width:100.0%" /></p>
+<h3 id="text-to-columns">Text to columns</h3>
+<ul>
+<li>You might have text in one column that should be split across multiple columns, such as “1-Q-Fred” in the example below</li>
+<li>You can use the “Text to Columns” wizard to accomplish this</li>
+</ul>
+<p><img src="images/text_to_col_excel.png" style="width:100.0%" /></p>
+<ul>
+<li><p>Follow the steps prompted when clicking the icon in the Data tab. You can specify:</p>
+<ul>
+<li>Whether the separation point is defined by a certain character (Delimited) or at a fixed point in the cell (Fixed Width).</li>
+<li>What character separates the information</li>
+<li>Where you would like the newly separated information to go.</li>
+</ul></li>
+</ul>
+<h3 id="references-to-worksheets-and-workbooks">References to worksheets and workbooks</h3>
+<ul>
+<li>You can also use data from other worksheets or other workbooks in your formulas</li>
+<li>Another worksheet in the same workbook is represented by “Sheet!”</li>
+<li>A worksheet in a different workbook is represented by “[Workbook.xlsx]Sheet!”</li>
+</ul>
+<p><img src="images/ref_wksht_excel.png" style="width:100.0%" /></p>
+<h4 id="sample-spreadsheet">Sample spreadsheet</h4>
+<p><img src="images/sample_wksht_excel.png" style="width:100.0%" /></p>
+<h3 id="sorting">Sorting</h3>
+<ul>
+<li><p>Highlight a range and use the Sort option to order records by one or more columns</p></li>
+<li><p>Make sure to select an entire table to avoid sorting only part of it</p>
+<p><img src="images/sorting_excel.png" style="width:100.0%" /></p></li>
+</ul>
+<h3 id="filters">Filters</h3>
+<ul>
+<li><p>Filtering allows you to hide rows in a range if they don’t match select criteria</p></li>
+<li><p>Highlight the range and click the “Filter” button</p>
+<p><img src="images/filter_excel.png" style="width:100.0%" /></p></li>
+</ul>
+<h4 id="custom-filters">Custom filters</h4>
+<p>Custom filters allow you to use multiple criteria such as AND or OR</p>
+<ul>
+<li>Click on drop down arrow</li>
+<li>Click “Text Filters”</li>
+<li>Choose Custom</li>
+</ul>
+<p><img src="images/cust_filter_excel.png" style="width:100.0%" /></p>
+<h2 id="summary-statistics">Summary statistics</h2>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div>
+<p><strong>COUNT() -</strong> Counts numbers</p>
+<p><strong>COUNTBLANK() -</strong> Counts empty cells</p>
+<p><strong>COUNTA() -</strong> Counts non-empty cells</p>
+<p><strong>MIN() -</strong> Returns minimum</p>
+<p><strong>MAX()</strong> <strong>-</strong> Returns maximum</p>
+<p><strong>AVERAGE()</strong> <strong>-</strong> Returns average/mean</p>
+<p><strong>ROWS/COLUMNS() -</strong> Return number of rows/columns</p>
+</div>
+<div>
+<p><img src="images/sum_stat_excel.png" style="width:100.0%" /></p>
+</div>
+</div>
+<h3 id="status-bar">Status Bar</h3>
+<ul>
+<li><p>Highlighting a range of cells returns summary statistics on the status bar in the lower right corner</p></li>
+<li><p>This is a quick way to get information about part of your data</p>
+<p><img src="images/status_bar_excel.png" style="width:100.0%" /></p></li>
+</ul>
+<h2 id="can-we-rely-on-the-data">Can we rely on the data?</h2>
+<p><img src="images/rely_on_data.png" style="width:100.0%" /></p>
+<h3 id="data-quality-dimensions">Data quality dimensions</h3>
+<p><img src="images/data_qual_dim.png" style="width:100.0%" /></p>
+<h4 id="exercise---data-quality-dimensions">Exercise - Data quality dimensions</h4>
+<p>Identify which of the six DQ dimensions applies to the issues described below <span class="math inline">\(\color{red}{\text{(please do not peek at the answers 😈)}}\)</span>:</p>
+<ol type="1">
+<li><p>‘Gender’ field has the special characters like ~!@#$%^*();</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>[1] &quot;Validity&quot;</code></pre>
+</div>
+</p>
+</details></li>
+<li><p>‘First name’ is blank or Null</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>[1] &quot;Completeness&quot;</code></pre>
+</div>
+</p>
+</details></li>
+<li><p>‘Last name’ field has only designators such as LLP, LLC, Mr., Mrs., etc</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>[1] &quot;Accuracy&quot;</code></pre>
+</div>
+</p>
+</details></li>
+<li><p>‘Address’ field has only numbers</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>[1] &quot;Validity&quot;</code></pre>
+</div>
+</p>
+</details></li>
+<li><p>‘Account Type’ field does not have pre-defined list of values</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>[1] &quot;Consistency&quot;</code></pre>
+</div>
+</p>
+</details></li>
+<li><p>‘Account Number’ field have duplicate values</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>[1] &quot;Integrity&quot;</code></pre>
+</div>
+</p>
+</details></li>
+<li><p>‘Forex rate’ field does not have up to date exchange rate</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>[1] &quot;Timeliness&quot;</code></pre>
+</div>
+</p>
+</details></li>
+</ol>
+<h2 id="exercise---excel-1">Exercise - Excel #1</h2>
+<p>Load the data from ‘payroll_data.txt’ and ‘reference_data.txt’ into two tabs in an Excel spreadsheet and save it as ‘Payroll Data_&lt;NETID&gt;.xlsx’ <span class="math inline">\(\color{red}{\text{(please do not peek at the answers)😈}}\)</span> :</p>
+<ol type="1">
+<li><p>How did you import the data?</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Animation.gif" width="80%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>How many rows are there?</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>[1] &quot;payroll_data = 202 rows including header&quot;  
+[2] &quot;reference_data = 199 rows including header&quot;</code></pre>
+</div>
+</p>
+</details></li>
+<li><p>How many columns?</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>[1] &quot;payroll_data = 9 columns&quot;    &quot;reference_data = 3 columns*&quot;</code></pre>
+</div>
+</p>
+</details></li>
+<li><p>What is the average salary?</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_1_4_A.png" width="80%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>How many missing values are in each column?</p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_1_5_A.png" width="80%" /></p>
+</div>
+</p>
+</details></li>
+<li><p>What potential data quality issues do you find? Which dimensions are they related to?</p>
+<details>
+<summary>
+<p>Answer (one example)</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Excel_Exercise_1_6_A.png" width="80%" /></p>
+</div>
+</p>
+</details></li>
+</ol>
+<h2 id="transform-data">Transform Data</h2>
+<h3 id="data-formats">Data formats</h3>
+<p>Data entered an Excel worksheet can be represented in different formats, for example:</p>
+<ul>
+<li>Number</li>
+<li>Currency</li>
+<li>Percentage</li>
+<li>Text</li>
+<li>Date</li>
+</ul>
+<p>Dates are stored as the number of days from a fixed historical date</p>
+<p><img src="images/data_format_excel.png" style="width:100.0%" /></p>
+<h3 id="text-functions">Text functions</h3>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div>
+<dl>
+<dt>=CONCATENATE (text1, text2, …) or &amp;</dt>
+<dd><p>Appends two or more strings</p>
+</dd>
+<dt>=MID(text, start_num, num_chars)</dt>
+<dd><p>Extracts a specific number of characters starting from a given position</p>
+</dd>
+</dl>
+</div>
+<div>
+<p><img src="images/text_functions.gif" style="width:100.0%" /></p>
+</div>
+</div>
+<dl>
+<dt>=LEFT(text, num_chars)</dt>
+<dd><p>Extracts a specific number of characters from the left of a cell</p>
+</dd>
+<dt>=RIGHT(text, num_chars)</dt>
+<dd><p>Extracts a specific number of characters from the right of a cell</p>
+</dd>
+<dt>=LEN(text)</dt>
+<dd><p>Return the number of characters (including spaces) in a cell</p>
+</dd>
+<dt>=SUBSTITUTE(text, old_text, new_text)</dt>
+<dd><p>Replaces a string with another string</p>
+</dd>
+<dt>=FIND(find_text, within_text, start_position)</dt>
+<dd><p>Return the position of a match and error if no match</p>
+</dd>
+</dl>
+<h3 id="number-functions">Number functions</h3>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div>
+<dl>
+<dt>=ROUND(number, num_digits)</dt>
+<dd><p>Rounds a figure to a specified number of digits</p>
+</dd>
+<dt>=LARGE(array, k)</dt>
+<dd><p>Returns the kth largest number</p>
+</dd>
+<dt>=SMALL(array, k)</dt>
+<dd><p>Returns the kth smallest number</p>
+</dd>
+</dl>
+</div>
+<div>
+<p><img src="images/Num_functions.gif" style="width:100.0%" /></p>
+</div>
+</div>
+<dl>
+<dt>=PRODUCT(number1, number2, …)</dt>
+<dd><p>Multiplies several values together</p>
+</dd>
+<dt>=EXP(number)</dt>
+<dd><p>Returns Euler’s number (e) raised to a number</p>
+</dd>
+<dt>=RAND()</dt>
+<dd><p>Returns a random number between 0 and 1</p>
+</dd>
+<dt>=RANDBETWEEN(bottom, top)</dt>
+<dd><p>Returns a random integer between the specified values</p>
+</dd>
+</dl>
+<h3 id="datetime-functions">Date/time functions</h3>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div>
+<dl>
+<dt>=TODAY()</dt>
+<dd><p>Displays current date</p>
+</dd>
+<dt>=NOW()</dt>
+<dd><p>Displays current date and time</p>
+</dd>
+<dt>=DATE(year, month, day)</dt>
+<dd><p>Generates a date given day, month, and year</p>
+</dd>
+</dl>
+</div>
+<div>
+<p><img src="images/date_time_fun.gif" style="width:100.0%" /></p>
+</div>
+</div>
+<dl>
+<dt>=DAY(serial_number)</dt>
+<dd><p>Determines day of date, e.g. 31</p>
+</dd>
+<dt>=MONTH(serial_number)</dt>
+<dd><p>Determines month of date, e.g. 12</p>
+</dd>
+<dt>=YEAR(serial_number)</dt>
+<dd><p>Determines year of date, e.g. 2001</p>
+</dd>
+<dt>=WEEKNUM(serial_number)</dt>
+<dd><p>Returns the week number in the year</p>
+</dd>
+<dt>=WEEKDAY(serial_number)</dt>
+<dd><p>Returns the position of the day in a workweek</p>
+</dd>
+<dt>=DAYS(end_date, start_date)</dt>
+<dd><p>Returns number of days between two dates</p>
+</dd>
+<dt>=NETWORKDAYS(start_date, end_date)</dt>
+<dd><p>Returns the number of working days between dates</p>
+</dd>
+</dl>
+<h3 id="fill">Fill</h3>
+<ul>
+<li><p>You can apply a formula to an entire column by using the Fill options</p></li>
+<li><p>You can also Fill Down by double-clicking a cell with a formula in a table</p>
+<p><img src="images/fill_excel.png" style="width:100.0%" /></p></li>
+</ul>
+<h3 id="error-trapping">Error trapping</h3>
+<dl>
+<dt>=ISNA(value)</dt>
+<dd><p>Determine if cell or result of formula is showing #N/A!</p>
+</dd>
+<dt>=ISERROR(value)</dt>
+<dd><p>Determine if cell or result of formula is an error</p>
+</dd>
+<dt>=IFERROR(value, value_if_error)</dt>
+<dd><p>Give an alternative result if the formula produces an error</p>
+</dd>
+</dl>
+<p><img src="images/Error_trap_excel.png" style="width:100.0%" /></p>
+<h3 id="if-statements">IF statements</h3>
+<ul>
+<li><p><strong>IF()</strong> analyses the contents of one or more cells to determine whether a condition is TRUE or FALSE</p></li>
+<li><p>Given the value of the condition, different values can be returned</p>
+<p><strong>Syntax</strong></p></li>
+</ul>
+<p>=IF ( <span class="math inline">\(\color{darkred}{\text{logical_test}}\)</span> , <span class="math inline">\(\color{red}{\text{value_if_true}}\)</span> , <span class="math inline">\(\color{maroon}{\text{value_if_false}}\)</span> )</p>
+<p>Examples</p>
+<p>=IF ( <span class="math inline">\(\color{darkred}{\text{B1 &gt; 50}}\)</span> , <span class="math inline">\(\color{red}{\text{B1 * A1}}\)</span>, <span class="math inline">\(\color{maroon}{\text{B1 * A3}}\)</span>)</p>
+<p>=IF ( <span class="math inline">\(\color{darkred}{\text{B1 &gt; B2}}\)</span> , <span class="math inline">\(\color{red}{\text{B1}}\)</span> , <span class="math inline">\(\color{maroon}{\text{B2}}\)</span> )</p>
+<p>=IF ( <span class="math inline">\(\color{darkred}{\text{B1 = &quot;awesome&quot;}}\)</span> , <span class="math inline">\(\color{red}{\text{B1}}\)</span> , <span class="math inline">\(\color{maroon}{\text{B2}}\)</span> )</p>
+<p><img src="images/if_excel.png" style="width:100.0%" /></p>
+<h3 id="conditional-operators">Conditional operators</h3>
+<p>Any function can be used with conditional operators in IF statements to test conditions</p>
+<p>&gt; Greater than</p>
+<p>&lt; Less than</p>
+<p>&gt;= Greater than and equal to</p>
+<p>&lt;= Less than and equal to</p>
+<p>&lt;&gt; Not equal to</p>
+<p>= Equal to</p>
+<h3 id="note">NOTE:</h3>
+<p>Some of functions can be used only on numbers, some to dates and some to strings.</p>
+<ul>
+<li>Addition: Numbers, Dates</li>
+<li>Subtraction: Numbers, Dates</li>
+<li>Multiplication: Numbers</li>
+<li>Division: Numbers</li>
+<li>Power: Numbers</li>
+<li>(): Anything</li>
+<li>Order operators (&gt;,&lt; etc.) : Numbers, Dates, Strings</li>
+<li>Concatenation: Anything</li>
+</ul>
+<h3 id="nested-conditional-statements">Nested conditional statements</h3>
+<p>=IF (<span class="math inline">\(\color{darkred}{\text{logical_test}}\)</span> , <span class="math inline">\(\color{red}{\text{value_if_true}}\)</span> , IF (<span class="math inline">\(\color{darkred}{\text{logical_test}}\)</span> , <span class="math inline">\(\color{red}{\text{value_if_true}}\)</span> , <span class="math inline">\(\color{maroon}{\text{value_if_false}}\)</span> ))</p>
+<p><img src="images/Nested_excel.png" style="width:100.0%" /></p>
+<p>=IF ( <span class="math inline">\(\color{darkred}{\text{B1 &gt; 50}}\)</span> , <span class="math inline">\(\color{red}{\text{B1 * A1}}\)</span>, IF ( <span class="math inline">\(\color{darkred}{\text{B1 &gt; 150}}\)</span> , <span class="math inline">\(\color{red}{\text{B1 * A2}}\)</span>, <span class="math inline">\(\color{maroon}{\text{B1 * A3}}\)</span>) )</p>
+<h3 id="logical-operators">Logical operators</h3>
+<p>=AND(<span class="math inline">\(\color{darkred}{\text{logical1}}\)</span>, <span class="math inline">\(\color{red}{\text{logical2}}\)</span>, …) Gives <strong>True</strong> if all the conditions are met</p>
+<p>=OR(<span class="math inline">\(\color{darkred}{\text{logical1}}\)</span>, <span class="math inline">\(\color{red}{\text{logical2}}\)</span>, …) Gives <strong>True</strong> if at least one condition is met</p>
+<p>=NOT(<span class="math inline">\(\color{darkred}{\text{logical}}\)</span>) Gives <strong>True</strong> if the condition is not met</p>
+<p><img src="images/logical_excel.png" style="width:100.0%" /></p>
+<h3 id="vlookup">VLOOKUP</h3>
+<ul>
+<li>Often we need to add data from one table to another. This requires one column in each table to act as the link between them</li>
+<li><strong>VLOOKUP</strong> searches vertically down the left-hand column of a table to find a match, then returns the corresponding value from a specified column of the table</li>
+<li>In most cases, the fourth argument should be ‘FALSE’ to require exact matches</li>
+</ul>
+<p>Always use absolute cell references to specify the range containing the lookup data</p>
+<p><img src="images/vlookup_excel.png" style="width:100.0%" /></p>
+<h3 id="unique-values-and-duplicates">Unique values and duplicates</h3>
+<ul>
+<li>Excel has an option to reduce a single column to its unique values</li>
+<li>This option can also remove duplicate rows from a table across multiple columns</li>
+</ul>
+<p><img src="images/unique_excel.png" style="width:100.0%" /></p>
+<h3 id="findreplace">Find/Replace</h3>
+<ul>
+<li><p>You may need to find or replace values across a worksheet or workbook, which would be time-consuming if done manually</p></li>
+<li><p>Use Find/Replace to do this efficiently:</p>
+<ul>
+<li><p>Ctrl + F: find</p></li>
+<li><p>Ctrl + H: replace</p></li>
+</ul></li>
+<li><p>Excel will search the whole worksheet (or workbook) unless a range is selected</p></li>
+<li><p>The “Options &gt;&gt;” button enables the use of requirements such as “Match case”</p>
+<p><img src="images/find_rep_excel.png" style="width:100.0%" /></p></li>
+</ul>
+<h2 id="exercise-excel-2">Exercise Excel #2</h2>
+<p>In ‘Payroll Data_&lt;NETID&gt;.xlsx’ <span class="math inline">\(\color{red}{\text{(please do not peek at the answers)😈}}\)</span> :</p>
+<ol type="1">
+<li><p>Address any data quality issues identified previously.</p></li>
+<li><p>Create a new column with total compensation (salary plus overtime pay)… what is the average total compensation?</p></li>
+<li><p>Add a column for the employee’s tenure at the company in years.</p></li>
+<li><p>It turns out that all of the NJ employees work for separate division called “Tasty New Jersey”. Correct the Division column with this information.</p></li>
+<li><p>Create a binary column (0/1) that identifies employees of the “Tasty” operating units.</p></li>
+<li><p>Add columns for Job Position and Gender from the ‘Reference Data’ worksheet.</p></li>
+<li><p>Select a random 5% sample of employees to receive a survey.</p></li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>

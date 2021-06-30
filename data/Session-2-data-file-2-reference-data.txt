@@ -1,0 +1,199 @@
+Employee ID;Job Title;Gender
+383;IT Manager;M
+390;Assistant;F
+432;Assistant;F
+536;Assistant;M
+548;Head of IT;M
+574;Assistant;Administrative Support;M
+601;IT Manager;M
+648;IT Leader;F
+52250;Plant Supervisor;M
+53024;Plant Leader;M
+53725;Director;M
+53873;Plant Supervisor;M
+53921;Plant Manager;M
+54133;Plant Supervisor;F
+61908;Plant Worker;M
+63032;Plant Manager;M
+63630;Plant Worker;M
+78018;Director;M
+79912;Plant Worker;F
+86077;Administrative Support;F
+86134;Plant Manager;M
+92386;Marketing Senior Assistant;F
+94401;Plant Supervisor;F
+95088;Director;M
+95284;Plant Manager;M
+98249;Plant Worker;M
+98427;Head of Marketing;F
+100162;Plant Supervisor;M
+100212;Plant Supervisor;M
+100402;Plant Manager;F
+100422;Plant Supervisor;M
+100522;Director;M
+100622;Finance Manager;F
+101102;Plant Supervisor;M
+101232;Senior Assistant;M
+103910;Director;M
+108540;Plant Supervisor;M
+109873;Plant Worker;M
+110662;Plant Leader;M
+111412;Plant Supervisor;M
+113834;Plant Worker;F
+113991;Senior Assistant;M
+116741;Plant Supervisor;M
+117681;Plant Leader;M
+120766;Plant Leader;M
+123477;Plant Manager;M
+126713;Assistant;M
+126919;Head of Support Services;F
+126946;IT Leader;F
+127242;Senior Assistant;F
+127345;Team Leader;M
+131070;Plant Supervisor;F
+133926;Plant Worker;M
+134017;Manager;M
+134633;Plant Supervisor;M
+135760;Senior Assistant;M
+135961;Plant Manager;M
+136139;Plant Worker;F
+136174;Plant Manager;M
+136266;IT Leader;M
+136281;IT Manager;M
+136455;Plant Supervisor;M
+136514;Plant Worker;M
+136719;Plant Worker;F
+136731;Administrative Support;F
+136809;Plant Worker;M
+136929;Plant Worker;M
+137080;Plant Manager;F
+137108;Director;M
+137171;Administrative Support;F
+137241;Plant Worker;M
+137253;Plant Manager;M
+137307;Plant Worker;M
+137310;Plant Worker;M
+137415;Plant Worker;F
+137650;Plant Supervisor;M
+137666;Plant Manager;F
+137674;Plant Worker;M
+137680;Plant Worker;M
+137685;Plant Leader;F
+137699;Assistant;F
+137752;Plant Manager;F
+137809;Plant Manager;F
+137818;Administrative Support;F
+137920;Plant Manager;F
+137929;Plant Worker;M
+137937;Plant Worker;F
+137986;Plant Worker;M
+138045;Plant Worker;M
+138161;Plant Worker;F
+138263;Plant Worker;M
+138306;Plant Worker;M
+138311;Administrative Support;F
+138374;Marketing Assistant;F
+138375;Assistant;F
+138452;Plant Manager;M
+138661;Administrative Support;M
+138662;Administrative Support;M
+138707;Administrative Support;M
+138795;Administrative Support;F
+138870;Plant Worker;F
+138942;Plant Worker;M
+139214;Plant Worker;M
+139221;Marketing Assistant;F
+139238;Plant Worker;F
+139524;Human Resource Officer;F
+139684;Plant Manager;F
+139699;Director;M
+139710;Sales Director;F
+139724;Plant Supervisor;M
+139752;Plant Manager;F
+139800;Plant Manager;M
+139810;Plant Supervisor;F
+139829;Plant Supervisor;M
+139836;Administrative Support;F
+139857;Administrative Support;F
+139878;Plant Supervisor;F
+139894;Sales Leader;M
+139931;Administrative Support;F
+139983;Plant Supervisor;M
+140082;Administrative Support;M
+140131;Administrative Support;F
+140161;Plant Supervisor;M
+140244;Plant Supervisor;M
+140266;Plant Worker;M
+140363;Plant Leader;M
+140424;Plant Manager;F
+140425;Plant Worker;F
+140458;Administrative Support;F
+140537;Plant Manager;M
+140546;Plant Manager;F
+140589;Sales Manager;F
+140663;Administrative Support;F
+140712;Sales Assistance;M
+140732;Plant Worker;M
+140878;Plant Worker;F
+140919;Plant Worker;M
+140959;Plant Supervisor;M
+140968;Plant Worker;F
+140994;Plant Supervisor;M
+141056;Plant Manager;F
+141061;Administrative Support;F
+141084;Administrative Support;F
+141093;Plant Worker;F
+141115;Plant Supervisor;F
+141558;Plant Manager;F
+141588;Plant Supervisor;M
+141664;Administrative Support;F
+141915;Plant Worker;M
+141966;Plant Supervisor;M
+142021;Plant Supervisor;M
+142071;Plant Manager;M
+142216;Plant Worker;M
+142294;Plant Manager;M
+142418;Director;M
+142472;Plant Supervisor;F
+142534;Marketing Manager;F
+142697;Administrative Support;M
+142728;Administrative Support;F
+142896;Plant Worker;F
+142900;Administrative Support;F
+143241;Plant Manager;F
+143313;Plant Worker;F
+143326;Administrative Support;F
+143508;Senior Assistant;F
+143550;Plant Supervisor;M
+143616;Plant Worker;M
+143811;Plant Worker;M
+143814;Plant Worker;M
+143940;Plant Manager;M
+144564;Plant Manager;M
+145445;Plant Manager;M
+146109;Plant Manager;M
+147184;Plant Manager;M
+147185;Administrative Support;F
+147188;Plant Supervisor;F
+147203;CEO;M
+147218;Administrative Support;F
+147221;Plant Manager;M
+147235;Plant Supervisor;M
+147244;Plant Supervisor;F
+147246;Director;F
+147249;Plant Supervisor;M
+147251;Administrative Support;F
+147263;Director;M
+147270;Administrative Support;F
+147271;Administrative Support;F
+147282;CFO;M
+147290;Director;F
+147295;Plant Manager;M
+147298;Plant Worker;F
+147301;Plant Worker;F
+147309;Administrative Support;F
+147316;Head of Finance;M
+147317;Plant Worker;M
+147327;Plant Leader;M
+147330;Plant Supervisor;F
+147366;Director;F

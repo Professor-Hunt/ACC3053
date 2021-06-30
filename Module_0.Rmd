@@ -249,7 +249,7 @@ Download DB Browser for SQLite from their [website](https://sqlitebrowser.org/dl
 
 Select the appropriate download for your respective operating system **Windows** or **MacOS** (which you should know given the steps above).
 
-### I plan on using office 365 for excel. Each student at MSSTATE has access to office 365 in the cloud.
+### MSSTATE ITS Provides Microsoft Excel if you do not have it. I believe they have it available for windows/macOS 
 
 ## Layout of Technology
 

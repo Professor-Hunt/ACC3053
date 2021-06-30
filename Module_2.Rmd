@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ![](images/excel_meme.png){width="40%"}
 
-I may trash talk excel 😈, but I would argue that it is the most used tool for accountants. Accountants are the **original** data scientists[^1] and their weapon of choice has been excel. A large portion of this class will be using R, **BUT** I hope to show you that R and Excel can work together. At the very least you will learn how to do everything we see in this module in R and you can decide which tool you want to use. 😏 This case study is provided by [PWC](https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html). It was developed for a [masters level course](https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html), but I am adapting it for our class.
+I may trash talk excel 😈, but I would argue that it is the most used tool for accountants. Accountants are the **original** data scientists[^1] and their weapon of choice has been excel. A large portion of this class will be using R, **BUT** I hope to show you that R and Excel can work together. At the very least you will learn how to do everything we see in this module in R and you can decide which tool you want to use. 😏 This case study is provided by [PWC](https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html). It was developed for a [masters level course](https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html), but I am adapting it for our class. This should be a **Review** and I plan to move through this quickly. But, as always, you can slow me down with questions and comments.
 
 [^1]: in my opinion 😄
 
@@ -164,3 +164,715 @@ Keyboard shortcut F4 cycles through the four absolute cell reference options
 
 </div>
 :::
+
+### Functions
+
+The fx button to the left of the formula bar opens a list of all available functions
+
+![](images/functions.png){width="100%"}
+
+#### Arguments
+
+Functions take zero or more inputs or arguments
+
+=FUNCTION(Input1,Input2,...)
+
+Arguments can be:
+
+|                 |                                                          |
+|-----------------|----------------------------------------------------------|
+| Values          | 1, 2, 3 or 1.2, 3.6, 2.1 or "x", "y", "z" or TRUE, FALSE |
+| Cell References | B91, A452, C3                                            |
+
+![](images/function_args.png){width="100%"}
+
+### Navigation shortcuts (Windows)
+
++-----------------------------+------------------------------------------------------------------+
+| Ctrl + ➡️(⬅️,⬆️,⬇️)         | navigate to the last non-empty cell in that direction            |
++-----------------------------+------------------------------------------------------------------+
+| Ctrl + Shift + ➡️(⬅️,⬆️,⬇️) | select a block of cells to last non-empty cell in that direction |
++-----------------------------+------------------------------------------------------------------+
+| Ctrl + Space                | select the entire column of the cell you have selected           |
++-----------------------------+------------------------------------------------------------------+
+| Shift + Space               | select the entire row of the cell you have selected              |
++-----------------------------+------------------------------------------------------------------+
+
+## Acquire data
+
+### Getting data into excel
+
+-   Excel files have the extension .xlsx or .xls (older versions)
+
+-   Excel can also import data from delimited text files
+
+    -   Some comma-separated values files can be opened directly by Excel
+
+    -   Tab-separated values can be copy-and-pasted directly into an Excel worksheet
+
+    -   Delimited text can also be copy-and-pasted into Excel and then separated with text-to-columns
+
+![](images/get_data_into_excel.png){width="100%"}
+
+#### Example - Delimited text
+
+![](images/delimited_txt_ex.png){width="100%"}
+
+### Text to columns
+
+-   You might have text in one column that should be split across multiple columns, such as "1-Q-Fred" in the example below
+-   You can use the "Text to Columns" wizard to accomplish this
+
+![](images/text_to_col_excel.png){width="100%"}
+
+-   Follow the steps prompted when clicking the icon in the Data tab. You can specify:
+
+    -   Whether the separation point is defined by a certain character (Delimited) or at a fixed point in the cell (Fixed Width).
+    -   What character separates the information
+    -   Where you would like the newly separated information to go.
+
+### References to worksheets and workbooks
+
+-   You can also use data from other worksheets or other workbooks in your formulas
+-   Another worksheet in the same workbook is represented by "Sheet!"
+-   A worksheet in a different workbook is represented by "[Workbook.xlsx]Sheet!"
+
+![](images/ref_wksht_excel.png){width="100%"}
+
+#### Sample spreadsheet
+
+![](images/sample_wksht_excel.png){width="100%"}
+
+### Sorting
+
+-   Highlight a range and use the Sort option to order records by one or more columns
+
+-   Make sure to select an entire table to avoid sorting only part of it
+
+    ![](images/sorting_excel.png){width="100%"}
+
+### Filters
+
+-   Filtering allows you to hide rows in a range if they don't match select criteria
+
+-   Highlight the range and click the "Filter" button
+
+    ![](images/filter_excel.png){width="100%"}
+
+#### Custom filters
+
+Custom filters allow you to use multiple criteria such as AND or OR
+
+-   Click on drop down arrow
+-   Click "Text Filters"
+-   Choose Custom
+
+![](images/cust_filter_excel.png){width="100%"}
+
+## Summary statistics
+
+::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+<div>
+
+**COUNT() -** Counts numbers
+
+**COUNTBLANK() -** Counts empty cells
+
+**COUNTA() -** Counts non-empty cells
+
+**MIN() -** Returns minimum
+
+**MAX()** **-** Returns maximum
+
+**AVERAGE()** **-** Returns average/mean
+
+**ROWS/COLUMNS() -** Return number of rows/columns
+
+</div>
+
+<div>
+
+![](images/sum_stat_excel.png){width="100%"}
+
+</div>
+:::
+
+### Status Bar
+
+-   Highlighting a range of cells returns summary statistics on the status bar in the lower right corner
+
+-   This is a quick way to get information about part of your data
+
+    ![](images/status_bar_excel.png){width="100%"}
+
+## Can we rely on the data?
+
+![](images/rely_on_data.png){width="100%"}
+
+### Data quality dimensions
+
+![](images/data_qual_dim.png){width="100%"}
+
+#### Exercise - Data quality dimensions
+
+Identify which of the six DQ dimensions applies to the issues described below $\color{red}{\text{(please do not peek at the answers 😈)}}$:
+
+1.  'Gender' field has the special characters like \~!\@\#\$%\^\*();
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r DQ_Exercise_1_1_A, echo=FALSE}
+        print("Validity")
+    ```
+
+    </p>
+
+    </details>
+
+2.  'First name' is blank or Null
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r DQ_Exercise_1_2_A, echo=FALSE}
+        print("Completeness")
+    ```
+
+    </p>
+
+    </details>
+
+3.  'Last name' field has only designators such as LLP, LLC, Mr., Mrs., etc
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r DQ_Exercise_1_3_A, echo=FALSE}
+        print("Accuracy")
+    ```
+
+    </p>
+
+    </details>
+
+4.  'Address' field has only numbers
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r DQ_Exercise_1_4_A, echo=FALSE}
+        print("Validity")
+    ```
+
+    </p>
+
+    </details>
+
+5.  'Account Type' field does not have pre-defined list of values
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r DQ_Exercise_1_5_A, echo=FALSE}
+        print("Consistency")
+    ```
+
+    </p>
+
+    </details>
+
+6.  'Account Number' field have duplicate values
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r DQ_Exercise_1_6_A, echo=FALSE}
+        print("Integrity")
+    ```
+
+    </p>
+
+    </details>
+
+7.  'Forex rate' field does not have up to date exchange rate
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r DQ_Exercise_1_7_A, echo=FALSE}
+        print("Timeliness")
+    ```
+
+    </p>
+
+    </details>
+
+## Exercise - Excel \#1
+
+Load the data from 'payroll_data.txt' and 'reference_data.txt' into two tabs in an Excel spreadsheet and save it as 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the answers)😈}}$ :
+
+1.  How did you import the data?
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_1_1_A, echo=FALSE, out.width = '80%'}
+      knitr::include_graphics("images/Animation.gif")
+    ```
+
+    </p>
+
+    </details>
+
+2.  How many rows are there?
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_1_2_A, echo=FALSE}
+          print(c("payroll_data = 202 rows including header","reference_data = 199 rows including header"))
+    ```
+
+    </p>
+
+    </details>
+
+3.  How many columns?
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_1_3_A, echo=FALSE}
+          print(c("payroll_data = 9 columns","reference_data = 3 columns*"))
+    ```
+
+    </p>
+
+    </details>
+
+4.  What is the average salary?
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_1_4_A, echo=FALSE, out.width = '80%'}
+      knitr::include_graphics("images/Excel_Exercise_1_4_A.png")
+    ```
+
+    </p>
+
+    </details>
+
+5.  How many missing values are in each column?
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_1_5_A, echo=FALSE, out.width = '80%'}
+      knitr::include_graphics("images/Excel_Exercise_1_5_A.png")
+    ```
+
+    </p>
+
+    </details>
+
+6.  What potential data quality issues do you find? Which dimensions are they related to?
+
+    <details>
+
+    <summary>
+
+    Answer (one example)
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_1_6_A, echo=FALSE, out.width = '80%'}
+      knitr::include_graphics("images/Excel_Exercise_1_6_A.png")
+    ```
+
+    </p>
+
+    </details>
+
+## Transform Data
+
+### Data formats
+
+Data entered an Excel worksheet can be represented in different formats, for example:
+
+-   Number
+-   Currency
+-   Percentage
+-   Text
+-   Date
+
+Dates are stored as the number of days from a fixed historical date
+
+![](images/data_format_excel.png){width="100%"}
+
+### Text functions
+
+::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+<div>
+
+=CONCATENATE (text1, text2, ...) or &
+
+:   Appends two or more strings
+
+=MID(text, start_num, num_chars)
+
+:   Extracts a specific number of characters starting from a given position
+
+</div>
+
+<div>
+
+![](images/text_functions.gif){width="100%"}
+
+</div>
+:::
+
+=LEFT(text, num_chars)
+
+:   Extracts a specific number of characters from the left of a cell
+
+=RIGHT(text, num_chars)
+
+:   Extracts a specific number of characters from the right of a cell
+
+=LEN(text)
+
+:   Return the number of characters (including spaces) in a cell
+
+=SUBSTITUTE(text, old_text, new_text)
+
+:   Replaces a string with another string
+
+=FIND(find_text, within_text, start_position)
+
+:   Return the position of a match and error if no match
+
+### Number functions
+
+::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+<div>
+
+=ROUND(number, num_digits)
+
+:   Rounds a figure to a specified number of digits
+
+=LARGE(array, k)
+
+:   Returns the kth largest number
+
+=SMALL(array, k)
+
+:   Returns the kth smallest number
+
+</div>
+
+<div>
+
+![](images/Num_functions.gif){width="100%"}
+
+</div>
+:::
+
+=PRODUCT(number1, number2, ...)
+
+:   Multiplies several values together
+
+=EXP(number)
+
+:   Returns Euler's number (e) raised to a number
+
+=RAND()
+
+:   Returns a random number between 0 and 1
+
+=RANDBETWEEN(bottom, top)
+
+:   Returns a random integer between the specified values
+
+### Date/time functions
+
+::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+<div>
+
+=TODAY()
+
+:   Displays current date
+
+=NOW()
+
+:   Displays current date and time
+
+=DATE(year, month, day)
+
+:   Generates a date given day, month, and year
+
+</div>
+
+<div>
+
+![](images/date_time_fun.gif){width="100%"}
+
+</div>
+:::
+
+=DAY(serial_number)
+
+:   Determines day of date, e.g. 31
+
+=MONTH(serial_number)
+
+:   Determines month of date, e.g. 12
+
+=YEAR(serial_number)
+
+:   Determines year of date, e.g. 2001
+
+=WEEKNUM(serial_number)
+
+:   Returns the week number in the year
+
+=WEEKDAY(serial_number)
+
+:   Returns the position of the day in a workweek
+
+=DAYS(end_date, start_date)
+
+:   Returns number of days between two dates
+
+=NETWORKDAYS(start_date, end_date)
+
+:   Returns the number of working days between dates
+
+### Fill
+
+-   You can apply a formula to an entire column by using the Fill options
+
+-   You can also Fill Down by double-clicking a cell with a formula in a table
+
+    ![](images/fill_excel.png){width="100%"}
+
+### Error trapping
+
+=ISNA(value)
+
+:   Determine if cell or result of formula is showing \#N/A!
+
+=ISERROR(value)
+
+:   Determine if cell or result of formula is an error
+
+=IFERROR(value, value_if_error)
+
+:   Give an alternative result if the formula produces an error
+
+![](images/Error_trap_excel.png){width="100%"}
+
+### IF statements
+
+-   **IF()** analyses the contents of one or more cells to determine whether a condition is TRUE or FALSE
+
+-   Given the value of the condition, different values can be returned
+
+    **Syntax**
+
+=IF ( $\color{darkred}{\text{logical_test}}$ , $\color{red}{\text{value_if_true}}$ , $\color{maroon}{\text{value_if_false}}$ )
+
+Examples
+
+=IF ( $\color{darkred}{\text{B1 > 50}}$ , $\color{red}{\text{B1 * A1}}$, $\color{maroon}{\text{B1 * A3}}$)
+
+=IF ( $\color{darkred}{\text{B1 > B2}}$ , $\color{red}{\text{B1}}$ , $\color{maroon}{\text{B2}}$ )
+
+=IF ( $\color{darkred}{\text{B1 = "awesome"}}$ , $\color{red}{\text{B1}}$ , $\color{maroon}{\text{B2}}$ )
+
+![](images/if_excel.png){width="100%"}
+
+### Conditional operators
+
+Any function can be used with conditional operators in IF statements to test conditions
+
+\>	Greater than
+
+\<	Less than
+
+\>=	Greater than and equal to
+
+\<=	Less than and equal to
+
+\<\>	Not equal to
+
+=	Equal to
+
+### NOTE:
+
+Some of functions can be used only on numbers, some to dates and some to strings.
+
+-   Addition: Numbers, Dates
+-   Subtraction: Numbers, Dates
+-   Multiplication: Numbers
+-   Division: Numbers
+-   Power: Numbers
+-   (): Anything
+-   Order operators (\>,\< etc.) : Numbers, Dates, Strings
+-   Concatenation: Anything
+
+### Nested conditional statements
+
+=IF ($\color{darkred}{\text{logical_test}}$ , $\color{red}{\text{value_if_true}}$ , IF ($\color{darkred}{\text{logical_test}}$ , $\color{red}{\text{value_if_true}}$ , $\color{maroon}{\text{value_if_false}}$ ))
+
+![](images/Nested_excel.png){width="100%"}
+
+=IF ( $\color{darkred}{\text{B1 > 50}}$ , $\color{red}{\text{B1 * A1}}$, IF ( $\color{darkred}{\text{B1 > 150}}$ , $\color{red}{\text{B1 * A2}}$, $\color{maroon}{\text{B1 * A3}}$) )
+
+### Logical operators
+
+=AND($\color{darkred}{\text{logical1}}$, $\color{red}{\text{logical2}}$, ...)	Gives **True** if all the conditions are met
+
+=OR($\color{darkred}{\text{logical1}}$, $\color{red}{\text{logical2}}$, ...)	Gives **True** if at least one condition is met
+
+=NOT($\color{darkred}{\text{logical}}$)		Gives **True** if the condition is not met
+
+![](images/logical_excel.png){width="100%"}
+
+### VLOOKUP
+
+-   Often we need to add data from one table to another. This requires one column in each table to act as the link between them
+-   **VLOOKUP** searches vertically down the left-hand column of a table to find a match, then returns the corresponding value from a specified column of the table
+-   In most cases, the fourth argument should be 'FALSE' to require exact matches
+
+Always use absolute cell references to specify the range containing the lookup data
+
+![](images/vlookup_excel.png){width="100%"}
+
+### Unique values and duplicates
+
+-   Excel has an option to reduce a single column to its unique values
+-   This option can also remove duplicate rows from a table across multiple columns
+
+![](images/unique_excel.png){width="100%"}
+
+### Find/Replace
+
+-   You may need to find or replace values across a worksheet or workbook, which would be time-consuming if done manually
+
+-   Use Find/Replace to do this efficiently:
+
+    -   Ctrl + F: find
+
+    -   Ctrl + H: replace
+
+-   Excel will search the whole worksheet (or workbook) unless a range is selected
+
+-   The "Options \>\>" button enables the use of requirements such as "Match case"
+
+    ![](images/find_rep_excel.png){width="100%"}
+
+## Exercise Excel \#2
+
+In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the answers)😈}}$ :
+
+1.  Address any data quality issues identified previously.
+
+2.  Create a new column with total compensation (salary plus overtime pay)... what is the average total compensation?
+
+3.  Add a column for the employee's tenure at the company in years.
+
+4.  It turns out that all of the NJ employees work for separate division called "Tasty New Jersey". Correct the Division column with this information.
+
+5.  Create a binary column (0/1) that identifies employees of the "Tasty" operating units.
+
+6.  Add columns for Job Position and Gender from the 'Reference Data' worksheet.
+
+7.  Select a random 5% sample of employees to receive a survey.

@@ -1,0 +1,202 @@
+Employee ID|Division|Operating Unit|Salary|State|Start Date|Division|Dept|Overtime Pay
+138311|Tasty New York|Tasty Biscuits| $28,334.00 |NJ|4/18/2001|3350|2000| -   
+390|Tasty New York|IT Services| $56,555.00 |NY|8/20/2011|3810|3000| -   
+138661|Tasty New York|Tasty Soups| $26,887.00 |NJ|6/19/2002|3364|2300| -   
+138707|Tasty New York|Tasty Soups| $29,678.42 |NJ|9/11/2002|3364|2500| -   
+548|Tasty New York|IT Services| $168,449.00 |CT|1/17/1996|3810|5000| -   
+574|Tasty New York|IT Services| $38,917.00 |NY|4/6/2005|3810|4000| -   
+601|Tasty New York|IT Services| $79,585.00 |NY|9/1/1999|3810|3000| -   
+138795|Tasty New York|Tasty Biscuits| $25,990.00 |NJ|7/11/2011|3338|2000| -   
+52250|Tasty New York|Luxury Treats| $100,507.00 |CT|2/28/1951|3360|5000| 2,010 
+53024|Tasty New York|Luxury Treats| $193,565.00 |NY|6/28/1967|3360|4000| 29,035 
+53725|Tasty New York|Tasty Biscuits| $186,310.00 |NY|3/18/1959|3361|3000| -   
+53873|Tasty New York|Luxury Treats| $108,307.00 |NY|5/9/1962|3360|3000| -   
+53725|Tasty New York|Tasty Biscuits| $186,310.00 |NY|3/18/1959|3361|3000| -   
+53725|Tasty New York|Tasty Biscuits| $186,310.00 |NY|3/18/1959|3361|3000| -   
+53921|Tasty New York|Luxury Treats| $111,118.00 |NY|9/1/1954|3360|3000| 16,668 
+54133|Tasty New York|Tasty Bizkits| $72,242.00 |NY|8/13/1958|3361|3000| 14,448 
+61908|Tasty New York|Luxury Treats| $39,207.30 |CT|3/14/1973|3360|5000| 1,960 
+63032|Tasty New York|Luxury Treats| $168,154.00 |NY|2/13/1974|3360|4000| 30,268 
+141084|Tasty New York|Tasty Soups| $23,874.15 |NJ|2/23/2005|3364|2500| -   
+78018|Tasty New York|Luxury Treats| $299,552.00 |NY|6/14/1978|3360|4000| -   
+79912|Tasty New York|Luxury Treats| $83,266.00 |WA|2/21/1979|3360|6000| 12,490 
+86077|Tasty New York|Luxury Treats| $35,414.00 |NJ|1/18/1984|3360|7000| -   
+86134|Tasty New York|Tasty Biscuits| $134,816.00 |NY|6/24/1981|3338|1005| 18,874 
+142697|Tasty New York|Tasty Soups| $26,745.00 |NJ|4/19/2006|3364|2500| -   
+432|Tasty New York|IT Services| $38,458.00 |NJ|4/18/2001|3810|2000| -   
+95088|Tasty New York|Tasty Soups| $138,721.00 |NY|2/10/1988|3501|3000| -   
+95284|Tasty New York|Tasty Snacks Food| $123,906.00 |NY|6/12/1985|3339|3152| 18,586 
+98249|Tasty New York|Luxury Treats| $69,237.00 |CT|9/19/1979|3360|1600| 10,386 
+98427|Tasty New York|Marketing| $137,842.00 |NY|9/24/1958|3352|1001| -   
+100162|Tasty New York|Tasty Snacks Food| $80,716.00 |WA|6/3/1987|3340|2150| 11,300 
+536|Tasty New York|IT Services| $45,498.00 |NJ|7/19/2006|3810|2000| -   
+100402|Tasty New York|Tasty Snacks Food| $106,290.00 |WA|3/19/1997|3340|2150| 15,944 
+126713|Tasty New York|Plant Support Services| $40,113.00 |NJ|10/7/1987|3344|3000| -   
+137699|Tasty New York|Finance| $39,780.00 |NJ|12/26/2001|3310|2000| -   
+138375|Tasty New York|Plant Support Services| $52,385.00 |NJ|2/26/2003|3344|1001| -   
+147366|Tasty New York|Tasty Snacks Food| $749,564.00 |NJ|8/2/2013|3342|1001| -   
+100522|Tasty New York|Tasty Snacks Food| $171,600.00 |NJ|3/10/1999|3340|2150| -   
+103910|Tasty New York|Luxury Treats| $234,050.00 |NY|9/17/1986|3360|3000| -   
+100622|Tasty New York|Finance| $100,272.00 |NJ|9/1/1999|3310|2000| -   
+147316|Tasty New York|Finance| $173,317.00 |NJ|10/25/1995|3310|2000| -   
+139524|Tasty New York|Human Resources| $80,350.00 |NJ|6/9/2004|3314|2000| -   
+648|Tasty New York|IT Services| $121,422.00 |NJ|8/30/2006|3810|3000| -   
+113834|Tasty New York|Tasty Biscuits| $43,249.00 |WA|10/17/1990|3361|6000| 6,487 
+113991|Tasty New York|IT Services| $71,873.00 |NY|8/23/1989|3318|2127| -   
+136266|Tasty New York|IT Services| $120,371.00 |NJ|5/20/1998|3318|2127| -   
+117681|Tasty New York|Luxury Treats| $184,963.00 |NY|9/5/1990|3360|3000| 29,594 
+120766|Tasty New York|Tasty Soups| $112,294.00 |CT|8/14/1991|3508|5000| 11,229 
+123477|Tasty New York|Luxury Treats| $141,672.00 |CT|10/14/1992|3360|5000| 8,500 
+383|Tasty New York|IT Services| $76,752.00 |NT|2/4/2012|3810|2000| -   
+126919|Tasty New York|Plant Support Services| $175,052.00 |NY|7/27/1983|3344|1001| -   
+126946|Tasty New York|IT Services| $129,273.00 |NY|7/6/1977|3318|2127| -   
+127242|Tasty New York|Plant Support Services| $60,733.95 |NY|12/27/1989|3344|3934| -   
+127345|Tasty New York|Plant Support Services| $156,180.00 |NY|7/5/1989|3344|3934| -   
+131070|Tasty New York|Tasty Biscuits| $87,979.00 |CT|1/26/1994|3361|1600| 12,317 
+133926|Tasty New York|Tasty Biscuits| $45,619.00 |WA|1/17/1996|3361|6000| 7,299 
+136281|Tasty New York|IT Services| $87,718.00 |NJ|6/9/1999|3318|2127| -   
+134633|Tasty New York|Tasty Bizkits| $76,331.00 |CT|12/28/1994|3361|5000| 6,106 
+134017|Tasty New York|Plant Support Services| $115,101.00 |NJ|7/3/1996|3343|2000| -   
+135961|Tasty New York|Luxury Treats| $145,025.00 |CT|10/25/1995|3360|1600| 21,754 
+134017|Tasty New York|Plant Support Services| $115,101.00 |NJ|7/3/1996|3343|2000| -   
+138374|Tasty New York|Marketing| $49,609.00 |NJ|5/8/2002|3352|2000| -   
+139221|Tasty New York|Marketing| $26,116.00 |NJ|9/1/2004|3352|2000| -   
+142534|Tasty New York|Marketing| $109,561.00 |NJ|4/6/2005|3352|1001| -   
+92386|Tasty New York|Marketing| $66,402.21 |NJ|9/26/1984|3352|2000| -   
+136514|Tasty New York|Tasty Biscuits| $46,210.00 |WA|5/21/2013|3361|6000| 6,932 
+110662|Tasty New York|Tasty Snacks Food| $163,752.00 |NJ|8/25/1982|3340|2150| 37,663 
+136731|Tasty New York|Tasty Biscuits| $23,914.00 |WA|11/24/1999|3361|6000| -   
+140363|Tasty New York|Tasty Biscuits| $141,690.00 |NJ|4/6/2005|3312|2000| 68,092 
+136929|Tasty New York|Tasty Biscuits| $47,927.00 |WA|4/8/1998|3338|6000| 5,751 
+136174|Tasty New York|Tasty Soups| $53,089.00 |NJ|11/26/1997|3364|2000| 12,210 
+137080|Tasty New York|Tasty Snacks Food| $110,844.00 |CT|1/10/1979|3339|2000| 8,868 
+137108|Tasty New York|Tasty Biscuits| $150,986.00 |NY|6/22/1988|3361|3000| -   
+137171|Tasty New York|Tasty Snacks Food| $20,193.00 |NY|3/19/1997|3339|3152| -   
+137253|Tasty New York|Tasty Soups| $53,062.00 |NJ|7/1/1998|3310|2000| 14,857 
+137809|Tasty New York|Tasty Soups| $59,002.00 |NJ|6/21/2000|3364|2150| 15,341 
+140546|Tasty New York|Tasty Soups| $89,732.00 |NJ|7/31/2002|3364|2000| 21,536 
+141056|Tasty New York|Tasty Soups| $74,297.00 |NJ|1/12/2005|3364|2000| 23,032 
+141558|Tasty New York|Tasty Soups| $70,209.00 |NJ|12/14/2005|3364|2150| 19,659 
+142071|Tasty New York|Tasty Soups| $53,666.00 |NJ|10/11/2006|3310|2000| 13,417 
+137666|Tasty New York|Tasty Biscuits| $130,646.00 |NY|8/5/1981|3349|1001| 19,597 
+143940|Tasty New York|Tasty Soups| $54,424.00 |NJ|3/28/2007|3364|2000| 10,885 
+137680|Tasty New York|Tasty Biscuits| $46,318.00 |NY|7/21/1999|3349|1001| 6,948 
+137685|Tasty New York|Tasty Biscuits| $148,824.00 |CT|1/6/1993|3349|5000| 11,906 
+144564|Tasty New York|Tasty Soups| $67,980.00 |NJ|8/20/2003|3364|2480| 12,236 
+137752|Tasty New York|Tasty Bizkits| $112,671.00 |CT|6/21/2000|3361|1600| 20,281 
+94401|Tasty New York|Tasty Soups| $49,462.00 |NJ|1/8/1986|3364|2300| 11,376 
+137818|Tasty New York|Tasty Biscuits| $20,717.00 |WA|11/1/2000|3361|6000| -   
+137920|Tasty New York|Tasty Soups| $82,201.00 |NY|5/30/2001|3310|2000| 12,330 
+100212|Tasty New York|Tasty Snacks Food| $93,720.00 |NJ|6/11/1997|3340|2150| 23,430 
+100422|Tasty New York|Tasty Snacks Food| $93,293.00 |NJ|7/21/1999|3340|2150| 24,256 
+137986|Tasty New York|Tasty Soups| $36,813.00 |NY|5/8/2002|3501|3000| 5,522 
+101102|Tasty New York|Tasty Snacks Food| $73,034.00 |NJ|3/7/2001|3340|2150| 16,798 
+108540|Tasty New York|Luxury Treats| $97,060.00 |NJ|2/10/1988|3360|2000| 26,206 
+111412|Tasty New York|Tasty Snacks Food| $89,782.00 |NJ|5/21/2003|3340|2150| 18,854 
+138306|Tasty New York|Luxury Treats| $48,892.00 |NY|4/9/2003|3360|3000| 7,334 
+116741|Tasty New York|Tasty Soups| $41,095.00 |NJ|10/14/1992|3364|2480| 10,274 
+136455|Tasty New York|Tasty Soups| $43,354.00 |NJ|7/26/1978|3348|2000| 11,272 
+137650|Tasty New York|Natural Health Foods| $99,091.00 |NJ|10/13/1999|3201|2000| 26,755 
+138452|Tasty New York|Tasty Snacks Food| $100,956.00 |CT|11/1/2000|3340|2150| 10,096 
+139829|Tasty New York|Tasty Soups| $41,784.00 |NJ|5/2/1990|3310|2000| 5,014 
+138662|Tasty New York|Tasty Soups| $24,661.00 |NY|5/18/2005|3501|3000| -   
+141588|Tasty New York|Tasty Soups| $43,894.00 |NJ|11/24/2004|3364|2150| 10,535 
+142021|Tasty New York|Tasty Soups| $48,192.60 |NJ|8/20/2008|3364|2000| 11,084 
+142472|Tasty New York|Tasty Soups| $49,581.00 |NJ|5/21/2003|3350|2000| 12,395 
+63630|Tasty New York|Tasty Soups| $34,853.00 |NJ|6/14/1978|3364|2500| 6,274 
+109873|Tasty New York|Tasty Biscuits| $65,735.00 |NJ|3/11/1992|3361|2000| 9,860 
+136139|Tasty New York|Tasty Snacks Food| $37,551.00 |NJ|2/28/1996|3340|2150| 6,008 
+139238|Tasty New York|Tasty Soups| $37,471.00 |WA|10/1/2013|3350|2000| 7,119 
+136719|Tasty New York|Tasty Biscuits| $62,330.00 |NJ|9/3/1997|3361|2000| 9,973 
+139684|Tasty New York|Tasty Biscuits| $123,212.00 |NY|11/12/2010|3338|1001| 18,482 
+139699|Tasty New York|Luxury Treats| $198,198.00 |NY|8/27/1980|3360|4000| -   
+136809|Tasty New York|Tasty Soups| $36,096.00 |NJ|3/29/2000|3364|2300| 4,692 
+139724|Tasty New York|Luxury Treats| $91,953.00 |NY|8/21/1963|3360|4000| -   
+139752|Tasty New York|Luxury Treats| $160,008.00 |NY|6/21/1950|3360|3000| 27,201 
+139800|Tasty New York|Tasty Soups| $99,568.00 |NY|1/28/1987|3501|3000| 14,935 
+139810|Tasty New York|Tasty Biscuits| $87,242.00 |CT|2/10/1988|3361|2000| 1,745 
+137241|Tasty New York|Tasty Soups| $31,747.00 |NJ|11/1/2000|3364|2000| 5,080 
+139836|Tasty New York|Luxury Treats| $21,999.00 |CT|9/2/1992|3360|5000| -   
+139857|Tasty New York|Tasty Soups| $18,015.00 |NY|7/22/1992|3501|3000| -   
+139878|Tasty New York|Tasty Soups| $41,408.00 |NY|8/21/1996|3501|3550| 5,797 
+139894|Tasty New York|Communication & Strategic Sales| $138,128.00 |CT|1/30/1980|3332|2000| -   
+139931|Tasty New York|Luxury Treats| $30,439.00 |CT|6/9/1999|3360|5000| -   
+139983|Tasty New York|Tasty Biscuits| $70,123.00 |NY|4/30/1997|3361|3000| 9,817 
+140082|Tasty New York|Luxury Treats| $20,122.00 |NJ|7/11/2001|3360|7000| -   
+140131|Tasty New York|Luxury Treats| $32,389.00 |CT|10/13/1999|3360|5000| -   
+140161|Tasty New York|Tasty Soups| $49,130.00 |NY|7/31/2002|3501|3550| -   
+140244|Tasty New York|Tasty Soups| $46,967.00 |NY|12/4/2002|3501|3000| -   
+140266|Tasty New York|Tasty Soups| $34,853.00 |NY|10/23/2002|3501|3152| 5,228 
+137307|Tasty New York|Tasty Soups| $39,254.00 |NJ|4/30/1997|3364|2500| 5,496 
+140424|Tasty New York|Luxury Treats| $115,972.00 |CT|12/26/2001|3360|5000| 9,278 
+140425|Tasty New York|Luxury Treats| $57,465.00 |WA|1/15/2003|3360|6000| 8,620 
+140458|Tasty New York|Luxury Treats| $32,695.00 |NY|7/2/2003|3360|4000| -   
+140537|Tasty New York|Tasty Soups| $75,760.00 |NY|7/31/2002|3501|3000| 11,364 
+137310|Tasty New York|Tasty Soups| $32,208.00 |NJ|11/1/2000|3364|2500| 5,797 
+137415|Tasty New York|Tasty Soups| $39,950.00 |NJ|3/7/2001|3364|2000| 7,191 
+140663|Tasty New York|Tasty Soups| $25,188.00 |NY|3/8/2006|3501|3000| -   
+140712|Tasty New York|Communication & Strategic Sales| $27,605.00 |NY|7/2/2003|3332|2000| -   
+140732|Tasty New York|Luxury Treats| $42,870.00 |WA|7/21/2004|3360|6000| 19,292 
+137674|Tasty New York|Tasty Biscuits| $35,737.00 |NJ|1/27/1999|3349|1001| 5,718 
+137929|Tasty New York|Tasty Soups| $36,384.00 |NJ|11/14/2001|3364|2000| 5,094 
+140959|Tasty New York|Tasty Soups| $48,463.00 |NY|7/19/2006|3501|3220| 5,816 
+140968|Tasty New York|Tasty Snacks Food| $50,611.00 |NY|5/18/2005|3339|2000| 7,592 
+140994|Tasty New York|Tasty Soups| $47,946.00 |NY|10/13/2004|3501|3220| 5,754 
+137937|Tasty New York|Tasty Soups| $34,738.00 |NJ|3/27/2002|3364|2300| 5,558 
+141061|Tasty New York|Tasty Biscuits| $29,479.00 |WA|11/22/2006|3361|6000| -   
+138045|Tasty New York|Tasty Biscuits| $53,767.00 |NJ|5/8/2002|3361|2000| 9,678 
+141093|Tasty New York|Tasty Soups| $35,554.00 |NY|8/10/2005|3501|3220| 5,333 
+141115|Tasty New York|Tasty Soups| $42,266.00 |NY|6/9/2004|3501|3220| 5,072 
+138161|Tasty New York|Tasty Biscuits| $63,616.00 |NJ|10/3/2001|3361|2000| 10,179 
+138263|Tasty New York|Tasty Biscuits| $46,787.00 |NJ|10/1/2003|3361|2000| 8,422 
+141664|Tasty New York|Tasty Biscuits| $29,399.00 |WA|2/23/2005|3361|6000| -   
+140424|Tasty New York|Luxury Treats| $115,972.00 |CT|12/26/2001|3360|5000| 10,437 
+141966|Tasty New York|Luxury Treats| $108,680.00 |NJ|11/24/2004|3360|8000| 10,868 
+138870|Tasty New York|Tasty Soups| $39,486.00 |NJ|12/4/2002|3364|2000| 7,107 
+138942|Tasty New York|Tasty Soups| $30,951.00 |NJ|12/24/2003|3364|2560| 5,571 
+142216|Tasty New York|Luxury Treats| $75,931.00 |WA|10/13/2004|3360|6000| 11,390 
+142294|Tasty New York|Luxury Treats| $127,253.00 |WA|6/29/2005|3360|6000| 17,815 
+142418|Tasty New York|Tasty Soups| $203,400.00 |WA|7/23/1997|3508|1001| -   
+139214|Tasty New York|Tasty Soups| $35,488.00 |NJ|4/28/2004|3364|2000| 5,678 
+140878|Tasty New York|Luxury Treats| $83,436.00 |NJ|5/21/2003|3201|2000| 11,681 
+140919|Tasty New York|Luxury Treats| $47,510.00 |NJ|10/13/2004|3360|2000| 8,552 
+142728|Tasty New York|Tasty Biscuits| $32,514.00 |NY|6/20/2007|3361|4000| -   
+142896|Tasty New York|Luxury Treats| $49,177.00 |NJ|6/7/2006|3360|2000| 8,852 
+142900|Tasty New York|Tasty Biscuits| $22,761.00 |NY|1/3/2007|3361|4000| -   
+143241|Tasty New York|Luxury Treats| $115,093.00 |NJ|9/21/2005|3360|8000| 17,264 
+143313|Tasty New York|Tasty Soups| $33,920.00 |NJ|10/11/2006|3364|2000| 6,106 
+143326|Tasty New York|Tasty Biscuits| $19,345.20 |CT|7/19/2006|3361|2000| -   
+143811|Tasty New York|Luxury Treats| $75,335.00 |NJ|12/15/1993|3360|2000| 10,547 
+143550|Tasty New York|Luxury Treats| $89,032.00 |WA|1/25/2006|3360|6000| 8,903 
+143814|Tasty New York|Luxury Treats| $40,675.00 |NJ|7/21/1999|3360|2000| 6,508 
+147317|Tasty New York|Natural Health Foods| $70,194.00 |NJ|5/21/2003|3543|1002| 12,635 
+139710|Tasty New York|Communication & Strategic Sales| $362,250.00 |NJ|5/4/1983|3351|1001| -   
+140589|Tasty New York|Communication & Strategic Sales| $85,287.00 |NJ|4/19/2006|3363|1001| -   
+101232|Tasty New York|Finance| $62,852.00 |NJ|8/22/2001|3310|2000| -   
+145445|Tasty New York|Natural Health Foods| $155,403.00 |CT|6/11/1997|3543|1001| 12,432 
+146109|Tasty New York|Luxury Treats| $145,000.00 |WA|11/15/1989|3505|2000| 20,300 
+147184|Tasty New York|Natural Health Foods| $159,954.00 |CT|5/21/2003|3543|1001| 11,197 
+147185|Tasty New York|Natural Health Foods| $40,717.00 |CT|10/3/2010|3543|1001| -   
+147188|Tasty New York|Natural Health Foods| $92,324.00 |CT|12/4/2012|3543|1001| 1,846 
+147203|Tasty New York|Natural Health Foods| $241,749.00 |CT|5/30/2011|3543|1001| -   
+147218|Tasty New York|Tasty Biscuits| $32,100.00 |CT|5/18/2005|3361|2000| -   
+147221|Tasty New York|Natural Health Foods| $135,286.00 |CT|10/1/2003|3543|1001| 12,176 
+147235|Tasty New York|Tasty Biscuits| $96,090.00 |CT|5/8/2002|3361|2000| 1,922 
+143652|Tasty New York|Tasty Soups| $60,500.00 |NJ|4/19/2006|3364|2500|
+147244|Tasty New York|Natural Health Foods| $100,000.00 |CT|7/31/2002|3543|1001| 5,000 
+147246|Tasty New York|Natural Health Foods| $229,017.00 |NY|3/7/2001|3543|1004| -   
+147249|Tasty New York|Tasty Biscuits| $91,156.00 |CT|8/20/2003|3361|2000|
+147251|Tasty New York|Natural Health Foods| $40,765.00 |CT|2/4/2004|3543|1001|
+147263|Tasty New York|Natural Health Foods| $197,353.00 |CT|2/26/2003|3543|1001|
+147270|Tasty New York|Natural Health Foods| $46,367.00 |CT|1/1/1900|3543|1001|
+147271|Tasty New York|Natural Health Foods| $47,056.00 |CT|2/25/1998|3543|1001|
+147188|Tasty New York|Natural Health Foods| $92,324.00 |CT|12/4/2012|3543|1001|
+147290|Tasty New York|Natural Health Foods| $375,852.28 |CT|9/13/2000|3543|1001|
+147295|Tasty New York|Natural Health Foods| $142,610.00 |CT|5/8/2002|3543|1001| 17,113 
+147298|Tasty New York|Natural Health Foods| $69,641.00 |CT|1/5/2000|3543|1001| 2,786 
+147301|Tasty New York|Natural Health Foods| $70,987.00 |CT|1/5/2000|3543|1001| 2,839 
+147309|Tasty New York|Natural Health Foods| $30,985.00 |CT|9/23/1998|3543|1001| -   
+135760|Tasty New York|Plant Support Services| $95,841.00 |NJ|3/29/1995|3344|2976| -   
+143508|Tasty New York|IT Services| $75,865.00 |NJ|6/20/2007|3318|2127| -   
+147327|Tasty New York|Natural Health Foods| $171,238.00 |NY|10/1/2003|3543|1004| 25,686 
+147330|Tasty New York|Natural Health Foods| $97,390.00 |NY|11/14/2001|3543|1002| 9,739 
