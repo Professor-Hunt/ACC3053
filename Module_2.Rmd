@@ -1239,3 +1239,212 @@ In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the 
     </details>
 
 ## Present findings
+
+### Visualization in excel
+
+-   Visualization is often essential for gaining an understanding of the data and presenting findings to a new audience
+
+-   Excel can easily produce a variety of basic charts
+
+-   For an effective visualization, always consider:
+
+    -   What question do I want to answer?
+    -   What message do I want my audience to take away?
+    -   How can I keep it simple?
+
+-   We'll focus more on visualization later in the course
+
+### Conditional formatting
+
+::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+<div>
+
+-   Conditional formatting adjusts the color of a cell according to the relative magnitude of the values or established rules
+-   It is commonly used for RAG (Red/Amber/Green) reports, in which good figures are highlighted in green and bad ones in red, but any gradient can be applied
+
+</div>
+
+<div>
+
+![](images/cond_format_excel_1.png){width="30%"}
+
+</div>
+:::
+
+![](images/cond_format_excel_2.png){width="90%"}
+
+#### What do you think of this visualization?
+
+![](images/vis_excel.png){width="100%"}
+
+#### What about this one?
+
+**Manchester University has low teaching scores compared to its competitors**
+
+![](images/vis_excel_2.png){width="100%"}
+
+### Effective visualization
+
+-   More information, less ink
+-   Clear out the junk!
+-   Use color, shape, placement, etc. to draw attention
+-   Use 2D rather than 3D charts
+
+![](images/effective_vis_excel.png){width="100%"}
+
+### Basic charts
+
+![](images/basic_chart_excel.png){width="100%"}
+
+### Insert chart
+
+::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+<div>
+
+-   The first step to setting up your chart is to arrange the data into a table
+-   Then select the table and select the type of graph you are looking for on the Insert tab
+
+![](images/insert_chart_excel_1.png){width="80%"}
+
+</div>
+
+<div>
+
+![](images/insert_chart_excel_2.png){width="50%"}
+
+</div>
+:::
+
+### Axis settings
+
+![](images/axis_setting_excel.png){width="100%"}
+
+### Data labels
+
+![](images/data_labels_excel.png){width="100%"}
+
+### Gridlines
+
+![](images/gridlines_excel.png){width="100%"}
+
+### Titles
+
+![](images/titles_excel.png){width="100%"}
+
+### Data in rows or columns
+
+![](images/row_cols_excel.png){width="100%"}
+
+### Changing data range
+
+Sometimes we want to change the data range covered by a chart or add an extra series
+
+When you select a data series on a chart, the source data range can be adjusted
+
+![](images/chg_data_rng_excel.png){width="100%"}
+
+### Select data source
+
+You can also use the Select Data Source dialog box from the Design tab in the ribbon or by right-clicking the chart to add a new series to a graph
+
+![](images/select_data_excel.png){width="100%"}
+
+### Pivot charts
+
+In addition to creating a Pivot table on the data, you can also create a Pivot Chart which is based on the Pivot table itself
+
+Changes made to the chart are replicated on the table and vice versa
+
+![](images/pivot_chart_excel.png){width="100%"}
+
+## Exercise \#4
+
+In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do  not peek at the answers)😈}}$:
+
+I am not going to lie...these took longer than they should have....😢
+
+1.  Create a pivot table with average salary by Operating Unit and State and add conditional formatting.
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_4_1_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_4_1_A.png")
+    ```
+
+    </p>
+
+    </details>
+
+
+2.  Create a bar plot with the number of employees by State
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_4_2_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_4_2_A.png")
+    ```
+
+    </p>
+
+    </details>
+
+
+3.  Create a scatter plot of salary and tenure
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_4_3_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_4_3_A.png")
+    ```
+
+    </p>
+
+    </details>
+
+
+4.  Create a line chart to show the cumulative number of employees hired by year.
+
+    <details>
+
+    <summary>
+
+    Answer
+
+    </summary>
+
+    <p>
+
+    ```{r Excel_Exercise_4_4_A, echo=FALSE, out.width = '100%'}
+      knitr::include_graphics("images/Excel_Exercise_4_4_A.png")
+    ```
+
+    </p>
+
+    </details>
+
+
+### STILL WORKING
