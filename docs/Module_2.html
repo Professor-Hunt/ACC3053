@@ -2434,16 +2434,88 @@ Lagniappe Material
 <li><a href="#module-objectives">Module Objectives</a>
 <ul>
 <li><a href="#why-excel">Why excel?</a></li>
-<li><a href="#acquire-data">Acquire data</a></li>
-<li><a href="#summary-statistics">Summary statistics</a></li>
-<li><a href="#can-we-rely-on-the-data">Can we rely on the data?</a></li>
+<li><a href="#cell-references">Cell References</a></li>
+<li><a href="#formulas">Formulas</a></li>
+<li><a href="#functions">Functions</a></li>
+<li><a href="#navigation-shortcuts-windows">Navigation shortcuts (Windows)</a></li>
+</ul></li>
+<li><a href="#acquire-data">Acquire data</a>
+<ul>
+<li><a href="#getting-data-into-excel">Getting data into excel</a></li>
+<li><a href="#text-to-columns">Text to columns</a></li>
+<li><a href="#references-to-worksheets-and-workbooks">References to worksheets and workbooks</a></li>
+<li><a href="#sorting">Sorting</a></li>
+<li><a href="#filters">Filters</a></li>
+</ul></li>
+<li><a href="#summary-statistics">Summary statistics</a>
+<ul>
+<li><a href="#status-bar">Status Bar</a></li>
+</ul></li>
+<li><a href="#can-we-rely-on-the-data">Can we rely on the data?</a>
+<ul>
+<li><a href="#data-quality-dimensions">Data quality dimensions</a></li>
+</ul></li>
 <li><a href="#exercise---excel-1">Exercise - Excel #1</a></li>
-<li><a href="#transform-data">Transform Data</a></li>
+<li><a href="#transform-data">Transform Data</a>
+<ul>
+<li><a href="#data-formats">Data formats</a></li>
+<li><a href="#text-functions">Text functions</a></li>
+<li><a href="#number-functions">Number functions</a></li>
+<li><a href="#datetime-functions">Date/time functions</a></li>
+<li><a href="#fill">Fill</a></li>
+<li><a href="#error-trapping">Error trapping</a></li>
+<li><a href="#if-statements">IF statements</a></li>
+<li><a href="#conditional-operators">Conditional operators</a></li>
+<li><a href="#note">NOTE:</a></li>
+<li><a href="#nested-conditional-statements">Nested conditional statements</a></li>
+<li><a href="#logical-operators">Logical operators</a></li>
+<li><a href="#vlookup">VLOOKUP</a></li>
+<li><a href="#unique-values-and-duplicates">Unique values and duplicates</a></li>
+<li><a href="#findreplace">Find/Replace</a></li>
+</ul></li>
 <li><a href="#exercise-excel-2">Exercise Excel #2</a></li>
-<li><a href="#analyze-data">Analyze data</a></li>
+<li><a href="#analyze-data">Analyze data</a>
+<ul>
+<li><a href="#pivot-tables">Pivot tables</a></li>
+<li><a href="#analysis-toolpak">Analysis ToolPak</a></li>
+<li><a href="#descriptive-statistics">Descriptive statistics</a></li>
+<li><a href="#histograms">Histograms</a></li>
+<li><a href="#correlation">Correlation</a></li>
+<li><a href="#linear-regression-univariate">Linear regression (univariate)</a></li>
+</ul></li>
 <li><a href="#exercise-3">Exercise #3</a></li>
-<li><a href="#present-findings">Present findings</a></li>
-<li><a href="#exercise-4">Exercise #4</a></li>
+<li><a href="#present-findings">Present findings</a>
+<ul>
+<li><a href="#visualization-in-excel">Visualization in excel</a></li>
+<li><a href="#conditional-formatting">Conditional formatting</a></li>
+<li><a href="#effective-visualization">Effective visualization</a></li>
+<li><a href="#basic-charts">Basic charts</a></li>
+<li><a href="#insert-chart">Insert chart</a></li>
+<li><a href="#axis-settings">Axis settings</a></li>
+<li><a href="#data-labels">Data labels</a></li>
+<li><a href="#gridlines">Gridlines</a></li>
+<li><a href="#titles">Titles</a></li>
+<li><a href="#data-in-rows-or-columns">Data in rows or columns</a></li>
+<li><a href="#changing-data-range">Changing data range</a></li>
+<li><a href="#select-data-source">Select data source</a></li>
+<li><a href="#pivot-charts">Pivot charts</a></li>
+</ul></li>
+<li><a href="#exercise-4">Exercise #4</a>
+<ul>
+<li><a href="#preparing-the-final-workbook">Preparing the final workbook</a></li>
+<li><a href="#formula-auditing">Formula auditing</a></li>
+<li><a href="#removing-gridlines">Removing gridlines</a></li>
+<li><a href="#freeze-panes">Freeze panes</a></li>
+<li><a href="#page-layout">Page layout</a></li>
+<li><a href="#data-validation">Data validation</a></li>
+<li><a href="#more-leading-practices">More leading practices</a></li>
+</ul></li>
+<li><a href="#summary">Summary</a>
+<ul>
+<li><a href="#acquire-data-1">Acquire data</a></li>
+<li><a href="#transform-data-1">Transform data</a></li>
+<li><a href="#analyze-data-1">Analyze data</a></li>
+<li><a href="#present-findings-1">Present findings</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2529,7 +2601,7 @@ Lagniappe Material
 </tr>
 </tbody>
 </table>
-<h3 id="cell-references">Cell References</h3>
+<h2 id="cell-references">Cell References</h2>
 <ul>
 <li><p>Excel formulas can reference different cells</p></li>
 <li><p>Changes to the referenced cells result in updates to value calculated by the formula</p>
@@ -2594,7 +2666,7 @@ Lagniappe Material
 </ul>
 <p><span class="math inline">\(\color{red}{\text{(absolute reference)}}\)</span></p>
 <p>Keyboard shortcut F4 cycles through the four absolute cell reference options</p>
-<h3 id="formulas">Formulas</h3>
+<h2 id="formulas">Formulas</h2>
 <ul>
 <li><p>Excel calculations are specified with formulas in each cell</p></li>
 <li><p>To create a formula, type an equals sign (=) followed by the function and required arguments</p>
@@ -2631,7 +2703,7 @@ Lagniappe Material
 <p><img src="images/formulas.png" style="width:60.0%" /></p>
 </div>
 </div>
-<h3 id="functions">Functions</h3>
+<h2 id="functions">Functions</h2>
 <p>The fx button to the left of the formula bar opens a list of all available functions</p>
 <p><img src="images/functions.png" style="width:100.0%" /></p>
 <h4 id="arguments">Arguments</h4>
@@ -2651,7 +2723,7 @@ Lagniappe Material
 </tbody>
 </table>
 <p><img src="images/function_args.png" style="width:100.0%" /></p>
-<h3 id="navigation-shortcuts-windows">Navigation shortcuts (Windows)</h3>
+<h2 id="navigation-shortcuts-windows">Navigation shortcuts (Windows)</h2>
 <table>
 <colgroup>
 <col style="width: 30%" />
@@ -2676,8 +2748,8 @@ Lagniappe Material
 </tr>
 </tbody>
 </table>
-<h2 id="acquire-data">Acquire data</h2>
-<h3 id="getting-data-into-excel">Getting data into excel</h3>
+<h1 id="acquire-data">Acquire data</h1>
+<h2 id="getting-data-into-excel">Getting data into excel</h2>
 <ul>
 <li><p>Excel files have the extension .xlsx or .xls (older versions)</p></li>
 <li><p>Excel can also import data from delimited text files</p>
@@ -2690,7 +2762,7 @@ Lagniappe Material
 <p><img src="images/get_data_into_excel.png" style="width:100.0%" /></p>
 <h4 id="example---delimited-text">Example - Delimited text</h4>
 <p><img src="images/delimited_txt_ex.png" style="width:100.0%" /></p>
-<h3 id="text-to-columns">Text to columns</h3>
+<h2 id="text-to-columns">Text to columns</h2>
 <ul>
 <li>You might have text in one column that should be split across multiple columns, such as “1-Q-Fred” in the example below</li>
 <li>You can use the “Text to Columns” wizard to accomplish this</li>
@@ -2704,7 +2776,7 @@ Lagniappe Material
 <li>Where you would like the newly separated information to go.</li>
 </ul></li>
 </ul>
-<h3 id="references-to-worksheets-and-workbooks">References to worksheets and workbooks</h3>
+<h2 id="references-to-worksheets-and-workbooks">References to worksheets and workbooks</h2>
 <ul>
 <li>You can also use data from other worksheets or other workbooks in your formulas</li>
 <li>Another worksheet in the same workbook is represented by “Sheet!”</li>
@@ -2713,19 +2785,19 @@ Lagniappe Material
 <p><img src="images/ref_wksht_excel.png" style="width:100.0%" /></p>
 <h4 id="sample-spreadsheet">Sample spreadsheet</h4>
 <p><img src="images/sample_wksht_excel.png" style="width:100.0%" /></p>
-<h3 id="sorting">Sorting</h3>
+<h2 id="sorting">Sorting</h2>
 <ul>
 <li><p>Highlight a range and use the Sort option to order records by one or more columns</p></li>
 <li><p>Make sure to select an entire table to avoid sorting only part of it</p>
 <p><img src="images/sorting_excel.png" style="width:100.0%" /></p></li>
 </ul>
-<h3 id="filters">Filters</h3>
+<h2 id="filters">Filters</h2>
 <ul>
 <li><p>Filtering allows you to hide rows in a range if they don’t match select criteria</p></li>
 <li><p>Highlight the range and click the “Filter” button</p>
 <p><img src="images/filter_excel.png" style="width:100.0%" /></p></li>
 </ul>
-<h4 id="custom-filters">Custom filters</h4>
+<h3 id="custom-filters">Custom filters</h3>
 <p>Custom filters allow you to use multiple criteria such as AND or OR</p>
 <ul>
 <li>Click on drop down arrow</li>
@@ -2733,7 +2805,7 @@ Lagniappe Material
 <li>Choose Custom</li>
 </ul>
 <p><img src="images/cust_filter_excel.png" style="width:100.0%" /></p>
-<h2 id="summary-statistics">Summary statistics</h2>
+<h1 id="summary-statistics">Summary statistics</h1>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
 <div>
 <p><strong>COUNT() -</strong> Counts numbers</p>
@@ -2748,17 +2820,17 @@ Lagniappe Material
 <p><img src="images/sum_stat_excel.png" style="width:100.0%" /></p>
 </div>
 </div>
-<h3 id="status-bar">Status Bar</h3>
+<h2 id="status-bar">Status Bar</h2>
 <ul>
 <li><p>Highlighting a range of cells returns summary statistics on the status bar in the lower right corner</p></li>
 <li><p>This is a quick way to get information about part of your data</p>
 <p><img src="images/status_bar_excel.png" style="width:100.0%" /></p></li>
 </ul>
-<h2 id="can-we-rely-on-the-data">Can we rely on the data?</h2>
+<h1 id="can-we-rely-on-the-data">Can we rely on the data?</h1>
 <p><img src="images/rely_on_data.png" style="width:100.0%" /></p>
-<h3 id="data-quality-dimensions">Data quality dimensions</h3>
+<h2 id="data-quality-dimensions">Data quality dimensions</h2>
 <p><img src="images/data_qual_dim.png" style="width:100.0%" /></p>
-<h4 id="exercise---data-quality-dimensions">Exercise - Data quality dimensions</h4>
+<h3 id="exercise---data-quality-dimensions">Exercise - Data quality dimensions</h3>
 <p>Identify which of the six DQ dimensions applies to the issues described below <span class="math inline">\(\color{red}{\text{(please do not peek at the answers 😈)}}\)</span>:</p>
 <ol type="1">
 <li><p>‘Gender’ field has the special characters like ~!@#$%^*();</p>
@@ -2839,7 +2911,7 @@ Lagniappe Material
 </p>
 </details></li>
 </ol>
-<h2 id="exercise---excel-1">Exercise - Excel #1</h2>
+<h1 id="exercise---excel-1">Exercise - Excel #1</h1>
 <p>Load the data from ‘payroll_data.txt’ and ‘reference_data.txt’ into two tabs in an Excel spreadsheet and save it as ‘Payroll Data_&lt;NETID&gt;.xlsx’ <span class="math inline">\(\color{red}{\text{(please do not peek at the answers)😈}}\)</span> :</p>
 <ol type="1">
 <li><p>How did you import the data?</p>
@@ -2910,8 +2982,8 @@ Lagniappe Material
 </p>
 </details></li>
 </ol>
-<h2 id="transform-data">Transform Data</h2>
-<h3 id="data-formats">Data formats</h3>
+<h1 id="transform-data">Transform Data</h1>
+<h2 id="data-formats">Data formats</h2>
 <p>Data entered an Excel worksheet can be represented in different formats, for example:</p>
 <ul>
 <li>Number</li>
@@ -2922,7 +2994,7 @@ Lagniappe Material
 </ul>
 <p>Dates are stored as the number of days from a fixed historical date</p>
 <p><img src="images/data_format_excel.png" style="width:100.0%" /></p>
-<h3 id="text-functions">Text functions</h3>
+<h2 id="text-functions">Text functions</h2>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
 <div>
 <dl>
@@ -2955,7 +3027,7 @@ Lagniappe Material
 <dd><p>Return the position of a match and error if no match</p>
 </dd>
 </dl>
-<h3 id="number-functions">Number functions</h3>
+<h2 id="number-functions">Number functions</h2>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
 <div>
 <dl>
@@ -2988,7 +3060,7 @@ Lagniappe Material
 <dd><p>Returns a random integer between the specified values</p>
 </dd>
 </dl>
-<h3 id="datetime-functions">Date/time functions</h3>
+<h2 id="datetime-functions">Date/time functions</h2>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
 <div>
 <dl>
@@ -3030,13 +3102,13 @@ Lagniappe Material
 <dd><p>Returns the number of working days between dates</p>
 </dd>
 </dl>
-<h3 id="fill">Fill</h3>
+<h2 id="fill">Fill</h2>
 <ul>
 <li><p>You can apply a formula to an entire column by using the Fill options</p></li>
 <li><p>You can also Fill Down by double-clicking a cell with a formula in a table</p>
 <p><img src="images/fill_excel.png" style="width:100.0%" /></p></li>
 </ul>
-<h3 id="error-trapping">Error trapping</h3>
+<h2 id="error-trapping">Error trapping</h2>
 <dl>
 <dt>=ISNA(value)</dt>
 <dd><p>Determine if cell or result of formula is showing #N/A!</p>
@@ -3049,7 +3121,7 @@ Lagniappe Material
 </dd>
 </dl>
 <p><img src="images/Error_trap_excel.png" style="width:100.0%" /></p>
-<h3 id="if-statements">IF statements</h3>
+<h2 id="if-statements">IF statements</h2>
 <ul>
 <li><p><strong>IF()</strong> analyses the contents of one or more cells to determine whether a condition is TRUE or FALSE</p></li>
 <li><p>Given the value of the condition, different values can be returned</p>
@@ -3061,7 +3133,7 @@ Lagniappe Material
 <p>=IF ( <span class="math inline">\(\color{darkred}{\text{B1 &gt; B2}}\)</span> , <span class="math inline">\(\color{red}{\text{B1}}\)</span> , <span class="math inline">\(\color{maroon}{\text{B2}}\)</span> )</p>
 <p>=IF ( <span class="math inline">\(\color{darkred}{\text{B1 = &quot;awesome&quot;}}\)</span> , <span class="math inline">\(\color{red}{\text{B1}}\)</span> , <span class="math inline">\(\color{maroon}{\text{B2}}\)</span> )</p>
 <p><img src="images/if_excel.png" style="width:100.0%" /></p>
-<h3 id="conditional-operators">Conditional operators</h3>
+<h2 id="conditional-operators">Conditional operators</h2>
 <p>Any function can be used with conditional operators in IF statements to test conditions</p>
 <p>&gt; Greater than</p>
 <p>&lt; Less than</p>
@@ -3069,7 +3141,7 @@ Lagniappe Material
 <p>&lt;= Less than and equal to</p>
 <p>&lt;&gt; Not equal to</p>
 <p>= Equal to</p>
-<h3 id="note">NOTE:</h3>
+<h2 id="note">NOTE:</h2>
 <p>Some of functions can be used only on numbers, some to dates and some to strings.</p>
 <ul>
 <li>Addition: Numbers, Dates</li>
@@ -3081,16 +3153,16 @@ Lagniappe Material
 <li>Order operators (&gt;,&lt; etc.) : Numbers, Dates, Strings</li>
 <li>Concatenation: Anything</li>
 </ul>
-<h3 id="nested-conditional-statements">Nested conditional statements</h3>
+<h2 id="nested-conditional-statements">Nested conditional statements</h2>
 <p>=IF (<span class="math inline">\(\color{darkred}{\text{logical_test}}\)</span> , <span class="math inline">\(\color{red}{\text{value_if_true}}\)</span> , IF (<span class="math inline">\(\color{darkred}{\text{logical_test}}\)</span> , <span class="math inline">\(\color{red}{\text{value_if_true}}\)</span> , <span class="math inline">\(\color{maroon}{\text{value_if_false}}\)</span> ))</p>
 <p><img src="images/Nested_excel.png" style="width:100.0%" /></p>
 <p>=IF ( <span class="math inline">\(\color{darkred}{\text{B1 &gt; 50}}\)</span> , <span class="math inline">\(\color{red}{\text{B1 * A1}}\)</span>, IF ( <span class="math inline">\(\color{darkred}{\text{B1 &gt; 150}}\)</span> , <span class="math inline">\(\color{red}{\text{B1 * A2}}\)</span>, <span class="math inline">\(\color{maroon}{\text{B1 * A3}}\)</span>) )</p>
-<h3 id="logical-operators">Logical operators</h3>
+<h2 id="logical-operators">Logical operators</h2>
 <p>=AND(<span class="math inline">\(\color{darkred}{\text{logical1}}\)</span>, <span class="math inline">\(\color{red}{\text{logical2}}\)</span>, …) Gives <strong>True</strong> if all the conditions are met</p>
 <p>=OR(<span class="math inline">\(\color{darkred}{\text{logical1}}\)</span>, <span class="math inline">\(\color{red}{\text{logical2}}\)</span>, …) Gives <strong>True</strong> if at least one condition is met</p>
 <p>=NOT(<span class="math inline">\(\color{darkred}{\text{logical}}\)</span>) Gives <strong>True</strong> if the condition is not met</p>
 <p><img src="images/logical_excel.png" style="width:100.0%" /></p>
-<h3 id="vlookup">VLOOKUP</h3>
+<h2 id="vlookup">VLOOKUP</h2>
 <ul>
 <li>Often we need to add data from one table to another. This requires one column in each table to act as the link between them</li>
 <li><strong>VLOOKUP</strong> searches vertically down the left-hand column of a table to find a match, then returns the corresponding value from a specified column of the table</li>
@@ -3098,13 +3170,13 @@ Lagniappe Material
 </ul>
 <p>Always use absolute cell references to specify the range containing the lookup data</p>
 <p><img src="images/vlookup_excel.png" style="width:100.0%" /></p>
-<h3 id="unique-values-and-duplicates">Unique values and duplicates</h3>
+<h2 id="unique-values-and-duplicates">Unique values and duplicates</h2>
 <ul>
 <li>Excel has an option to reduce a single column to its unique values</li>
 <li>This option can also remove duplicate rows from a table across multiple columns</li>
 </ul>
 <p><img src="images/unique_excel.png" style="width:100.0%" /></p>
-<h3 id="findreplace">Find/Replace</h3>
+<h2 id="findreplace">Find/Replace</h2>
 <ul>
 <li><p>You may need to find or replace values across a worksheet or workbook, which would be time-consuming if done manually</p></li>
 <li><p>Use Find/Replace to do this efficiently:</p>
@@ -3116,7 +3188,7 @@ Lagniappe Material
 <li><p>The “Options &gt;&gt;” button enables the use of requirements such as “Match case”</p>
 <p><img src="images/find_rep_excel.png" style="width:100.0%" /></p></li>
 </ul>
-<h2 id="exercise-excel-2">Exercise Excel #2</h2>
+<h1 id="exercise-excel-2">Exercise Excel #2</h1>
 <p>In ‘Payroll Data_&lt;NETID&gt;.xlsx’ <span class="math inline">\(\color{red}{\text{(please do not peek at the answers)😈}}\)</span> :</p>
 <ol type="1">
 <li><p>Address any data quality issues identified previously.</p>
@@ -3191,8 +3263,8 @@ Lagniappe Material
 </p>
 </details></li>
 </ol>
-<h2 id="analyze-data">Analyze data</h2>
-<h3 id="pivot-tables">Pivot tables</h3>
+<h1 id="analyze-data">Analyze data</h1>
+<h2 id="pivot-tables">Pivot tables</h2>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
 <div>
 <ul>
@@ -3276,10 +3348,10 @@ Lagniappe Material
 </tr>
 </tbody>
 </table>
-<h4 id="customizing-pivot-tables">Customizing pivot tables</h4>
+<h3 id="customizing-pivot-tables">Customizing pivot tables</h3>
 <p><img src="images/Cust_pivot_excel.png" style="width:100.0%" /></p>
 <p><img src="images/Cust_pivot_excel_2.png" style="width:100.0%" /></p>
-<h3 id="analysis-toolpak">Analysis ToolPak</h3>
+<h2 id="analysis-toolpak">Analysis ToolPak</h2>
 <p>Excel can be used for more advanced analysis than summary statistics and charts</p>
 <ol type="1">
 <li>Click the File tab, click Options, and then click the Add-Ins category</li>
@@ -3288,14 +3360,14 @@ Lagniappe Material
 <li>Go to the ‘Data’ tab and look for the Analysis section</li>
 </ol>
 <p><img src="images/analysis_toolpak_excel.png" style="width:100.0%" /></p>
-<h3 id="descriptive-statistics">Descriptive statistics</h3>
+<h2 id="descriptive-statistics">Descriptive statistics</h2>
 <p><img src="images/desc_stat_excel.png" style="width:100.0%" /></p>
-<h3 id="histograms">Histograms</h3>
+<h2 id="histograms">Histograms</h2>
 <p>A histogram depicts the frequency or probability distribution of a numeric variable across bins of equal width</p>
 <p>Variable distributions may appear statistically “normal” or display non-normal characteristics such as skewness or kurtosis</p>
 <p>Create a histogram through ‘Data analysis’ by specifying the bins in a separate range</p>
 <p><img src="images/histogram_excel.png" style="width:100.0%" /></p>
-<h3 id="correlation">Correlation</h3>
+<h2 id="correlation">Correlation</h2>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 5px;">
 <div>
 <ul>
@@ -3316,7 +3388,7 @@ Lagniappe Material
 <ul>
 <li>Correlation is often best visualized with a scatter plot</li>
 </ul>
-<h3 id="linear-regression-univariate">Linear regression (univariate)</h3>
+<h2 id="linear-regression-univariate">Linear regression (univariate)</h2>
 <p>In addition to descriptive statistics, Excel can build and evaluate simple predictive models:</p>
 <ol type="1">
 <li>Select ‘Regression’ from the Data Analysis section</li>
@@ -3325,9 +3397,9 @@ Lagniappe Material
 <li>Check boxes for optional outputs (e.g. residuals, line fit plot)</li>
 </ol>
 <p><img src="images/linear_reg_excel.png" style="width:100.0%" /></p>
-<h4 id="linear-regression-output">Linear regression output</h4>
+<h3 id="linear-regression-output">Linear regression output</h3>
 <p><img src="images/reg_output_excel.png" style="width:100.0%" /></p>
-<h2 id="exercise-3">Exercise #3</h2>
+<h1 id="exercise-3">Exercise #3</h1>
 <p>In ‘Payroll Data_&lt;NETID&gt;.xlsx’ <span class="math inline">\(\color{red}{\text{(please do not peek at the answers)😈}}\)</span>:</p>
 <ol type="1">
 <li><p>What is the average percentage of total compensation that is overtime pay, not including staff with no overtime pay?</p>
@@ -3402,8 +3474,8 @@ Lagniappe Material
 </p>
 </details></li>
 </ol>
-<h2 id="present-findings">Present findings</h2>
-<h3 id="visualization-in-excel">Visualization in excel</h3>
+<h1 id="present-findings">Present findings</h1>
+<h2 id="visualization-in-excel">Visualization in excel</h2>
 <ul>
 <li><p>Visualization is often essential for gaining an understanding of the data and presenting findings to a new audience</p></li>
 <li><p>Excel can easily produce a variety of basic charts</p></li>
@@ -3415,7 +3487,7 @@ Lagniappe Material
 </ul></li>
 <li><p>We’ll focus more on visualization later in the course</p></li>
 </ul>
-<h3 id="conditional-formatting">Conditional formatting</h3>
+<h2 id="conditional-formatting">Conditional formatting</h2>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
 <div>
 <ul>
@@ -3428,12 +3500,12 @@ Lagniappe Material
 </div>
 </div>
 <p><img src="images/cond_format_excel_2.png" style="width:90.0%" /></p>
-<h4 id="what-do-you-think-of-this-visualization">What do you think of this visualization?</h4>
+<h3 id="what-do-you-think-of-this-visualization">What do you think of this visualization?</h3>
 <p><img src="images/vis_excel.png" style="width:100.0%" /></p>
-<h4 id="what-about-this-one">What about this one?</h4>
+<h3 id="what-about-this-one">What about this one?</h3>
 <p><strong>Manchester University has low teaching scores compared to its competitors</strong></p>
 <p><img src="images/vis_excel_2.png" style="width:100.0%" /></p>
-<h3 id="effective-visualization">Effective visualization</h3>
+<h2 id="effective-visualization">Effective visualization</h2>
 <ul>
 <li>More information, less ink</li>
 <li>Clear out the junk!</li>
@@ -3441,9 +3513,9 @@ Lagniappe Material
 <li>Use 2D rather than 3D charts</li>
 </ul>
 <p><img src="images/effective_vis_excel.png" style="width:100.0%" /></p>
-<h3 id="basic-charts">Basic charts</h3>
+<h2 id="basic-charts">Basic charts</h2>
 <p><img src="images/basic_chart_excel.png" style="width:100.0%" /></p>
-<h3 id="insert-chart">Insert chart</h3>
+<h2 id="insert-chart">Insert chart</h2>
 <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
 <div>
 <ul>
@@ -3456,28 +3528,28 @@ Lagniappe Material
 <p><img src="images/insert_chart_excel_2.png" style="width:50.0%" /></p>
 </div>
 </div>
-<h3 id="axis-settings">Axis settings</h3>
+<h2 id="axis-settings">Axis settings</h2>
 <p><img src="images/axis_setting_excel.png" style="width:100.0%" /></p>
-<h3 id="data-labels">Data labels</h3>
+<h2 id="data-labels">Data labels</h2>
 <p><img src="images/data_labels_excel.png" style="width:100.0%" /></p>
-<h3 id="gridlines">Gridlines</h3>
+<h2 id="gridlines">Gridlines</h2>
 <p><img src="images/gridlines_excel.png" style="width:100.0%" /></p>
-<h3 id="titles">Titles</h3>
+<h2 id="titles">Titles</h2>
 <p><img src="images/titles_excel.png" style="width:100.0%" /></p>
-<h3 id="data-in-rows-or-columns">Data in rows or columns</h3>
+<h2 id="data-in-rows-or-columns">Data in rows or columns</h2>
 <p><img src="images/row_cols_excel.png" style="width:100.0%" /></p>
-<h3 id="changing-data-range">Changing data range</h3>
+<h2 id="changing-data-range">Changing data range</h2>
 <p>Sometimes we want to change the data range covered by a chart or add an extra series</p>
 <p>When you select a data series on a chart, the source data range can be adjusted</p>
 <p><img src="images/chg_data_rng_excel.png" style="width:100.0%" /></p>
-<h3 id="select-data-source">Select data source</h3>
+<h2 id="select-data-source">Select data source</h2>
 <p>You can also use the Select Data Source dialog box from the Design tab in the ribbon or by right-clicking the chart to add a new series to a graph</p>
 <p><img src="images/select_data_excel.png" style="width:100.0%" /></p>
-<h3 id="pivot-charts">Pivot charts</h3>
+<h2 id="pivot-charts">Pivot charts</h2>
 <p>In addition to creating a Pivot table on the data, you can also create a Pivot Chart which is based on the Pivot table itself</p>
 <p>Changes made to the chart are replicated on the table and vice versa</p>
 <p><img src="images/pivot_chart_excel.png" style="width:100.0%" /></p>
-<h2 id="exercise-4">Exercise #4</h2>
+<h1 id="exercise-4">Exercise #4</h1>
 <p>In ‘Payroll Data_&lt;NETID&gt;.xlsx’ <span class="math inline">\(\color{red}{\text{(please do  not peek at the answers)😈}}\)</span>:</p>
 <p>I am not going to lie…these took longer than they should have….😢</p>
 <ol type="1">
@@ -3526,7 +3598,279 @@ Lagniappe Material
 </p>
 </details></li>
 </ol>
-<h3 id="still-working">STILL WORKING</h3>
+<h2 id="preparing-the-final-workbook">Preparing the final workbook</h2>
+<ul>
+<li><p>Getting an Excel file into a presentable state can be a challenge</p></li>
+<li><p>Storyboard your workbook and consider how someone would “read” through it</p></li>
+<li><p>Keep it simple!</p></li>
+<li><p>The following approaches can help with the finishing touches:</p>
+<ul>
+<li>Formula auditing</li>
+<li>Page layout</li>
+<li>Freeze panes</li>
+<li>Validation</li>
+<li>Removing gridlines</li>
+</ul></li>
+</ul>
+<h2 id="formula-auditing">Formula auditing</h2>
+<p>To check that formulas have the right cell references, use Trace Precedents or Trace Dependents to display an arrow between linked cells</p>
+<p><img src="images/formula_audit_excel.png" style="width:100.0%" /></p>
+<h2 id="removing-gridlines">Removing gridlines</h2>
+<p>One quick tip for making a workbook look instantly less cluttered is to remove the gridlines</p>
+<p><img src="images/remove_grid_excel.png" style="width:100.0%" /></p>
+<h2 id="freeze-panes">Freeze panes</h2>
+<ul>
+<li>As worksheets can get very large, it is important to ensure that the data being viewed on screen at all points has titles and comments representing the appropriate columns</li>
+<li>Freeze panes allows for parts of the Excel document to be frozen, useful to preserve titles and headings</li>
+<li>Freeze Panes freezes all rows above the selected cell and all columns to the left of the selected cell</li>
+<li>Other variations are Freeze Top Row and Freeze First Column</li>
+</ul>
+<p><img src="images/freeze_pane_excel.png" style="width:50.0%" /></p>
+<h2 id="page-layout">Page layout</h2>
+<p>To ensure that the worksheet prints neatly, you may need to change settings on the Page Layout tab:</p>
+<ul>
+<li>Changing the page orientation (Portrait vs Landscape)</li>
+<li>Adjusting the margins</li>
+<li>Specifying a print area (the part of the worksheet that will be printed)</li>
+<li>Setting up page breaks at particular points</li>
+</ul>
+<p><img src="images/Page_layout_excel.png" style="width:100.0%" /></p>
+<p>Use Print Preview to check how your worksheet will look when printed</p>
+<h2 id="data-validation">Data validation</h2>
+<p>Data validation controls what type of data a user can input into a cell, for example:</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;">
+<div>
+<ul>
+<li>Only a number within a certain range</li>
+<li>Only a time/date within a certain period</li>
+<li>Only an item from a predefined list</li>
+</ul>
+</div>
+<div>
+<p><img src="images/data_validation_A_excel.png" style="width:40.0%" /></p>
+</div>
+</div>
+<p><img src="images/data_validation_B_excel.png" style="width:40.0%" /></p>
+<h2 id="more-leading-practices">More leading practices</h2>
+<ul>
+<li>Save your workbook with A1 as the active cell</li>
+<li>Put a title and description for the workbook in the upper left corner of the first sheet</li>
+<li>Name your spreadsheet tabs so users can easily navigate throughout your workbook</li>
+<li>Don’t hide columns or rows; instead, group them</li>
+<li>Consider if hardcoded parameters make sense or should be avoided</li>
+<li>Be careful with merged cells</li>
+<li>Keep source data in the workbook</li>
+<li>Break down complicated formulas</li>
+</ul>
+<h1 id="summary">Summary</h1>
+<h2 id="acquire-data-1">Acquire data</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 53%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\color{red}{\text{Task}}\)</span></th>
+<th><span class="math inline">\(\color{red}{\text{Description}}\)</span></th>
+<th><span class="math inline">\(\color{red}{\text{Excel}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data access</td>
+<td>Connect to a data source</td>
+<td><p>•File &gt; Open</p>
+<p>•Open in text editor and copy/paste</p></td>
+</tr>
+<tr class="even">
+<td>Importing data</td>
+<td>Read the data into an analytical environment</td>
+<td><p>•Text Import Wizard</p>
+<p>•Data &gt; Text to Columns</p></td>
+</tr>
+<tr class="odd">
+<td>Data profiling</td>
+<td>Review data dimensions and summary statistics</td>
+<td><p>•COUNT()</p>
+<p>•MIN(), MAX(), etc.</p></td>
+</tr>
+<tr class="even">
+<td>Data quality assessment</td>
+<td>Identify aspects of the data that pose challenges for subsequent analysis</td>
+<td><p>•Sort</p>
+<p>•Filter</p>
+<p>•COUNTBLANK()</p></td>
+</tr>
+<tr class="odd">
+<td>Data simulation</td>
+<td>Generate data based on analytical requirements</td>
+<td><p>•RAND()</p>
+<p>•RANDBETWEEN()</p>
+<p>•CHOOSE()</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="transform-data-1">Transform data</h2>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 62%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\color{red}{\text{Task}}\)</span></th>
+<th><span class="math inline">\(\color{red}{\text{Description}}\)</span></th>
+<th><span class="math inline">\(\color{red}{\text{Excel}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cleaning data</td>
+<td>Address data quality issues to facilitate analysis</td>
+<td>•Find/Replace</td>
+</tr>
+<tr class="even">
+<td>Changing data types</td>
+<td>Convert a value to the appropriate format for analysis</td>
+<td>•Format</td>
+</tr>
+<tr class="odd">
+<td>Filtering data</td>
+<td>Create subsets of records and features based on specified conditions</td>
+<td><p>•Filter</p>
+<p>•IF()</p></td>
+</tr>
+<tr class="even">
+<td>Deriving data</td>
+<td>Create new features from original features</td>
+<td><p>•MID()</p>
+<p>•FIND()</p>
+<p>•LEN()</p>
+<p>•ROUND()</p>
+<p>•WEEKDAY()</p>
+<p>•…</p></td>
+</tr>
+<tr class="odd">
+<td>Scaling data</td>
+<td>Put features with different ranges of values on the same scale while preserving relative values</td>
+<td><p>•SUM()</p>
+<p>•AVERAGE()</p>
+<p>•EXP()</p></td>
+</tr>
+<tr class="even">
+<td>Sampling data</td>
+<td>Create subsets of records based on a probability distribution</td>
+<td><p>•RAND()</p>
+<p>•RANDBETWEEN()</p></td>
+</tr>
+<tr class="odd">
+<td>Aggregating data</td>
+<td>Return a statistic or value for one feature according to different values of another feature</td>
+<td>•Pivot Table</td>
+</tr>
+<tr class="even">
+<td>Reshaping data</td>
+<td>Change whether values are represented in different records or different features</td>
+<td>•Pivot Table</td>
+</tr>
+<tr class="odd">
+<td>Concatenating data</td>
+<td>Combine data sets through juxtaposition</td>
+<td>•Cut and paste</td>
+</tr>
+<tr class="even">
+<td>Merging data</td>
+<td>Combine data sets by matching records on a common identifier</td>
+<td><p>•VLOOKUP()</p>
+<p>•HLOOKUP()</p>
+<p>•INDEX()/MATCH()</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="analyze-data-1">Analyze data</h2>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 53%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\color{red}{\text{Task}}\)</span></th>
+<th><span class="math inline">\(\color{red}{\text{Description}}\)</span></th>
+<th><span class="math inline">\(\color{red}{\text{Excel}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Summary analysis</td>
+<td>Calculate representative statistics for features of interest</td>
+<td><p>•AVERAGE()</p>
+<p>•MEDIAN()</p>
+<p>•PERCENTILE.INC()</p></td>
+</tr>
+<tr class="even">
+<td>Perform statistical tests</td>
+<td>Estimate the probability that the data supports a specific claim</td>
+<td>•Data Analysis Toolpak</td>
+</tr>
+<tr class="odd">
+<td>Clustering</td>
+<td>Identify similar groups of records</td>
+<td>•</td>
+</tr>
+<tr class="even">
+<td>Predictive modeling</td>
+<td>Use one set of features to predict the value of another feature</td>
+<td>•Data Analysis Toolpak</td>
+</tr>
+<tr class="odd">
+<td>Network analysis</td>
+<td></td>
+<td>•</td>
+</tr>
+</tbody>
+</table>
+<h2 id="present-findings-1">Present findings</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 57%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\color{red}{\text{Task}}\)</span></th>
+<th><span class="math inline">\(\color{red}{\text{Description}}\)</span></th>
+<th><span class="math inline">\(\color{red}{\text{Excel}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data visualization</td>
+<td>Display data using lines, shapes, colors, and other abstract representations</td>
+<td>•Charts</td>
+</tr>
+<tr class="even">
+<td>Dashboarding</td>
+<td>Create a collection of dynamic visualizations</td>
+<td>•Charts</td>
+</tr>
+<tr class="odd">
+<td>Exporting data</td>
+<td>Produce output from an analytical environment for future use</td>
+<td>•File &gt; Save As</td>
+</tr>
+<tr class="even">
+<td>Make recommendations</td>
+<td>Use results of data analysis to guide decision-making</td>
+<td>•</td>
+</tr>
+</tbody>
+</table>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />

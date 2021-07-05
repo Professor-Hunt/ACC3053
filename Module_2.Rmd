@@ -81,7 +81,7 @@ I may trash talk excel 😈, but I would argue that it is the most used tool for
 |                            | -   $\color{red}{\text{BA2:CT8}}$                                                                                                                            |
 +----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-### Cell References
+## Cell References
 
 -   Excel formulas can reference different cells
 
@@ -135,7 +135,7 @@ $\color{red}{\text{(absolute reference)}}$
 
 Keyboard shortcut F4 cycles through the four absolute cell reference options
 
-### Formulas
+## Formulas
 
 -   Excel calculations are specified with formulas in each cell
 
@@ -165,7 +165,7 @@ Keyboard shortcut F4 cycles through the four absolute cell reference options
 </div>
 :::
 
-### Functions
+## Functions
 
 The fx button to the left of the formula bar opens a list of all available functions
 
@@ -186,7 +186,7 @@ Arguments can be:
 
 ![](images/function_args.png){width="100%"}
 
-### Navigation shortcuts (Windows)
+## Navigation shortcuts (Windows)
 
 +-----------------------------+------------------------------------------------------------------+
 | Ctrl + ➡️(⬅️,⬆️,⬇️)         | navigate to the last non-empty cell in that direction            |
@@ -198,9 +198,9 @@ Arguments can be:
 | Shift + Space               | select the entire row of the cell you have selected              |
 +-----------------------------+------------------------------------------------------------------+
 
-## Acquire data
+# Acquire data
 
-### Getting data into excel
+## Getting data into excel
 
 -   Excel files have the extension .xlsx or .xls (older versions)
 
@@ -218,7 +218,7 @@ Arguments can be:
 
 ![](images/delimited_txt_ex.png){width="100%"}
 
-### Text to columns
+## Text to columns
 
 -   You might have text in one column that should be split across multiple columns, such as "1-Q-Fred" in the example below
 -   You can use the "Text to Columns" wizard to accomplish this
@@ -231,7 +231,7 @@ Arguments can be:
     -   What character separates the information
     -   Where you would like the newly separated information to go.
 
-### References to worksheets and workbooks
+## References to worksheets and workbooks
 
 -   You can also use data from other worksheets or other workbooks in your formulas
 -   Another worksheet in the same workbook is represented by "Sheet!"
@@ -243,7 +243,7 @@ Arguments can be:
 
 ![](images/sample_wksht_excel.png){width="100%"}
 
-### Sorting
+## Sorting
 
 -   Highlight a range and use the Sort option to order records by one or more columns
 
@@ -251,7 +251,7 @@ Arguments can be:
 
     ![](images/sorting_excel.png){width="100%"}
 
-### Filters
+## Filters
 
 -   Filtering allows you to hide rows in a range if they don't match select criteria
 
@@ -259,7 +259,7 @@ Arguments can be:
 
     ![](images/filter_excel.png){width="100%"}
 
-#### Custom filters
+### Custom filters
 
 Custom filters allow you to use multiple criteria such as AND or OR
 
@@ -269,7 +269,7 @@ Custom filters allow you to use multiple criteria such as AND or OR
 
 ![](images/cust_filter_excel.png){width="100%"}
 
-## Summary statistics
+# Summary statistics
 
 ::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 <div>
@@ -297,7 +297,7 @@ Custom filters allow you to use multiple criteria such as AND or OR
 </div>
 :::
 
-### Status Bar
+## Status Bar
 
 -   Highlighting a range of cells returns summary statistics on the status bar in the lower right corner
 
@@ -305,15 +305,15 @@ Custom filters allow you to use multiple criteria such as AND or OR
 
     ![](images/status_bar_excel.png){width="100%"}
 
-## Can we rely on the data?
+# Can we rely on the data?
 
 ![](images/rely_on_data.png){width="100%"}
 
-### Data quality dimensions
+## Data quality dimensions
 
 ![](images/data_qual_dim.png){width="100%"}
 
-#### Exercise - Data quality dimensions
+### Exercise - Data quality dimensions
 
 Identify which of the six DQ dimensions applies to the issues described below $\color{red}{\text{(please do not peek at the answers 😈)}}$:
 
@@ -457,7 +457,7 @@ Identify which of the six DQ dimensions applies to the issues described below $\
 
     </details>
 
-## Exercise - Excel \#1
+# Exercise - Excel \#1
 
 Load the data from 'payroll_data.txt' and 'reference_data.txt' into two tabs in an Excel spreadsheet and save it as 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the answers)😈}}$ :
 
@@ -581,9 +581,9 @@ Load the data from 'payroll_data.txt' and 'reference_data.txt' into two tabs in 
 
     </details>
 
-## Transform Data
+# Transform Data
 
-### Data formats
+## Data formats
 
 Data entered an Excel worksheet can be represented in different formats, for example:
 
@@ -597,7 +597,7 @@ Dates are stored as the number of days from a fixed historical date
 
 ![](images/data_format_excel.png){width="100%"}
 
-### Text functions
+## Text functions
 
 ::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 <div>
@@ -639,7 +639,7 @@ Dates are stored as the number of days from a fixed historical date
 
 :   Return the position of a match and error if no match
 
-### Number functions
+## Number functions
 
 ::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 <div>
@@ -681,7 +681,7 @@ Dates are stored as the number of days from a fixed historical date
 
 :   Returns a random integer between the specified values
 
-### Date/time functions
+## Date/time functions
 
 ::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 <div>
@@ -735,7 +735,7 @@ Dates are stored as the number of days from a fixed historical date
 
 :   Returns the number of working days between dates
 
-### Fill
+## Fill
 
 -   You can apply a formula to an entire column by using the Fill options
 
@@ -743,7 +743,7 @@ Dates are stored as the number of days from a fixed historical date
 
     ![](images/fill_excel.png){width="100%"}
 
-### Error trapping
+## Error trapping
 
 =ISNA(value)
 
@@ -759,7 +759,7 @@ Dates are stored as the number of days from a fixed historical date
 
 ![](images/Error_trap_excel.png){width="100%"}
 
-### IF statements
+## IF statements
 
 -   **IF()** analyses the contents of one or more cells to determine whether a condition is TRUE or FALSE
 
@@ -779,7 +779,7 @@ Examples
 
 ![](images/if_excel.png){width="100%"}
 
-### Conditional operators
+## Conditional operators
 
 Any function can be used with conditional operators in IF statements to test conditions
 
@@ -795,7 +795,7 @@ Any function can be used with conditional operators in IF statements to test con
 
 = Equal to
 
-### NOTE:
+## NOTE:
 
 Some of functions can be used only on numbers, some to dates and some to strings.
 
@@ -808,7 +808,7 @@ Some of functions can be used only on numbers, some to dates and some to strings
 -   Order operators (\>,\< etc.) : Numbers, Dates, Strings
 -   Concatenation: Anything
 
-### Nested conditional statements
+## Nested conditional statements
 
 =IF ($\color{darkred}{\text{logical_test}}$ , $\color{red}{\text{value_if_true}}$ , IF ($\color{darkred}{\text{logical_test}}$ , $\color{red}{\text{value_if_true}}$ , $\color{maroon}{\text{value_if_false}}$ ))
 
@@ -816,7 +816,7 @@ Some of functions can be used only on numbers, some to dates and some to strings
 
 =IF ( $\color{darkred}{\text{B1 > 50}}$ , $\color{red}{\text{B1 * A1}}$, IF ( $\color{darkred}{\text{B1 > 150}}$ , $\color{red}{\text{B1 * A2}}$, $\color{maroon}{\text{B1 * A3}}$) )
 
-### Logical operators
+## Logical operators
 
 =AND($\color{darkred}{\text{logical1}}$, $\color{red}{\text{logical2}}$, ...) Gives **True** if all the conditions are met
 
@@ -826,7 +826,7 @@ Some of functions can be used only on numbers, some to dates and some to strings
 
 ![](images/logical_excel.png){width="100%"}
 
-### VLOOKUP
+## VLOOKUP
 
 -   Often we need to add data from one table to another. This requires one column in each table to act as the link between them
 -   **VLOOKUP** searches vertically down the left-hand column of a table to find a match, then returns the corresponding value from a specified column of the table
@@ -836,14 +836,14 @@ Always use absolute cell references to specify the range containing the lookup d
 
 ![](images/vlookup_excel.png){width="100%"}
 
-### Unique values and duplicates
+## Unique values and duplicates
 
 -   Excel has an option to reduce a single column to its unique values
 -   This option can also remove duplicate rows from a table across multiple columns
 
 ![](images/unique_excel.png){width="100%"}
 
-### Find/Replace
+## Find/Replace
 
 -   You may need to find or replace values across a worksheet or workbook, which would be time-consuming if done manually
 
@@ -859,7 +859,7 @@ Always use absolute cell references to specify the range containing the lookup d
 
     ![](images/find_rep_excel.png){width="100%"}
 
-## Exercise Excel \#2
+# Exercise Excel \#2
 
 In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the answers)😈}}$ :
 
@@ -991,9 +991,9 @@ In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the 
 
     </details>
 
-## Analyze data
+# Analyze data
 
-### Pivot tables
+## Pivot tables
 
 ::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 <div>
@@ -1036,13 +1036,13 @@ In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the 
 | Grand Total                        | 30695                       | 32594 | 34596 | 97885       |
 +------------------------------------+-----------------------------+-------+-------+-------------+
 
-#### Customizing pivot tables
+### Customizing pivot tables
 
 ![](images/Cust_pivot_excel.png){width="100%"}
 
 ![](images/Cust_pivot_excel_2.png){width="100%"}
 
-### Analysis ToolPak
+## Analysis ToolPak
 
 Excel can be used for more advanced analysis than summary statistics and charts
 
@@ -1053,11 +1053,11 @@ Excel can be used for more advanced analysis than summary statistics and charts
 
 ![](images/analysis_toolpak_excel.png){width="100%"}
 
-### Descriptive statistics
+## Descriptive statistics
 
 ![](images/desc_stat_excel.png){width="100%"}
 
-### Histograms
+## Histograms
 
 A histogram depicts the frequency or probability distribution of a numeric variable across bins of equal width
 
@@ -1067,7 +1067,7 @@ Create a histogram through 'Data analysis' by specifying the bins in a separate 
 
 ![](images/histogram_excel.png){width="100%"}
 
-### Correlation
+## Correlation
 
 ::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 5px;"}
 <div>
@@ -1095,7 +1095,7 @@ Create a histogram through 'Data analysis' by specifying the bins in a separate 
 
 -   Correlation is often best visualized with a scatter plot
 
-### Linear regression (univariate)
+## Linear regression (univariate)
 
 In addition to descriptive statistics, Excel can build and evaluate simple predictive models:
 
@@ -1106,11 +1106,11 @@ In addition to descriptive statistics, Excel can build and evaluate simple predi
 
 ![](images/linear_reg_excel.png){width="100%"}
 
-#### Linear regression output
+### Linear regression output
 
 ![](images/reg_output_excel.png){width="100%"}
 
-## Exercise \#3
+# Exercise \#3
 
 In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the answers)😈}}$:
 
@@ -1238,9 +1238,9 @@ In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the 
 
     </details>
 
-## Present findings
+# Present findings
 
-### Visualization in excel
+## Visualization in excel
 
 -   Visualization is often essential for gaining an understanding of the data and presenting findings to a new audience
 
@@ -1254,7 +1254,7 @@ In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the 
 
 -   We'll focus more on visualization later in the course
 
-### Conditional formatting
+## Conditional formatting
 
 ::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 <div>
@@ -1273,17 +1273,17 @@ In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the 
 
 ![](images/cond_format_excel_2.png){width="90%"}
 
-#### What do you think of this visualization?
+### What do you think of this visualization?
 
 ![](images/vis_excel.png){width="100%"}
 
-#### What about this one?
+### What about this one?
 
 **Manchester University has low teaching scores compared to its competitors**
 
 ![](images/vis_excel_2.png){width="100%"}
 
-### Effective visualization
+## Effective visualization
 
 -   More information, less ink
 -   Clear out the junk!
@@ -1292,11 +1292,11 @@ In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the 
 
 ![](images/effective_vis_excel.png){width="100%"}
 
-### Basic charts
+## Basic charts
 
 ![](images/basic_chart_excel.png){width="100%"}
 
-### Insert chart
+## Insert chart
 
 ::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
 <div>
@@ -1315,27 +1315,27 @@ In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do not peek at the 
 </div>
 :::
 
-### Axis settings
+## Axis settings
 
 ![](images/axis_setting_excel.png){width="100%"}
 
-### Data labels
+## Data labels
 
 ![](images/data_labels_excel.png){width="100%"}
 
-### Gridlines
+## Gridlines
 
 ![](images/gridlines_excel.png){width="100%"}
 
-### Titles
+## Titles
 
 ![](images/titles_excel.png){width="100%"}
 
-### Data in rows or columns
+## Data in rows or columns
 
 ![](images/row_cols_excel.png){width="100%"}
 
-### Changing data range
+## Changing data range
 
 Sometimes we want to change the data range covered by a chart or add an extra series
 
@@ -1343,13 +1343,13 @@ When you select a data series on a chart, the source data range can be adjusted
 
 ![](images/chg_data_rng_excel.png){width="100%"}
 
-### Select data source
+## Select data source
 
 You can also use the Select Data Source dialog box from the Design tab in the ribbon or by right-clicking the chart to add a new series to a graph
 
 ![](images/select_data_excel.png){width="100%"}
 
-### Pivot charts
+## Pivot charts
 
 In addition to creating a Pivot table on the data, you can also create a Pivot Chart which is based on the Pivot table itself
 
@@ -1357,7 +1357,7 @@ Changes made to the chart are replicated on the table and vice versa
 
 ![](images/pivot_chart_excel.png){width="100%"}
 
-## Exercise \#4
+# Exercise \#4
 
 In 'Payroll Data\_\<NETID\>.xlsx' $\color{red}{\text{(please do  not peek at the answers)😈}}$:
 
@@ -1383,7 +1383,6 @@ I am not going to lie...these took longer than they should have....😢
 
     </details>
 
-
 2.  Create a bar plot with the number of employees by State
 
     <details>
@@ -1403,7 +1402,6 @@ I am not going to lie...these took longer than they should have....😢
     </p>
 
     </details>
-
 
 3.  Create a scatter plot of salary and tenure
 
@@ -1425,7 +1423,6 @@ I am not going to lie...these took longer than they should have....😢
 
     </details>
 
-
 4.  Create a line chart to show the cumulative number of employees hired by year.
 
     <details>
@@ -1446,5 +1443,199 @@ I am not going to lie...these took longer than they should have....😢
 
     </details>
 
+## Preparing the final workbook
 
-### STILL WORKING
+-   Getting an Excel file into a presentable state can be a challenge
+
+-   Storyboard your workbook and consider how someone would "read" through it
+
+-   Keep it simple!
+
+-   The following approaches can help with the finishing touches:
+
+    -   Formula auditing
+    -   Page layout
+    -   Freeze panes
+    -   Validation
+    -   Removing gridlines
+
+## Formula auditing
+
+To check that formulas have the right cell references, use Trace Precedents or Trace Dependents to display an arrow between linked cells
+
+![](images/formula_audit_excel.png){width="100%"}
+
+## Removing gridlines
+
+One quick tip for making a workbook look instantly less cluttered is to remove the gridlines
+
+![](images/remove_grid_excel.png){width="100%"}
+
+## Freeze panes
+
+-   As worksheets can get very large, it is important to ensure that the data being viewed on screen at all points has titles and comments representing the appropriate columns
+-   Freeze panes allows for parts of the Excel document to be frozen, useful to preserve titles and headings
+-   Freeze Panes freezes all rows above the selected cell and all columns to the left of the selected cell
+-   Other variations are Freeze Top Row and Freeze First Column
+
+![](images/freeze_pane_excel.png){width="50%"}
+
+## Page layout
+
+To ensure that the worksheet prints neatly, you may need to change settings on the Page Layout tab:
+
+-   Changing the page orientation (Portrait vs Landscape)
+-   Adjusting the margins
+-   Specifying a print area (the part of the worksheet that will be printed)
+-   Setting up page breaks at particular points
+
+![](images/Page_layout_excel.png){width="100%"}
+
+Use Print Preview to check how your worksheet will look when printed
+
+## Data validation
+
+Data validation controls what type of data a user can input into a cell, for example:
+
+::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+<div>
+
+-   Only a number within a certain range
+-   Only a time/date within a certain period
+-   Only an item from a predefined list
+
+</div>
+
+<div>
+
+![](images/data_validation_A_excel.png){width="40%"}
+
+</div>
+:::
+
+![](images/data_validation_B_excel.png){width="40%"}
+
+## More leading practices
+
+-   Save your workbook with A1 as the active cell
+-   Put a title and description for the workbook in the upper left corner of the first sheet
+-   Name your spreadsheet tabs so users can easily navigate throughout your workbook
+-   Don't hide columns or rows; instead, group them
+-   Consider if hardcoded parameters make sense or should be avoided
+-   Be careful with merged cells
+-   Keep source data in the workbook
+-   Break down complicated formulas
+
+# Summary
+
+## Acquire data
+
++----------------------------+---------------------------------------------------------------------------+-------------------------------------+
+| $\color{red}{\text{Task}}$ | $\color{red}{\text{Description}}$                                         | $\color{red}{\text{Excel}}$         |
++============================+===========================================================================+=====================================+
+| Data access                | Connect to a data source                                                  | •File \> Open                       |
+|                            |                                                                           |                                     |
+|                            |                                                                           | •Open in text editor and copy/paste |
++----------------------------+---------------------------------------------------------------------------+-------------------------------------+
+| Importing data             | Read the data into an analytical environment                              | •Text Import Wizard                 |
+|                            |                                                                           |                                     |
+|                            |                                                                           | •Data \> Text to Columns            |
++----------------------------+---------------------------------------------------------------------------+-------------------------------------+
+| Data profiling             | Review data dimensions and summary statistics                             | •COUNT()                            |
+|                            |                                                                           |                                     |
+|                            |                                                                           | •MIN(), MAX(), etc.                 |
++----------------------------+---------------------------------------------------------------------------+-------------------------------------+
+| Data quality assessment    | Identify aspects of the data that pose challenges for subsequent analysis | •Sort                               |
+|                            |                                                                           |                                     |
+|                            |                                                                           | •Filter                             |
+|                            |                                                                           |                                     |
+|                            |                                                                           | •COUNTBLANK()                       |
++----------------------------+---------------------------------------------------------------------------+-------------------------------------+
+| Data simulation            | Generate data based on analytical requirements                            | •RAND()                             |
+|                            |                                                                           |                                     |
+|                            |                                                                           | •RANDBETWEEN()                      |
+|                            |                                                                           |                                     |
+|                            |                                                                           | •CHOOSE()                           |
++----------------------------+---------------------------------------------------------------------------+-------------------------------------+
+
+## Transform data
+
++----------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
+| $\color{red}{\text{Task}}$ | $\color{red}{\text{Description}}$                                                               | $\color{red}{\text{Excel}}$ |
++============================+=================================================================================================+=============================+
+| Cleaning data              | Address data quality issues to facilitate analysis                                              | •Find/Replace               |
++----------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
+| Changing data types        | Convert a value to the appropriate format for analysis                                          | •Format                     |
++----------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
+| Filtering data             | Create subsets of records and features based on specified conditions                            | •Filter                     |
+|                            |                                                                                                 |                             |
+|                            |                                                                                                 | •IF()                       |
++----------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
+| Deriving data              | Create new features from original features                                                      | •MID()                      |
+|                            |                                                                                                 |                             |
+|                            |                                                                                                 | •FIND()                     |
+|                            |                                                                                                 |                             |
+|                            |                                                                                                 | •LEN()                      |
+|                            |                                                                                                 |                             |
+|                            |                                                                                                 | •ROUND()                    |
+|                            |                                                                                                 |                             |
+|                            |                                                                                                 | •WEEKDAY()                  |
+|                            |                                                                                                 |                             |
+|                            |                                                                                                 | •...                        |
++----------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
+| Scaling data               | Put features with different ranges of values on the same scale while preserving relative values | •SUM()                      |
+|                            |                                                                                                 |                             |
+|                            |                                                                                                 | •AVERAGE()                  |
+|                            |                                                                                                 |                             |
+|                            |                                                                                                 | •EXP()                      |
++----------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
+| Sampling data              | Create subsets of records based on a probability distribution                                   | •RAND()                     |
+|                            |                                                                                                 |                             |
+|                            |                                                                                                 | •RANDBETWEEN()              |
++----------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
+| Aggregating data           | Return a statistic or value for one feature according to different values of another feature    | •Pivot Table                |
++----------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
+| Reshaping data             | Change whether values are represented in different records or different features                | •Pivot Table                |
++----------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
+| Concatenating data         | Combine data sets through juxtaposition                                                         | •Cut and paste              |
++----------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
+| Merging data               | Combine data sets by matching records on a common identifier                                    | •VLOOKUP()                  |
+|                            |                                                                                                 |                             |
+|                            |                                                                                                 | •HLOOKUP()                  |
+|                            |                                                                                                 |                             |
+|                            |                                                                                                 | •INDEX()/MATCH()            |
++----------------------------+-------------------------------------------------------------------------------------------------+-----------------------------+
+
+## Analyze data
+
++----------------------------+------------------------------------------------------------------+-----------------------------+
+| $\color{red}{\text{Task}}$ | $\color{red}{\text{Description}}$                                | $\color{red}{\text{Excel}}$ |
++============================+==================================================================+=============================+
+| Summary analysis           | Calculate representative statistics for features of interest     | •AVERAGE()                  |
+|                            |                                                                  |                             |
+|                            |                                                                  | •MEDIAN()                   |
+|                            |                                                                  |                             |
+|                            |                                                                  | •PERCENTILE.INC()           |
++----------------------------+------------------------------------------------------------------+-----------------------------+
+| Perform statistical tests  | Estimate the probability that the data supports a specific claim | •Data Analysis Toolpak      |
++----------------------------+------------------------------------------------------------------+-----------------------------+
+| Clustering                 | Identify similar groups of records                               | •                           |
++----------------------------+------------------------------------------------------------------+-----------------------------+
+| Predictive modeling        | Use one set of features to predict the value of another feature  | •Data Analysis Toolpak      |
++----------------------------+------------------------------------------------------------------+-----------------------------+
+| Network analysis           |                                                                  | •                           |
++----------------------------+------------------------------------------------------------------+-----------------------------+
+
+## Present findings
+
++----------------------------+------------------------------------------------------------------------------+-----------------------------+
+| $\color{red}{\text{Task}}$ | $\color{red}{\text{Description}}$                                            | $\color{red}{\text{Excel}}$ |
++============================+==============================================================================+=============================+
+| Data visualization         | Display data using lines, shapes, colors, and other abstract representations | •Charts                     |
++----------------------------+------------------------------------------------------------------------------+-----------------------------+
+| Dashboarding               | Create a collection of dynamic visualizations                                | •Charts                     |
++----------------------------+------------------------------------------------------------------------------+-----------------------------+
+| Exporting data             | Produce output from an analytical environment for future use                 | •File \> Save As            |
++----------------------------+------------------------------------------------------------------------------+-----------------------------+
+| Make recommendations       | Use results of data analysis to guide decision-making                        | •                           |
++----------------------------+------------------------------------------------------------------------------+-----------------------------+
