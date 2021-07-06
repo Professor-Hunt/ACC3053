@@ -1,0 +1,22 @@
+---
+title: "Module 3"
+description: |
+  This module is an introduction to RMarkdown.
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# What is RMarkdown?
+
+```{r} 
+vembedr::embed_url("https://vimeo.com/178485416")
+```
+
+
+
