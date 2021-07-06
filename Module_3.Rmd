@@ -14,9 +14,21 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # What is RMarkdown?
 
-```{r} 
+```{r}
 vembedr::embed_url("https://vimeo.com/178485416")
 ```
 
+### Overview
 
+R Markdown provides an authoring framework for data science. You can use a single R Markdown file to both
 
+-   save and execute code
+-   generate high quality reports that can be shared with an audience
+
+### Installation
+
+Like the rest of R, R Markdown is free and open source. You can install the R Markdown package from [CRAN](https://cran.r-project.org/) with:
+
+```{r install,  eval=FALSE, echo=TRUE}
+install.packages("rmarkdown")
+```
