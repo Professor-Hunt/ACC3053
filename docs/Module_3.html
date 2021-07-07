@@ -108,7 +108,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Module 3"]},{"type":"character","attributes":{},"value":["This module is an introduction to RMarkdown.\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Module 3"]},{"type":"character","attributes":{},"value":["This module is an introduction to RMarkdown. \n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2433,11 +2433,19 @@ Lagniappe Material
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#what-is-rmarkdown">What is RMarkdown?</a></li>
+<li><a href="#what-is-rmarkdown1">What is RMarkdown?</a>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#rendering-output">Rendering output</a></li>
+<li><a href="#how-it-works">How it works</a></li>
+<li><a href="#code-chunks">Code Chunks</a></li>
+</ul></li>
+<li><a href="#exercise-1">Exercise 1</a></li>
 </ul>
 </nav>
 </div>
-<h1 id="what-is-rmarkdown">What is RMarkdown?</h1>
+<h1 id="what-is-rmarkdown1">What is RMarkdown?<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="vembedr">
 <div>
@@ -2445,13 +2453,13 @@ Lagniappe Material
 </div>
 </div>
 </div>
-<h3 id="overview">Overview</h3>
+<h2 id="overview">Overview</h2>
 <p>R Markdown provides an authoring framework for data science. You can use a single R Markdown file to both</p>
 <ul>
 <li>save and execute code</li>
 <li>generate high quality reports that can be shared with an audience</li>
 </ul>
-<h3 id="installation">Installation</h3>
+<h2 id="installation">Installation</h2>
 <p>Like the rest of R, R Markdown is free and open source. You can install the R Markdown package from <a href="https://cran.r-project.org/">CRAN</a> with:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2459,7 +2467,76 @@ Lagniappe Material
 </code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h4 id="once-you-have-installed-rmarkdown-you-can-create-a-document">Once you have installed rmarkdown you can create a document</h4>
+<p><img src="images/create_rmarkdown.gif" style="width:100.0%" /></p>
+<h4 id="notice-that-the-file-contains-three-types-of-content">Notice that the file contains three types of content:</h4>
+<ul>
+<li>An (optional) YAML header surrounded by <code>---</code>s</li>
+<li>R code chunks surrounded by <code>```</code>s</li>
+<li>text mixed with simple text formatting</li>
+<li>You can run each code chunk by clicking the <img src="https://d33wubrfki0l68.cloudfront.net/18153fb9953057ee5cff086122bd26f9cee8fe93/3aba9/images/notebook-run-chunk.png" /> icon. RStudio executes the code and display the results inline with your file. <img src="images/run_codechunk_rmarkdown.gif" style="width:100.0%" /></li>
+</ul>
+<h2 id="rendering-output">Rendering output</h2>
+<p>To generate a report from the file, run the <code>render</code> command:</p>
+<div class="sourceCode" id="cb1" data-eval="FALSE"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&quot;1-example.Rmd&quot;</span>)</span></code></pre></div>
+<p>Better still, use the “Knit” button in the RStudio IDE to render the file and preview the output with a single click. <img src="images/knit.png" style="width:10.0%" /></p>
+<p>R Markdown generates a new file that contains selected text, code, and results from the .Rmd file. The new file can be a finished <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">web page</a>, <a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html">PDF</a>, <a href="https://bookdown.org/yihui/rmarkdown/word-document.html">MS Word</a> document, <a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html">slide show</a>, <a href="https://bookdown.org/yihui/rmarkdown/notebook.html">notebook</a>, <a href="https://bookdown.org/yihui/rmarkdown/tufte-handouts.html">handout</a>, <a href="https://bookdown.org/">book</a>, <a href="https://rmarkdown.rstudio.com/flexdashboard/index.html">dashboard</a>, <a href="https://bookdown.org/yihui/rmarkdown/r-package-vignette.html">package vignette</a> or <a href="https://rmarkdown.rstudio.com/formats.html">other format</a>.</p>
+<h2 id="how-it-works">How it works</h2>
+<p><img src="https://d33wubrfki0l68.cloudfront.net/61d189fd9cdf955058415d3e1b28dd60e1bd7c9b/b739c/lesson-images/rmarkdownflow.png" style="width:100.0%" /><br />
+</p>
+<p>When you run <code>render</code>, R Markdown feeds the .Rmd file to <a href="http://yihui.name/knitr/">knitr</a>, which executes all of the code chunks and creates a new markdown (.md) document which includes the code and its output.</p>
+<p>The markdown file generated by knitr is then processed by <a href="http://pandoc.org/">pandoc</a> which is responsible for creating the finished format.</p>
+<p>This may sound complicated, but R Markdown makes it extremely simple by encapsulating all of the above processing into a single <code>render</code> function.</p>
+<p>Knowing the details is beyond this class, but the gist is that we can create documents with code and output. The facilitates reproducible reports.</p>
+<p>Imagine having to generate the same reports each week/month from excel spreadsheets. To some extent you would have to add the formulas that you need to generate the numbers/summary stats you need for the report. <span style="color:red"><strong>BUT</strong> if your original report contained the necessary code to generate the desired output all you would have to do is update the data.</span></p>
+<h2 id="code-chunks">Code Chunks</h2>
+<p>You can quickly insert chunks like these into your file with</p>
+<p>the keyboard shortcut Ctrl + Alt + I (OS X: Cmd + Option + I) the Add Chunk command in the editor toolbar or by typing the chunk delimiters <code>{r} and</code>.</p>
+<p>When you render your .Rmd file, R Markdown will run each code chunk and embed the results beneath the code chunk in your final report.</p>
+<h4 id="chunk-options">Chunk Options</h4>
+<p>Chunk output can be customized with <a href="http://yihui.name/knitr/options/">knitr options</a>, arguments set in the <code>{}</code> of a chunk header. Above, we use five arguments:</p>
+<ul>
+<li><code>include = FALSE</code> prevents code and results from appearing in the finished file. R Markdown still runs the code in the chunk, and the results can be used by other chunks.</li>
+<li><code>echo = FALSE</code> prevents code, but not the results from appearing in the finished file. This is a useful way to embed figures.</li>
+<li><code>message = FALSE</code> prevents messages that are generated by code from appearing in the finished file.</li>
+<li><code>warning = FALSE</code> prevents warnings that are generated by code from appearing in the finished.</li>
+<li><code>fig.cap = "..."</code> adds a caption to graphical results.</li>
+</ul>
+<h1 id="exercise-1">Exercise 1</h1>
+<p>Answer the following questions. <span class="math inline">\(\color{red}{\text{Do not peek at the answers.}}\)</span>👊</p>
+<ol type="1">
+<li>Add echo=FALSE to the following code in your rmarkdown file</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;layout-chunk&quot;</span><span class="ot"> data-layout=</span><span class="st">&quot;l-body&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">     speed           dist       </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in"> Min.   : 4.0   Min.   :  2.00  </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in"> 1st Qu.:12.0   1st Qu.: 26.00  </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in"> Median :15.0   Median : 36.00  </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in"> Mean   :15.4   Mean   : 42.98  </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in"> 3rd Qu.:19.0   3rd Qu.: 56.00  </span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in"> Max.   :25.0   Max.   :120.00  </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<p><u>What happens?</u></p>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<p>See the <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference Guide</a> for a complete list of knitr chunk options.</p>
+<h4 id="global-options">Global Options</h4>
+<p>To set global options that apply to every chunk in your file, call <code>knitr::opts_chunk$set</code> in a code chunk. Knitr will treat each option that you pass to <code>knitr::opts_chunk$set</code> as a global default that can be overwritten in individual chunk headers.</p>
+<h4 id="caching">Caching</h4>
+<p>If document rendering becomes time consuming due to long computations you can use knitr caching to improve performance. <a href="http://yihui.name/knitr/options"><em>Knitr chunk and package options</em></a> describes how caching works and the <a href="http://yihui.name/knitr/demo/cache/"><em>Cache examples</em></a> provide additional details.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>The information for this module is from <a href="https://rmarkdown.rstudio.com/lesson-1.html">RStudio</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2467,6 +2544,15 @@ Lagniappe Material
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
