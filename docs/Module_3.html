@@ -2441,7 +2441,10 @@ Lagniappe Material
 <li><a href="#how-it-works">How it works</a></li>
 <li><a href="#code-chunks">Code Chunks</a></li>
 </ul></li>
-<li><a href="#exercise-1">Exercise 1</a></li>
+<li><a href="#exercise-1">Exercise 1</a>
+<ul>
+<li><a href="#inline-code">Inline Code</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -2518,14 +2521,59 @@ Lagniappe Material
 <p><img src="images/Exercise_1_1_rmarkdown.gif" width="100%" /></p>
 </div>
 </details></li>
-<li></li>
+<li><p>Add include=FALSE to the following code in your rmarkdown file what happens?</p>
+<p><code>```{r cars}</code><br />
+<code>summary(cars)</code><br />
+<code>```</code></p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Exercise_1_2_rmarkdown.gif" width="100%" /></p>
+</div>
+</details></li>
+<li><p>Add a caption to the following code in your rmarkdown file.</p>
+<p><code>```{r pressure, echo=FALSE}</code><br />
+<code>plot(pressure)</code><br />
+<code>```</code></p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Exercise_1_3_rmarkdown.gif" width="100%" /></p>
+</div>
+</details></li>
 </ol>
 <p>See the <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference Guide</a> for a complete list of knitr chunk options.</p>
 <h4 id="global-options">Global Options</h4>
 <p>To set global options that apply to every chunk in your file, call <code>knitr::opts_chunk$set</code> in a code chunk. Knitr will treat each option that you pass to <code>knitr::opts_chunk$set</code> as a global default that can be overwritten in individual chunk headers.</p>
 <h4 id="caching">Caching</h4>
 <p>If document rendering becomes time consuming due to long computations you can use knitr caching to improve performance. <a href="http://yihui.name/knitr/options"><em>Knitr chunk and package options</em></a> describes how caching works and the <a href="http://yihui.name/knitr/demo/cache/"><em>Cache examples</em></a> provide additional details.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="inline-code">Inline Code</h2>
+<p>Code results can be inserted directly into the text of a .Rmd file by enclosing the code with <code>`r `</code>.</p>
+<p>copy the following code and add it to your default .Rmd file</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inline Code example</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r inline, include=FALSE}</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">cars_variable&lt;-&quot;dist&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">#cars_variable&lt;-&quot;speed&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>You can use the <span class="st">`</span><span class="at">&lt;-</span><span class="st">`</span> to store information <span class="cf">in</span> objects. </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">object &lt;- information</span><span class="st">`</span>. The above code stores  <span class="st">`</span><span class="at">r cars_variable</span><span class="st">`</span>  <span class="cf">in</span> cars_variable.</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r sum of dist, message=FALSE}</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="at">library(dplyr)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="at">cars%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="at">  select(c(paste(cars_variable)))</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p><img src="images/Inline_code_rmarkdown.gif" style="width:100.0%" /></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
