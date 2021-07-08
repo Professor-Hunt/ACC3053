@@ -2506,23 +2506,18 @@ Lagniappe Material
 <h1 id="exercise-1">Exercise 1</h1>
 <p>Answer the following questions. <span class="math inline">\(\color{red}{\text{Do not peek at the answers.}}\)</span>👊</p>
 <ol type="1">
-<li>Add echo=FALSE to the following code in your rmarkdown file</li>
-</ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;layout-chunk&quot;</span><span class="ot"> data-layout=</span><span class="st">&quot;l-body&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">     speed           dist       </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in"> Min.   : 4.0   Min.   :  2.00  </span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in"> 1st Qu.:12.0   1st Qu.: 26.00  </span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in"> Median :15.0   Median : 36.00  </span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in"> Mean   :15.4   Mean   : 42.98  </span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in"> 3rd Qu.:19.0   3rd Qu.: 56.00  </span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in"> Max.   :25.0   Max.   :120.00  </span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
-<p><u>What happens?</u></p>
-<ol start="2" type="1">
+<li><p>Add echo=FALSE to the following code in your rmarkdown file what happens?</p>
+<p><code>```{r cars}</code><br />
+<code>summary(cars)</code><br />
+<code>```</code></p>
+<details>
+<summary>
+<p>Answer</p>
+</summary>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/Exercise_1_1_rmarkdown.gif" width="100%" /></p>
+</div>
+</details></li>
 <li></li>
 </ol>
 <p>See the <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference Guide</a> for a complete list of knitr chunk options.</p>
@@ -2530,7 +2525,7 @@ Lagniappe Material
 <p>To set global options that apply to every chunk in your file, call <code>knitr::opts_chunk$set</code> in a code chunk. Knitr will treat each option that you pass to <code>knitr::opts_chunk$set</code> as a global default that can be overwritten in individual chunk headers.</p>
 <h4 id="caching">Caching</h4>
 <p>If document rendering becomes time consuming due to long computations you can use knitr caching to improve performance. <a href="http://yihui.name/knitr/options"><em>Knitr chunk and package options</em></a> describes how caching works and the <a href="http://yihui.name/knitr/demo/cache/"><em>Cache examples</em></a> provide additional details.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
