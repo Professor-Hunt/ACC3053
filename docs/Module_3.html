@@ -2444,6 +2444,7 @@ Lagniappe Material
 <li><a href="#exercise-1">Exercise 1</a>
 <ul>
 <li><a href="#inline-code">Inline Code</a></li>
+<li><a href="#code-languages">Code Languages</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2573,7 +2574,60 @@ Lagniappe Material
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
 <p><img src="images/Inline_code_rmarkdown.gif" style="width:100.0%" /></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="code-languages">Code Languages</h2>
+<p><a href="http://yihui.name/knitr/">knitr</a> can execute code in many languages besides R. Some of the available language engines include:</p>
+<ul>
+<li>Python</li>
+<li>SQL</li>
+<li>Bash</li>
+<li>Rcpp</li>
+<li>Stan</li>
+<li>JavaScript</li>
+<li>CSS</li>
+</ul>
+<p>To process a code chunk using an alternate language engine, replace the <code>r</code> at the start of your chunk declaration with the name of the language. To connect to a data base first connect to the database using R code. See the following example:</p>
+<p><strong>CODE</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r, echo=TRUE}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">library(DBI)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">db = dbConnect(RSQLite::SQLite(), dbname = &quot;data/03-Data-file-classroom-exercise-Chinook_Sqlite.sqlite&quot;)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p><strong>OUTPUT</strong></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://r-dbi.github.io/DBI'>DBI</a></span><span class='op'>)</span>
+<span class='va'>db</span> <span class='op'>=</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbConnect.html'>dbConnect</a></span><span class='op'>(</span><span class='fu'>RSQLite</span><span class='fu'>::</span><span class='fu'><a href='https://rsqlite.r-dbi.org/reference/SQLite.html'>SQLite</a></span><span class='op'>(</span><span class='op'>)</span>, dbname <span class='op'>=</span> <span class='st'>"data/03-Data-file-classroom-exercise-Chinook_Sqlite.sqlite"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Next start your chunk with the declaration of the language. Below is the answer to the first question from the first exercise in module 1.</p>
+<p><strong>CODE</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{sql, connection=db, echo=TRUE}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">SELECT count(*) </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">FROM pragma_table_info(&quot;Customer&quot;)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p><strong>OUTPUT</strong></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">count</span>(<span class="op">*</span>) </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> pragma_table_info(<span class="ot">&quot;Customer&quot;</span>)</span></code></pre></div>
+<div class="knitsql-table">
+<table>
+<caption><span id="tab:unnamed-chunk-3">Table 1: </span>1 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">count(*)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Note that chunk options like <code>echo</code> and <code>results</code> are all valid when using another language engine.</p>
+<p>Learn more about using other languages with R Markdown in <a href="https://bookdown.org/yihui/rmarkdown/language-engines.html">knitr Language Engines</a>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>

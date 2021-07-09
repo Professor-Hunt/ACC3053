@@ -193,3 +193,55 @@ cars%>%
 ````
 
 ![](images/Inline_code_rmarkdown.gif){width="100%"}
+
+## Code Languages
+
+[knitr](http://yihui.name/knitr/) can execute code in many languages besides R. Some of the available language engines include:
+
+-   Python
+-   SQL
+-   Bash
+-   Rcpp
+-   Stan
+-   JavaScript
+-   CSS
+
+To process a code chunk using an alternate language engine, replace the `r` at the start of your chunk declaration with the name of the language. To connect to a data base first connect to the database using R code. See the following example:
+
+**CODE**
+
+```` {.r}
+```{r, echo=TRUE}`r ''`
+library(DBI)
+db = dbConnect(RSQLite::SQLite(), dbname = "data/03-Data-file-classroom-exercise-Chinook_Sqlite.sqlite")
+```
+````
+
+**OUTPUT**
+
+```{r, echo=TRUE}
+library(DBI)
+db = dbConnect(RSQLite::SQLite(), dbname = "data/03-Data-file-classroom-exercise-Chinook_Sqlite.sqlite")
+```
+
+Next start your chunk with the declaration of the language. Below is the answer to the first question from the first exercise in module 1.
+
+**CODE**
+
+```` {.r}
+```{sql, connection=db, echo=TRUE}`r ''`
+SELECT count(*) 
+FROM pragma_table_info("Customer")
+```
+````
+
+**OUTPUT**
+
+```{sql, connection=db, echo=TRUE}
+SELECT count(*) 
+FROM pragma_table_info("Customer")
+```
+
+Note that chunk options like `echo` and `results` are all valid when using another language engine.
+
+Learn more about using other languages with R Markdown in [knitr Language Engines](https://bookdown.org/yihui/rmarkdown/language-engines.html).
