@@ -334,6 +334,8 @@ Markdown Basics
 
 Format the text in your R Markdown file with [Pandoc's Markdown](https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html), a set of markup annotations for plain text files. When you render your file, Pandoc transforms the marked up text into formatted text in your final file format.
 
+<aside> note that header 2 is not functioning properly</aside>
+
 +-----------------------------------------------------+--------------------------------------------------------------------------+
 | syntax                                              | becomes                                                                  |
 +:====================================================+:=========================================================================+
@@ -355,7 +357,7 @@ Format the text in your R Markdown file with [Pandoc's Markdown](https://rmarkdo
 +-----------------------------------------------------+--------------------------------------------------------------------------+
 | `# Header 1`                                        | # Header 1                                                               |
 +-----------------------------------------------------+--------------------------------------------------------------------------+
-| `## Header 2`                                       | ## Header 2[^2]                                                          |
+| `## Header 2`                                       | ## Header 2                                                              |
 +-----------------------------------------------------+--------------------------------------------------------------------------+
 | `### Header 3`                                      | ### Header 3                                                             |
 +-----------------------------------------------------+--------------------------------------------------------------------------+
@@ -405,8 +407,6 @@ Format the text in your R Markdown file with [Pandoc's Markdown](https://rmarkdo
 |                                                     |                                                                          |
 | `Cell 3 | Cell 4`                                   |                                                                          |
 +-----------------------------------------------------+--------------------------------------------------------------------------+
-
-[^2]: This is the wrong size and I have no idea why? If you figure it out let me know.
 
 [CHEATSHEET](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
 

@@ -2450,6 +2450,7 @@ Lagniappe Material
 <li><a href="#tables">Tables</a></li>
 <li><a href="#output-formats">Output Formats</a></li>
 </ul></li>
+<li><a href="#assignment">Assignment</a></li>
 </ul>
 </nav>
 </div>
@@ -2686,6 +2687,9 @@ Lagniappe Material
 <p>Note the use of the <code>results='asis'</code> chunk option. This is required to ensure that the raw table output isn’t processed further by knitr.</p>
 <p>Markdown Basics</p>
 <p>Format the text in your R Markdown file with <a href="https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html">Pandoc’s Markdown</a>, a set of markup annotations for plain text files. When you render your file, Pandoc transforms the marked up text into formatted text in your final file format.</p>
+<aside>
+note that header 2 is not functioning properly
+</aside>
 <table>
 <colgroup>
 <col style="width: 41%" />
@@ -2734,7 +2738,7 @@ Lagniappe Material
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>## Header 2</code></td>
-<td style="text-align: left;"><h2 id="header-22">Header 2<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></h2></td>
+<td style="text-align: left;"><h2 id="header-2">Header 2</h2></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>### Header 3</code></td>
@@ -2879,12 +2883,13 @@ Lagniappe Material
 <p>Each output format is implemented as a function in R. You can customize the output by passing arguments to the function as sub-values of the <code>output</code> field.</p>
 <p><img src="images/toc_rmarkdown.gif" style="width:100.0%" /></p>
 <p>To learn which arguments a format takes, read the format’s help page in R, e.g. <code>?html_document</code>.</p>
+<h1 id="assignment">Assignment</h1>
+<p>Turn in an RMD file and a PDF of the questions and answers from Module 1. You have an example of how to connect to your database and you already have your sql code. Copy and paste the questions and add the code chunk answers.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
 <li id="fn1" role="doc-endnote"><p>The information for this module is from <a href="https://rmarkdown.rstudio.com/lesson-1.html">RStudio</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>This is the wrong size and I have no idea why? If you figure it out let me know.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
