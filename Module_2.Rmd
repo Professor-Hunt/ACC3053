@@ -1526,6 +1526,10 @@ Data validation controls what type of data a user can input into a cell, for exa
 -   Keep source data in the workbook
 -   Break down complicated formulas
 
+# Assignment
+
+Turn in your spreadsheet with all of the exercises answered and clearly marked.
+
 # Summary
 
 ## Acquire data

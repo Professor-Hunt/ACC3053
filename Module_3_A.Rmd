@@ -1,0 +1,27 @@
+---
+title: "Module 3 Lagniappe"
+description: |
+  The extra info for module 3 is online.
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Check out [RMarkdown](https://rmarkdown.rstudio.com/lesson-10.html)
+
+## [Notebooks](https://rmarkdown.rstudio.com/lesson-10.html)
+
+## [Slide Presentations](https://rmarkdown.rstudio.com/lesson-11.html)
+
+## [Dashboards](https://rmarkdown.rstudio.com/lesson-12.html)
+
+## [Websites](https://rmarkdown.rstudio.com/lesson-13.html)
+
+## [Interactive Documents](https://rmarkdown.rstudio.com/lesson-14.html)
+
+## [Cheatsheets](https://rmarkdown.rstudio.com/lesson-15.html)

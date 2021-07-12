@@ -2410,6 +2410,7 @@ Lagniappe Material
 <div class="nav-dropdown-content">
 <a href="Module_1_A.html">Module 1</a>
 <a href="Module_2_A.html">Module 2</a>
+<a href="Module_3_A.html">Module 3</a>
 </div>
 </div>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2447,7 +2448,7 @@ Lagniappe Material
 <li><a href="#code-languages">Code Languages</a></li>
 <li><a href="#parameters">Parameters</a></li>
 <li><a href="#tables">Tables</a></li>
-<li><a href="#note-the-use-of-the-resultsasis-chunk-option.-this-is-required-to-ensure-that-the-raw-table-output-isnt-processed-further-by-knitr.">Note the use of the <code>results='asis'</code> chunk option. This is required to ensure that the raw table output isn’t processed further by knitr.</a></li>
+<li><a href="#output-formats">Output Formats</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2682,7 +2683,7 @@ Lagniappe Material
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r default tables, echo=FALSE}</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="at">head(cars,5)</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
-<h2 id="note-the-use-of-the-resultsasis-chunk-option.-this-is-required-to-ensure-that-the-raw-table-output-isnt-processed-further-by-knitr.">Note the use of the <code>results='asis'</code> chunk option. This is required to ensure that the raw table output isn’t processed further by knitr.</h2>
+<p>Note the use of the <code>results='asis'</code> chunk option. This is required to ensure that the raw table output isn’t processed further by knitr.</p>
 <p>Markdown Basics</p>
 <p>Format the text in your R Markdown file with <a href="https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html">Pandoc’s Markdown</a>, a set of markup annotations for plain text files. When you render your file, Pandoc transforms the marked up text into formatted text in your final file format.</p>
 <table>
@@ -2836,13 +2837,54 @@ Lagniappe Material
 </tr>
 </tbody>
 </table>
+<p><a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">CHEATSHEET</a></p>
+<p><a href="https://github.com/rstudio/cheatsheets/blob/master/rmarkdown-2.0.pdf">CHEATSHEET2</a></p>
+<h2 id="output-formats">Output Formats</h2>
+<p>Set the <code>output_format</code> argument of <code>render</code> to render your .Rmd file into any of R Markdown’s supported formats. For example, the code below renders NAMEOFYOURFILE.Rmd to a Microsoft Word document.</p>
+<p><code>library(rmarkdown)</code></p>
+<p><code>render("NAMEOFYOURFILE.Rmd", output_format = "word_document")</code></p>
+<p>If you do not select a format, R Markdown renders the file to its default format, which you can set in the <code>output</code> field of a .Rmd file’s header. The header of NAMEOFYOURFILE.Rmd shows that it renders to an HTML file by default.</p>
+<p>The RStudio IDE knit button renders a file to the first format listed in its <code>output</code> field. You can render to additional formats by clicking the dropdown menu beside the knit button:</p>
+<p><img src="images/output_rmarkdown.gif" style="width:100.0%" /></p>
+<p>The following output formats are available to use with R Markdown.</p>
+<h3 id="documents">Documents</h3>
+<ul>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/notebook.html">html_notebook</a> - Interactive R Notebooks</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/html-document.html">html_document</a> - HTML document w/ Bootstrap CSS</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html">pdf_document</a> - PDF document (via LaTeX template)</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/word-document.html">word_document</a> - Microsoft Word document (docx)</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/opendocument-text-document.html">odt_document</a> - OpenDocument Text document</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/rich-text-format-document.html">rtf_document</a> - Rich Text Format document</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/markdown-document.html">md_document</a> - Markdown document (various flavors)</p></li>
+</ul>
+<h3 id="presentations-slides">Presentations (slides)</h3>
+<ul>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html">ioslides_presentation</a> - HTML presentation with ioslides</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/revealjs.html">revealjs::revealjs_presentation</a> - HTML presentation with reveal.js</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/slidy-presentation.html">slidy_presentation</a> - HTML presentation with W3C Slidy</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/beamer-presentation.html">beamer_presentation</a> - PDF presentation with LaTeX Beamer</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html">powerpoint_presentation</a>: PowerPoint presentation</p></li>
+</ul>
+<h3 id="more">More</h3>
+<ul>
+<li><p><a href="https://rmarkdown.rstudio.com/flexdashboard/">flexdashboard::flex_dashboard</a> - Interactive dashboards</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/tufte-handouts.html">tufte::tufte_handout</a> - PDF handouts in the style of Edward Tufte</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/tufte-handouts.html">tufte::tufte_html</a> - HTML handouts in the style of Edward Tufte</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/tufte-handouts.html">tufte::tufte_book</a> - PDF books in the style of Edward Tufte</p></li>
+<li><p><a href="https://bookdown.org/yihui/rmarkdown/r-package-vignette.html">html_vignette</a> - R package vignette (HTML)</p></li>
+<li><p><a href="https://rmarkdown.rstudio.com/github_document_format.html">github_document</a> - GitHub Flavored Markdown document</p></li>
+</ul>
+<p>You can also build <a href="https://bookdown.org/">books</a>, <a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html">websites</a>, and <a href="https://bookdown.org/yihui/rmarkdown/shiny-documents.html">interactive documents</a> with R Markdown.</p>
+<h3 id="output-options">Output Options</h3>
+<p>Each output format is implemented as a function in R. You can customize the output by passing arguments to the function as sub-values of the <code>output</code> field.</p>
+<p><img src="images/toc_rmarkdown.gif" style="width:100.0%" /></p>
+<p>To learn which arguments a format takes, read the format’s help page in R, e.g. <code>?html_document</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
 <li id="fn1" role="doc-endnote"><p>The information for this module is from <a href="https://rmarkdown.rstudio.com/lesson-1.html">RStudio</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>This is the wrong size and I have no idea why? If you figure it out let me know.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn2" role="doc-endnote"><p>This is the wrong size and I have no idea why? If you figure it out let me know.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
