@@ -2445,6 +2445,9 @@ Lagniappe Material
 <ul>
 <li><a href="#inline-code">Inline Code</a></li>
 <li><a href="#code-languages">Code Languages</a></li>
+<li><a href="#parameters">Parameters</a></li>
+<li><a href="#tables">Tables</a></li>
+<li><a href="#note-the-use-of-the-resultsasis-chunk-option.-this-is-required-to-ensure-that-the-raw-table-output-isnt-processed-further-by-knitr.">Note the use of the <code>results='asis'</code> chunk option. This is required to ensure that the raw table output isn’t processed further by knitr.</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2567,7 +2570,7 @@ Lagniappe Material
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">object &lt;- information</span><span class="st">`</span>. The above code stores  <span class="st">`</span><span class="at">r cars_variable</span><span class="st">`</span>  <span class="cf">in</span> cars_variable.</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r sum of dist, message=FALSE}</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r select, message=FALSE}</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="at">library(dplyr)</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="at">cars%&gt;%</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="at">  select(c(paste(cars_variable)))</span></span>
@@ -2627,11 +2630,219 @@ Lagniappe Material
 </div>
 <p>Note that chunk options like <code>echo</code> and <code>results</code> are all valid when using another language engine.</p>
 <p>Learn more about using other languages with R Markdown in <a href="https://bookdown.org/yihui/rmarkdown/language-engines.html">knitr Language Engines</a>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="parameters">Parameters</h2>
+<p>R Markdown documents can include one or more parameters whose values can be set when you render the report.</p>
+<p><img src="images/parameters_rmarkdown.gif" style="width:100.0%" /></p>
+<h4 id="update-your-rmd-with">Update your Rmd with</h4>
+<p><strong>YAML CODE</strong></p>
+<p>Watch the spacing and placement</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>params<span class="sc">:</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  cars_var<span class="sc">:</span> <span class="st">&quot;dist&quot;</span></span></code></pre></div>
+<p><strong>CODE</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>The YAML code above stores  <span class="st">`</span><span class="at">r params$cars_var</span><span class="st">`</span> <span class="cf">in</span> params<span class="sc">$</span>cars_var.</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r select 2, message=FALSE}</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">library(dplyr)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">cars%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="at">  select(c(paste(params$cars_var)))</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<h3 id="declaring-parameters">Declaring Parameters</h3>
+<p>Parameters are declared using the <code>params</code> field within the YAML header of the document. For example, the file above creates the parameter <code>cars_var</code> and assigns it the default value <code>"dist"</code>.</p>
+<h3 id="using-parameters-in-code">Using Parameters in Code</h3>
+<p>Parameters are made available within the knit environment as a read-only list named <code>params</code>. To access a parameter in code, call <code>params$&lt;parameter name&gt;</code>.</p>
+<h3 id="setting-parameters-values">Setting Parameters values</h3>
+<p>Add a <code>params</code> argument to <code>render</code> to create a report that uses a new set of parameter values. Here we modify our report to use the <code>speed</code> variable with</p>
+<pre><code>render(&quot;rmarkdown_demo.Rmd&quot;, params = list(cars_var = &quot;speed&quot;))</code></pre>
+<p>Better yet, click the “Knit with Parameters” option in the dropdown menu next to the RStudio IDE knit button to set parameters, render, and preview the report in a single user friendly step.</p>
+<p><img src="images/knit_w_params_rmarkdown.gif" style="width:100.0%" /></p>
+<p>Parameters are useful when you want to re-render the same report with distinct values for various key inputs, for example:</p>
+<ul>
+<li>Running a report specific to a department or geographic region.</li>
+<li>Running a report that covers a specific period in time.</li>
+<li>Running multiple versions of a report for distinct sets of core assumptions.</li>
+</ul>
+<p>Learn more about parameters at <a href="https://bookdown.org/yihui/rmarkdown/parameterized-reports.html">Paramaterized Reports</a>.</p>
+<h2 id="tables">Tables</h2>
+<p>By default, R Markdown displays data frames and matrices as they would be in the R terminal (in a monospaced font). If you prefer that data be displayed with additional formatting you can use the <code>knitr::kable</code> function.</p>
+<p><img src="images/kable_rmarkdown.gif" style="width:100.0%" /></p>
+<p><strong>CODE</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tables</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span>knitr kable<span class="sc">**</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r kable tables ,echo=FALSE, results=&#39;asis&#39;}</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="at">library(knitr)</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="at">kable(head(cars,5),caption=&quot;Kable Table&quot;)</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="sc">**</span>default table<span class="sc">**</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{r default tables, echo=FALSE}</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="at">head(cars,5)</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<h2 id="note-the-use-of-the-resultsasis-chunk-option.-this-is-required-to-ensure-that-the-raw-table-output-isnt-processed-further-by-knitr.">Note the use of the <code>results='asis'</code> chunk option. This is required to ensure that the raw table output isn’t processed further by knitr.</h2>
+<p>Markdown Basics</p>
+<p>Format the text in your R Markdown file with <a href="https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html">Pandoc’s Markdown</a>, a set of markup annotations for plain text files. When you render your file, Pandoc transforms the marked up text into formatted text in your final file format.</p>
+<table>
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 58%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">syntax</th>
+<th style="text-align: left;">becomes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>plain text</code></td>
+<td style="text-align: left;">plain text</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><code>End a line with two spaces</code></p>
+<p><code>to start a  new paragraph</code></p></td>
+<td style="text-align: left;"><p>End a line with two spaces to start a</p>
+<p>new paragraph</p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>*italics* and _italics_</code></td>
+<td style="text-align: left;"><em>italics</em> and <em>italics</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>**bold** and __bold__</code></td>
+<td style="text-align: left;"><strong>bold</strong> and <strong>bold</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>superscript^2^</code></td>
+<td style="text-align: left;">superscript<sup>2</sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>~~strikethrough~~</code></td>
+<td style="text-align: left;"><del>strikethrough</del></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>[link](www.rstudio.com)</code></td>
+<td style="text-align: left;"><a href="www.rstudio.com">link</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code># Header 1</code></td>
+<td style="text-align: left;"><h1 id="header-1">Header 1</h1></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>## Header 2</code></td>
+<td style="text-align: left;"><h2 id="header-22">Header 2<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></h2></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>### Header 3</code></td>
+<td style="text-align: left;"><h3 id="header-3">Header 3</h3></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>#### Header 4</code></td>
+<td style="text-align: left;"><h4 id="header-4">Header 4</h4></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>##### Header 5</code></td>
+<td style="text-align: left;"><h5 id="header-5">Header 5</h5></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>###### Header 6</code></td>
+<td style="text-align: left;"><h6 id="header-6">Header 6</h6></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>endash: --</code></td>
+<td style="text-align: left;">endash: –</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>emdash: ---</code></td>
+<td style="text-align: left;">emdash: —</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ellipsis: ...</code></td>
+<td style="text-align: left;">ellipsis: …</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>inline equation: $A = \pi*r^{2}$</code></td>
+<td style="text-align: left;">inline equation: <span class="math inline">\(A = \pi*r^{2}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>image: ![](images/VERTICAL_PRINT_maroon_cmyk.jpg)</code></td>
+<td style="text-align: left;"><img src="images/VERTICAL_PRINT_maroon_cmyk.jpg" width="110" height="63" /></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>horizontal rule (or slide break): ***</code></td>
+<td style="text-align: left;"><p>horizontal rule (or slide break):</p>
+<hr /></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&gt; block quote</code></td>
+<td style="text-align: left;"><blockquote>
+<p>block quote</p>
+</blockquote></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><code>* unordered list</code></p>
+<p><code>* item 2</code></p>
+<p><code>+ sub-item 1</code></p>
+<p><code>+ sub-item 2</code></p></td>
+<td style="text-align: left;"><ul>
+<li><p>unordered list</p></li>
+<li><p>item 2</p>
+<ul>
+<li><p>sub-item 1</p></li>
+<li><p>sub-item 2</p></li>
+</ul></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><p><code>1. ordered list</code></p>
+<p><code>2. item 2</code></p>
+<p><code>+ sub-item 1</code></p>
+<p><code>+ sub-item 2</code></p></td>
+<td style="text-align: left;"><ol type="1">
+<li><p>ordered list</p></li>
+<li><p>item 2</p>
+<ul>
+<li><p>sub-item 1</p></li>
+<li><p>sub-item 2</p></li>
+</ul></li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><p><code>Table Header | Second Header</code></p>
+<p><code>------------- | -------------</code></p>
+<p><code>Table Cell | Cell 2</code></p>
+<p><code>Cell 3 | Cell 4</code></p></td>
+<td style="text-align: left;"><table>
+<thead>
+<tr class="header">
+<th>Table Header</th>
+<th>Second Header</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Table Cell</td>
+<td>Cell 2</td>
+</tr>
+<tr class="even">
+<td>Cell 3</td>
+<td>Cell 4</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+</tbody>
+</table>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
 <li id="fn1" role="doc-endnote"><p>The information for this module is from <a href="https://rmarkdown.rstudio.com/lesson-1.html">RStudio</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>This is the wrong size and I have no idea why? If you figure it out let me know.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

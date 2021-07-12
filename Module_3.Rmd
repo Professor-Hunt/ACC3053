@@ -184,7 +184,7 @@ You can use the `<-` to store information in objects.
 `object <- information`. The above code stores  `r "\u0060r cars_variable\u0060"`  in cars_variable.
 
 
-```{r sum of dist, message=FALSE}`r ''`
+```{r select, message=FALSE}`r ''`
 library(dplyr)
 cars%>%
   select(c(paste(cars_variable)))
@@ -245,3 +245,237 @@ FROM pragma_table_info("Customer")
 Note that chunk options like `echo` and `results` are all valid when using another language engine.
 
 Learn more about using other languages with R Markdown in [knitr Language Engines](https://bookdown.org/yihui/rmarkdown/language-engines.html).
+
+## Parameters
+
+R Markdown documents can include one or more parameters whose values can be set when you render the report.
+
+![](images/parameters_rmarkdown.gif){width="100%"}
+
+#### Update your Rmd with
+
+**YAML CODE**
+
+Watch the spacing and placement
+
+``` {.r}
+params: 
+  cars_var: "dist"
+```
+
+**CODE**
+
+```` {.r}
+# Parameters
+
+The YAML code above stores  `r "\u0060r params$cars_var\u0060"` in params$cars_var.
+
+
+```{r select 2, message=FALSE}`r ''`
+library(dplyr)
+cars%>%
+  select(c(paste(params$cars_var)))
+
+```
+````
+
+### Declaring Parameters
+
+Parameters are declared using the `params` field within the YAML header of the document. For example, the file above creates the parameter `cars_var` and assigns it the default value `"dist"`.
+
+### Using Parameters in Code
+
+Parameters are made available within the knit environment as a read-only list named `params`. To access a parameter in code, call `params$<parameter name>`.
+
+### Setting Parameters values
+
+Add a `params` argument to `render` to create a report that uses a new set of parameter values. Here we modify our report to use the `speed` variable with
+
+    render("rmarkdown_demo.Rmd", params = list(cars_var = "speed"))
+
+Better yet, click the "Knit with Parameters" option in the dropdown menu next to the RStudio IDE knit button to set parameters, render, and preview the report in a single user friendly step.
+
+![](images/knit_w_params_rmarkdown.gif){width="100%"}
+
+Parameters are useful when you want to re-render the same report with distinct values for various key inputs, for example:
+
+-   Running a report specific to a department or geographic region.
+-   Running a report that covers a specific period in time.
+-   Running multiple versions of a report for distinct sets of core assumptions.
+
+Learn more about parameters at [Paramaterized Reports](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html).
+
+## Tables
+
+By default, R Markdown displays data frames and matrices as they would be in the R terminal (in a monospaced font). If you prefer that data be displayed with additional formatting you can use the `knitr::kable` function.
+
+![](images/kable_rmarkdown.gif){width="100%"}
+
+**CODE**
+
+```` {.r}
+# Tables
+
+**knitr kable**
+```{r kable tables ,echo=FALSE, results='asis'}`r ''`
+library(knitr)
+kable(head(cars,5),caption="Kable Table")
+```
+
+**default table**
+```{r default tables, echo=FALSE}`r ''`
+head(cars,5)
+```
+````
+
+## Note the use of the `results='asis'` chunk option. This is required to ensure that the raw table output isn't processed further by knitr.
+
+Markdown Basics
+
+Format the text in your R Markdown file with [Pandoc's Markdown](https://rmarkdown.rstudio.com/authoring_pandoc_markdown.html), a set of markup annotations for plain text files. When you render your file, Pandoc transforms the marked up text into formatted text in your final file format.
+
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| syntax                                              | becomes                                                                  |
++:====================================================+:=========================================================================+
+| `plain text`                                        | plain text                                                               |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `End a line with two spaces`                        | End a line with two spaces to start a                                    |
+|                                                     |                                                                          |
+| `to start a  new paragraph`                         | new paragraph                                                            |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `*italics* and _italics_`                           | *italics* and *italics*                                                  |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `**bold** and __bold__`                             | **bold** and **bold**                                                    |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `superscript^2^`                                    | superscript^2^                                                           |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `~~strikethrough~~`                                 | ~~strikethrough~~                                                        |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `[link](www.rstudio.com)`                           | [link](www.rstudio.com)                                                  |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `# Header 1`                                        | # Header 1                                                               |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `## Header 2`                                       | ## Header 2[^2]                                                          |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `### Header 3`                                      | ### Header 3                                                             |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `#### Header 4`                                     | #### Header 4                                                            |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `##### Header 5`                                    | ##### Header 5                                                           |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `###### Header 6`                                   | ###### Header 6                                                          |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `endash: --`                                        | endash: --                                                               |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `emdash: ---`                                       | emdash: ---                                                              |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `ellipsis: ...`                                     | ellipsis: ...                                                            |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `inline equation: $A = \pi*r^{2}$`                  | inline equation: $A = \pi*r^{2}$                                         |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `image: ![](images/VERTICAL_PRINT_maroon_cmyk.jpg)` | ![](images/VERTICAL_PRINT_maroon_cmyk.jpg){width="110" height="63"}      |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `horizontal rule (or slide break): ***`             | horizontal rule (or slide break):                                        |
+|                                                     |                                                                          |
+|                                                     | ------------------------------------------------------------------------ |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `> block quote`                                     | > block quote                                                            |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `* unordered list`                                  | -   unordered list                                                       |
+|                                                     |                                                                          |
+| `* item 2`                                          | -   item 2                                                               |
+|                                                     |                                                                          |
+| `+ sub-item 1`                                      |     -   sub-item 1                                                       |
+|                                                     |                                                                          |
+| `+ sub-item 2`                                      |     -   sub-item 2                                                       |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `1. ordered list`                                   | 1.  ordered list                                                         |
+|                                                     |                                                                          |
+| `2. item 2`                                         | 2.  item 2                                                               |
+|                                                     |                                                                          |
+| `+ sub-item 1`                                      |     -   sub-item 1                                                       |
+|                                                     |                                                                          |
+| `+ sub-item 2`                                      |     -   sub-item 2                                                       |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| `Table Header | Second Header`                      | | Table Header | Second Header |                                         |
+|                                                     | |--------------|---------------|                                         |
+| `------------- | -------------`                     | | Table Cell   | Cell 2        |                                         |
+|                                                     | | Cell 3       | Cell 4        |                                         |
+| `Table Cell | Cell 2`                               |                                                                          |
+|                                                     |                                                                          |
+| `Cell 3 | Cell 4`                                   |                                                                          |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+
+[^2]: This is the wrong size and I have no idea why? If you figure it out let me know.
+
+[CHEATSHEET](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+[CHEATSHEET2](https://github.com/rstudio/cheatsheets/blob/master/rmarkdown-2.0.pdf)
+
+## Output Formats
+
+Set the `output_format` argument of `render` to render your .Rmd file into any of R Markdown's supported formats. For example, the code below renders NAMEOFYOURFILE.Rmd to a Microsoft Word document.
+
+`library(rmarkdown)`
+
+`render("NAMEOFYOURFILE.Rmd", output_format = "word_document")`
+
+If you do not select a format, R Markdown renders the file to its default format, which you can set in the `output` field of a .Rmd file's header. The header of NAMEOFYOURFILE.Rmd shows that it renders to an HTML file by default.
+
+The RStudio IDE knit button renders a file to the first format listed in its `output` field. You can render to additional formats by clicking the dropdown menu beside the knit button:
+
+![](images/output_rmarkdown.gif){width="100%"}
+
+The following output formats are available to use with R Markdown.
+
+### Documents
+
+-   [html_notebook](https://bookdown.org/yihui/rmarkdown/notebook.html) - Interactive R Notebooks
+
+-   [html_document](https://bookdown.org/yihui/rmarkdown/html-document.html) - HTML document w/ Bootstrap CSS
+
+-   [pdf_document](https://bookdown.org/yihui/rmarkdown/pdf-document.html) - PDF document (via LaTeX template)
+
+-   [word_document](https://bookdown.org/yihui/rmarkdown/word-document.html) - Microsoft Word document (docx)
+
+-   [odt_document](https://bookdown.org/yihui/rmarkdown/opendocument-text-document.html) - OpenDocument Text document
+
+-   [rtf_document](https://bookdown.org/yihui/rmarkdown/rich-text-format-document.html) - Rich Text Format document
+
+-   [md_document](https://bookdown.org/yihui/rmarkdown/markdown-document.html) - Markdown document (various flavors)
+
+### Presentations (slides)
+
+-   [ioslides_presentation](https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html) - HTML presentation with ioslides
+
+-   [revealjs::revealjs_presentation](https://bookdown.org/yihui/rmarkdown/revealjs.html) - HTML presentation with reveal.js
+
+-   [slidy_presentation](https://bookdown.org/yihui/rmarkdown/slidy-presentation.html) - HTML presentation with W3C Slidy
+
+-   [beamer_presentation](https://bookdown.org/yihui/rmarkdown/beamer-presentation.html) - PDF presentation with LaTeX Beamer
+
+-   [powerpoint_presentation](https://bookdown.org/yihui/rmarkdown/powerpoint-presentation.html): PowerPoint presentation
+
+### More
+
+-   [flexdashboard::flex_dashboard](https://rmarkdown.rstudio.com/flexdashboard/) - Interactive dashboards
+
+-   [tufte::tufte_handout](https://bookdown.org/yihui/rmarkdown/tufte-handouts.html) - PDF handouts in the style of Edward Tufte
+
+-   [tufte::tufte_html](https://bookdown.org/yihui/rmarkdown/tufte-handouts.html) - HTML handouts in the style of Edward Tufte
+
+-   [tufte::tufte_book](https://bookdown.org/yihui/rmarkdown/tufte-handouts.html) - PDF books in the style of Edward Tufte
+
+-   [html_vignette](https://bookdown.org/yihui/rmarkdown/r-package-vignette.html) - R package vignette (HTML)
+
+-   [github_document](https://rmarkdown.rstudio.com/github_document_format.html) - GitHub Flavored Markdown document
+
+You can also build [books](https://bookdown.org/), [websites](https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html), and [interactive documents](https://bookdown.org/yihui/rmarkdown/shiny-documents.html) with R Markdown.
+
+### Output Options
+
+Each output format is implemented as a function in R. You can customize the output by passing arguments to the function as sub-values of the `output` field.
+
+![](images/toc_rmarkdown.gif){width="100%"}
+
+To learn which arguments a format takes, read the format's help page in R, e.g. `?html_document`.
