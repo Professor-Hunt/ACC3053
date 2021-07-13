@@ -2350,10 +2350,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   }</style>
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-  <script src="site_libs/clipboard-1.7.1/clipboard.min.js"></script>
-  <link href="site_libs/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
-  <link href="site_libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
-  <script src="site_libs/klippy-0.0.0.9500/js/klippy.min.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2443,17 +2439,12 @@ Lagniappe Material
 <ul>
 <li><a href="#whats-in-a-name">What’s in a name?</a></li>
 <li><a href="#calling-functions">Calling functions</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
-<div class="layout-chunk" data-layout="l-body">
-<script>
-  addClassKlippyTo("pre.r, pre.markdown");
-  addKlippy('right', 'top', '#B03060', '1', 'Click to copy', 'Done');
-</script>
-</div>
-<p>This module is based in part on a <a href="https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html">PWC case study</a> (Graduate level Data Management and Analysis Course) and <a href="https://r4ds.had.co.nz/index.html">R for Data Science</a>. I am changing a few things from the PWC case study, most notably is the use of the Tidyverse R packages. I will introduce dplyr for data manipulation and ggplot2 for visualizations. I am also dropping the AI/Predictive modeling portion for this class. My masters level course will focus on AI/ML.</p>
+<p>This module is based in part on a <a href="https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html">PWC case study</a> (Graduate level Data Management and Analysis Course), <a href="https://r4ds.had.co.nz/index.html">R for Data Science</a>, and <a href="https://moderndive.com/index.html">ModernDive</a>. I am changing a few things from the PWC case study, most notably is the use of the Tidyverse R packages. I will introduce dplyr for data manipulation and ggplot2 for visualizations. I am also dropping the AI/Predictive modeling portion for this class. My masters level course will focus on AI/ML.</p>
 <h1 id="module-objectives">Module Objectives</h1>
 <ul>
 <li>Explain fundamentals of statistical programming with R</li>
@@ -2462,6 +2453,9 @@ Lagniappe Material
 <h1 id="statistical-programming-tools">Statistical programming tools</h1>
 <p><img src="images/programming_tools.png" style="width:100.0%" /></p>
 <h1 id="r-programming-basics">R programming basics</h1>
+<p>Lets create a new script to store our code. If we want to keep our code, then we must use a script. Also remember that <code>#</code> allows you to make comments that are not run as code. The key shortcut is:</p>
+<p>ctrl (cmd)+shift+N</p>
+<p><img src="images/create_rscript.gif" style="width:100.0%" /></p>
 <p>You can use R as a calculator:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2567,6 +2561,18 @@ Lagniappe Material
 <pre><code>[1]  1.00  3.25  5.50  7.75 10.00</code></pre>
 </div>
 <p>Now look at your environment in the upper right pane. What is there?</p>
+<p>The objects we created.</p>
+<p>Interested in keyboard shortcuts… try: Alt+Shift+K or use the menus 😄</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>In this module we are going to focus on how to use the dplyr package. If you have not already you need to install the tidyverse of packages. Installing packages is like downloading an app for your phone that adds functionality. After you download an app you have to tap it to use..in R to <em>tap</em> the package you use <code>library(package_name)</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"tidyverse"</span><span class='op'>)</span>
+
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

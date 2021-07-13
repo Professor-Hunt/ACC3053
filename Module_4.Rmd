@@ -127,7 +127,7 @@ Interested in keyboard shortcuts... try: Alt+Shift+K or use the menus 😄
 
 In this module we are going to focus on how to use the dplyr package. If you have not already you need to install the tidyverse of packages. Installing packages is like downloading an app for your phone that adds functionality. After you download an app you have to tap it to use..in R to *tap* the package you use `library(package_name)`.
 
-```{r setup, echo=TRUE,eval=FALSE}
+```{r setup2, echo=TRUE,eval=FALSE}
 install.packages("tidyverse")
 
 library(tidyverse)
