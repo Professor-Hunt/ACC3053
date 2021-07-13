@@ -1,0 +1,134 @@
+---
+title: "Module 4"
+description: |
+  This module is an introductiont to data wrangling and the tidyverse.
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+This module is based in part on a [PWC case study](https://www.pwc.com/us/en/careers/university-relations/data-and-analytics-case-studies.html) (Graduate level Data Management and Analysis Course), [R for Data Science](https://r4ds.had.co.nz/index.html), and [ModernDive](https://moderndive.com/index.html). I am changing a few things from the PWC case study, most notably is the use of the Tidyverse R packages. I will introduce dplyr for data manipulation and ggplot2 for visualizations. I am also dropping the AI/Predictive modeling portion for this class. My masters level course will focus on AI/ML.
+
+# Module Objectives
+
+-   Explain fundamentals of statistical programming with R
+-   Demonstrate basic approaches to acquire, transform, analyze, and visualize data in R
+
+# Statistical programming tools
+
+![](images/programming_tools.png){width="100%"}
+
+# R programming basics
+
+Lets create a new script to store our code. If we want to keep our code, then we must use a script. Also remember that `#` allows you to make comments that are not run as code. The key shortcut is:
+
+ctrl (cmd)+shift+N
+
+![](images/create_rscript.gif){width="100%"}
+
+You can use R as a calculator:
+
+```{r, echo=TRUE}
+1 / 200 * 30
+(59 + 73 + 2) / 3
+sin(pi / 2)
+```
+
+You can create new objects with `<-`:
+
+```{r, echo=TRUE}
+x <- 3 * 4
+x
+```
+
+All R statements where you create objects, **assignment** statements, have the same form:
+
+```{r ,echo=TRUE, eval = FALSE}
+object_name <- value
+```
+
+When reading that code say "object name gets value" in your head.
+
+You will make lots of assignments and `<-` is a pain to type. Don't be lazy and use `=`: it will work, but it will cause confusion later.
+
+## What's in a name?
+
+R is case-sensitive, so objects and functions must be used with correct capitalization. Object names must start with a letter, and can only contain letters, numbers, `_` and `.`. You want your object names to be descriptive, so you'll need a convention for multiple words. I recommend **snake_case** where you separate lowercase words with `_`.
+
+```{r, eval = FALSE, echo=TRUE}
+i_use_snake_case
+otherPeopleUseCamelCase
+some.people.use.periods
+And_aFew.People_RENOUNCEconvention
+```
+
+```{r, echo=TRUE,error=TRUE}
+x_value <- 3 * 4
+X_value
+```
+
+```{r, echo=TRUE,error=TRUE}
+x_value <- 3 * 4
+x_Value
+```
+
+## Calling functions
+
+R has a large collection of built-in functions that are called like this:
+
+```{r eval = FALSE}
+function_name(arg1 = val1, arg2 = val2, ...)
+```
+
+Let's try using `seq()` which makes regular **seq**uences of numbers and, while we're at it, learn more helpful features of RStudio.
+
+```{r,echo=TRUE}
+seq(1, 10)
+```
+
+Type this code and notice you get similar assistance with the paired quotation marks:
+
+```{r,echo=TRUE}
+x <- "hello world"
+```
+
+Quotation marks and parentheses must always come in a pair. RStudio does its best to help you, but it's still possible to mess up and end up with a mismatch. If this happens, R will show you the continuation character "+":
+
+    > x <- "hello
+    +  
+
+The `+` tells you that R is waiting for more input; it doesn't think you're done yet. Usually that means you've forgotten either a `"` or a `)`. Either add the missing pair, or press ESCAPE to abort the expression and try again.
+
+If you make an assignment, you don't get to see the value. You're then tempted to immediately double-check the result:
+
+```{r,echo=TRUE}
+y <- seq(1, 10, length.out = 5)
+y
+```
+
+This common action can be shortened by surrounding the assignment with parentheses, which causes assignment and "print to screen" to happen.
+
+```{r, echo=TRUE}
+(y <- seq(1, 10, length.out = 5))
+```
+
+Now look at your environment in the upper right pane. What is there?
+
+The objects we created.
+
+Interested in keyboard shortcuts... try: Alt+Shift+K or use the menus 😄
+
+## Prerequisites
+
+In this module we are going to focus on how to use the dplyr package. If you have not already you need to install the tidyverse of packages. Installing packages is like downloading an app for your phone that adds functionality. After you download an app you have to tap it to use..in R to *tap* the package you use `library(package_name)`.
+
+```{r setup, echo=TRUE,eval=FALSE}
+install.packages("tidyverse")
+
+library(tidyverse)
+```

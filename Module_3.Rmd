@@ -12,6 +12,69 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+# Module Objectives
+
+-   Discuss R/RStudio Basics
+-   Define RMarkdown and its uses
+-   Explain why a RMarkdown document would be helpful to accountants
+-   Demonstrate basic knowledge of RMarkdown syntax
+
+# Why R
+
+-   R is an open-source statistical programming language and environment that has become a [lingua franca](https://en.wikipedia.org/wiki/Lingua_franca) for data science
+
+-   R is popular in academia, and many commercial enterprises are exploring ways to use the tool more extensively, typically as a complement to commercial tools such as SAS
+
+-   Open-source alternative to licensed statistical programming tools
+
+    -   Base R console
+
+    -   Thousands of community-developed packages with specialized functions
+
+    -   RStudio and other open-source GUI/IDEs
+
+## RGui and Rstudio
+
+![](images/rgui_rstudio.png){width="100%"}
+
+## Getting Started
+
+-   The best thing to do for this class is create a folder on your desktop. For example I have a folder called "R projects" on my desktop.
+
+-   Next click file\>New Project\>New Directory\>New Project
+
+    -   Browse to your desktop folder
+
+    -   Name the directory: ACC3053
+
+![](images/create_project.gif){width="100%"}
+
+## RStudio
+
+![](images/rstudio_layout.png){width="100%"}
+
+## What are R Packages?
+
+R packages extend the functionality of R by providing additional functions, data, and documentation. They are written by a worldwide community of R users and can be downloaded for free from the internet.
+
+A good analogy for R packages is they are like apps you can download onto a mobile phone:
+
+![](images/r_vs_r_packages.png){width="100%"}
+
+So R is like a new mobile phone: while it has a certain amount of features when you use it for the first time, it doesn't have everything. R packages are like the apps you can download onto your phone from Apple's App Store or Android's Google Play.
+
+Let's continue this analogy by considering the Instagram app for editing and sharing pictures. Say you have purchased a new phone and you would like to share a photo you have just taken with friends on Instagram. You need to:
+
+1.  *Install the app*: Since your phone is new and does not include the Instagram app, you need to download the app from either the App Store or Google Play. You do this once and you're set for the time being. You might need to do this again in the future when there is an update to the app.
+
+2.  *Open the app*: After you've installed Instagram, you need to open it.
+
+Once Instagram is open on your phone, you can then proceed to share your photo with your friends and family. The process is very similar for using an R package. You need to:
+
+1.  *Install the package*: This is like installing an app on your phone. Most packages are not installed by default when you install R and RStudio. Thus if you want to use a package for the first time, you need to install it first. Once you've installed a package, you likely won't install it again unless you want to update it to a newer version.
+
+2.  *"Load" the package*: "Loading" a package is like opening an app on your phone. Packages are not "loaded" by default when you start RStudio on your computer; you need to "load" each package you want to use every time you start RStudio.
+
 # What is RMarkdown?[^1]
 
 [^1]: The information for this module is from [RStudio](https://rmarkdown.rstudio.com/lesson-1.html)
