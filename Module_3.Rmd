@@ -75,6 +75,14 @@ Once Instagram is open on your phone, you can then proceed to share your photo w
 
 2.  *"Load" the package*: "Loading" a package is like opening an app on your phone. Packages are not "loaded" by default when you start RStudio on your computer; you need to "load" each package you want to use every time you start RStudio.
 
+## Errors, warnings, and messages
+
+-   If the text starts with "Error", figure out what's causing it. [Think of errors as a red traffic light: something is wrong!]{style="color:red"}
+
+-   If the text starts with "Warning", figure out if it's something to worry about. For instance, if you get a warning about missing values in a scatterplot and you know there are missing values, you're fine. If that's surprising, look at your data and see what's missing. [Think of warnings as a yellow traffic light: everything is working fine, but watch out/pay attention.]{style="color:gold"}
+
+-   Otherwise, the text is just a message. Read it, wave back at R, and thank it for talking to you. [Think of messages as a green traffic light: everything is working fine and keep on going!]{style="color:green"}
+
 # What is RMarkdown?[^1]
 
 [^1]: The information for this module is from [RStudio](https://rmarkdown.rstudio.com/lesson-1.html)

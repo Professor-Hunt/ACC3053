@@ -2350,6 +2350,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   }</style>
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+  <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2446,6 +2448,7 @@ Lagniappe Material
 <li><a href="#built-in-functions">Built-in Functions</a></li>
 <li><a href="#dplyr">Dplyr</a></li>
 </ul></li>
+<li><a href="#exercise-1">Exercise #1</a></li>
 </ul>
 </nav>
 </div>
@@ -3040,120 +3043,600 @@ Lagniappe Material
 </code></pre>
 </div>
 </div>
+<details>
+<summary>
+<p>Take a Peek</p>
+</summary>
+<p>
 <div class="layout-chunk" data-layout="l-body">
-<table style="width:100%;">
-<caption><span id="tab:unnamed-chunk-17">Table 1: </span>sample of the resulting data</caption>
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 4%" />
-<col style="width: 11%" />
-<col style="width: 13%" />
-<col style="width: 7%" />
-<col style="width: 3%" />
-<col style="width: 4%" />
-<col style="width: 5%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 12%" />
-<col style="width: 6%" />
-</colgroup>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-17">Table 1: </span>The resulting data
+</caption>
 <thead>
-<tr class="header">
-<th style="text-align: right;">CustomerId</th>
-<th style="text-align: left;">FirstName</th>
-<th style="text-align: left;">LastName</th>
-<th style="text-align: left;">Company</th>
-<th style="text-align: left;">Address</th>
-<th style="text-align: left;">City</th>
-<th style="text-align: left;">State</th>
-<th style="text-align: left;">Country</th>
-<th style="text-align: left;">PostalCode</th>
-<th style="text-align: left;">Phone</th>
-<th style="text-align: left;">Fax</th>
-<th style="text-align: left;">Email</th>
-<th style="text-align: right;">SupportRepId</th>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+CustomerId
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+FirstName
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+LastName
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Company
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Address
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+City
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+State
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Country
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+PostalCode
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Phone
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Fax
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Email
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+SupportRepId
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: right;">16</td>
-<td style="text-align: left;">Frank</td>
-<td style="text-align: left;">Harris</td>
-<td style="text-align: left;">Google Inc.</td>
-<td style="text-align: left;">1600 Amphitheatre Parkway</td>
-<td style="text-align: left;">Mountain View</td>
-<td style="text-align: left;">CA</td>
-<td style="text-align: left;">USA</td>
-<td style="text-align: left;">94043-1351</td>
-<td style="text-align: left;">+1 (650) 253-0000</td>
-<td style="text-align: left;">+1 (650) 253-0000</td>
-<td style="text-align: left;"><a href="mailto:fharris@google.com" class="email">fharris@google.com</a></td>
-<td style="text-align: right;">4</td>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Frank
+</td>
+<td style="text-align:left;">
+Harris
+</td>
+<td style="text-align:left;">
+Google Inc. 
+</td>
+<td style="text-align:left;">
+1600 Amphitheatre Parkway
+</td>
+<td style="text-align:left;">
+Mountain View
+</td>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+94043-1351
+</td>
+<td style="text-align:left;">
++1 (650) 253-0000
+</td>
+<td style="text-align:left;">
++1 (650) 253-0000
+</td>
+<td style="text-align:left;">
+<a href="mailto:fharris@google.com" class="email">fharris@google.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: right;">17</td>
-<td style="text-align: left;">Jack</td>
-<td style="text-align: left;">Smith</td>
-<td style="text-align: left;">Microsoft Corporation</td>
-<td style="text-align: left;">1 Microsoft Way</td>
-<td style="text-align: left;">Redmond</td>
-<td style="text-align: left;">WA</td>
-<td style="text-align: left;">USA</td>
-<td style="text-align: left;">98052-8300</td>
-<td style="text-align: left;">+1 (425) 882-8080</td>
-<td style="text-align: left;">+1 (425) 882-8081</td>
-<td style="text-align: left;"><a href="mailto:jacksmith@microsoft.com" class="email">jacksmith@microsoft.com</a></td>
-<td style="text-align: right;">5</td>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+Jack
+</td>
+<td style="text-align:left;">
+Smith
+</td>
+<td style="text-align:left;">
+Microsoft Corporation
+</td>
+<td style="text-align:left;">
+1 Microsoft Way
+</td>
+<td style="text-align:left;">
+Redmond
+</td>
+<td style="text-align:left;">
+WA
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+98052-8300
+</td>
+<td style="text-align:left;">
++1 (425) 882-8080
+</td>
+<td style="text-align:left;">
++1 (425) 882-8081
+</td>
+<td style="text-align:left;">
+<a href="mailto:jacksmith@microsoft.com" class="email">jacksmith@microsoft.com</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: right;">18</td>
-<td style="text-align: left;">Michelle</td>
-<td style="text-align: left;">Brooks</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">627 Broadway</td>
-<td style="text-align: left;">New York</td>
-<td style="text-align: left;">NY</td>
-<td style="text-align: left;">USA</td>
-<td style="text-align: left;">10012-2612</td>
-<td style="text-align: left;">+1 (212) 221-3546</td>
-<td style="text-align: left;">+1 (212) 221-4679</td>
-<td style="text-align: left;"><a href="mailto:michelleb@aol.com" class="email">michelleb@aol.com</a></td>
-<td style="text-align: right;">3</td>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+Michelle
+</td>
+<td style="text-align:left;">
+Brooks
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+627 Broadway
+</td>
+<td style="text-align:left;">
+New York
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+10012-2612
+</td>
+<td style="text-align:left;">
++1 (212) 221-3546
+</td>
+<td style="text-align:left;">
++1 (212) 221-4679
+</td>
+<td style="text-align:left;">
+<a href="mailto:michelleb@aol.com" class="email">michelleb@aol.com</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: right;">19</td>
-<td style="text-align: left;">Tim</td>
-<td style="text-align: left;">Goyer</td>
-<td style="text-align: left;">Apple Inc.</td>
-<td style="text-align: left;">1 Infinite Loop</td>
-<td style="text-align: left;">Cupertino</td>
-<td style="text-align: left;">CA</td>
-<td style="text-align: left;">USA</td>
-<td style="text-align: left;">95014</td>
-<td style="text-align: left;">+1 (408) 996-1010</td>
-<td style="text-align: left;">+1 (408) 996-1011</td>
-<td style="text-align: left;"><a href="mailto:tgoyer@apple.com" class="email">tgoyer@apple.com</a></td>
-<td style="text-align: right;">3</td>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+Tim
+</td>
+<td style="text-align:left;">
+Goyer
+</td>
+<td style="text-align:left;">
+Apple Inc. 
+</td>
+<td style="text-align:left;">
+1 Infinite Loop
+</td>
+<td style="text-align:left;">
+Cupertino
+</td>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+95014
+</td>
+<td style="text-align:left;">
++1 (408) 996-1010
+</td>
+<td style="text-align:left;">
++1 (408) 996-1011
+</td>
+<td style="text-align:left;">
+<a href="mailto:tgoyer@apple.com" class="email">tgoyer@apple.com</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: right;">20</td>
-<td style="text-align: left;">Dan</td>
-<td style="text-align: left;">Miller</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">541 Del Medio Avenue</td>
-<td style="text-align: left;">Mountain View</td>
-<td style="text-align: left;">CA</td>
-<td style="text-align: left;">USA</td>
-<td style="text-align: left;">94040-111</td>
-<td style="text-align: left;">+1 (650) 644-3358</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;"><a href="mailto:dmiller@comcast.com" class="email">dmiller@comcast.com</a></td>
-<td style="text-align: right;">4</td>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+Dan
+</td>
+<td style="text-align:left;">
+Miller
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+541 Del Medio Avenue
+</td>
+<td style="text-align:left;">
+Mountain View
+</td>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+94040-111
+</td>
+<td style="text-align:left;">
++1 (650) 644-3358
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:dmiller@comcast.com" class="email">dmiller@comcast.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+Kathy
+</td>
+<td style="text-align:left;">
+Chase
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+801 W 4th Street
+</td>
+<td style="text-align:left;">
+Reno
+</td>
+<td style="text-align:left;">
+NV
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+89503
+</td>
+<td style="text-align:left;">
++1 (775) 223-7665
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:kachase@hotmail.com" class="email">kachase@hotmail.com</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+Heather
+</td>
+<td style="text-align:left;">
+Leacock
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+120 S Orange Ave
+</td>
+<td style="text-align:left;">
+Orlando
+</td>
+<td style="text-align:left;">
+FL
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+32801
+</td>
+<td style="text-align:left;">
++1 (407) 999-7788
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:hleacock@gmail.com" class="email">hleacock@gmail.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+John
+</td>
+<td style="text-align:left;">
+Gordon
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+69 Salem Street
+</td>
+<td style="text-align:left;">
+Boston
+</td>
+<td style="text-align:left;">
+MA
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+2113
+</td>
+<td style="text-align:left;">
++1 (617) 522-1333
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:johngordon22@yahoo.com" class="email">johngordon22@yahoo.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:left;">
+Frank
+</td>
+<td style="text-align:left;">
+Ralston
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+162 E Superior Street
+</td>
+<td style="text-align:left;">
+Chicago
+</td>
+<td style="text-align:left;">
+IL
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+60611
+</td>
+<td style="text-align:left;">
++1 (312) 332-3232
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:fralston@gmail.com" class="email">fralston@gmail.com</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+Victor
+</td>
+<td style="text-align:left;">
+Stevens
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+319 N. Frances Street
+</td>
+<td style="text-align:left;">
+Madison
+</td>
+<td style="text-align:left;">
+WI
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+53703
+</td>
+<td style="text-align:left;">
++1 (608) 257-0597
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:vstevens@yahoo.com" class="email">vstevens@yahoo.com</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+Richard
+</td>
+<td style="text-align:left;">
+Cunningham
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+2211 W Berry Street
+</td>
+<td style="text-align:left;">
+Fort Worth
+</td>
+<td style="text-align:left;">
+TX
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+76110
+</td>
+<td style="text-align:left;">
++1 (817) 924-7272
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:ricunningham@hotmail.com" class="email">ricunningham@hotmail.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+Patrick
+</td>
+<td style="text-align:left;">
+Gray
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+1033 N Park Ave
+</td>
+<td style="text-align:left;">
+Tucson
+</td>
+<td style="text-align:left;">
+AZ
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+85719
+</td>
+<td style="text-align:left;">
++1 (520) 622-4200
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:patrick.gray@aol.com" class="email">patrick.gray@aol.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+Julia
+</td>
+<td style="text-align:left;">
+Barnett
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+302 S 700 E
+</td>
+<td style="text-align:left;">
+Salt Lake City
+</td>
+<td style="text-align:left;">
+UT
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+84102
+</td>
+<td style="text-align:left;">
++1 (801) 531-7272
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:jubarnett@gmail.com" class="email">jubarnett@gmail.com</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
+</p>
+</details>
 <h3 id="functions">Functions</h3>
 <p>functions include:</p>
 <ol type="1">
@@ -3210,6 +3693,3127 @@ Lagniappe Material
 </code></pre>
 </div>
 </div>
+<p>Can anyone explain the results?</p>
+<details>
+<summary>
+<p>Take a Peek</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+CustomerId
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+FirstName
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+LastName
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Company
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Address
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+City
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+State
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Country
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+PostalCode
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Phone
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Fax
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Email
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+SupportRepId
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Luís
+</td>
+<td style="text-align:left;">
+Gonçalves
+</td>
+<td style="text-align:left;">
+Embraer - Empresa Brasileira de Aeronáutica S.A.
+</td>
+<td style="text-align:left;">
+Av. Brigadeiro Faria Lima, 2170
+</td>
+<td style="text-align:left;">
+São José dos Campos
+</td>
+<td style="text-align:left;">
+SP
+</td>
+<td style="text-align:left;">
+Brazil
+</td>
+<td style="text-align:left;">
+12227-000
+</td>
+<td style="text-align:left;">
++55 (12) 3923-5555
+</td>
+<td style="text-align:left;">
++55 (12) 3923-5566
+</td>
+<td style="text-align:left;">
+<a href="mailto:luisg@embraer.com.br" class="email">luisg@embraer.com.br</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Leonie
+</td>
+<td style="text-align:left;">
+Köhler
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Theodor-Heuss-Straße 34
+</td>
+<td style="text-align:left;">
+Stuttgart
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Germany
+</td>
+<td style="text-align:left;">
+70174
+</td>
+<td style="text-align:left;">
++49 0711 2842222
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:leonekohler@surfeu.de" class="email">leonekohler@surfeu.de</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+François
+</td>
+<td style="text-align:left;">
+Tremblay
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+1498 rue Bélanger
+</td>
+<td style="text-align:left;">
+Montréal
+</td>
+<td style="text-align:left;">
+QC
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+H2G 1A7
+</td>
+<td style="text-align:left;">
++1 (514) 721-4711
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:ftremblay@gmail.com" class="email">ftremblay@gmail.com</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Bjørn
+</td>
+<td style="text-align:left;">
+Hansen
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Ullevålsveien 14
+</td>
+<td style="text-align:left;">
+Oslo
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Norway
+</td>
+<td style="text-align:left;">
+0171
+</td>
+<td style="text-align:left;">
++47 22 44 22 22
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:bjorn.hansen@yahoo.no" class="email">bjorn.hansen@yahoo.no</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+František
+</td>
+<td style="text-align:left;">
+Wichterlová
+</td>
+<td style="text-align:left;">
+JetBrains s.r.o.
+</td>
+<td style="text-align:left;">
+Klanova 9/506
+</td>
+<td style="text-align:left;">
+Prague
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Czech Republic
+</td>
+<td style="text-align:left;">
+14700
+</td>
+<td style="text-align:left;">
++420 2 4172 5555
+</td>
+<td style="text-align:left;">
++420 2 4172 5555
+</td>
+<td style="text-align:left;">
+<a href="mailto:frantisekw@jetbrains.com" class="email">frantisekw@jetbrains.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Helena
+</td>
+<td style="text-align:left;">
+Holý
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Rilská 3174/6
+</td>
+<td style="text-align:left;">
+Prague
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Czech Republic
+</td>
+<td style="text-align:left;">
+14300
+</td>
+<td style="text-align:left;">
++420 2 4177 0449
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:hholy@gmail.com" class="email">hholy@gmail.com</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Astrid
+</td>
+<td style="text-align:left;">
+Gruber
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Rotenturmstraße 4, 1010 Innere Stadt
+</td>
+<td style="text-align:left;">
+Vienne
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Austria
+</td>
+<td style="text-align:left;">
+1010
+</td>
+<td style="text-align:left;">
++43 01 5134505
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:astrid.gruber@apple.at" class="email">astrid.gruber@apple.at</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+Daan
+</td>
+<td style="text-align:left;">
+Peeters
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Grétrystraat 63
+</td>
+<td style="text-align:left;">
+Brussels
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Belgium
+</td>
+<td style="text-align:left;">
+1000
+</td>
+<td style="text-align:left;">
++32 02 219 03 03
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:daan_peeters@apple.be" class="email">daan_peeters@apple.be</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+Kara
+</td>
+<td style="text-align:left;">
+Nielsen
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Sønder Boulevard 51
+</td>
+<td style="text-align:left;">
+Copenhagen
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Denmark
+</td>
+<td style="text-align:left;">
+1720
+</td>
+<td style="text-align:left;">
++453 3331 9991
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:kara.nielsen@jubii.dk" class="email">kara.nielsen@jubii.dk</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+Eduardo
+</td>
+<td style="text-align:left;">
+Martins
+</td>
+<td style="text-align:left;">
+Woodstock Discos
+</td>
+<td style="text-align:left;">
+Rua Dr. Falcão Filho, 155
+</td>
+<td style="text-align:left;">
+São Paulo
+</td>
+<td style="text-align:left;">
+SP
+</td>
+<td style="text-align:left;">
+Brazil
+</td>
+<td style="text-align:left;">
+01007-010
+</td>
+<td style="text-align:left;">
++55 (11) 3033-5446
+</td>
+<td style="text-align:left;">
++55 (11) 3033-4564
+</td>
+<td style="text-align:left;">
+<a href="mailto:eduardo@woodstock.com.br" class="email">eduardo@woodstock.com.br</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+Alexandre
+</td>
+<td style="text-align:left;">
+Rocha
+</td>
+<td style="text-align:left;">
+Banco do Brasil S.A.
+</td>
+<td style="text-align:left;">
+Av. Paulista, 2022
+</td>
+<td style="text-align:left;">
+São Paulo
+</td>
+<td style="text-align:left;">
+SP
+</td>
+<td style="text-align:left;">
+Brazil
+</td>
+<td style="text-align:left;">
+01310-200
+</td>
+<td style="text-align:left;">
++55 (11) 3055-3278
+</td>
+<td style="text-align:left;">
++55 (11) 3055-8131
+</td>
+<td style="text-align:left;">
+<a href="mailto:alero@uol.com.br" class="email">alero@uol.com.br</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+Roberto
+</td>
+<td style="text-align:left;">
+Almeida
+</td>
+<td style="text-align:left;">
+Riotur
+</td>
+<td style="text-align:left;">
+Praça Pio X, 119
+</td>
+<td style="text-align:left;">
+Rio de Janeiro
+</td>
+<td style="text-align:left;">
+RJ
+</td>
+<td style="text-align:left;">
+Brazil
+</td>
+<td style="text-align:left;">
+20040-020
+</td>
+<td style="text-align:left;">
++55 (21) 2271-7000
+</td>
+<td style="text-align:left;">
++55 (21) 2271-7070
+</td>
+<td style="text-align:left;">
+<a href="mailto:roberto.almeida@riotur.gov.br" class="email">roberto.almeida@riotur.gov.br</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+Fernanda
+</td>
+<td style="text-align:left;">
+Ramos
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Qe 7 Bloco G
+</td>
+<td style="text-align:left;">
+Brasília
+</td>
+<td style="text-align:left;">
+DF
+</td>
+<td style="text-align:left;">
+Brazil
+</td>
+<td style="text-align:left;">
+71020-677
+</td>
+<td style="text-align:left;">
++55 (61) 3363-5547
+</td>
+<td style="text-align:left;">
++55 (61) 3363-7855
+</td>
+<td style="text-align:left;">
+<a href="mailto:fernadaramos4@uol.com.br" class="email">fernadaramos4@uol.com.br</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+Mark
+</td>
+<td style="text-align:left;">
+Philips
+</td>
+<td style="text-align:left;">
+Telus
+</td>
+<td style="text-align:left;">
+8210 111 ST NW
+</td>
+<td style="text-align:left;">
+Edmonton
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+T6G 2C7
+</td>
+<td style="text-align:left;">
++1 (780) 434-4554
+</td>
+<td style="text-align:left;">
++1 (780) 434-5565
+</td>
+<td style="text-align:left;">
+<a href="mailto:mphilips12@shaw.ca" class="email">mphilips12@shaw.ca</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+Jennifer
+</td>
+<td style="text-align:left;">
+Peterson
+</td>
+<td style="text-align:left;">
+Rogers Canada
+</td>
+<td style="text-align:left;">
+700 W Pender Street
+</td>
+<td style="text-align:left;">
+Vancouver
+</td>
+<td style="text-align:left;">
+BC
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+V6C 1G8
+</td>
+<td style="text-align:left;">
++1 (604) 688-2255
+</td>
+<td style="text-align:left;">
++1 (604) 688-8756
+</td>
+<td style="text-align:left;">
+<a href="mailto:jenniferp@rogers.ca" class="email">jenniferp@rogers.ca</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+Robert
+</td>
+<td style="text-align:left;">
+Brown
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+796 Dundas Street West
+</td>
+<td style="text-align:left;">
+Toronto
+</td>
+<td style="text-align:left;">
+ON
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+M6J 1V1
+</td>
+<td style="text-align:left;">
++1 (416) 363-8888
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:robbrown@shaw.ca" class="email">robbrown@shaw.ca</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+Edward
+</td>
+<td style="text-align:left;">
+Francis
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+230 Elgin Street
+</td>
+<td style="text-align:left;">
+Ottawa
+</td>
+<td style="text-align:left;">
+ON
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+K2P 1L7
+</td>
+<td style="text-align:left;">
++1 (613) 234-3322
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:edfrancis@yachoo.ca" class="email">edfrancis@yachoo.ca</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:left;">
+Martha
+</td>
+<td style="text-align:left;">
+Silk
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+194A Chain Lake Drive
+</td>
+<td style="text-align:left;">
+Halifax
+</td>
+<td style="text-align:left;">
+NS
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+B3S 1C5
+</td>
+<td style="text-align:left;">
++1 (902) 450-0450
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:marthasilk@gmail.com" class="email">marthasilk@gmail.com</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:left;">
+Aaron
+</td>
+<td style="text-align:left;">
+Mitchell
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+696 Osborne Street
+</td>
+<td style="text-align:left;">
+Winnipeg
+</td>
+<td style="text-align:left;">
+MB
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+R3L 2B9
+</td>
+<td style="text-align:left;">
++1 (204) 452-6452
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:aaronmitchell@yahoo.ca" class="email">aaronmitchell@yahoo.ca</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+Ellie
+</td>
+<td style="text-align:left;">
+Sullivan
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+5112 48 Street
+</td>
+<td style="text-align:left;">
+Yellowknife
+</td>
+<td style="text-align:left;">
+NT
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+X1A 1N6
+</td>
+<td style="text-align:left;">
++1 (867) 920-2233
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:ellie.sullivan@shaw.ca" class="email">ellie.sullivan@shaw.ca</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+João
+</td>
+<td style="text-align:left;">
+Fernandes
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Rua da Assunção 53
+</td>
+<td style="text-align:left;">
+Lisbon
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Portugal
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
++351 (213) 466-111
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:jfernandes@yahoo.pt" class="email">jfernandes@yahoo.pt</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:left;">
+Madalena
+</td>
+<td style="text-align:left;">
+Sampaio
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Rua dos Campeões Europeus de Viena, 4350
+</td>
+<td style="text-align:left;">
+Porto
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Portugal
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
++351 (225) 022-448
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:masampaio@sapo.pt" class="email">masampaio@sapo.pt</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+Hannah
+</td>
+<td style="text-align:left;">
+Schneider
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Tauentzienstraße 8
+</td>
+<td style="text-align:left;">
+Berlin
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Germany
+</td>
+<td style="text-align:left;">
+10789
+</td>
+<td style="text-align:left;">
++49 030 26550280
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:hannah.schneider@yahoo.de" class="email">hannah.schneider@yahoo.de</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+Fynn
+</td>
+<td style="text-align:left;">
+Zimmermann
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Berger Straße 10
+</td>
+<td style="text-align:left;">
+Frankfurt
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Germany
+</td>
+<td style="text-align:left;">
+60316
+</td>
+<td style="text-align:left;">
++49 069 40598889
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:fzimmermann@yahoo.de" class="email">fzimmermann@yahoo.de</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+Niklas
+</td>
+<td style="text-align:left;">
+Schröder
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Barbarossastraße 19
+</td>
+<td style="text-align:left;">
+Berlin
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Germany
+</td>
+<td style="text-align:left;">
+10779
+</td>
+<td style="text-align:left;">
++49 030 2141444
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:nschroder@surfeu.de" class="email">nschroder@surfeu.de</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:left;">
+Camille
+</td>
+<td style="text-align:left;">
+Bernard
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+4, Rue Milton
+</td>
+<td style="text-align:left;">
+Paris
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+France
+</td>
+<td style="text-align:left;">
+75009
+</td>
+<td style="text-align:left;">
++33 01 49 70 65 65
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:camille.bernard@yahoo.fr" class="email">camille.bernard@yahoo.fr</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+Dominique
+</td>
+<td style="text-align:left;">
+Lefebvre
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+8, Rue Hanovre
+</td>
+<td style="text-align:left;">
+Paris
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+France
+</td>
+<td style="text-align:left;">
+75002
+</td>
+<td style="text-align:left;">
++33 01 47 42 71 71
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:dominiquelefebvre@gmail.com" class="email">dominiquelefebvre@gmail.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:left;">
+Marc
+</td>
+<td style="text-align:left;">
+Dubois
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+11, Place Bellecour
+</td>
+<td style="text-align:left;">
+Lyon
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+France
+</td>
+<td style="text-align:left;">
+69002
+</td>
+<td style="text-align:left;">
++33 04 78 30 30 30
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:marc.dubois@hotmail.com" class="email">marc.dubois@hotmail.com</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:left;">
+Wyatt
+</td>
+<td style="text-align:left;">
+Girard
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+9, Place Louis Barthou
+</td>
+<td style="text-align:left;">
+Bordeaux
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+France
+</td>
+<td style="text-align:left;">
+33000
+</td>
+<td style="text-align:left;">
++33 05 56 96 96 96
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:wyatt.girard@yahoo.fr" class="email">wyatt.girard@yahoo.fr</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:left;">
+Isabelle
+</td>
+<td style="text-align:left;">
+Mercier
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+68, Rue Jouvence
+</td>
+<td style="text-align:left;">
+Dijon
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+France
+</td>
+<td style="text-align:left;">
+21000
+</td>
+<td style="text-align:left;">
++33 03 80 73 66 99
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:isabelle_mercier@apple.fr" class="email">isabelle_mercier@apple.fr</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:left;">
+Terhi
+</td>
+<td style="text-align:left;">
+Hämäläinen
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Porthaninkatu 9
+</td>
+<td style="text-align:left;">
+Helsinki
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Finland
+</td>
+<td style="text-align:left;">
+00530
+</td>
+<td style="text-align:left;">
++358 09 870 2000
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:terhi.hamalainen@apple.fi" class="email">terhi.hamalainen@apple.fi</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:left;">
+Ladislav
+</td>
+<td style="text-align:left;">
+Kovács
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Erzsébet krt. 58.
+</td>
+<td style="text-align:left;">
+Budapest
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Hungary
+</td>
+<td style="text-align:left;">
+H-1073
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:ladislav_kovacs@apple.hu" class="email">ladislav_kovacs@apple.hu</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:left;">
+Hugh
+</td>
+<td style="text-align:left;">
+O’Reilly
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3 Chatham Street
+</td>
+<td style="text-align:left;">
+Dublin
+</td>
+<td style="text-align:left;">
+Dublin
+</td>
+<td style="text-align:left;">
+Ireland
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
++353 01 6792424
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:hughoreilly@apple.ie" class="email">hughoreilly@apple.ie</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:left;">
+Lucas
+</td>
+<td style="text-align:left;">
+Mancini
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Via Degli Scipioni, 43
+</td>
+<td style="text-align:left;">
+Rome
+</td>
+<td style="text-align:left;">
+RM
+</td>
+<td style="text-align:left;">
+Italy
+</td>
+<td style="text-align:left;">
+00192
+</td>
+<td style="text-align:left;">
++39 06 39733434
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:lucas.mancini@yahoo.it" class="email">lucas.mancini@yahoo.it</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:left;">
+Johannes
+</td>
+<td style="text-align:left;">
+Van der Berg
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Lijnbaansgracht 120bg
+</td>
+<td style="text-align:left;">
+Amsterdam
+</td>
+<td style="text-align:left;">
+VV
+</td>
+<td style="text-align:left;">
+Netherlands
+</td>
+<td style="text-align:left;">
+1016
+</td>
+<td style="text-align:left;">
++31 020 6223130
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:johavanderberg@yahoo.nl" class="email">johavanderberg@yahoo.nl</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:left;">
+Stanislaw
+</td>
+<td style="text-align:left;">
+Wójcik
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Ordynacka 10
+</td>
+<td style="text-align:left;">
+Warsaw
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Poland
+</td>
+<td style="text-align:left;">
+00-358
+</td>
+<td style="text-align:left;">
++48 22 828 37 39
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:stanislaw.wójcik@wp.pl" class="email">stanislaw.wójcik@wp.pl</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+Enrique
+</td>
+<td style="text-align:left;">
+Muñoz
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+C/ San Bernardo 85
+</td>
+<td style="text-align:left;">
+Madrid
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Spain
+</td>
+<td style="text-align:left;">
+28015
+</td>
+<td style="text-align:left;">
++34 914 454 454
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:enrique_munoz@yahoo.es" class="email">enrique_munoz@yahoo.es</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:left;">
+Joakim
+</td>
+<td style="text-align:left;">
+Johansson
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Celsiusg. 9
+</td>
+<td style="text-align:left;">
+Stockholm
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Sweden
+</td>
+<td style="text-align:left;">
+11230
+</td>
+<td style="text-align:left;">
++46 08-651 52 52
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:joakim.johansson@yahoo.se" class="email">joakim.johansson@yahoo.se</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:left;">
+Emma
+</td>
+<td style="text-align:left;">
+Jones
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+202 Hoxton Street
+</td>
+<td style="text-align:left;">
+London
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+N1 5LH
+</td>
+<td style="text-align:left;">
++44 020 7707 0707
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:emma_jones@hotmail.com" class="email">emma_jones@hotmail.com</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:left;">
+Phil
+</td>
+<td style="text-align:left;">
+Hughes
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+113 Lupus St
+</td>
+<td style="text-align:left;">
+London
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+SW1V 3EN
+</td>
+<td style="text-align:left;">
++44 020 7976 5722
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:phil.hughes@gmail.com" class="email">phil.hughes@gmail.com</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:left;">
+Steve
+</td>
+<td style="text-align:left;">
+Murray
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+110 Raeburn Pl
+</td>
+<td style="text-align:left;">
+Edinburgh
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+United Kingdom
+</td>
+<td style="text-align:left;">
+EH4 1HH
+</td>
+<td style="text-align:left;">
++44 0131 315 3300
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:steve.murray@yahoo.uk" class="email">steve.murray@yahoo.uk</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:left;">
+Mark
+</td>
+<td style="text-align:left;">
+Taylor
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+421 Bourke Street
+</td>
+<td style="text-align:left;">
+Sidney
+</td>
+<td style="text-align:left;">
+NSW
+</td>
+<td style="text-align:left;">
+Australia
+</td>
+<td style="text-align:left;">
+2010
+</td>
+<td style="text-align:left;">
++61 (02) 9332 3633
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:mark.taylor@yahoo.au" class="email">mark.taylor@yahoo.au</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:left;">
+Diego
+</td>
+<td style="text-align:left;">
+Gutiérrez
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+307 Macacha Güemes
+</td>
+<td style="text-align:left;">
+Buenos Aires
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:left;">
+1106
+</td>
+<td style="text-align:left;">
++54 (0)11 4311 4333
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:diego.gutierrez@yahoo.ar" class="email">diego.gutierrez@yahoo.ar</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:left;">
+Luis
+</td>
+<td style="text-align:left;">
+Rojas
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Calle Lira, 198
+</td>
+<td style="text-align:left;">
+Santiago
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Chile
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
++56 (0)2 635 4444
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:luisrojas@yahoo.cl" class="email">luisrojas@yahoo.cl</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:left;">
+Manoj
+</td>
+<td style="text-align:left;">
+Pareek
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+12,Community Centre
+</td>
+<td style="text-align:left;">
+Delhi
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+India
+</td>
+<td style="text-align:left;">
+110017
+</td>
+<td style="text-align:left;">
++91 0124 39883988
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:manoj.pareek@rediff.com" class="email">manoj.pareek@rediff.com</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:left;">
+Puja
+</td>
+<td style="text-align:left;">
+Srivastava
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+3,Raj Bhavan Road
+</td>
+<td style="text-align:left;">
+Bangalore
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+India
+</td>
+<td style="text-align:left;">
+560001
+</td>
+<td style="text-align:left;">
++91 080 22289999
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:puja_srivastava@yahoo.in" class="email">puja_srivastava@yahoo.in</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</p>
+</details>
+<p>As we progressively include more countries, this will get unwieldy to write. A slightly shorter approach uses the <code>%in%</code> operator along with the <a href="#other-functions"><code>c()</code> function</a>. The <code>c()</code> function “combines” or “concatenates” values into a single <em>vector</em> of values.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>many_countries</span><span class='op'>&lt;-</span><span class='va'>Customer</span><span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Country</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"USA"</span>,<span class='st'>"Italy"</span>,<span class='st'>"Brazil"</span>,<span class='st'>"Canada"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>many_countries</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<details>
+<summary>
+<p>Did it work?</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+CustomerId
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+FirstName
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+LastName
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Company
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Address
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+City
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+State
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Country
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+PostalCode
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Phone
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Fax
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Email
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+SupportRepId
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Luís
+</td>
+<td style="text-align:left;">
+Gonçalves
+</td>
+<td style="text-align:left;">
+Embraer - Empresa Brasileira de Aeronáutica S.A.
+</td>
+<td style="text-align:left;">
+Av. Brigadeiro Faria Lima, 2170
+</td>
+<td style="text-align:left;">
+São José dos Campos
+</td>
+<td style="text-align:left;">
+SP
+</td>
+<td style="text-align:left;">
+Brazil
+</td>
+<td style="text-align:left;">
+12227-000
+</td>
+<td style="text-align:left;">
++55 (12) 3923-5555
+</td>
+<td style="text-align:left;">
++55 (12) 3923-5566
+</td>
+<td style="text-align:left;">
+<a href="mailto:luisg@embraer.com.br" class="email">luisg@embraer.com.br</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+François
+</td>
+<td style="text-align:left;">
+Tremblay
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+1498 rue Bélanger
+</td>
+<td style="text-align:left;">
+Montréal
+</td>
+<td style="text-align:left;">
+QC
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+H2G 1A7
+</td>
+<td style="text-align:left;">
++1 (514) 721-4711
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:ftremblay@gmail.com" class="email">ftremblay@gmail.com</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+Eduardo
+</td>
+<td style="text-align:left;">
+Martins
+</td>
+<td style="text-align:left;">
+Woodstock Discos
+</td>
+<td style="text-align:left;">
+Rua Dr. Falcão Filho, 155
+</td>
+<td style="text-align:left;">
+São Paulo
+</td>
+<td style="text-align:left;">
+SP
+</td>
+<td style="text-align:left;">
+Brazil
+</td>
+<td style="text-align:left;">
+01007-010
+</td>
+<td style="text-align:left;">
++55 (11) 3033-5446
+</td>
+<td style="text-align:left;">
++55 (11) 3033-4564
+</td>
+<td style="text-align:left;">
+<a href="mailto:eduardo@woodstock.com.br" class="email">eduardo@woodstock.com.br</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+Alexandre
+</td>
+<td style="text-align:left;">
+Rocha
+</td>
+<td style="text-align:left;">
+Banco do Brasil S.A.
+</td>
+<td style="text-align:left;">
+Av. Paulista, 2022
+</td>
+<td style="text-align:left;">
+São Paulo
+</td>
+<td style="text-align:left;">
+SP
+</td>
+<td style="text-align:left;">
+Brazil
+</td>
+<td style="text-align:left;">
+01310-200
+</td>
+<td style="text-align:left;">
++55 (11) 3055-3278
+</td>
+<td style="text-align:left;">
++55 (11) 3055-8131
+</td>
+<td style="text-align:left;">
+<a href="mailto:alero@uol.com.br" class="email">alero@uol.com.br</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+Roberto
+</td>
+<td style="text-align:left;">
+Almeida
+</td>
+<td style="text-align:left;">
+Riotur
+</td>
+<td style="text-align:left;">
+Praça Pio X, 119
+</td>
+<td style="text-align:left;">
+Rio de Janeiro
+</td>
+<td style="text-align:left;">
+RJ
+</td>
+<td style="text-align:left;">
+Brazil
+</td>
+<td style="text-align:left;">
+20040-020
+</td>
+<td style="text-align:left;">
++55 (21) 2271-7000
+</td>
+<td style="text-align:left;">
++55 (21) 2271-7070
+</td>
+<td style="text-align:left;">
+<a href="mailto:roberto.almeida@riotur.gov.br" class="email">roberto.almeida@riotur.gov.br</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+Fernanda
+</td>
+<td style="text-align:left;">
+Ramos
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Qe 7 Bloco G
+</td>
+<td style="text-align:left;">
+Brasília
+</td>
+<td style="text-align:left;">
+DF
+</td>
+<td style="text-align:left;">
+Brazil
+</td>
+<td style="text-align:left;">
+71020-677
+</td>
+<td style="text-align:left;">
++55 (61) 3363-5547
+</td>
+<td style="text-align:left;">
++55 (61) 3363-7855
+</td>
+<td style="text-align:left;">
+<a href="mailto:fernadaramos4@uol.com.br" class="email">fernadaramos4@uol.com.br</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:left;">
+Mark
+</td>
+<td style="text-align:left;">
+Philips
+</td>
+<td style="text-align:left;">
+Telus
+</td>
+<td style="text-align:left;">
+8210 111 ST NW
+</td>
+<td style="text-align:left;">
+Edmonton
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+T6G 2C7
+</td>
+<td style="text-align:left;">
++1 (780) 434-4554
+</td>
+<td style="text-align:left;">
++1 (780) 434-5565
+</td>
+<td style="text-align:left;">
+<a href="mailto:mphilips12@shaw.ca" class="email">mphilips12@shaw.ca</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+Jennifer
+</td>
+<td style="text-align:left;">
+Peterson
+</td>
+<td style="text-align:left;">
+Rogers Canada
+</td>
+<td style="text-align:left;">
+700 W Pender Street
+</td>
+<td style="text-align:left;">
+Vancouver
+</td>
+<td style="text-align:left;">
+BC
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+V6C 1G8
+</td>
+<td style="text-align:left;">
++1 (604) 688-2255
+</td>
+<td style="text-align:left;">
++1 (604) 688-8756
+</td>
+<td style="text-align:left;">
+<a href="mailto:jenniferp@rogers.ca" class="email">jenniferp@rogers.ca</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Frank
+</td>
+<td style="text-align:left;">
+Harris
+</td>
+<td style="text-align:left;">
+Google Inc. 
+</td>
+<td style="text-align:left;">
+1600 Amphitheatre Parkway
+</td>
+<td style="text-align:left;">
+Mountain View
+</td>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+94043-1351
+</td>
+<td style="text-align:left;">
++1 (650) 253-0000
+</td>
+<td style="text-align:left;">
++1 (650) 253-0000
+</td>
+<td style="text-align:left;">
+<a href="mailto:fharris@google.com" class="email">fharris@google.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+Jack
+</td>
+<td style="text-align:left;">
+Smith
+</td>
+<td style="text-align:left;">
+Microsoft Corporation
+</td>
+<td style="text-align:left;">
+1 Microsoft Way
+</td>
+<td style="text-align:left;">
+Redmond
+</td>
+<td style="text-align:left;">
+WA
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+98052-8300
+</td>
+<td style="text-align:left;">
++1 (425) 882-8080
+</td>
+<td style="text-align:left;">
++1 (425) 882-8081
+</td>
+<td style="text-align:left;">
+<a href="mailto:jacksmith@microsoft.com" class="email">jacksmith@microsoft.com</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+Michelle
+</td>
+<td style="text-align:left;">
+Brooks
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+627 Broadway
+</td>
+<td style="text-align:left;">
+New York
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+10012-2612
+</td>
+<td style="text-align:left;">
++1 (212) 221-3546
+</td>
+<td style="text-align:left;">
++1 (212) 221-4679
+</td>
+<td style="text-align:left;">
+<a href="mailto:michelleb@aol.com" class="email">michelleb@aol.com</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:left;">
+Tim
+</td>
+<td style="text-align:left;">
+Goyer
+</td>
+<td style="text-align:left;">
+Apple Inc. 
+</td>
+<td style="text-align:left;">
+1 Infinite Loop
+</td>
+<td style="text-align:left;">
+Cupertino
+</td>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+95014
+</td>
+<td style="text-align:left;">
++1 (408) 996-1010
+</td>
+<td style="text-align:left;">
++1 (408) 996-1011
+</td>
+<td style="text-align:left;">
+<a href="mailto:tgoyer@apple.com" class="email">tgoyer@apple.com</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+Dan
+</td>
+<td style="text-align:left;">
+Miller
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+541 Del Medio Avenue
+</td>
+<td style="text-align:left;">
+Mountain View
+</td>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+94040-111
+</td>
+<td style="text-align:left;">
++1 (650) 644-3358
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:dmiller@comcast.com" class="email">dmiller@comcast.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+Kathy
+</td>
+<td style="text-align:left;">
+Chase
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+801 W 4th Street
+</td>
+<td style="text-align:left;">
+Reno
+</td>
+<td style="text-align:left;">
+NV
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+89503
+</td>
+<td style="text-align:left;">
++1 (775) 223-7665
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:kachase@hotmail.com" class="email">kachase@hotmail.com</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:left;">
+Heather
+</td>
+<td style="text-align:left;">
+Leacock
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+120 S Orange Ave
+</td>
+<td style="text-align:left;">
+Orlando
+</td>
+<td style="text-align:left;">
+FL
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+32801
+</td>
+<td style="text-align:left;">
++1 (407) 999-7788
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:hleacock@gmail.com" class="email">hleacock@gmail.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:left;">
+John
+</td>
+<td style="text-align:left;">
+Gordon
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+69 Salem Street
+</td>
+<td style="text-align:left;">
+Boston
+</td>
+<td style="text-align:left;">
+MA
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+2113
+</td>
+<td style="text-align:left;">
++1 (617) 522-1333
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:johngordon22@yahoo.com" class="email">johngordon22@yahoo.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:left;">
+Frank
+</td>
+<td style="text-align:left;">
+Ralston
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+162 E Superior Street
+</td>
+<td style="text-align:left;">
+Chicago
+</td>
+<td style="text-align:left;">
+IL
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+60611
+</td>
+<td style="text-align:left;">
++1 (312) 332-3232
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:fralston@gmail.com" class="email">fralston@gmail.com</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+Victor
+</td>
+<td style="text-align:left;">
+Stevens
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+319 N. Frances Street
+</td>
+<td style="text-align:left;">
+Madison
+</td>
+<td style="text-align:left;">
+WI
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+53703
+</td>
+<td style="text-align:left;">
++1 (608) 257-0597
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:vstevens@yahoo.com" class="email">vstevens@yahoo.com</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+Richard
+</td>
+<td style="text-align:left;">
+Cunningham
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+2211 W Berry Street
+</td>
+<td style="text-align:left;">
+Fort Worth
+</td>
+<td style="text-align:left;">
+TX
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+76110
+</td>
+<td style="text-align:left;">
++1 (817) 924-7272
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:ricunningham@hotmail.com" class="email">ricunningham@hotmail.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+Patrick
+</td>
+<td style="text-align:left;">
+Gray
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+1033 N Park Ave
+</td>
+<td style="text-align:left;">
+Tucson
+</td>
+<td style="text-align:left;">
+AZ
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+85719
+</td>
+<td style="text-align:left;">
++1 (520) 622-4200
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:patrick.gray@aol.com" class="email">patrick.gray@aol.com</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+Julia
+</td>
+<td style="text-align:left;">
+Barnett
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+302 S 700 E
+</td>
+<td style="text-align:left;">
+Salt Lake City
+</td>
+<td style="text-align:left;">
+UT
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+84102
+</td>
+<td style="text-align:left;">
++1 (801) 531-7272
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:jubarnett@gmail.com" class="email">jubarnett@gmail.com</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+Robert
+</td>
+<td style="text-align:left;">
+Brown
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+796 Dundas Street West
+</td>
+<td style="text-align:left;">
+Toronto
+</td>
+<td style="text-align:left;">
+ON
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+M6J 1V1
+</td>
+<td style="text-align:left;">
++1 (416) 363-8888
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:robbrown@shaw.ca" class="email">robbrown@shaw.ca</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+Edward
+</td>
+<td style="text-align:left;">
+Francis
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+230 Elgin Street
+</td>
+<td style="text-align:left;">
+Ottawa
+</td>
+<td style="text-align:left;">
+ON
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+K2P 1L7
+</td>
+<td style="text-align:left;">
++1 (613) 234-3322
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:edfrancis@yachoo.ca" class="email">edfrancis@yachoo.ca</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:left;">
+Martha
+</td>
+<td style="text-align:left;">
+Silk
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+194A Chain Lake Drive
+</td>
+<td style="text-align:left;">
+Halifax
+</td>
+<td style="text-align:left;">
+NS
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+B3S 1C5
+</td>
+<td style="text-align:left;">
++1 (902) 450-0450
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:marthasilk@gmail.com" class="email">marthasilk@gmail.com</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:left;">
+Aaron
+</td>
+<td style="text-align:left;">
+Mitchell
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+696 Osborne Street
+</td>
+<td style="text-align:left;">
+Winnipeg
+</td>
+<td style="text-align:left;">
+MB
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+R3L 2B9
+</td>
+<td style="text-align:left;">
++1 (204) 452-6452
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:aaronmitchell@yahoo.ca" class="email">aaronmitchell@yahoo.ca</a>
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:left;">
+Ellie
+</td>
+<td style="text-align:left;">
+Sullivan
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+5112 48 Street
+</td>
+<td style="text-align:left;">
+Yellowknife
+</td>
+<td style="text-align:left;">
+NT
+</td>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+X1A 1N6
+</td>
+<td style="text-align:left;">
++1 (867) 920-2233
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:ellie.sullivan@shaw.ca" class="email">ellie.sullivan@shaw.ca</a>
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:left;">
+Lucas
+</td>
+<td style="text-align:left;">
+Mancini
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Via Degli Scipioni, 43
+</td>
+<td style="text-align:left;">
+Rome
+</td>
+<td style="text-align:left;">
+RM
+</td>
+<td style="text-align:left;">
+Italy
+</td>
+<td style="text-align:left;">
+00192
+</td>
+<td style="text-align:left;">
++39 06 39733434
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="mailto:lucas.mancini@yahoo.it" class="email">lucas.mancini@yahoo.it</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</p>
+</details>
+<h1 id="exercise-1">Exercise #1</h1>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

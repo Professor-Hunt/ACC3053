@@ -4,6 +4,7 @@ description: |
   This module is an introductiont to data wrangling and the tidyverse.
 output: 
   distill::distill_article:
+    #code_folding: true
     toc: true
     toc_depth: 2
 ---
@@ -33,7 +34,7 @@ ctrl (cmd)+shift+N
 
 You can use R as a calculator:
 
-```{r, echo=TRUE}
+```{r,  echo=TRUE}
 1 / 200 * 30
 (59 + 73 + 2) / 3
 sin(pi / 2)
@@ -41,14 +42,14 @@ sin(pi / 2)
 
 You can create new objects with `<-`:
 
-```{r, echo=TRUE}
+```{r,  echo=TRUE}
 x <- 3 * 4
 x
 ```
 
 All R statements where you create objects, **assignment** statements, have the same form:
 
-```{r ,echo=TRUE, eval = FALSE}
+```{r , echo=TRUE, eval = FALSE}
 object_name <- value
 ```
 
@@ -60,19 +61,19 @@ You will make lots of assignments and `<-` is a pain to type. Don't be lazy and 
 
 R is case-sensitive, so objects and functions must be used with correct capitalization. Object names must start with a letter, and can only contain letters, numbers, `_` and `.`. You want your object names to be descriptive, so you'll need a convention for multiple words. I recommend **snake_case** where you separate lowercase words with `_`.
 
-```{r, eval = FALSE, echo=TRUE}
+```{r,   eval = FALSE, echo=TRUE}
 i_use_snake_case
 otherPeopleUseCamelCase
 some.people.use.periods
 And_aFew.People_RENOUNCEconvention
 ```
 
-```{r, echo=TRUE,error=TRUE}
+```{r,   echo=TRUE,error=TRUE}
 x_value <- 3 * 4
 X_value
 ```
 
-```{r, echo=TRUE,error=TRUE}
+```{r,  echo=TRUE,error=TRUE}
 x_value <- 3 * 4
 x_Value
 ```
@@ -81,19 +82,19 @@ x_Value
 
 R has a large collection of built-in functions that are called like this:
 
-```{r eval = FALSE}
+```{r , eval = FALSE}
 function_name(arg1 = val1, arg2 = val2, ...)
 ```
 
 Let's try using `seq()` which makes regular **seq**uences of numbers and, while we're at it, learn more helpful features of RStudio.
 
-```{r,echo=TRUE}
+```{r, echo=TRUE}
 seq(1, 10)
 ```
 
 Type this code and notice you get similar assistance with the paired quotation marks:
 
-```{r,echo=TRUE}
+```{r, echo=TRUE}
 x <- "hello world"
 ```
 
@@ -106,14 +107,14 @@ The `+` tells you that R is waiting for more input; it doesn't think you're done
 
 If you make an assignment, you don't get to see the value. You're then tempted to immediately double-check the result:
 
-```{r,echo=TRUE}
+```{r, echo=TRUE}
 y <- seq(1, 10, length.out = 5)
 y
 ```
 
 This common action can be shortened by surrounding the assignment with parentheses, which causes assignment and "print to screen" to happen.
 
-```{r, echo=TRUE}
+```{r,  echo=TRUE}
 (y <- seq(1, 10, length.out = 5))
 ```
 
@@ -127,12 +128,12 @@ Interested in keyboard shortcuts... try: Alt+Shift+K or use the menus 😄
 
 In this module we are going to focus on how to use the dplyr package. If you have not already you need to install the tidyverse of packages. Installing packages is like downloading an app for your phone that adds functionality. After you download an app you have to tap it to use..in R to *tap* the package you use `library(package_name)`.
 
-```{r setup2, echo=TRUE,eval=FALSE}
+```{r setup2,  echo=TRUE,eval=FALSE}
 install.packages("tidyverse")
 
 ```
 
-```{r load libraries, echo=TRUE,warning=FALSE}
+```{r load libraries,   echo=TRUE,warning=FALSE}
 library(tidyverse)
 ```
 
@@ -140,18 +141,18 @@ We can use the data from Module 1.
 
 Remember dbname="**LOCATION OF YOUR DATABASE**"
 
-```{r, echo=TRUE}
+```{r,   echo=TRUE}
 library(DBI)
 db = dbConnect(RSQLite::SQLite(), dbname = "data/03-Data-file-classroom-exercise-Chinook_Sqlite.sqlite")
 ```
 
 Lets move the tables into R
 
-```{r, echo=TRUE}
+```{r,   echo=TRUE}
 Customer<-dbReadTable(db,"Customer")
 ```
 
-```{r, echo=TRUE}
+```{r,   echo=TRUE}
 Invoice<-dbReadTable(db,"Invoice")
 ```
 
@@ -183,14 +184,14 @@ Lets also import our data used in Module 2. I almost always use the import wizar
 
 Lets start with storing our imported data from Module 2 in names we like. This could have been done in the import wizard, but lets do it now.
 
-```{r, echo=TRUE,eval=FALSE}
+```{r,   echo=TRUE,eval=FALSE}
 Payroll<-Session_2_data_file_1_payroll_data
 Reference<-Session_2_data_file_2_reference_data
 ```
 
 We can remove the old datasets from our environment by using `rm()`
 
-```{r, echo=TRUE, eval=FALSE}
+```{r,   echo=TRUE, eval=FALSE}
 rm(Session_2_data_file_1_payroll_data)
 rm(Session_2_data_file_2_reference_data)
 ```
@@ -332,7 +333,7 @@ dplyr package is loaded whenever you run library(tidyverse)
 | scale(x, center=TRUE, scale=TRUE)                                                     | column center or standardize a matrix                                                                                                                                                                                                              |
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-### Other Functions
+### Other Functions {#other-functions}
 
 +----------------------------+---------------------------------------------------------------------------+
 | **Function**               | **Description**                                                           |
@@ -405,17 +406,33 @@ You would read this sequence as:
 
 So while both approaches achieve the same goal, the latter is much more human-readable because you can clearly read the sequence of operations line-by-line.
 
-```{r filter1,echo=TRUE}
+```{r filter1, echo=TRUE}
 #lets look at some pipes
 USA_Customer <- Customer %>%
   filter(Country=="USA")
 
 ```
 
+<details>
+
+<summary>
+
+Take a Peek
+
+</summary>
+
+<p>
+
 ```{r}
 
-knitr::kable(head(USA_Customer,5),caption = "sample of the resulting data")
+knitr::kable(USA_Customer,caption = "The resulting data")%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
 ```
+
+</p>
+
+</details>
 
 ### Functions
 
@@ -441,7 +458,7 @@ functions include:
 
     *Note: not including the select function is similar to including SELECT \* in SQL. We select everything.*
 
-    ```{r filter2,echo=TRUE, eval=FALSE}
+    ```{r filter2,  echo=TRUE, eval=FALSE}
     #lets look at some pipes
     USA_Customer <- Customer %>%
       filter(Country=="USA")
@@ -451,7 +468,7 @@ functions include:
 
 We can use any of the [logical operators](#logical-operators) in the above table.
 
-```{r filter3,echo=TRUE,eval=FALSE}
+```{r filter3,  echo=TRUE,eval=FALSE}
 Customer_USA_2_Cities <- Customer %>% 
   filter(Country == "USA" & 
            (City == "Reno" | City == "Mountain View" | City== "New York") &
@@ -465,7 +482,7 @@ For any row in the data `City` can be `"Reno"` OR `"Mountain View"` OR `"New Yor
 
 You can use the "not" operator `!`. Below we can `filter` the customer data dropping USA and Italy.
 
-```{r filter4,echo=TRUE,eval=FALSE}
+```{r filter4, echo=TRUE,eval=FALSE}
 Customer_NOT_USA_Italy <- Customer %>% 
   filter(!(Country == "USA" | Country == "Italy"))
 
@@ -476,8 +493,64 @@ Again, note the careful use of parentheses around the `(Country == "USA" | Count
 
 What would happen if the parentheses were not present?
 
-```{r filter5,echo=TRUE,eval=FALSE}
+```{r filter5,  echo=TRUE,eval=FALSE}
 Customer %>% 
   filter(!Country == "USA" | Country == "Italy")
 
 ```
+
+Can anyone explain the results?
+
+<details>
+
+<summary>
+
+Take a Peek
+
+</summary>
+
+<p>
+
+```{r}
+knitr::kable(Customer %>% 
+  filter(!Country == "USA" | Country == "Italy"))%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+
+```
+
+</p>
+
+</details>
+
+As we progressively include more countries, this will get unwieldy to write. A slightly shorter approach uses the `%in%` operator along with the [`c()` function](#other-functions). The `c()` function "combines" or "concatenates" values into a single *vector* of values.
+
+```{r filter6, echo=TRUE,eval=FALSE}
+many_countries<-Customer%>%
+  filter(Country %in% c("USA","Italy","Brazil","Canada"))
+
+View(many_countries)
+```
+
+<details>
+
+<summary>
+
+Did it work?
+
+</summary>
+
+<p>
+
+```{r}
+knitr::kable(Customer %>% 
+  filter(Country %in% c("USA","Italy","Brazil","Canada")))%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+```
+
+</p>
+
+</details>
+
+# Exercise \#1
