@@ -453,7 +453,9 @@ We can use any of the [logical operators](#logical-operators) in the above table
 
 ```{r filter3,echo=TRUE,eval=FALSE}
 Customer_USA_2_Cities <- Customer %>% 
-  filter(Country == "USA" & (City == "Reno" | City == "Mountain View" | City== "New York") & SupportRepId >= 4)
+  filter(Country == "USA" & 
+           (City == "Reno" | City == "Mountain View" | City== "New York") &
+           SupportRepId >= 4)
 View(Customer_USA_2_Cities)
 ```
 
