@@ -108,7 +108,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Module 4"]},{"type":"character","attributes":{},"value":["This module is an introductiont to data wrangling and the tidyverse.\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Module 4"]},{"type":"character","attributes":{},"value":["This module is an introductiont to data wrangling and the tidyverse.\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2444,9 +2444,23 @@ Lagniappe Material
 <li><a href="#calling-functions">Calling functions</a></li>
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#basic-syntax">Basic Syntax</a></li>
-<li><a href="#operators">Operators</a></li>
-<li><a href="#built-in-functions">Built-in Functions</a></li>
-<li><a href="#dplyr">Dplyr</a></li>
+<li><a href="#operators">Operators</a>
+<ul>
+<li><a href="#arithmetic-operators">Arithmetic Operators</a></li>
+<li><a href="#logical-operators">Logical Operators</a></li>
+</ul></li>
+<li><a href="#built-in-functions">Built-in Functions</a>
+<ul>
+<li><a href="#numeric-functions">Numeric Functions</a></li>
+<li><a href="#character-functions">Character Functions</a></li>
+<li><a href="#statistical-functions">Statistical Functions</a></li>
+<li><a href="#other-functions">Other Functions</a></li>
+</ul></li>
+<li><a href="#dplyr">Dplyr</a>
+<ul>
+<li><a href="#pipes">Pipes %&gt;%</a></li>
+<li><a href="#functions">Functions</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#exercise-1">Exercise #1</a></li>
 </ul>
@@ -2621,7 +2635,7 @@ Lagniappe Material
 <p><a href="https://www.r-bloggers.com/2019/08/a-comprehensive-introduction-to-working-with-databases-using-r/">Resource for working with databases in R.</a></p>
 <p>Lets also import our data used in Module 2. I almost always use the import wizard.</p>
 <p><img src="images/import_wizard_data.gif" style="width:100.0%" /></p>
-<h3 id="note-whenever-we-run-tidyverse-library-it-loads-several-packages">Note: Whenever we run tidyverse library it loads several packages</h3>
+<p><strong>Note: Whenever we run tidyverse library it loads several packages</strong></p>
 <h2 id="basic-syntax">Basic Syntax</h2>
 <p>Lets start with storing our imported data from Module 2 in names we like. This could have been done in the import wizard, but lets do it now.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -3646,7 +3660,8 @@ NA
 <li><p><code>group_by()</code> its rows. In other words, assign different rows to be part of the same <em>group</em>. We can then combine <code>group_by()</code> with <code>summarize()</code> to report summary statistics for each group <em>separately</em>. For example, say you don’t want a single overall average sales for a company, but want it by department.</p></li>
 <li><p><code>mutate()</code> its existing columns/variables to create new ones. For example, you can create ROA from income divided by assets.</p></li>
 <li><p><code>arrange()</code> its rows. Sorting rows.</p></li>
-<li><p><code>join()</code> it with another data frame by matching along a “key” variable. In other words, merge these two data frames together. This is similar to what we saw in Module 1.</p>
+</ol>
+<p><code>join()</code> it with another data frame by matching along a “key” variable. In other words, merge these two data frames together. This is similar to what we saw in Module 1.</p>
 <h4 id="filter">Filter</h4>
 <p>The <code>filter()</code> function here works much like the “Filter” option in Microsoft Excel; it allows you to specify criteria about the values of a variable in your dataset and then filters out only the rows that match that criteria.</p>
 <p><em>Note: not including the select function is similar to including SELECT * in SQL. We select everything.</em></p>
@@ -3659,8 +3674,7 @@ NA
 <span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>USA_Customer</span><span class='op'>)</span>
 </code></pre>
 </div>
-</div></li>
-</ol>
+</div>
 <p>We can use any of the <a href="#logical-operators">logical operators</a> in the above table.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">

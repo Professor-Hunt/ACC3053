@@ -6,7 +6,7 @@ output:
   distill::distill_article:
     #code_folding: true
     toc: true
-    toc_depth: 2
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -178,7 +178,7 @@ Lets also import our data used in Module 2. I almost always use the import wizar
 
 ![](images/import_wizard_data.gif){width="100%"}
 
-### Note: Whenever we run tidyverse library it loads several packages
+**Note: Whenever we run tidyverse library it loads several packages**
 
 ## Basic Syntax
 
@@ -450,21 +450,21 @@ functions include:
 
 6.  `arrange()` its rows. Sorting rows.
 
-7.  `join()` it with another data frame by matching along a "key" variable. In other words, merge these two data frames together. This is similar to what we saw in Module 1.
+`join()` it with another data frame by matching along a "key" variable. In other words, merge these two data frames together. This is similar to what we saw in Module 1.
 
-    #### Filter
+#### Filter
 
-    The `filter()` function here works much like the "Filter" option in Microsoft Excel; it allows you to specify criteria about the values of a variable in your dataset and then filters out only the rows that match that criteria.
+The `filter()` function here works much like the "Filter" option in Microsoft Excel; it allows you to specify criteria about the values of a variable in your dataset and then filters out only the rows that match that criteria.
 
-    *Note: not including the select function is similar to including SELECT \* in SQL. We select everything.*
+*Note: not including the select function is similar to including SELECT \* in SQL. We select everything.*
 
-    ```{r filter2,  echo=TRUE, eval=FALSE}
-    #lets look at some pipes
-    USA_Customer <- Customer %>%
-      filter(Country=="USA")
+```{r filter2,  echo=TRUE, eval=FALSE}
+#lets look at some pipes
+USA_Customer <- Customer %>%
+  filter(Country=="USA")
 
-    View(USA_Customer)
-    ```
+View(USA_Customer)
+```
 
 We can use any of the [logical operators](#logical-operators) in the above table.
 
