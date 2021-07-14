@@ -24,6 +24,8 @@ navbar:
           href: Module_2.html
         - text: "Module 3"
           href: Module_3.html
+        - text: "Module 4"
+          href: Module_4.html
     - text: "Lagniappe Material"
       menu:
         - text: "Module 1"

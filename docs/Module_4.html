@@ -2440,6 +2440,10 @@ Lagniappe Material
 <li><a href="#whats-in-a-name">What’s in a name?</a></li>
 <li><a href="#calling-functions">Calling functions</a></li>
 <li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#basic-syntax">Basic Syntax</a></li>
+<li><a href="#operators">Operators</a></li>
+<li><a href="#built-in-functions">Built-in Functions</a></li>
+<li><a href="#dplyr">Dplyr</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2568,12 +2572,641 @@ Lagniappe Material
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"tidyverse"</span><span class='op'>)</span>
-
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>We can use the data from Module 1.</p>
+<p>Remember dbname=“<strong>LOCATION OF YOUR DATABASE</strong>”</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dbi.r-dbi.org'>DBI</a></span><span class='op'>)</span>
+<span class='va'>db</span> <span class='op'>=</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbConnect.html'>dbConnect</a></span><span class='op'>(</span><span class='fu'>RSQLite</span><span class='fu'>::</span><span class='fu'><a href='https://rsqlite.r-dbi.org/reference/SQLite.html'>SQLite</a></span><span class='op'>(</span><span class='op'>)</span>, dbname <span class='op'>=</span> <span class='st'>"data/03-Data-file-classroom-exercise-Chinook_Sqlite.sqlite"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Lets move the tables into R</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Customer</span><span class='op'>&lt;-</span><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbReadTable.html'>dbReadTable</a></span><span class='op'>(</span><span class='va'>db</span>,<span class='st'>"Customer"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Invoice</span><span class='op'>&lt;-</span><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbReadTable.html'>dbReadTable</a></span><span class='op'>(</span><span class='va'>db</span>,<span class='st'>"Invoice"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>You can also accomplish the same task in a RMarkdown document using SQL with the following code:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{sql, connection=db, echo=TRUE, output.var=&quot;Customer&quot;}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="at">SELECT * </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">FROM Customer</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{sql, connection=db, echo=TRUE, output.var=&quot;Invoice&quot;}</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="at">SELECT * </span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="at">FROM Invoice</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p><img src="images/import_database_data.gif" style="width:100.0%" /></p>
+<p><a href="https://www.r-bloggers.com/2019/08/a-comprehensive-introduction-to-working-with-databases-using-r/">Resource for working with databases in R.</a></p>
+<p>Lets also import our data used in Module 2. I almost always use the import wizard.</p>
+<p><img src="images/import_wizard_data.gif" style="width:100.0%" /></p>
+<h3 id="note-whenever-we-run-tidyverse-library-it-loads-several-packages">Note: Whenever we run tidyverse library it loads several packages</h3>
+<h2 id="basic-syntax">Basic Syntax</h2>
+<p>Lets start with storing our imported data from Module 2 in names we like. This could have been done in the import wizard, but lets do it now.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Payroll</span><span class='op'>&lt;-</span><span class='va'>Session_2_data_file_1_payroll_data</span>
+<span class='va'>Reference</span><span class='op'>&lt;-</span><span class='va'>Session_2_data_file_2_reference_data</span>
+</code></pre>
+</div>
+</div>
+<p>We can remove the old datasets from our environment by using <code>rm()</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>Session_2_data_file_1_payroll_data</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>Session_2_data_file_2_reference_data</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>At this point you should have a database connection “db” in your environment and 4 datasets: Customer, Invoice, Payroll, and Reference. These are the datasets used in Module 1 and Module 2. Be sure and import the original data because we are going to learn how to fix the same errors that we fixed in Module 2.</p>
+<p><img src="images/basic_wrang_prereq_data.png" style="width:50.0%" /></p>
+<p>We are going to be using the dplyr package for data manipulation or data wrangling.</p>
+<aside>
+<p>dplyr package is loaded whenever you run library(tidyverse)</p>
+</aside>
+<h2 id="operators">Operators</h2>
+<h3 id="arithmetic-operators">Arithmetic Operators</h3>
+<table style="width:68%;">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Operator</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>+</code></td>
+<td style="text-align: left;">addition</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>-</code></td>
+<td style="text-align: left;">subtraction</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;">multiplication</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>/</code></td>
+<td style="text-align: left;">division</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">^ or **</td>
+<td style="text-align: left;">exponentiation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x%%y</td>
+<td style="text-align: left;">modulus (x mod y) 5%%2 is 1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">x%/%y</td>
+<td style="text-align: left;">integer division 5%/%2 is 2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="logical-operators">Logical Operators</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Operator</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">&lt;</td>
+<td style="text-align: left;">less than</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;=</td>
+<td style="text-align: left;">less than or equal to</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&gt;</td>
+<td style="text-align: left;">greater than</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&gt;=</td>
+<td style="text-align: left;">greater than or equal to</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">==</td>
+<td style="text-align: left;">exactly equal to</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">!=</td>
+<td style="text-align: left;">not equal to</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">!x</td>
+<td style="text-align: left;">Not x</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">x|y</td>
+<td style="text-align: left;">x OR y</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">x&amp;y</td>
+<td style="text-align: left;">x AND y</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">isTRUE(x)</td>
+<td style="text-align: left;">test if x is TRUE</td>
+</tr>
+</tbody>
+</table>
+<h2 id="built-in-functions">Built-in Functions</h2>
+<ul>
+<li>R has many built in functions that compute different statistical procedures.</li>
+<li>Functions in R are followed by ( ).</li>
+<li>Inside the parenthesis we write the object (vector, array, matrix, dataframe) to which we want to apply the function.</li>
+</ul>
+<h3 id="numeric-functions">Numeric Functions</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Function</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">abs(x)</td>
+<td style="text-align: left;">absolute value</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sqrt(x)</td>
+<td style="text-align: left;">square root</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ceiling(x)</td>
+<td style="text-align: left;">ceiling(3.475) is 4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">floor(x)</td>
+<td style="text-align: left;">floor(3.475) is 3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">trunc(x)</td>
+<td style="text-align: left;">trunc(5.99) is 5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">round(x, digits=n)</td>
+<td style="text-align: left;">round(3.475, digits=2) is 3.48</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">signif(x, digits=n)</td>
+<td style="text-align: left;">signif(3.475, digits=2) is 3.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cos(x), sin(x), tan(x)</td>
+<td style="text-align: left;">also acos(x), cosh(x), acosh(x), etc.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log(x)</td>
+<td style="text-align: left;">natural logarithm</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log10(x)</td>
+<td style="text-align: left;">common logarithm</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">exp(x)</td>
+<td style="text-align: left;">e^x</td>
+</tr>
+</tbody>
+</table>
+<h3 id="character-functions">Character Functions</h3>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Function</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">substr(x, start=n1, stop=n2)</td>
+<td style="text-align: left;">Extract or replace substrings in a character vector. x &lt;- “abcdef”, substr(x, 2, 4) is “bcd”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">grep(pattern, x, ignore.case=FALSE, fixed=FALSE)</td>
+<td style="text-align: left;">Search for pattern in x. If fixed =FALSE then pattern is a regular expression. If fixed=TRUE then pattern is a text string. Returns matching indices. grep(“A”, c(“b”,“A”,“c”), fixed=TRUE) returns 2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sub(pattern, replacement, x, ignore.case=FALSE, fixed=FALSE)</td>
+<td style="text-align: left;">Find pattern in x and replace with replacement text. If fixed=FALSE then pattern is a regular expression. If fixed = T then pattern is a text string. sub("“,”.“,”Hello There“) returns”Hello.There"</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">strsplit(x, split)</td>
+<td style="text-align: left;">Split the elements of character vector x at split. strsplit(“abc”, "“) returns 3 element vector”a“,”b“,”c"</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">paste(…, sep="")</td>
+<td style="text-align: left;">Concatenate strings after using sep string to seperate them. paste(“x”,1:3,sep="“) returns c(”x1“,”x2" “x3”) paste(“x”,1:3,sep=“M”) returns c(“xM1”,“xM2” “xM3”) paste(“Today is”, date())</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">toupper(x)</td>
+<td style="text-align: left;">Uppercase</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tolower(x)</td>
+<td style="text-align: left;">Lowercase</td>
+</tr>
+</tbody>
+</table>
+<h3 id="statistical-functions">Statistical Functions</h3>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Function</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">dnorm(x)</td>
+<td style="text-align: left;">normal density function (by default m=0 sd=1) # plot standard normal curve x &lt;- pretty(c(-3,3), 30) y &lt;- dnorm(x) plot(x, y, type=“l”, xlab=“Normal Deviate”, ylab=“Density”, yaxs=“i”)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pnorm(q)</td>
+<td style="text-align: left;">cumulative normal probability for q (area under the normal curve to the right of q) pnorm(1.96) is 0.975</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">qnorm(p)</td>
+<td style="text-align: left;">normal quantile. value at the p percentile of normal distribution qnorm(.9) is 1.28 # 90th percentile</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rnorm(n, m=0, sd=1)</td>
+<td style="text-align: left;">n random normal deviates with mean m and standard deviation sd. #50 random normal variates with mean=50, sd=10x &lt;- rnorm(50, m=50, sd=10)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dbinom(x, size, prob), pbinom(p, size,prob), qbinom(q,size,prob), rbinom(n,size,prob)</td>
+<td style="text-align: left;">binomial distribution where size is the sample size and prob is the probability of a heads (pi) # prob of 0 to 5 heads of fair coin out of 10 flips dbinom(0:5, 10, .5) # prob of 5 or less heads of fair coin out of 10 flips pbinom(5, 10, .5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">dpois(x, lamda), ppois(q,lamda), qpois(p,lamda), rpois(n,lamda)</td>
+<td style="text-align: left;">poisson distribution with m=std=lamda #probability of 0,1, or 2 events with lamda=4 dpois(0:2, 4) # probability of at least 3 events with lamda=4 1- ppois(2,4)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dunif(x,min,max=1)</td>
+<td style="text-align: left;">uniform distribution, follows the same pattern</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">punif(q,min=0,max=1)</td>
+<td style="text-align: left;">as the normal distribution above.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">qunif(p,min=0,max=1)</td>
+<td style="text-align: left;">#10 uniform random variates</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">runif(n,min=0,max=1)</td>
+<td style="text-align: left;">x &lt;- runif(10)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mean(x,trim=0, na.rm=FALSE)</td>
+<td style="text-align: left;">mean of object x, # trimmed mean, removing any missing values and # 5 percent of highest and lowest scores mx &lt;- mean(x,trim=.05,na.rm=TRUE)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sd(x)</td>
+<td style="text-align: left;">standard deviation of object(x). also look at var(x) for variance and mad(x) for median absolute deviation.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">median(x)</td>
+<td style="text-align: left;">median</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">quantile(x)</td>
+<td style="text-align: left;">quantiles where x is the numeric vector whose quantiles are desired and probs is a numeric vector with probabilities in [0,1]. # 30th and 84th percentiles of x, y &lt;- quantile(x, c(.3,.84))</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">range(x)</td>
+<td style="text-align: left;">range</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sum(x)</td>
+<td style="text-align: left;">sum</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">diff(x,lag=1)</td>
+<td style="text-align: left;">lagged differences, with lag indicating which lag to use</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">min(x)</td>
+<td style="text-align: left;">minimum</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">max(x)</td>
+<td style="text-align: left;">maximum</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">scale(x, center=TRUE, scale=TRUE)</td>
+<td style="text-align: left;">column center or standardize a matrix</td>
+</tr>
+</tbody>
+</table>
+<h3 id="other-functions">Other Functions</h3>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Function</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">seq(from, to, by)</td>
+<td style="text-align: left;">generate a sequence indices &lt;- seq(1,10,2) #indices is c(1, 3, 5, 7, 9)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rep(x,ntimes)</td>
+<td style="text-align: left;">repeat x n times y &lt;- rep(1:3, 2) # y is c(1, 2, 3, 1, 2, 3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cut(x,n)</td>
+<td style="text-align: left;">divide continuous variable in factor with n levels y &lt;- cut(x, 5)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">length(object)</td>
+<td style="text-align: left;">number of elements or components</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">str(object)</td>
+<td style="text-align: left;">structure of an object</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">class(object)</td>
+<td style="text-align: left;">class or type of an object</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">names(object)</td>
+<td style="text-align: left;">names</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">c(object, object,…)</td>
+<td style="text-align: left;">combine objects into a vector</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cbind(object, object,…)</td>
+<td style="text-align: left;">combine objects as columns</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rbind(object, object,…)</td>
+<td style="text-align: left;">combine objects as rows</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ls()</td>
+<td style="text-align: left;">list current objects</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rm(object)</td>
+<td style="text-align: left;">delete an object</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">newobject &lt;- edit(object)</td>
+<td style="text-align: left;">create a new object</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fix(object)</td>
+<td style="text-align: left;">edit an object in place</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dplyr">Dplyr</h2>
+<h3 id="pipes">Pipes %&gt;%</h3>
+<p>Before we start data wrangling, let’s first introduce a tool that gets loaded with the <code>dplyr</code> package: the pipe operator <code>%&gt;%</code>. The pipe operator allows us to combine multiple operations in R into a single sequential <em>chain</em> of actions.</p>
+<p>Let’s start with a hypothetical example. Say you would like to perform a hypothetical sequence of operations on a hypothetical data frame <code>x</code> using hypothetical functions <code>f()</code>, <code>g()</code>, and <code>h()</code>:</p>
+<ol type="1">
+<li><p>Take <code>x</code> <em>then</em></p></li>
+<li><p>Use <code>x</code> as an input to a function <code>f()</code> <em>then</em></p></li>
+<li><p>Use the output of <code>f(x)</code> as an input to a function <code>g()</code> <em>then</em></p></li>
+<li><p>Use the output of <code>g(f(x))</code> as an input to a function <code>h()</code></p></li>
+</ol>
+<p>One way to achieve this sequence of operations is by using nesting parentheses as follows…This is how <strong>Excel</strong> works. We saw this multiple times in Module 2.</p>
+<pre><code>h(g(f(x)))</code></pre>
+<p>This isn’t terrible, but as we saw…as you nest more things it gets more complicated. This is where the pipe operator <code>%&gt;%</code> comes in handy. <code>%&gt;%</code> takes the output of one function and then “pipes” it to be the input of the next function. Furthermore, a helpful trick is to read <code>%&gt;%</code> as “then” or “and then.” For example, you can obtain the same output as the hypothetical sequence of functions as follows:</p>
+<pre><code>x %&gt;% 
+  f() %&gt;% 
+  g() %&gt;% 
+  h()</code></pre>
+<p>You would read this sequence as:</p>
+<ol type="1">
+<li><p>Take <code>x</code> <em>then</em></p></li>
+<li><p>Use this output as the input to the next function <code>f()</code> <em>then</em></p></li>
+<li><p>Use this output as the input to the next function <code>g()</code> <em>then</em></p></li>
+<li><p>Use this output as the input to the next function <code>h()</code></p></li>
+</ol>
+<p>So while both approaches achieve the same goal, the latter is much more human-readable because you can clearly read the sequence of operations line-by-line.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#lets look at some pipes</span>
+<span class='va'>USA_Customer</span> <span class='op'>&lt;-</span> <span class='va'>Customer</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Country</span><span class='op'>==</span><span class='st'>"USA"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table style="width:100%;">
+<caption><span id="tab:unnamed-chunk-17">Table 1: </span>sample of the resulting data</caption>
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 4%" />
+<col style="width: 11%" />
+<col style="width: 13%" />
+<col style="width: 7%" />
+<col style="width: 3%" />
+<col style="width: 4%" />
+<col style="width: 5%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 12%" />
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">CustomerId</th>
+<th style="text-align: left;">FirstName</th>
+<th style="text-align: left;">LastName</th>
+<th style="text-align: left;">Company</th>
+<th style="text-align: left;">Address</th>
+<th style="text-align: left;">City</th>
+<th style="text-align: left;">State</th>
+<th style="text-align: left;">Country</th>
+<th style="text-align: left;">PostalCode</th>
+<th style="text-align: left;">Phone</th>
+<th style="text-align: left;">Fax</th>
+<th style="text-align: left;">Email</th>
+<th style="text-align: right;">SupportRepId</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">Frank</td>
+<td style="text-align: left;">Harris</td>
+<td style="text-align: left;">Google Inc.</td>
+<td style="text-align: left;">1600 Amphitheatre Parkway</td>
+<td style="text-align: left;">Mountain View</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: left;">94043-1351</td>
+<td style="text-align: left;">+1 (650) 253-0000</td>
+<td style="text-align: left;">+1 (650) 253-0000</td>
+<td style="text-align: left;"><a href="mailto:fharris@google.com" class="email">fharris@google.com</a></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">Jack</td>
+<td style="text-align: left;">Smith</td>
+<td style="text-align: left;">Microsoft Corporation</td>
+<td style="text-align: left;">1 Microsoft Way</td>
+<td style="text-align: left;">Redmond</td>
+<td style="text-align: left;">WA</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: left;">98052-8300</td>
+<td style="text-align: left;">+1 (425) 882-8080</td>
+<td style="text-align: left;">+1 (425) 882-8081</td>
+<td style="text-align: left;"><a href="mailto:jacksmith@microsoft.com" class="email">jacksmith@microsoft.com</a></td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">Michelle</td>
+<td style="text-align: left;">Brooks</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">627 Broadway</td>
+<td style="text-align: left;">New York</td>
+<td style="text-align: left;">NY</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: left;">10012-2612</td>
+<td style="text-align: left;">+1 (212) 221-3546</td>
+<td style="text-align: left;">+1 (212) 221-4679</td>
+<td style="text-align: left;"><a href="mailto:michelleb@aol.com" class="email">michelleb@aol.com</a></td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">Tim</td>
+<td style="text-align: left;">Goyer</td>
+<td style="text-align: left;">Apple Inc.</td>
+<td style="text-align: left;">1 Infinite Loop</td>
+<td style="text-align: left;">Cupertino</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: left;">95014</td>
+<td style="text-align: left;">+1 (408) 996-1010</td>
+<td style="text-align: left;">+1 (408) 996-1011</td>
+<td style="text-align: left;"><a href="mailto:tgoyer@apple.com" class="email">tgoyer@apple.com</a></td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">Dan</td>
+<td style="text-align: left;">Miller</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">541 Del Medio Avenue</td>
+<td style="text-align: left;">Mountain View</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: left;">USA</td>
+<td style="text-align: left;">94040-111</td>
+<td style="text-align: left;">+1 (650) 644-3358</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"><a href="mailto:dmiller@comcast.com" class="email">dmiller@comcast.com</a></td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="functions">Functions</h3>
+<p>functions include:</p>
+<ol type="1">
+<li><p>Pick variables by their names (<code>select()</code>).</p></li>
+<li><p><code>filter()</code> a data frame’s existing rows to only pick out a subset of them.</p></li>
+<li><p><code>summarize()</code> one or more of its columns/variables with a <em>summary statistic</em>.</p></li>
+<li><p><code>group_by()</code> its rows. In other words, assign different rows to be part of the same <em>group</em>. We can then combine <code>group_by()</code> with <code>summarize()</code> to report summary statistics for each group <em>separately</em>. For example, say you don’t want a single overall average sales for a company, but want it by department.</p></li>
+<li><p><code>mutate()</code> its existing columns/variables to create new ones. For example, you can create ROA from income divided by assets.</p></li>
+<li><p><code>arrange()</code> its rows. Sorting rows.</p></li>
+<li><p><code>join()</code> it with another data frame by matching along a “key” variable. In other words, merge these two data frames together. This is similar to what we saw in Module 1.</p>
+<h4 id="filter">Filter</h4>
+<p>The <code>filter()</code> function here works much like the “Filter” option in Microsoft Excel; it allows you to specify criteria about the values of a variable in your dataset and then filters out only the rows that match that criteria.</p>
+<p><em>Note: not including the select function is similar to including SELECT * in SQL. We select everything.</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#lets look at some pipes</span>
+<span class='va'>USA_Customer</span> <span class='op'>&lt;-</span> <span class='va'>Customer</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Country</span><span class='op'>==</span><span class='st'>"USA"</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>USA_Customer</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div></li>
+</ol>
+<p>We can use any of the <a href="#logical-operators">logical operators</a> in the above table.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Customer_USA_2_Cities</span> <span class='op'>&lt;-</span> <span class='va'>Customer</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Country</span> <span class='op'>==</span> <span class='st'>"USA"</span> <span class='op'>&amp;</span> <span class='op'>(</span><span class='va'>City</span> <span class='op'>==</span> <span class='st'>"Reno"</span> <span class='op'>|</span> <span class='va'>City</span> <span class='op'>==</span> <span class='st'>"Mountain View"</span> <span class='op'>|</span> <span class='va'>City</span><span class='op'>==</span> <span class='st'>"New York"</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='va'>SupportRepId</span> <span class='op'>&gt;=</span> <span class='fl'>4</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>Customer_USA_2_Cities</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Why do we only end up with two cities?</p>
+<p>For any row in the data <code>City</code> can be <code>"Reno"</code> OR <code>"Mountain View"</code> OR <code>"New York"</code>, but not all three simultaneously…our data does not stack more than one city on a row. The <code>Country</code> must be <code>"USA"</code> and the <code>SupportRepid</code> must be greater than or equal to 4.</p>
+<p>You can use the “not” operator <code>!</code>. Below we can <code>filter</code> the customer data dropping USA and Italy.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Customer_NOT_USA_Italy</span> <span class='op'>&lt;-</span> <span class='va'>Customer</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='op'>(</span><span class='va'>Country</span> <span class='op'>==</span> <span class='st'>"USA"</span> <span class='op'>|</span> <span class='va'>Country</span> <span class='op'>==</span> <span class='st'>"Italy"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>Customer_NOT_USA_Italy</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Again, note the careful use of parentheses around the <code>(Country == "USA" | Country == "Italy")</code>. What would happen if the parentheses were not present?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Customer</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='va'>Country</span> <span class='op'>==</span> <span class='st'>"USA"</span> <span class='op'>|</span> <span class='va'>Country</span> <span class='op'>==</span> <span class='st'>"Italy"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
