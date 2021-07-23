@@ -178,20 +178,33 @@ Lets also import our data used in Module 2. I almost always use the import wizar
 
 ![](images/import_wizard_data.gif){width="100%"}
 
+This is the code that the wizard produces for us:
+
+```{r import1, echo=TRUE, warning=TRUE}
+#don't forget libraries
+library(readr)
+
+Session_2_data_file_1_payroll_data <- read_delim("data/Session-2-data-file-1-payroll_data.txt", "|", escape_double = FALSE, trim_ws = TRUE)
+
+library(readxl)
+
+Session_2_data_file_2_reference_data <- read_excel("data/Session-2-data-file-2-reference-data.xlsx")
+```
+
 **Note: Whenever we run tidyverse library it loads several packages**
 
 ## Basic Syntax
 
 Lets start with storing our imported data from Module 2 in names we like. This could have been done in the import wizard, but lets do it now.
 
-```{r,   echo=TRUE,eval=FALSE}
+```{r,   echo=TRUE}
 Payroll<-Session_2_data_file_1_payroll_data
 Reference<-Session_2_data_file_2_reference_data
 ```
 
 We can remove the old datasets from our environment by using `rm()`
 
-```{r,   echo=TRUE, eval=FALSE}
+```{r,   echo=TRUE}
 rm(Session_2_data_file_1_payroll_data)
 rm(Session_2_data_file_2_reference_data)
 ```
@@ -450,7 +463,7 @@ functions include:
 
 6.  `arrange()` its rows. Sorting rows.
 
-`join()` it with another data frame by matching along a "key" variable. In other words, merge these two data frames together. This is similar to what we saw in Module 1.
+7.  `join()` it with another data frame by matching along a "key" variable. In other words, merge these two data frames together. This is similar to what we saw in Module 1.
 
 #### Filter
 
@@ -557,7 +570,11 @@ knitr::kable(Customer %>%
 
 In an Rmd file answer the following questions. Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work. *note: in order to keep the output of tables to a minimum use the function* `head(table_name, 5)` *to include the first 5 results in the table.*
 
-<aside> I do not have the same limitation with only using the top 5 results for my answers because my answers are in html</aside>
+<aside>
+
+I do not have the same limitation with only using the top 5 results for my answers because my answers are in html
+
+</aside>
 
 1.  Using the customer table, if you select the first 5 rows what is the country in the last row?
 
@@ -653,3 +670,111 @@ knitr::kable(Invoice%>%
 #### Summarize
 
 Summary statistics are single numerical values that summarize a large number of values. Commonly known examples of summary statistics include the mean (also called the average) and the median (the middle value). Other examples of summary statistics that might not immediately come to mind include the *sum*, the smallest value also called the *minimum*, the largest value also called the *maximum*, and the *standard deviation*.
+
+Within summarize here are a few examples of functions that can be used:
+
+-   `mean()`: the average
+-   `sd()`: the standard deviation, which is a measure of spread
+-   `min()` and `max()`: the minimum and maximum values, respectively
+-   `IQR()`: interquartile range
+-   `sum()`: the total amount when adding multiple numbers
+-   `n()`: a count of the number of rows
+
+Lets look at a few examples
+
+```{r summarize1,echo=TRUE}
+summary_invoice<-Invoice%>%
+  summarize(mean_total=mean(Total,na.rm=TRUE))
+
+summary_invoice
+```
+
+What does the `na.rm=TRUE` do?
+
+Before we investigate that we need to clean up one of our variables in the Payroll data set.
+
+```{r, echo=TRUE}
+class(Payroll$`Overtime Pay`)
+```
+
+We have a couple issues here:
+
+1.  Overtime Pay does not conform to a good naming convention. Clearly R can deal with the space, but it is likely to make things more difficult later.
+
+2.  Overtime Pay is a character, but we know it should be numeric
+
+    -   Another issue is the comma and if we were using the salary column the \$ would be a problem.
+
+Let's change the name with the rename function:
+
+```{r, echo=TRUE}
+Payroll<-Payroll%>%
+  #syntax:  new_name=old_name
+  rename(Overtime_Pay=`Overtime Pay`)
+
+summary(Payroll$Overtime_Pay)
+```
+
+Before we can convert the character to a number we need to remove the commas... 😢 and then use `as.numeric` . When we convert to 'numeric' with `as.numeric`, all the non-numeric elements are converted to `NA`. So, we need to remove `,` to make it work.
+
+More on mutate later
+
+```{r, echo=TRUE}
+?gsub
+?as.numeric
+
+Payroll2<-Payroll%>%
+  #nested formula: gsub in as.numeric
+  mutate(Overtime_Pay=as.numeric(gsub('[,]', '',Overtime_Pay)))
+
+summary(Payroll2$Overtime_Pay)
+```
+
+Another question arises: Are the `-` dashes zero and the observations that have nothing actually missing? If the `-` dash represents zero we need to address that:
+
+```{r, echo=TRUE}
+
+Payroll3<-Payroll%>%
+  mutate(Overtime_Pay=gsub('[,]', '',Overtime_Pay),
+         Overtime_Pay=gsub('[-]', '0',Overtime_Pay),
+         Overtime_Pay=as.numeric(Overtime_Pay))
+
+summary(Payroll3$Overtime_Pay)
+
+Payroll4<-Payroll%>%
+  mutate(Overtime_Pay=gsub('[,]', '',Overtime_Pay))%>%
+  mutate(Overtime_Pay=gsub('[-]', '0',Overtime_Pay))%>%
+  mutate(Overtime_Pay=as.numeric(Overtime_Pay))
+
+summary(Payroll4$Overtime_Pay)
+```
+
+Now can we find the mean Overtime_Pay?
+
+```{r summarize2, echo=TRUE,warning=TRUE}
+summary_payroll<-Payroll4%>%
+  summarise(mean_overtimepay=mean(Overtime_Pay,na.rm=FALSE))
+
+summary_payroll
+```
+
+<details>
+
+<summary>
+
+The fix 🔧
+
+</summary>
+
+<p>
+
+```{r summarize3, echo=TRUE,warning=TRUE}
+summary_payroll<-Payroll4%>%
+  summarise(mean_overtimepay=mean(Overtime_Pay,na.rm=TRUE))
+
+summary_payroll
+```
+
+</p>
+
+</details>

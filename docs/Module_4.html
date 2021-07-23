@@ -2635,6 +2635,24 @@ Lagniappe Material
 <p><a href="https://www.r-bloggers.com/2019/08/a-comprehensive-introduction-to-working-with-databases-using-r/">Resource for working with databases in R.</a></p>
 <p>Lets also import our data used in Module 2. I almost always use the import wizard.</p>
 <p><img src="images/import_wizard_data.gif" style="width:100.0%" /></p>
+<p>This is the code that the wizard produces for us:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#don't forget libraries</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readr.tidyverse.org'>readr</a></span><span class='op'>)</span>
+
+<span class='va'>Session_2_data_file_1_payroll_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_delim</a></span><span class='op'>(</span><span class='st'>"data/Session-2-data-file-1-payroll_data.txt"</span>, <span class='st'>"|"</span>, escape_double <span class='op'>=</span> <span class='cn'>FALSE</span>, trim_ws <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Warning: Duplicated column names deduplicated: &#39;Division&#39; =&gt;
+&#39;Division_1&#39; [7]</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span>
+
+<span class='va'>Session_2_data_file_2_reference_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='st'>"data/Session-2-data-file-2-reference-data.xlsx"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
 <p><strong>Note: Whenever we run tidyverse library it loads several packages</strong></p>
 <h2 id="basic-syntax">Basic Syntax</h2>
 <p>Lets start with storing our imported data from Module 2 in names we like. This could have been done in the import wizard, but lets do it now.</p>
@@ -3660,8 +3678,8 @@ NA
 <li><p><code>group_by()</code> its rows. In other words, assign different rows to be part of the same <em>group</em>. We can then combine <code>group_by()</code> with <code>summarize()</code> to report summary statistics for each group <em>separately</em>. For example, say you don’t want a single overall average sales for a company, but want it by department.</p></li>
 <li><p><code>mutate()</code> its existing columns/variables to create new ones. For example, you can create ROA from income divided by assets.</p></li>
 <li><p><code>arrange()</code> its rows. Sorting rows.</p></li>
+<li><p><code>join()</code> it with another data frame by matching along a “key” variable. In other words, merge these two data frames together. This is similar to what we saw in Module 1.</p></li>
 </ol>
-<p><code>join()</code> it with another data frame by matching along a “key” variable. In other words, merge these two data frames together. This is similar to what we saw in Module 1.</p>
 <h4 id="filter">Filter</h4>
 <p>The <code>filter()</code> function here works much like the “Filter” option in Microsoft Excel; it allows you to specify criteria about the values of a variable in your dataset and then filters out only the rows that match that criteria.</p>
 <p><em>Note: not including the select function is similar to including SELECT * in SQL. We select everything.</em></p>
@@ -6830,7 +6848,7 @@ NA
 <h1 id="exercise-1">Exercise #1</h1>
 <p>In an Rmd file answer the following questions. Include the <strong>question</strong>, <strong>code</strong>, and the <strong>results</strong>. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work. <em>note: in order to keep the output of tables to a minimum use the function</em> <code>head(table_name, 5)</code> <em>to include the first 5 results in the table.</em></p>
 <aside>
-I do not have the same limitation with only using the top 5 results for my answers because my answers are in html
+<p>I do not have the same limitation with only using the top 5 results for my answers because my answers are in html</p>
 </aside>
 <ol type="1">
 <li>Using the customer table, if you select the first 5 rows what is the country in the last row?</li>
@@ -22066,7 +22084,134 @@ Finland
 </details>
 <h4 id="summarize">Summarize</h4>
 <p>Summary statistics are single numerical values that summarize a large number of values. Commonly known examples of summary statistics include the mean (also called the average) and the median (the middle value). Other examples of summary statistics that might not immediately come to mind include the <em>sum</em>, the smallest value also called the <em>minimum</em>, the largest value also called the <em>maximum</em>, and the <em>standard deviation</em>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Within summarize here are a few examples of functions that can be used:</p>
+<ul>
+<li><code>mean()</code>: the average</li>
+<li><code>sd()</code>: the standard deviation, which is a measure of spread</li>
+<li><code>min()</code> and <code>max()</code>: the minimum and maximum values, respectively</li>
+<li><code>IQR()</code>: interquartile range</li>
+<li><code>sum()</code>: the total amount when adding multiple numbers</li>
+<li><code>n()</code>: a count of the number of rows</li>
+</ul>
+<p>Lets look at a few examples</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>summary_invoice</span><span class='op'>&lt;-</span><span class='va'>Invoice</span><span class='op'>%&gt;%</span>
+  <span class='fu'>summarize</span><span class='op'>(</span>mean_total<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Total</span>,na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>summary_invoice</span>
+</code></pre>
+</div>
+<pre><code>  mean_total
+1   5.651942</code></pre>
+</div>
+<p>What does the <code>na.rm=TRUE</code> do?</p>
+<p>Before we investigate that we need to clean up one of our variables in the Payroll data set.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>Payroll</span><span class='op'>$</span><span class='va'>`Overtime Pay`</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;character&quot;</code></pre>
+</div>
+<p>We have a couple issues here:</p>
+<ol type="1">
+<li><p>Overtime Pay does not conform to a good naming convention. Clearly R can deal with the space, but it is likely to make things more difficult later.</p></li>
+<li><p>Overtime Pay is a character, but we know it should be numeric</p>
+<ul>
+<li>Another issue is the comma and if we were using the salary column the $ would be a problem.</li>
+</ul></li>
+</ol>
+<p>Let’s change the name with the rename function:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Payroll</span><span class='op'>&lt;-</span><span class='va'>Payroll</span><span class='op'>%&gt;%</span>
+  <span class='co'>#syntax:  new_name=old_name</span>
+  <span class='fu'>rename</span><span class='op'>(</span>Overtime_Pay<span class='op'>=</span><span class='va'>`Overtime Pay`</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>Payroll</span><span class='op'>$</span><span class='va'>Overtime_Pay</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   Length     Class      Mode 
+      201 character character </code></pre>
+</div>
+<p>Before we can convert the character to a number we need to remove the commas… 😢 and then use <code>as.numeric</code> . When we convert to ‘numeric’ with <code>as.numeric</code>, all the non-numeric elements are converted to <code>NA</code>. So, we need to remove <code>,</code> to make it work.</p>
+<p>More on mutate later</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='op'>?</span><span class='va'>gsub</span>
+<span class='op'>?</span><span class='va'>as.numeric</span>
+
+<span class='va'>Payroll2</span><span class='op'>&lt;-</span><span class='va'>Payroll</span><span class='op'>%&gt;%</span>
+  <span class='co'>#nested formula: gsub in as.numeric</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Overtime_Pay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>'[,]'</span>, <span class='st'>''</span>,<span class='va'>Overtime_Pay</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>Payroll2</span><span class='op'>$</span><span class='va'>Overtime_Pay</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+   1745    6190   10437   12299   15642   68092      86 </code></pre>
+</div>
+<p>Another question arises: Are the <code>-</code> dashes zero and the observations that have nothing actually missing? If the <code>-</code> dash represents zero we need to address that:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Payroll3</span><span class='op'>&lt;-</span><span class='va'>Payroll</span><span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Overtime_Pay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>'[,]'</span>, <span class='st'>''</span>,<span class='va'>Overtime_Pay</span><span class='op'>)</span>,
+         Overtime_Pay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>'[-]'</span>, <span class='st'>'0'</span>,<span class='va'>Overtime_Pay</span><span class='op'>)</span>,
+         Overtime_Pay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>Overtime_Pay</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>Payroll3</span><span class='op'>$</span><span class='va'>Overtime_Pay</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+      0       0    5571    7329   11300   68092       8 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Payroll4</span><span class='op'>&lt;-</span><span class='va'>Payroll</span><span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Overtime_Pay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>'[,]'</span>, <span class='st'>''</span>,<span class='va'>Overtime_Pay</span><span class='op'>)</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Overtime_Pay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>'[-]'</span>, <span class='st'>'0'</span>,<span class='va'>Overtime_Pay</span><span class='op'>)</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Overtime_Pay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>Overtime_Pay</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>Payroll4</span><span class='op'>$</span><span class='va'>Overtime_Pay</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+      0       0    5571    7329   11300   68092       8 </code></pre>
+</div>
+<p>Now can we find the mean Overtime_Pay?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>summary_payroll</span><span class='op'>&lt;-</span><span class='va'>Payroll4</span><span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>mean_overtimepay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Overtime_Pay</span>,na.rm<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>summary_payroll</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1 x 1
+  mean_overtimepay
+             &lt;dbl&gt;
+1               NA</code></pre>
+</div>
+<details>
+<summary>
+<p>The fix 🔧</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>summary_payroll</span><span class='op'>&lt;-</span><span class='va'>Payroll4</span><span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>mean_overtimepay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Overtime_Pay</span>,na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>summary_payroll</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1 x 1
+  mean_overtimepay
+             &lt;dbl&gt;
+1            7329.</code></pre>
+</div>
+</p>
+</details>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
