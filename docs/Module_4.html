@@ -2456,13 +2456,21 @@ Lagniappe Material
 <li><a href="#statistical-functions">Statistical Functions</a></li>
 <li><a href="#other-functions">Other Functions</a></li>
 </ul></li>
-<li><a href="#dplyr">Dplyr</a>
+</ul></li>
+<li><a href="#dplyr"><span>Dplyr</span></a>
 <ul>
 <li><a href="#pipes">Pipes %&gt;%</a></li>
-<li><a href="#functions">Functions</a></li>
+<li><a href="#functions">Functions</a>
+<ul>
+<li><a href="#filter">filter</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#exercise-1">Exercise #1</a></li>
+<li><a href="#exercise-1">Exercise #1</a>
+<ul>
+<li><a href="#summarize">summarize</a></li>
+<li><a href="#group_by">group_by</a></li>
+</ul></li>
+<li><a href="#exercise-2">Exercise #2</a></li>
 </ul>
 </nav>
 </div>
@@ -3042,7 +3050,7 @@ Lagniappe Material
 </tr>
 </tbody>
 </table>
-<h2 id="dplyr">Dplyr</h2>
+<h1 id="dplyr"><a href="https://dplyr.tidyverse.org/">Dplyr</a></h1>
 <h3 id="pipes">Pipes %&gt;%</h3>
 <p>Before we start data wrangling, let’s first introduce a tool that gets loaded with the <code>dplyr</code> package: the pipe operator <code>%&gt;%</code>. The pipe operator allows us to combine multiple operations in R into a single sequential <em>chain</em> of actions.</p>
 <p>Let’s start with a hypothetical example. Say you would like to perform a hypothetical sequence of operations on a hypothetical data frame <code>x</code> using hypothetical functions <code>f()</code>, <code>g()</code>, and <code>h()</code>:</p>
@@ -3669,7 +3677,7 @@ NA
 </div>
 </p>
 </details>
-<h3 id="functions">Functions</h3>
+<h2 id="functions">Functions</h2>
 <p>functions include:</p>
 <ol type="1">
 <li><p>Pick variables by their names (<code>select()</code>).</p></li>
@@ -3680,7 +3688,7 @@ NA
 <li><p><code>arrange()</code> its rows. Sorting rows.</p></li>
 <li><p><code>join()</code> it with another data frame by matching along a “key” variable. In other words, merge these two data frames together. This is similar to what we saw in Module 1.</p></li>
 </ol>
-<h4 id="filter">Filter</h4>
+<h3 id="filter">filter</h3>
 <p>The <code>filter()</code> function here works much like the “Filter” option in Microsoft Excel; it allows you to specify criteria about the values of a variable in your dataset and then filters out only the rows that match that criteria.</p>
 <p><em>Note: not including the select function is similar to including SELECT * in SQL. We select everything.</em></p>
 <div class="layout-chunk" data-layout="l-body">
@@ -22082,7 +22090,7 @@ Finland
 </div>
 </p>
 </details>
-<h4 id="summarize">Summarize</h4>
+<h3 id="summarize">summarize</h3>
 <p>Summary statistics are single numerical values that summarize a large number of values. Commonly known examples of summary statistics include the mean (also called the average) and the median (the middle value). Other examples of summary statistics that might not immediately come to mind include the <em>sum</em>, the smallest value also called the <em>minimum</em>, the largest value also called the <em>maximum</em>, and the <em>standard deviation</em>.</p>
 <p>Within summarize here are a few examples of functions that can be used:</p>
 <ul>
@@ -22139,8 +22147,8 @@ Finland
 <p>More on mutate later</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='op'>?</span><span class='va'>gsub</span>
-<span class='op'>?</span><span class='va'>as.numeric</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#?gsub</span>
+<span class='co'>#?as.numeric</span>
 
 <span class='va'>Payroll2</span><span class='op'>&lt;-</span><span class='va'>Payroll</span><span class='op'>%&gt;%</span>
   <span class='co'>#nested formula: gsub in as.numeric</span>
@@ -22211,7 +22219,1578 @@ Finland
 </div>
 </p>
 </details>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Does the following code work?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>summary_payroll</span><span class='op'>&lt;-</span><span class='va'>Payroll4</span><span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>mean_overtimepay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Overtime_Pay</span>,na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>std_overtimepay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>Overtime_Pay</span>,na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>summary_payroll</span>
+</code></pre>
+</div>
+</div>
+<p>Why?</p>
+<h3 id="group_by">group_by</h3>
+<p>Say instead of a single mean of Overtime_Pay for the company, you would like mean overtime pay for each department. In other words, we would like to compute the mean overtime pay split by department. We can do this by “grouping” Overtime_Pay observations by the values of another variable, in this case by the values of the variable <code>Dept</code>. Run the following code:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>summary_dept_payroll</span><span class='op'>&lt;-</span><span class='va'>Payroll4</span><span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Dept</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>mean_overtimepay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Overtime_Pay</span>,na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'>#the code below makes the table look nice in rmarkdown</span>
+<span class='co'>#it uses the knitr package and the kableExtra package</span>
+<span class='co'>#If you are just copying code to your RStudio then Just use:</span>
+<span class='co'># summary_dept_payroll</span>
+
+<span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>summary_dept_payroll</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>kableExtra</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/kableExtra/man/kable_styling.html'>kable_styling</a></span><span class='op'>(</span><span class='st'>"striped"</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>kableExtra</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/kableExtra/man/scroll_box.html'>scroll_box</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='st'>"100%"</span>,height<span class='op'>=</span><span class='st'>"300px"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Dept
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+mean_overtimepay
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1001
+</td>
+<td style="text-align:right;">
+5049.304
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1002
+</td>
+<td style="text-align:right;">
+11187.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1004
+</td>
+<td style="text-align:right;">
+12843.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1005
+</td>
+<td style="text-align:right;">
+18874.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1600
+</td>
+<td style="text-align:right;">
+16184.500
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+8129.800
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2127
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2150
+</td>
+<td style="text-align:right;">
+16144.923
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2300
+</td>
+<td style="text-align:right;">
+5406.500
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2480
+</td>
+<td style="text-align:right;">
+11255.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2500
+</td>
+<td style="text-align:right;">
+2927.833
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2560
+</td>
+<td style="text-align:right;">
+5571.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2976
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3000
+</td>
+<td style="text-align:right;">
+5703.458
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3152
+</td>
+<td style="text-align:right;">
+7938.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3220
+</td>
+<td style="text-align:right;">
+5493.750
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3550
+</td>
+<td style="text-align:right;">
+2898.500
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3934
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4000
+</td>
+<td style="text-align:right;">
+6589.222
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5000
+</td>
+<td style="text-align:right;">
+5118.833
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6000
+</td>
+<td style="text-align:right;">
+7498.500
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8000
+</td>
+<td style="text-align:right;">
+14066.000
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<aside>
+<p>I include the kable/kableExtra code here to show you how flexible RMarkdown can be, but it is not necessary. If it confuses you, then ignore it.</p>
+</aside>
+<p>It is important to note that the <code>group_by()</code> function doesn’t change data frames by itself. Rather it changes the <em>meta-data</em>, or data about the data, specifically the grouping structure. It is only after we apply the <code>summarize()</code> function that the data frame changes.</p>
+<h4 id="using-summarize-to-make-more-than-one-variable">Using summarize to make more than one variable</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>summary_dept_payroll</span><span class='op'>&lt;-</span><span class='va'>Payroll4</span><span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Dept</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>mean_overtimepay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Overtime_Pay</span>,na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>,
+            numberofemployees<span class='op'>=</span><span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>summary_dept_payroll</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 23 x 3
+    Dept mean_overtimepay numberofemployees
+   &lt;dbl&gt;            &lt;dbl&gt;             &lt;int&gt;
+ 1  1001            5049.                29
+ 2  1002           11187                  2
+ 3  1004           12843                  2
+ 4  1005           18874                  1
+ 5  1600           16184.                 4
+ 6  2000            8130.                56
+ 7  2127               0                  5
+ 8  2150           16145.                13
+ 9  2300            5406.                 4
+10  2480           11255                  2
+# ... with 13 more rows</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://yihui.org/knitr/'>knitr</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>summary_dept_payroll</span><span class='op'>)</span>
+</code></pre>
+</div>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+Dept
+</th>
+<th style="text-align:right;">
+mean_overtimepay
+</th>
+<th style="text-align:right;">
+numberofemployees
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1001
+</td>
+<td style="text-align:right;">
+5049.304
+</td>
+<td style="text-align:right;">
+29
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1002
+</td>
+<td style="text-align:right;">
+11187.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1004
+</td>
+<td style="text-align:right;">
+12843.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1005
+</td>
+<td style="text-align:right;">
+18874.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1600
+</td>
+<td style="text-align:right;">
+16184.500
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+8129.800
+</td>
+<td style="text-align:right;">
+56
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2127
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2150
+</td>
+<td style="text-align:right;">
+16144.923
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2300
+</td>
+<td style="text-align:right;">
+5406.500
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2480
+</td>
+<td style="text-align:right;">
+11255.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2500
+</td>
+<td style="text-align:right;">
+2927.833
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2560
+</td>
+<td style="text-align:right;">
+5571.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2976
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3000
+</td>
+<td style="text-align:right;">
+5703.458
+</td>
+<td style="text-align:right;">
+24
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3152
+</td>
+<td style="text-align:right;">
+7938.000
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3220
+</td>
+<td style="text-align:right;">
+5493.750
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3550
+</td>
+<td style="text-align:right;">
+2898.500
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3934
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4000
+</td>
+<td style="text-align:right;">
+6589.222
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5000
+</td>
+<td style="text-align:right;">
+5118.833
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6000
+</td>
+<td style="text-align:right;">
+7498.500
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8000
+</td>
+<td style="text-align:right;">
+14066.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="group-by-more-than-one-variable">Group by more than one variable</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>summary_dept_st_payroll</span><span class='op'>&lt;-</span><span class='va'>Payroll4</span><span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Dept</span>,<span class='va'>State</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>mean_overtimepay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Overtime_Pay</span>,na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>,
+            numberofemployees<span class='op'>=</span><span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:300px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Dept
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+State
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+mean_overtimepay
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+numberofemployees
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1001
+</td>
+<td style="text-align:left;">
+CT
+</td>
+<td style="text-align:right;">
+5944.455
+</td>
+<td style="text-align:right;">
+17
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1001
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+953.000
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1001
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+9005.400
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1001
+</td>
+<td style="text-align:left;">
+WA
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1002
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+12635.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1002
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+9739.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1004
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+12843.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1005
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+18874.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1600
+</td>
+<td style="text-align:left;">
+CT
+</td>
+<td style="text-align:right;">
+16184.500
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+CT
+</td>
+<td style="text-align:right;">
+2089.167
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+9006.116
+</td>
+<td style="text-align:right;">
+43
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+NT
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+6640.667
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+WA
+</td>
+<td style="text-align:right;">
+13709.500
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2127
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2127
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2150
+</td>
+<td style="text-align:left;">
+CT
+</td>
+<td style="text-align:right;">
+10096.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2150
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+17254.400
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2150
+</td>
+<td style="text-align:left;">
+WA
+</td>
+<td style="text-align:right;">
+13622.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2300
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+5406.500
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2480
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+11255.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2500
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+2927.833
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2560
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+5571.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2976
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3000
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3000
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+6221.955
+</td>
+<td style="text-align:right;">
+22
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3152
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+7938.000
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3220
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+5493.750
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3550
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+2898.500
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3934
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4000
+</td>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+6589.222
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5000
+</td>
+<td style="text-align:left;">
+CT
+</td>
+<td style="text-align:right;">
+5118.833
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6000
+</td>
+<td style="text-align:left;">
+WA
+</td>
+<td style="text-align:right;">
+7498.500
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7000
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8000
+</td>
+<td style="text-align:left;">
+NJ
+</td>
+<td style="text-align:right;">
+14066.000
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Will the following work?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>summary_dept_st_payroll</span><span class='op'>&lt;-</span><span class='va'>Payroll4</span><span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Dept</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>State</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>mean_overtimepay<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Overtime_Pay</span>,na.rm<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>,
+            numberofemployees<span class='op'>=</span><span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Why?</p>
+<h1 id="exercise-2">Exercise #2</h1>
+<p>Continue the Rmd file from <a href="#exercise-1">Exercise #1</a>. Include the <strong>question</strong>, <strong>code</strong>, and the <strong>results</strong>. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work.</p>
+<ol type="1">
+<li><p>What is the mean invoice total for the USA?</p>
+<details>
+<summary>
+<p>Result 🥴</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+mean_total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+5.747912
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+</details></li>
+<li><p>What is the mean invoice total for the USA by State?</p>
+<details>
+<summary>
+<p>Result 😉</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+BillingState
+</th>
+<th style="text-align:right;">
+mean_total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+AZ
+</td>
+<td style="text-align:right;">
+5.374286
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:right;">
+5.517143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FL
+</td>
+<td style="text-align:right;">
+5.660000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IL
+</td>
+<td style="text-align:right;">
+6.231429
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MA
+</td>
+<td style="text-align:right;">
+5.374286
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NV
+</td>
+<td style="text-align:right;">
+5.374286
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:right;">
+5.374286
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TX
+</td>
+<td style="text-align:right;">
+6.802857
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UT
+</td>
+<td style="text-align:right;">
+6.231429
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WA
+</td>
+<td style="text-align:right;">
+5.660000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WI
+</td>
+<td style="text-align:right;">
+6.088571
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+</details></li>
+<li><p>What is the mean invoice total for the USA by State and City?</p>
+<details>
+<summary>
+<p>Result 😜</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+BillingState
+</th>
+<th style="text-align:left;">
+BillingCity
+</th>
+<th style="text-align:right;">
+mean_total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+AZ
+</td>
+<td style="text-align:left;">
+Tucson
+</td>
+<td style="text-align:right;">
+5.374286
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:left;">
+Cupertino
+</td>
+<td style="text-align:right;">
+5.517143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:left;">
+Mountain View
+</td>
+<td style="text-align:right;">
+5.517143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FL
+</td>
+<td style="text-align:left;">
+Orlando
+</td>
+<td style="text-align:right;">
+5.660000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IL
+</td>
+<td style="text-align:left;">
+Chicago
+</td>
+<td style="text-align:right;">
+6.231429
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MA
+</td>
+<td style="text-align:left;">
+Boston
+</td>
+<td style="text-align:right;">
+5.374286
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NV
+</td>
+<td style="text-align:left;">
+Reno
+</td>
+<td style="text-align:right;">
+5.374286
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:left;">
+New York
+</td>
+<td style="text-align:right;">
+5.374286
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TX
+</td>
+<td style="text-align:left;">
+Fort Worth
+</td>
+<td style="text-align:right;">
+6.802857
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UT
+</td>
+<td style="text-align:left;">
+Salt Lake City
+</td>
+<td style="text-align:right;">
+6.231429
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WA
+</td>
+<td style="text-align:left;">
+Redmond
+</td>
+<td style="text-align:right;">
+5.660000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WI
+</td>
+<td style="text-align:left;">
+Madison
+</td>
+<td style="text-align:right;">
+6.088571
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+</details></li>
+<li><p>What is the mean invoice total and number of invoices for the USA by State and City?</p>
+<details>
+<summary>
+<p>Result 😨</p>
+</summary>
+<p>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+BillingState
+</th>
+<th style="text-align:left;">
+BillingCity
+</th>
+<th style="text-align:right;">
+mean_total
+</th>
+<th style="text-align:right;">
+num_invoices
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+AZ
+</td>
+<td style="text-align:left;">
+Tucson
+</td>
+<td style="text-align:right;">
+5.374286
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:left;">
+Cupertino
+</td>
+<td style="text-align:right;">
+5.517143
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:left;">
+Mountain View
+</td>
+<td style="text-align:right;">
+5.517143
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FL
+</td>
+<td style="text-align:left;">
+Orlando
+</td>
+<td style="text-align:right;">
+5.660000
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IL
+</td>
+<td style="text-align:left;">
+Chicago
+</td>
+<td style="text-align:right;">
+6.231429
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MA
+</td>
+<td style="text-align:left;">
+Boston
+</td>
+<td style="text-align:right;">
+5.374286
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NV
+</td>
+<td style="text-align:left;">
+Reno
+</td>
+<td style="text-align:right;">
+5.374286
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NY
+</td>
+<td style="text-align:left;">
+New York
+</td>
+<td style="text-align:right;">
+5.374286
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TX
+</td>
+<td style="text-align:left;">
+Fort Worth
+</td>
+<td style="text-align:right;">
+6.802857
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UT
+</td>
+<td style="text-align:left;">
+Salt Lake City
+</td>
+<td style="text-align:right;">
+6.231429
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WA
+</td>
+<td style="text-align:left;">
+Redmond
+</td>
+<td style="text-align:right;">
+5.660000
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WI
+</td>
+<td style="text-align:left;">
+Madison
+</td>
+<td style="text-align:right;">
+6.088571
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+</details>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+</ol>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -380,7 +380,7 @@ dplyr package is loaded whenever you run library(tidyverse)
 | fix(object)                | edit an object in place                                                   |
 +----------------------------+---------------------------------------------------------------------------+
 
-## Dplyr
+# [Dplyr](https://dplyr.tidyverse.org/)
 
 ### Pipes %\>%
 
@@ -447,7 +447,7 @@ knitr::kable(USA_Customer,caption = "The resulting data")%>%
 
 </details>
 
-### Functions
+## Functions
 
 functions include:
 
@@ -465,7 +465,7 @@ functions include:
 
 7.  `join()` it with another data frame by matching along a "key" variable. In other words, merge these two data frames together. This is similar to what we saw in Module 1.
 
-#### Filter
+### filter
 
 The `filter()` function here works much like the "Filter" option in Microsoft Excel; it allows you to specify criteria about the values of a variable in your dataset and then filters out only the rows that match that criteria.
 
@@ -566,7 +566,7 @@ knitr::kable(Customer %>%
 
 </details>
 
-# Exercise \#1
+# Exercise \#1 {#exercise-1}
 
 In an Rmd file answer the following questions. Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work. *note: in order to keep the output of tables to a minimum use the function* `head(table_name, 5)` *to include the first 5 results in the table.*
 
@@ -667,7 +667,7 @@ knitr::kable(Invoice%>%
 
 </details>
 
-#### Summarize
+### summarize
 
 Summary statistics are single numerical values that summarize a large number of values. Commonly known examples of summary statistics include the mean (also called the average) and the median (the middle value). Other examples of summary statistics that might not immediately come to mind include the *sum*, the smallest value also called the *minimum*, the largest value also called the *maximum*, and the *standard deviation*.
 
@@ -720,8 +720,8 @@ Before we can convert the character to a number we need to remove the commas... 
 More on mutate later
 
 ```{r, echo=TRUE}
-?gsub
-?as.numeric
+#?gsub
+#?as.numeric
 
 Payroll2<-Payroll%>%
   #nested formula: gsub in as.numeric
@@ -778,3 +778,180 @@ summary_payroll
 </p>
 
 </details>
+
+Does the following code work?
+
+```{r, echo=TRUE,eval=FALSE}
+summary_payroll<-Payroll4%>%
+  summarise(mean_overtimepay=mean(Overtime_Pay,na.rm=TRUE))%>%
+  summarise(std_overtimepay=sd(Overtime_Pay,na.rm=TRUE))
+
+summary_payroll
+```
+
+Why?
+
+### group_by
+
+Say instead of a single mean of Overtime_Pay for the company, you would like mean overtime pay for each department. In other words, we would like to compute the mean overtime pay split by department. We can do this by "grouping" Overtime_Pay observations by the values of another variable, in this case by the values of the variable `Dept`. Run the following code:
+
+```{r summarize4, echo=TRUE}
+
+summary_dept_payroll<-Payroll4%>%
+  group_by(Dept)%>%
+  summarise(mean_overtimepay=mean(Overtime_Pay,na.rm=TRUE))
+
+#the code below makes the table look nice in rmarkdown
+#it uses the knitr package and the kableExtra package
+#If you are just copying code to your RStudio then Just use:
+# summary_dept_payroll
+
+knitr::kable(summary_dept_payroll)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+```
+
+<aside>
+
+I include the kable/kableExtra code here to show you how flexible RMarkdown can be, but it is not necessary. If it confuses you, then ignore it.
+
+</aside>
+
+It is important to note that the `group_by()` function doesn't change data frames by itself. Rather it changes the *meta-data*, or data about the data, specifically the grouping structure. It is only after we apply the `summarize()` function that the data frame changes.
+
+#### Using summarize to make more than one variable
+
+```{r summarize5,echo=TRUE}
+summary_dept_payroll<-Payroll4%>%
+  group_by(Dept)%>%
+  summarise(mean_overtimepay=mean(Overtime_Pay,na.rm=TRUE),
+            numberofemployees=n())
+
+summary_dept_payroll
+library(knitr)
+kable(summary_dept_payroll)
+```
+
+#### Group by more than one variable
+
+```{r summarize6,echo=TRUE}
+summary_dept_st_payroll<-Payroll4%>%
+  group_by(Dept,State)%>%
+  summarise(mean_overtimepay=mean(Overtime_Pay,na.rm=TRUE),
+            numberofemployees=n())
+```
+
+```{r}
+
+knitr::kable(summary_dept_st_payroll)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+```
+
+Will the following work?
+
+```{r summarize7,echo=TRUE,eval=FALSE}
+summary_dept_st_payroll<-Payroll4%>%
+  group_by(Dept)%>%
+  group_by(State)%>%
+  summarise(mean_overtimepay=mean(Overtime_Pay,na.rm=TRUE),
+            numberofemployees=n())
+```
+
+Why?
+
+# Exercise \#2
+
+Continue the Rmd file from [Exercise \#1](#exercise-1). Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work.
+
+1.  What is the mean invoice total for the USA?
+
+    <details>
+
+    <summary>
+
+    Result 🥴
+
+    </summary>
+
+    <p>
+
+    ```{r}
+    knitr::kable(Invoice%>%
+                   filter(BillingCountry=="USA")%>%
+                   summarise(mean_total=mean(Total,na.rm=TRUE)))
+    ```
+
+    </p>
+
+    </details>
+
+2.  What is the mean invoice total for the USA by State?
+
+    <details>
+
+    <summary>
+
+    Result 😉
+
+    </summary>
+
+    <p>
+
+    ```{r}
+    knitr::kable(Invoice%>%
+                   filter(BillingCountry=="USA")%>%
+                   group_by(BillingState)%>%
+                   summarise(mean_total=mean(Total,na.rm=TRUE)))
+    ```
+
+    </p>
+
+    </details>
+
+3.  What is the mean invoice total for the USA by State and City?
+
+    <details>
+
+    <summary>
+
+    Result 😜
+
+    </summary>
+
+    <p>
+
+    ```{r}
+    knitr::kable(Invoice%>%
+               filter(BillingCountry=="USA")%>%
+               group_by(BillingState,BillingCity)%>%
+               summarise(mean_total=mean(Total,na.rm=TRUE)))
+    ```
+
+    </p>
+
+    </details>
+
+4.  What is the mean invoice total and number of invoices for the USA by State and City?
+
+    <details>
+
+    <summary>
+
+    Result 😨
+
+    </summary>
+
+    <p>
+
+    ```{r}
+    knitr::kable(Invoice%>%
+               filter(BillingCountry=="USA")%>%
+               group_by(BillingState,BillingCity)%>%
+               summarise(mean_total=mean(Total,na.rm=TRUE),
+                         num_invoices=n()))
+    ```
+
+    </p>
+
+    </details>
