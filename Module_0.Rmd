@@ -171,11 +171,11 @@ Lets look at some examples (in no particular order)
 
 [**Deloitte**](https://www2.deloitte.com/us/en/pages/deloitte-analytics/articles/business-analytics-case-studies.html)
 
-[**KPMG**](%5BData%20&%20Analytics%20(kpmg.us)%5D(https://advisory.kpmg.us/services/data-analytics.html))
+[**KPMG**](https://advisory.kpmg.us/services/data-analytics.html)
 
-[**EY**](%5BBig%20data%20and%20analytics%20--%20Our%20latest%20thinking%20%7C%20EY%20-%20Global%5D(https://www.ey.com/en_gl/big-data-analytics))
+[**EY**](https://www.ey.com/en_gl/big-data-analytics)
 
-[**PWC**](%5BData%20and%20analytics%20services:%20PwC%5D(https://www.pwc.com/us/en/services/consulting/analytics.html))
+[**PWC**](https://www.pwc.com/us/en/services/consulting/analytics.html)
 
 ## How Can Data Analytics be Helpful to Accountants? {#how-can-data-analytics-be-helpful-to-accountants}
 
@@ -249,7 +249,7 @@ Download DB Browser for SQLite from their [website](https://sqlitebrowser.org/dl
 
 Select the appropriate download for your respective operating system **Windows** or **MacOS** (which you should know given the steps above).
 
-### MSSTATE ITS Provides Microsoft Excel if you do not have it. I believe they have it available for windows/macOS 
+### MSSTATE ITS Provides Microsoft Excel if you do not have it. I believe they have it available for windows/macOS
 
 ## Layout of Technology
 
