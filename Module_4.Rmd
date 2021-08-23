@@ -225,23 +225,15 @@ dplyr package is loaded whenever you run library(tidyverse)
 
 ### Arithmetic Operators
 
-+--------------+---------------------------------+
-| **Operator** | **Description**                 |
-+:=============+:================================+
-| `+`          | addition                        |
-+--------------+---------------------------------+
-| `-`          | subtraction                     |
-+--------------+---------------------------------+
-| `*`          | multiplication                  |
-+--------------+---------------------------------+
-| `/`          | division                        |
-+--------------+---------------------------------+
-| \^ or \*\*   | exponentiation                  |
-+--------------+---------------------------------+
-| x%%y         | modulus (x mod y) 5%%2 is 1     |
-+--------------+---------------------------------+
-| x%/%y        | integer division 5%/%2 is 2     |
-+--------------+---------------------------------+
+| **Operator** | **Description**             |
+|:-------------|:----------------------------|
+| `+`          | addition                    |
+| `-`          | subtraction                 |
+| `*`          | multiplication              |
+| `/`          | division                    |
+| \^ or \*\*   | exponentiation              |
+| x%%y         | modulus (x mod y) 5%%2 is 1 |
+| x%/%y        | integer division 5%/%2 is 2 |
 
 ### Logical Operators {#logical-operators}
 
@@ -955,3 +947,9 @@ Continue the Rmd file from [Exercise \#1](#exercise-1). Include the **question**
     </p>
 
     </details>
+
+### Mutate
+
+Besides selecting sets of existing columns, it's often useful to add new columns that are functions of existing columns. That's the job of `mutate()`.
+
+`mutate()` always adds new columns at the end of your dataset.
