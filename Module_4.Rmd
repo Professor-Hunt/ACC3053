@@ -955,3 +955,9 @@ Continue the Rmd file from [Exercise \#1](#exercise-1). Include the **question**
     </p>
 
     </details>
+
+### Mutate
+
+Besides selecting sets of existing columns, it's often useful to add new columns that are functions of existing columns. That's the job of `mutate()`.
+
+`mutate()` always adds new columns at the end of your dataset.
