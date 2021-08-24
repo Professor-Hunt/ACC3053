@@ -1123,6 +1123,16 @@ Continue the Rmd file from [Exercise \#1](#exercise-1) and [Exercise \#2]. Inclu
 
 1.  With the AnnualCompanyData dataset construct a dataset that contains CompanyName, FiscalYear, CurrentAssets, TotalInventory, CurrentLiab AND the necessary variables to construct Debt ratio. Using mutate construct AcidTest_Ratio, Current_Ratio, and Debt_Ratio.
 
+    <details>
+
+    <summary>
+
+    Results 💥
+
+    </summary>
+
+    <p>
+
     ```{r}
 
     Exercise.M4.3.1<-AnnualCompanyData%>%
@@ -1136,7 +1146,21 @@ Continue the Rmd file from [Exercise \#1](#exercise-1) and [Exercise \#2]. Inclu
       kableExtra::scroll_box(width = "100%",height="300px")
     ```
 
+    </p>
+
+    </details>
+
 2.  Using the dataset in the previous question. Compute the summary statistics for Debt_Ratio and discuss what the summary stats tell you.
+
+    <details>
+
+    <summary>
+
+    Results 🔥
+
+    </summary>
+
+    <p>
 
     ```{r}
 
@@ -1160,7 +1184,21 @@ Continue the Rmd file from [Exercise \#1](#exercise-1) and [Exercise \#2]. Inclu
 
     The data above show that .....
 
+    </p>
+
+    </details>
+
 3.  With your explanation from question 2, arrange your data based on Debt_Ratio explain why you see the certain companies with high/low debt ratio.
+
+    <details>
+
+    <summary>
+
+    Results 💪
+
+    </summary>
+
+    <p>
 
     ```{r}
 
@@ -1181,7 +1219,21 @@ Continue the Rmd file from [Exercise \#1](#exercise-1) and [Exercise \#2]. Inclu
 
     The data above show that .....
 
+    </p>
+
+    </details>
+
 4.  Arrange the data based on Debt_Ratio and AcidTest_Ratio (ascending) and pick a company in the top 20 and explain why they appear there.
+
+    <details>
+
+    <summary>
+
+    Results 👋
+
+    </summary>
+
+    <p>
 
     ```{r}
 
