@@ -954,8 +954,243 @@ Besides selecting sets of existing columns, it's often useful to add new columns
 
 `mutate()` always adds new columns at the end of your dataset.
 
-```{r mutate1}
-#load data
-load(file = "data/AnnualCompanyData.Rda")
+First lets download a new dataset. This code allows you to download data directly from a website.
+
+```{r mutate1,echo=TRUE}
+#load data. 
+#curl package lets us download data from a website with the proper location
+#check the packages tab and see if you have curl
+#try following
+  #?curl
+
+library(curl)
+
+load(curl("https://raw.githubusercontent.com/Professor-Hunt/ACC3053/main/data/AnnualCompanyData.Rda"))
 
 ```
+
+Lets talk about some common financial ratios:
+
+[Current Ratio]{style="color:red;"} measures a company's ability to pay off short-term liabilities with current assets:
+
+```{=tex}
+\begin{equation}
+\mbox{Current ratio} = \frac{\mbox{Current assets}}{\mbox{Current liabilities}}
+\end{equation}
+```
+```{r CurrentRatio,echo=TRUE}
+
+Current_Ratio<-AnnualCompanyData%>%
+  select(CompanyName,FiscalYear,CurrentAssets,CurrentLiab)%>%
+  mutate(Current_Ratio=CurrentAssets/CurrentLiab)
+  
+```
+
+```{r}
+
+knitr::kable(Current_Ratio)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+#$\color{red}{\text{Current ratio}}$
+```
+
+You give it a shot.
+
+[Acid-test Ratio]{style="color:red;"} measures a company's ability to pay off short-term liabilities with quick assets:
+
+```{=tex}
+\begin{equation}
+\mbox{Acid-test ratio} = \frac{\mbox{Current assets - Inventory}}{\mbox{Current liabilities}}
+\end{equation}
+```
+Use mutate and construct the acid-test ratio.
+
+<details>
+
+<summary>
+
+Don't look 👀
+
+</summary>
+
+<p>
+
+```{r Acidtestratio,echo=TRUE}
+
+    AcidTest_Ratio<-AnnualCompanyData%>%
+      select(CompanyName,FiscalYear,CurrentAssets,TotalInventory,CurrentLiab)%>%
+      mutate(AcidTest_Ratio=(CurrentAssets-TotalInventory)/CurrentLiab)
+      
+```
+
+```{r}
+
+knitr::kable(AcidTest_Ratio)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+
+```
+
+</p>
+
+</details>
+
+Let's look at some summary statistics of the `AcidTest_Ratio` variable by considering multiple summary functions at once in the same `summarize()` code:
+
+```{r AcidSummary, echo=TRUE}
+
+AcidTest_summary <- AcidTest_Ratio %>% 
+  summarize(
+    min = min(AcidTest_Ratio, na.rm = TRUE),
+    q1 = quantile(AcidTest_Ratio, 0.25, na.rm = TRUE),
+    median = quantile(AcidTest_Ratio, 0.5, na.rm = TRUE),
+    q3 = quantile(AcidTest_Ratio, 0.75, na.rm = TRUE),
+    max = max(AcidTest_Ratio, na.rm = TRUE),
+    mean = mean(AcidTest_Ratio, na.rm = TRUE),
+    sd = sd(AcidTest_Ratio, na.rm = TRUE),
+    missing = sum(is.na(AcidTest_Ratio))
+  )
+
+AcidTest_summary
+
+```
+
+### Arrange
+
+One of the most commonly performed data wrangling tasks is to sort a data frame's rows in the alphanumeric order of one of the variables. The `dplyr` package's `arrange()` function allows us to sort/reorder a data frame's rows according to the values of the specified variable.
+
+`arrange()` works similarly to [`filter()`](https://rdrr.io/r/stats/filter.html) except that instead of selecting rows, it changes their order. It takes a data frame and a set of column names (or more complicated expressions) to order by. If you provide more than one column name, each additional column will be used to break ties in the values of preceding columns.
+
+```{r arrange1,echo=TRUE}
+
+Arranged_Acid<-AcidTest_Ratio%>%
+  arrange(AcidTest_Ratio)
+
+head(Arranged_Acid,5)
+```
+
+[Acid Test Explanation](https://www.investopedia.com/terms/a/acidtest.asp)
+
+Use `desc()` to re-order by a column in descending order:
+
+Before we look at desc ...what companies do we expect to see with the highest Acid Test?
+
+<details>
+
+<summary>
+
+We just read it 📖
+
+</summary>
+
+<p>
+
+```{r arrange2,echo=TRUE}
+
+Arranged_Acid_desc<-AcidTest_Ratio%>%
+  arrange(desc(AcidTest_Ratio))
+
+head(Arranged_Acid_desc,5)
+```
+
+</p>
+
+</details>
+
+As mentioned above we can arrange the data a based multiple columns.
+
+```{r arrange3,echo=TRUE}
+
+    Multple_Arrange<-AnnualCompanyData%>%
+      select(CompanyName,FiscalYear,CurrentAssets,TotalInventory,CurrentLiab)%>%
+      mutate(AcidTest_Ratio=(CurrentAssets-TotalInventory)/CurrentLiab,
+             Current_Ratio=CurrentAssets/CurrentLiab)%>%
+      arrange(desc(AcidTest_Ratio,Current_Ratio))
+      
+```
+
+```{r}
+
+knitr::kable(Multple_Arrange)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+
+```
+
+# Exercise \#3
+
+Continue the Rmd file from [Exercise \#1](#exercise-1) and [Exercise \#2]. Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work.
+
+1.  With the AnnualCompanyData dataset construct a dataset that contains CompanyName, FiscalYear, CurrentAssets, TotalInventory, CurrentLiab AND the necessary variables to construct Debt ratio. Using mutate construct AcidTest_Ratio, Current_Ratio, and Debt_Ratio.
+
+    ```{r}
+
+    Exercise.M4.3.1<-AnnualCompanyData%>%
+          select(CompanyName,FiscalYear,CurrentAssets,TotalInventory,CurrentLiab,TotalLiab,TotalAssets)%>%
+          mutate(AcidTest_Ratio=(CurrentAssets-TotalInventory)/CurrentLiab,
+                 Current_Ratio=CurrentAssets/CurrentLiab,
+                 Debt_Ratio=TotalLiab/TotalAssets)
+
+    knitr::kable(Exercise.M4.3.1)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+    ```
+
+2.  Using the dataset in the previous question. Compute the summary statistics for Debt_Ratio and discuss what the summary stats tell you.
+
+    ```{r}
+
+    Exercise.M4.3.2 <- Exercise.M4.3.1 %>% 
+      summarize(
+        min = min(Debt_Ratio, na.rm = TRUE),
+        q1 = quantile(Debt_Ratio, 0.25, na.rm = TRUE),
+        median = quantile(Debt_Ratio, 0.5, na.rm = TRUE),
+        q3 = quantile(Debt_Ratio, 0.75, na.rm = TRUE),
+        max = max(Debt_Ratio, na.rm = TRUE),
+        mean = mean(Debt_Ratio, na.rm = TRUE),
+        sd = sd(Debt_Ratio, na.rm = TRUE),
+        missing = sum(is.na(Debt_Ratio))
+      )
+
+
+    knitr::kable(Exercise.M4.3.2)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="100px")
+    ```
+
+    The data above show that .....
+
+3.  With your explanation from question 2, arrange your data based on Debt_Ratio explain why you see the certain companies with high/low debt ratio.
+
+    ```{r}
+
+    Exercise.M4.3.3.A<-Exercise.M4.3.1%>%
+      arrange(Debt_Ratio)
+
+    knitr::kable(Exercise.M4.3.3.A)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+
+    Exercise.M4.3.3.B<-Exercise.M4.3.1%>%
+      arrange(desc(Debt_Ratio))
+
+    knitr::kable(Exercise.M4.3.3.B)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+    ```
+
+    The data above show that .....
+
+4.  Arrange the data based on Debt_Ratio and AcidTest_Ratio (ascending) and pick a company in the top 20 and explain why they appear there.
+
+    ```{r}
+
+    Exercise.M4.3.4<-Exercise.M4.3.1%>%
+      arrange(Debt_Ratio,AcidTest_Ratio)
+
+    knitr::kable(Exercise.M4.3.4)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+    ```
+
+    Blah Blah company has low ....
