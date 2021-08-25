@@ -2475,7 +2475,10 @@ Lagniappe Material
 <li><a href="#mutate">Mutate</a></li>
 <li><a href="#arrange">Arrange</a></li>
 </ul></li>
-<li><a href="#exercise-3">Exercise #3</a></li>
+<li><a href="#exercise-3">Exercise #3</a>
+<ul>
+<li><a href="#join">Join</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -210593,9 +210596,329 @@ NA
 </table>
 </div>
 </div>
-<p>Blah Blah company has low ….</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div></li>
+<p>Blah Blah company has low ….</p></li>
 </ol>
+<hr />
+<h3 id="join">Join</h3>
+<p>It’s rare that a data analysis involves only a single table of data. Typically you have many tables of data, and you must combine them to answer the questions that you’re interested in. Collectively, multiple tables of data are called <strong>relational data</strong> because it is the relations, not just the individual datasets, that are important.</p>
+<p>Relations are always defined between a pair of tables. All other relations are built up from this simple idea: the relations of three or more tables are always a property of the relations between each pair. Sometimes both elements of a pair can be the same table! This is needed if, for example, you have a table of people, and each person has a reference to their parents.</p>
+<p>To work with relational data you need verbs that work with pairs of tables. There are three families of verbs designed to work with relational data:</p>
+<ul>
+<li><p><strong>Mutating joins</strong>, which add new variables to one data frame from matching observations in another.</p></li>
+<li><p><strong>Filtering joins</strong>, which filter observations from one data frame based on whether or not they match an observation in the other table.</p></li>
+<li><p><strong>Set operations</strong>, which treat observations as if they were set elements.</p></li>
+</ul>
+<p>The most common place to find relational data is in a <em>relational</em> database management system (or RDBMS), a term that encompasses almost all modern databases. If you’ve used a database before, you’ve almost certainly used SQL. If so, you should find the concepts in this chapter familiar, although their expression in dplyr is a little different. Generally, dplyr is a little easier to use than SQL because dplyr is specialized to do data analysis: it makes common data analysis operations easier, at the expense of making it more difficult to do other things that aren’t commonly needed for data analysis.</p>
+<p>Lets get some data:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r">    <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dbi.r-dbi.org'>DBI</a></span><span class='op'>)</span>
+    <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rsqlite.r-dbi.org'>RSQLite</a></span><span class='op'>)</span>
+    <span class='va'>db</span> <span class='op'>=</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbConnect.html'>dbConnect</a></span><span class='op'>(</span><span class='fu'>RSQLite</span><span class='fu'>::</span><span class='fu'><a href='https://rsqlite.r-dbi.org/reference/SQLite.html'>SQLite</a></span><span class='op'>(</span><span class='op'>)</span>, dbname <span class='op'>=</span> <span class='st'>"data/03-Data-file-classroom-exercise-Chinook_Sqlite.sqlite"</span><span class='op'>)</span>
+
+    <span class='co'>#list tables</span>
+    <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbListTables.html'>dbListTables</a></span><span class='op'>(</span><span class='va'>db</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;Album&quot;         &quot;Artist&quot;        &quot;Customer&quot;      &quot;Employee&quot;     
+ [5] &quot;Genre&quot;         &quot;Invoice&quot;       &quot;InvoiceLine&quot;   &quot;MediaType&quot;    
+ [9] &quot;Playlist&quot;      &quot;PlaylistTrack&quot; &quot;Track&quot;         &quot;invoice_high&quot; </code></pre>
+</div>
+<p><img src="images/Chinook_database.png" style="width:100.0%" /></p>
+<p>Import some data</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Track</span><span class='op'>&lt;-</span><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbReadTable.html'>dbReadTable</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"Track"</span><span class='op'>)</span>
+
+<span class='va'>InvoiceLine</span><span class='op'>&lt;-</span><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbReadTable.html'>dbReadTable</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"InvoiceLine"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>The variables used to connect each pair of tables are called <strong>keys</strong>. A key is a variable (or set of variables) that uniquely identifies an observation. In simple cases, a single variable is sufficient to identify an observation. For track, each song is uniquely identified by its <code>TrackId</code>. In other cases, multiple variables may be needed. For example <code>CompanyName</code> and <code>FiscalYear</code> like in our financial dataset (<em>AnnualCompanyData</em>).</p>
+<p>There are two types of keys:</p>
+<ul>
+<li><p>A <strong>primary key</strong> uniquely identifies an observation in its own table. For example, <code>Track$TrackId</code> is a primary key because it uniquely identifies each song in the <code>Track</code> table.</p></li>
+<li><p>A <strong>foreign key</strong> uniquely identifies an observation in another table. For example, <code>InvoiceLine$TrackId</code> is a foreign key because it appears in the <code>Track</code> table where it matches each track ID to a unique song.</p></li>
+</ul>
+<p>A variable can be both a primary key <em>and</em> a foreign key.</p>
+<p>Once you’ve identified the primary keys in your tables, it’s good practice to verify that they do indeed uniquely identify each observation. One way to do that is to <code>count()</code> the primary keys and look for entries where <code>n</code> is greater than one:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Track</span><span class='op'>%&gt;%</span>
+  <span class='fu'>count</span><span class='op'>(</span><span class='va'>TrackId</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>&gt;</span><span class='fl'>1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TrackId n      
+&lt;0 rows&gt; (or 0-length row.names)</code></pre>
+</div>
+<p>So, no instances where TrackId appears more than once. Lets look at TrackId as a foreign key in the InvoiceLine dataset.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>InvoiceLine</span><span class='op'>%&gt;%</span>
+  <span class='fu'>count</span><span class='op'>(</span><span class='va'>TrackId</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>&gt;</span><span class='fl'>1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>    TrackId n
+1         2 2
+2         8 2
+3         9 2
+4        20 2
+5        32 2
+6        48 2
+7        66 2
+8        84 2
+9       161 2
+10      162 2
+11      171 2
+12      175 2
+13      184 2
+14      198 2
+15      207 2
+16      211 2
+17      217 2
+18      229 2
+19      234 2
+20      240 2
+21      241 2
+22      252 2
+23      264 2
+24      280 2
+25      298 2
+26      316 2
+27      393 2
+28      394 2
+29      403 2
+30      407 2
+31      416 2
+32      430 2
+33      439 2
+34      443 2
+35      449 2
+36      461 2
+37      466 2
+38      472 2
+39      473 2
+40      484 2
+41      496 2
+42      512 2
+43      530 2
+44      548 2
+45      625 2
+46      626 2
+47      635 2
+48      639 2
+49      648 2
+50      662 2
+51      671 2
+52      675 2
+53      681 2
+54      693 2
+55      698 2
+56      704 2
+57      705 2
+58      716 2
+59      728 2
+60      744 2
+61      762 2
+62      780 2
+63      857 2
+64      858 2
+65      867 2
+66      871 2
+67      880 2
+68      894 2
+69      903 2
+70      907 2
+71      913 2
+72      925 2
+73      930 2
+74      936 2
+75      937 2
+76      948 2
+77      960 2
+78      976 2
+79      994 2
+80     1012 2
+81     1089 2
+82     1090 2
+83     1099 2
+84     1103 2
+85     1112 2
+86     1126 2
+87     1135 2
+88     1139 2
+89     1145 2
+90     1157 2
+91     1162 2
+92     1168 2
+93     1169 2
+94     1180 2
+95     1192 2
+96     1208 2
+97     1226 2
+98     1244 2
+99     1321 2
+100    1322 2
+101    1331 2
+102    1335 2
+103    1344 2
+104    1358 2
+105    1367 2
+106    1371 2
+107    1377 2
+108    1389 2
+109    1394 2
+110    1400 2
+111    1401 2
+112    1412 2
+113    1424 2
+114    1440 2
+115    1458 2
+116    1476 2
+117    1553 2
+118    1554 2
+119    1563 2
+120    1567 2
+121    1576 2
+122    1590 2
+123    1599 2
+124    1603 2
+125    1609 2
+126    1621 2
+127    1626 2
+128    1632 2
+129    1633 2
+130    1644 2
+131    1656 2
+132    1672 2
+133    1690 2
+134    1708 2
+135    1785 2
+136    1786 2
+137    1795 2
+138    1799 2
+139    1808 2
+140    1822 2
+141    1831 2
+142    1835 2
+143    1841 2
+144    1853 2
+145    1858 2
+146    1864 2
+147    1865 2
+148    1876 2
+149    1888 2
+150    1904 2
+151    1922 2
+152    1940 2
+153    2017 2
+154    2018 2
+155    2027 2
+156    2031 2
+157    2040 2
+158    2054 2
+159    2063 2
+160    2067 2
+161    2073 2
+162    2085 2
+163    2090 2
+164    2096 2
+165    2097 2
+166    2108 2
+167    2120 2
+168    2136 2
+169    2154 2
+170    2172 2
+171    2249 2
+172    2250 2
+173    2259 2
+174    2263 2
+175    2272 2
+176    2286 2
+177    2295 2
+178    2299 2
+179    2305 2
+180    2317 2
+181    2322 2
+182    2328 2
+183    2329 2
+184    2340 2
+185    2352 2
+186    2368 2
+187    2386 2
+188    2404 2
+189    2481 2
+190    2482 2
+191    2491 2
+192    2495 2
+193    2504 2
+194    2518 2
+195    2527 2
+196    2531 2
+197    2537 2
+198    2549 2
+199    2554 2
+200    2560 2
+201    2561 2
+202    2572 2
+203    2584 2
+204    2600 2
+205    2618 2
+206    2636 2
+207    2713 2
+208    2714 2
+209    2723 2
+210    2727 2
+211    2736 2
+212    2750 2
+213    2759 2
+214    2763 2
+215    2769 2
+216    2781 2
+217    2786 2
+218    2792 2
+219    2793 2
+220    2804 2
+221    2816 2
+222    2832 2
+223    2850 2
+224    2868 2
+225    2945 2
+226    2946 2
+227    2955 2
+228    2959 2
+229    2968 2
+230    2982 2
+231    2991 2
+232    2995 2
+233    3001 2
+234    3013 2
+235    3018 2
+236    3024 2
+237    3025 2
+238    3036 2
+239    3048 2
+240    3064 2
+241    3082 2
+242    3100 2
+243    3177 2
+244    3200 2
+245    3214 2
+246    3223 2
+247    3250 2
+248    3256 2
+249    3268 2
+250    3280 2
+251    3432 2
+252    3446 2
+253    3455 2
+254    3482 2
+255    3488 2
+256    3500 2</code></pre>
+</div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
