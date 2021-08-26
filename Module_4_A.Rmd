@@ -1,0 +1,111 @@
+---
+title: "Module 4 Lagniappe"
+description: |
+  The extra info for module 4 is online.
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Filtering Joins
+
+Filtering joins match observations in the same way as mutating joins, but affect the observations, not the variables. There are two types:
+
+-   `semi_join(x, y)` **keeps** all observations in `x` that have a match in `y`.
+
+-   `anti_join(x, y)` **drops** all observations in `x` that have a match in `y`.
+
+Semi-joins are useful for matching filtered summary tables back to the original rows.
+
+Graphically, a semi-join looks like this:
+
+![](https://d33wubrfki0l68.cloudfront.net/028065a7f353a932d70d2dfc82bc5c5966f768ad/85a30/diagrams/join-semi.png)
+
+Only the existence of a match is important; it doesn't matter which observation is matched. This means that filtering joins never duplicate rows like mutating joins do:
+
+![](https://d33wubrfki0l68.cloudfront.net/e1d0283160251afaeca35cba216736eb995fee00/1b3cd/diagrams/join-semi-many.png)
+
+The inverse of a semi-join is an anti-join. An anti-join keeps the rows that *don't* have a match:
+
+![](https://d33wubrfki0l68.cloudfront.net/f29a85efd53a079cc84c14ba4ba6894e238c3759/c1408/diagrams/join-anti.png)
+
+Anti-joins are useful for diagnosing join mismatches.
+
+# Set Operations
+
+The final type of two-table verb are the set operations. Generally, I use these the least frequently, but they are occasionally useful when you want to break a single complex filter into simpler pieces. All these operations work with a complete row, comparing the values of every variable. These expect the `x` and `y` inputs to have the same variables, and treat the observations like sets:
+
+-   [`intersect(x, y)`](https://rdrr.io/r/base/sets.html): return only observations in both `x` and `y`.
+
+-   [`union(x, y)`](https://rdrr.io/r/base/sets.html): return unique observations in `x` and `y`.
+
+-   [`setdiff(x, y)`](https://rdrr.io/r/base/sets.html): return observations in `x`, but not in `y`.
+
+Given this simple data:
+
+```{r,echo=TRUE}
+
+library(tidyverse)
+
+df1 <- tribble(
+  ~x, ~y,
+   1,  1,
+   2,  1
+)
+df2 <- tribble(
+  ~x, ~y,
+   1,  1,
+   1,  2
+)
+
+```
+
+The four possibilities are:
+
+```{r,echo=TRUE}
+
+intersect(df1, df2)
+#> # A tibble: 1 x 2
+#>       x     y
+#>   <dbl> <dbl>
+#> 1     1     1
+
+# Note that we get 3 rows, not 4
+union(df1, df2)
+#> # A tibble: 3 x 2
+#>       x     y
+#>   <dbl> <dbl>
+#> 1     1     1
+#> 2     2     1
+#> 3     1     2
+
+setdiff(df1, df2)
+#> # A tibble: 1 x 2
+#>       x     y
+#>   <dbl> <dbl>
+#> 1     2     1
+
+setdiff(df2, df1)
+#> # A tibble: 1 x 2
+#>       x     y
+#>   <dbl> <dbl>
+#> 1     1     2
+
+```
+
+------------------------------------------------------------------------
+
+This is an important property of what's known as *normal forms* of data. The process of decomposing data frames into less redundant tables without losing information is called *normalization*. More information is available on [Wikipedia](https://en.wikipedia.org/wiki/Database_normalization).
+
+Both `dplyr` and [SQL](https://en.wikipedia.org/wiki/SQL) we mentioned in the introduction of this chapter use such *normal forms*. Given that they share such commonalities, once you learn either of these two tools, you can learn the other very easily.
+
+![Data Transformation with dplyr cheatsheet.](https://d33wubrfki0l68.cloudfront.net/6fefbc22f8ed2f4363423021f0e7b3718b2358f0/32aaa/images/cheatsheets/dplyr_cheatsheet-1.png)
+
+Another useful function is `rename()`, which as you may have guessed changes the name of variables.
+
+We can also return the top `n` values of a variable using the `top_n()` function.

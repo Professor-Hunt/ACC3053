@@ -274,59 +274,103 @@ dplyr package is loaded whenever you run library(tidyverse)
 
 ### Character Functions
 
++--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Function**                                                 | **Description**                                                                                                                                                                                       |
-|:-------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
++:=============================================================+:======================================================================================================================================================================================================+
 | substr(x, start=n1, stop=n2)                                 | Extract or replace substrings in a character vector. x \<- "abcdef", substr(x, 2, 4) is "bcd"                                                                                                         |
++--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | grep(pattern, x, ignore.case=FALSE, fixed=FALSE)             | Search for pattern in x. If fixed =FALSE then pattern is a regular expression. If fixed=TRUE then pattern is a text string. Returns matching indices. grep("A", c("b","A","c"), fixed=TRUE) returns 2 |
++--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | sub(pattern, replacement, x, ignore.case=FALSE, fixed=FALSE) | Find pattern in x and replace with replacement text. If fixed=FALSE then pattern is a regular expression. If fixed = T then pattern is a text string. sub("",".","Hello There") returns "Hello.There" |
++--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | strsplit(x, split)                                           | Split the elements of character vector x at split. strsplit("abc", "") returns 3 element vector "a","b","c"                                                                                           |
++--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | paste(..., sep="")                                           | Concatenate strings after using sep string to seperate them. paste("x",1:3,sep="") returns c("x1","x2" "x3") paste("x",1:3,sep="M") returns c("xM1","xM2" "xM3") paste("Today is", date())            |
++--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | toupper(x)                                                   | Uppercase                                                                                                                                                                                             |
++--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | tolower(x)                                                   | Lowercase                                                                                                                                                                                             |
++--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ### Statistical Functions
 
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Function**                                                                          | **Description**                                                                                                                                                                                                                                    |
-|:--------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
++:======================================================================================+:===================================================================================================================================================================================================================================================+
 | dnorm(x)                                                                              | normal density function (by default m=0 sd=1) \# plot standard normal curve x \<- pretty(c(-3,3), 30) y \<- dnorm(x) plot(x, y, type="l", xlab="Normal Deviate", ylab="Density", yaxs="i")                                                         |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | pnorm(q)                                                                              | cumulative normal probability for q (area under the normal curve to the right of q) pnorm(1.96) is 0.975                                                                                                                                           |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | qnorm(p)                                                                              | normal quantile. value at the p percentile of normal distribution qnorm(.9) is 1.28 \# 90th percentile                                                                                                                                             |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | rnorm(n, m=0, sd=1)                                                                   | n random normal deviates with mean m and standard deviation sd. \#50 random normal variates with mean=50, sd=10x \<- rnorm(50, m=50, sd=10)                                                                                                        |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | dbinom(x, size, prob), pbinom(p, size,prob), qbinom(q,size,prob), rbinom(n,size,prob) | binomial distribution where size is the sample size and prob is the probability of a heads (pi) \# prob of 0 to 5 heads of fair coin out of 10 flips dbinom(0:5, 10, .5) \# prob of 5 or less heads of fair coin out of 10 flips pbinom(5, 10, .5) |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | dpois(x, lamda), ppois(q,lamda), qpois(p,lamda), rpois(n,lamda)                       | poisson distribution with m=std=lamda \#probability of 0,1, or 2 events with lamda=4 dpois(0:2, 4) \# probability of at least 3 events with lamda=4 1- ppois(2,4)                                                                                  |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | dunif(x,min,max=1)                                                                    | uniform distribution, follows the same pattern                                                                                                                                                                                                     |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | punif(q,min=0,max=1)                                                                  | as the normal distribution above.                                                                                                                                                                                                                  |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | qunif(p,min=0,max=1)                                                                  | \#10 uniform random variates                                                                                                                                                                                                                       |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | runif(n,min=0,max=1)                                                                  | x \<- runif(10)                                                                                                                                                                                                                                    |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | mean(x,trim=0, na.rm=FALSE)                                                           | mean of object x, \# trimmed mean, removing any missing values and \# 5 percent of highest and lowest scores mx \<- mean(x,trim=.05,na.rm=TRUE)                                                                                                    |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | sd(x)                                                                                 | standard deviation of object(x). also look at var(x) for variance and mad(x) for median absolute deviation.                                                                                                                                        |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | median(x)                                                                             | median                                                                                                                                                                                                                                             |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | quantile(x)                                                                           | quantiles where x is the numeric vector whose quantiles are desired and probs is a numeric vector with probabilities in [0,1]. \# 30th and 84th percentiles of x, y \<- quantile(x, c(.3,.84))                                                     |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | range(x)                                                                              | range                                                                                                                                                                                                                                              |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | sum(x)                                                                                | sum                                                                                                                                                                                                                                                |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | diff(x,lag=1)                                                                         | lagged differences, with lag indicating which lag to use                                                                                                                                                                                           |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | min(x)                                                                                | minimum                                                                                                                                                                                                                                            |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | max(x)                                                                                | maximum                                                                                                                                                                                                                                            |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | scale(x, center=TRUE, scale=TRUE)                                                     | column center or standardize a matrix                                                                                                                                                                                                              |
++---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ### Other Functions {#other-functions}
 
++----------------------------+---------------------------------------------------------------------------+
 | **Function**               | **Description**                                                           |
-|:---------------------------|:--------------------------------------------------------------------------|
++:===========================+:==========================================================================+
 | seq(from, to, by)          | generate a sequence indices \<- seq(1,10,2) \#indices is c(1, 3, 5, 7, 9) |
++----------------------------+---------------------------------------------------------------------------+
 | rep(x,ntimes)              | repeat x n times y \<- rep(1:3, 2) \# y is c(1, 2, 3, 1, 2, 3)            |
++----------------------------+---------------------------------------------------------------------------+
 | cut(x,n)                   | divide continuous variable in factor with n levels y \<- cut(x, 5)        |
++----------------------------+---------------------------------------------------------------------------+
 | length(object)             | number of elements or components                                          |
++----------------------------+---------------------------------------------------------------------------+
 | str(object)                | structure of an object                                                    |
++----------------------------+---------------------------------------------------------------------------+
 | class(object)              | class or type of an object                                                |
++----------------------------+---------------------------------------------------------------------------+
 | names(object)              | names                                                                     |
++----------------------------+---------------------------------------------------------------------------+
 | c(object, object,...)      | combine objects into a vector                                             |
++----------------------------+---------------------------------------------------------------------------+
 | cbind(object, object,...)  | combine objects as columns                                                |
++----------------------------+---------------------------------------------------------------------------+
 | rbind(object, object,...)  | combine objects as rows                                                   |
++----------------------------+---------------------------------------------------------------------------+
 | ls()                       | list current objects                                                      |
++----------------------------+---------------------------------------------------------------------------+
 | rm(object)                 | delete an object                                                          |
++----------------------------+---------------------------------------------------------------------------+
 | newobject \<- edit(object) | create a new object                                                       |
++----------------------------+---------------------------------------------------------------------------+
 | fix(object)                | edit an object in place                                                   |
++----------------------------+---------------------------------------------------------------------------+
 
 # [Dplyr](https://dplyr.tidyverse.org/)
 
@@ -810,7 +854,7 @@ Why?
 
 # Exercise \#2
 
-Continue the Rmd file from [Exercise \#1](#exercise-1). Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work.
+Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work.
 
 1.  What is the mean invoice total for the USA?
 
@@ -1075,7 +1119,7 @@ knitr::kable(Multple_Arrange)%>%
 
 # Exercise \#3
 
-Continue the Rmd file from [Exercise \#1](#exercise-1) and [Exercise \#2]. Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work.
+Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work.
 
 1.  With the AnnualCompanyData dataset construct a dataset that contains CompanyName, FiscalYear, CurrentAssets, TotalInventory, CurrentLiab AND the necessary variables to construct Debt ratio. Using mutate construct AcidTest_Ratio, Current_Ratio, and Debt_Ratio.
 
@@ -1203,6 +1247,10 @@ Continue the Rmd file from [Exercise \#1](#exercise-1) and [Exercise \#2]. Inclu
 
     Blah Blah company has low ....
 
+</p>
+
+</details>
+
 ------------------------------------------------------------------------
 
 ### Join
@@ -1266,7 +1314,7 @@ Track%>%
 
 So, no instances where TrackId appears more than once. Lets look at TrackId as a foreign key in the InvoiceLine dataset.
 
-```{r,echo=TRUE}
+```{r}
 
 knitr::kable(InvoiceLine%>%
   count(TrackId)%>%
@@ -1330,3 +1378,305 @@ x %>%
 ```
 
 The most important property of an inner join is that [unmatched rows are not included in the result]{style="color:red;"}. This means that generally inner joins are usually not appropriate for use in analysis because it's too easy to lose observations.
+
+#### Outer Join
+
+An inner join keeps observations that appear in both tables. An **outer join** keeps observations that appear in at least one of the tables. There are three types of outer joins:
+
+-   A **left join** keeps all observations in `x`.
+
+-   A **right join** keeps all observations in `y`.
+
+-   A **full join** keeps all observations in `x` and `y`.
+
+These joins work by adding an additional "virtual" observation to each table. This observation has a key that always matches (if no other key matches), and a value filled with `NA`.
+
+Graphically, that looks like:
+
+![](https://d33wubrfki0l68.cloudfront.net/9c12ca9e12ed26a7c5d2aa08e36d2ac4fb593f1e/79980/diagrams/join-outer.png)
+
+[The most commonly used join is the left join]{style="color:red;"}: you use this whenever you look up additional data from another table, because it preserves the original observations even when there isn't a match. The left join should be your default join: use it unless you have a strong reason to prefer one of the others.
+
+Another way to depict the different types of joins is with a Venn diagram:
+
+![](https://d33wubrfki0l68.cloudfront.net/aeab386461820b029b7e7606ccff1286f623bae1/ef0d4/diagrams/join-venn.png)
+
+However, this is not a great representation. It might jog your memory about which join preserves the observations in which table, but it suffers from a major limitation: a Venn diagram can't show what happens when keys don't uniquely identify an observation.
+
+##### Duplicate Keys
+
+So far all the diagrams have assumed that the keys are unique. But that's not always the case. This section explains what happens when the keys are not unique. There are two possibilities:
+
+1.  One table has duplicate keys. This is useful when you want to add in additional information as there is typically a one-to-many relationship.
+
+    ![](https://d33wubrfki0l68.cloudfront.net/6faac3e996263827cb57fc5803df6192541a9a4b/c7d74/diagrams/join-one-to-many.png)
+
+    Note that I've put the key column in a slightly different position in the output. This reflects that the key is a primary key in `y` and a foreign key in `x`.
+
+    ```{r, echo=TRUE}
+    x <- tribble(
+      ~key, ~val_x,
+         1, "x1",
+         2, "x2",
+         2, "x3",
+         1, "x4"
+    )
+    y <- tribble(
+      ~key, ~val_y,
+         1, "y1",
+         2, "y2"
+    )
+    left_join(x, y, by = "key")
+
+    ```
+
+2.  Both tables have duplicate keys. This is usually an error because in neither table do the keys uniquely identify an observation. When you join duplicated keys, you get all possible combinations, the Cartesian product:
+
+![](https://d33wubrfki0l68.cloudfront.net/d37530bbf7749f48c02684013ae72b2996b07e25/37510/diagrams/join-many-to-many.png)
+
+```{r,echo=TRUE}
+x <- tribble(
+  ~key, ~val_x,
+     1, "x1",
+     2, "x2",
+     2, "x3",
+     3, "x4"
+)
+y <- tribble(
+  ~key, ~val_y,
+     1, "y1",
+     2, "y2",
+     2, "y3",
+     3, "y4"
+)
+left_join(x, y, by = "key")
+
+
+```
+
+##### Defining the key columns
+
+So far, the pairs of tables have always been joined by a single variable, and that variable has the same name in both tables. That constraint was encoded by `by = "key"`. You can use other values for `by` to connect the tables in other ways:
+
+-   The default, `by = NULL`, uses all variables that appear in both tables, the so called **natural** join.
+
+A character vector, `by = "x"`. This is like a natural join, but uses only some of the common variables. For example `Track` and `InvoiceLine` have `TrackId` variables.
+
+```{r, echo=TRUE}
+
+InvoiceLine_Track<-InvoiceLine%>%
+  left_join(Track, by="TrackId")
+
+```
+
+```{r}
+
+knitr::kable(InvoiceLine_Track)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+```
+
+Note that the `UnitPrice` variables (which appear in both input data frames, but are not constrained to be equal) are disambiguated in the output with a suffix.
+
+What happens if we swap `InvoiceLine` and `Track` in the above `left_join()`?
+
+<details>
+
+<summary>
+
+Think about it 💭
+
+</summary>
+
+<p>
+
+```{r, echo=TRUE}
+
+Track_InvoiceLine<-Track%>%
+  left_join(InvoiceLine, by="TrackId")
+
+```
+
+```{r}
+
+knitr::kable(Track_InvoiceLine)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+```
+
+How many rows and columns are present? How is this different from what we previously saw?
+
+</p>
+
+</details>
+
+-   A named character vector: `by = c("a" = "b")`. This will match variable `a` in table `x` to variable `b` in table `y`. The variables from `x` will be used in the output. Below is a poor example, but you get the idea. If the keys have different names, then this is the approach to take.
+
+    ```{r, echo=TRUE}
+
+    InvoiceLineTrack<-InvoiceLine%>%
+      left_join(Track, by=c("TrackId"="TrackId"))
+
+    # note that the first TrackId comes from InvoiceLine 
+    # and the second comes from Track
+
+    ```
+
+    ```{r}
+
+    knitr::kable(InvoiceLineTrack)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+    ```
+
+------------------------------------------------------------------------
+
+SQL is the inspiration for dplyr's conventions, so the translation is straightforward:
+
+| dplyr                        | SQL                                            |
+|------------------------------|------------------------------------------------|
+| `inner_join(x, y, by = "z")` | `SELECT * FROM x INNER JOIN y USING (z)`       |
+| `left_join(x, y, by = "z")`  | `SELECT * FROM x LEFT OUTER JOIN y USING (z)`  |
+| `right_join(x, y, by = "z")` | `SELECT * FROM x RIGHT OUTER JOIN y USING (z)` |
+| `full_join(x, y, by = "z")`  | `SELECT * FROM x FULL OUTER JOIN y USING (z)`  |
+
+Note that "INNER" and "OUTER" are optional, and often omitted.
+
+Joining different variables between the tables, e.g. `inner_join(x, y, by = c("a" = "b"))` uses a slightly different syntax in SQL: `SELECT * FROM x INNER JOIN y ON x.a = y.b`. As this syntax suggests, SQL supports a wider range of join types than dplyr because you can connect the tables using constraints other than equality (sometimes called non-equijoins).
+
+# Exercise \#4
+
+Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work. Answer the following questions using the Chinook Database.
+
+1.  Return the top five most downloaded tracks with the full name of the track and number of downloads.
+
+    <details>
+
+    <summary>
+
+    To look or not to look...🤔....definitely 👀
+
+    </summary>
+
+    <p>
+
+    ```{r Exercise.M4.4.1,echo=TRUE}
+
+    top5DL<-Track%>%
+      inner_join(InvoiceLine, by="TrackId")%>%
+      group_by(TrackId)%>%
+      mutate(Downloads=sum(Quantity, na.rm = TRUE))%>%
+      select(TrackId,Name,Downloads)%>%
+      distinct(TrackId, .keep_all = TRUE)%>%
+      arrange(desc(Downloads))
+
+    ```
+
+    ```{r}
+
+    knitr::kable(top5DL)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+    ```
+
+    </p>
+
+    </details>
+
+2.  How many distinct albums have actually been downloaded? Hint we need the Album table.
+
+    <details>
+
+    <summary>
+
+    We are not even pretending here....just 👀
+
+    </summary>
+
+    <p>
+
+    ```{r, echo=TRUE}
+        library(DBI)
+        library(RSQLite)
+        db = dbConnect(RSQLite::SQLite(), dbname = "data/03-Data-file-classroom-exercise-Chinook_Sqlite.sqlite")
+        
+        Album<-dbReadTable(db, "Album")
+        
+        dbDisconnect(db)
+        
+    ```
+
+    ```{r Exercise.M4.4.2,echo=TRUE}
+    #To get to downloads we need InvoiceLine...to get to InvoiceLine we need Track
+    #Because Album has TrackId
+    Albums_Downloaded<-InvoiceLine%>%
+      inner_join(Track, by="TrackId")%>%
+      inner_join(Album, by="AlbumId")%>%
+      distinct(AlbumId)%>%
+      summarise(Number_Albums_Downloaded=n())
+
+    Albums_Downloaded
+
+    ```
+
+    </p>
+
+    </details>
+
+3.  What is the most popular genre? Hint you need the Genre table.
+
+    <details>
+
+    <summary>
+
+    No code on this one 😢
+
+    </summary>
+
+    <p>
+
+    ```{r}
+        library(DBI)
+        library(RSQLite)
+        db = dbConnect(RSQLite::SQLite(), dbname = "data/03-Data-file-classroom-exercise-Chinook_Sqlite.sqlite")
+        
+        Genre<-dbReadTable(db, "Genre")
+        
+        dbDisconnect(db)
+    ```
+
+    ```{r Exercise.M4.4.3}
+
+    Popular_Genre<-InvoiceLine%>%
+      inner_join(Track, by="TrackId")%>%
+      inner_join(Genre, by="GenreId")%>%
+      group_by(GenreId)%>%
+      summarise(Popular_Genre=n())%>%
+      left_join(Genre,by="GenreId")%>%
+      select(GenreId,Name,Popular_Genre)%>%
+      arrange(desc(Popular_Genre))
+
+
+    ```
+
+    ```{r}
+
+    knitr::kable(Popular_Genre)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+    ```
+
+    </p>
+
+    </details>
+
+# Summary
+
+| **Verb**       | **Data wrangling operation**                                                                                            |
+|:---------------|:------------------------------------------------------------------------------------------------------------------------|
+| `filter()`     | Pick out a subset of rows                                                                                               |
+| `summarize()`  | Summarize many values to one using a summary statistic function like `mean()`, `median()`, etc.                         |
+| `group_by()`   | Add grouping structure to rows in data frame. Note this does not change values in data frame, rather only the meta-data |
+| `mutate()`     | Create new variables by mutating existing ones                                                                          |
+| `arrange()`    | Arrange rows of a data variable in ascending (default) or `desc`ending order                                            |
+| `inner_join()` | Join/merge two data frames, matching rows by a key variable                                                             |
