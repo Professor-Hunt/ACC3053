@@ -225,23 +225,15 @@ dplyr package is loaded whenever you run library(tidyverse)
 
 ### Arithmetic Operators
 
-+--------------+---------------------------------+
-| **Operator** | **Description**                 |
-+:=============+:================================+
-| `+`          | addition                        |
-+--------------+---------------------------------+
-| `-`          | subtraction                     |
-+--------------+---------------------------------+
-| `*`          | multiplication                  |
-+--------------+---------------------------------+
-| `/`          | division                        |
-+--------------+---------------------------------+
-| \^ or \*\*   | exponentiation                  |
-+--------------+---------------------------------+
-| x%%y         | modulus (x mod y) 5%%2 is 1     |
-+--------------+---------------------------------+
-| x%/%y        | integer division 5%/%2 is 2     |
-+--------------+---------------------------------+
+| **Operator** | **Description**             |
+|:-------------|:----------------------------|
+| `+`          | addition                    |
+| `-`          | subtraction                 |
+| `*`          | multiplication              |
+| `/`          | division                    |
+| \^ or \*\*   | exponentiation              |
+| x%%y         | modulus (x mod y) 5%%2 is 1 |
+| x%/%y        | integer division 5%/%2 is 2 |
 
 ### Logical Operators {#logical-operators}
 
@@ -862,7 +854,7 @@ Why?
 
 # Exercise \#2
 
-Continue the Rmd file from [Exercise \#1](#exercise-1). Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work.
+Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work.
 
 1.  What is the mean invoice total for the USA?
 
@@ -961,3 +953,730 @@ Continue the Rmd file from [Exercise \#1](#exercise-1). Include the **question**
 Besides selecting sets of existing columns, it's often useful to add new columns that are functions of existing columns. That's the job of `mutate()`.
 
 `mutate()` always adds new columns at the end of your dataset.
+
+First lets download a new dataset. This code allows you to download data directly from a website.
+
+```{r mutate1,echo=TRUE}
+#load data. 
+#curl package lets us download data from a website with the proper location
+#check the packages tab and see if you have curl
+#try following
+  #?curl
+
+library(curl)
+
+load(curl("https://raw.githubusercontent.com/Professor-Hunt/ACC3053/main/data/AnnualCompanyData.Rda"))
+
+```
+
+Lets talk about some common financial ratios:
+
+[Current Ratio]{style="color:red;"} measures a company's ability to pay off short-term liabilities with current assets:
+
+```{=tex}
+\begin{equation}
+\mbox{Current ratio} = \frac{\mbox{Current assets}}{\mbox{Current liabilities}}
+\end{equation}
+```
+```{r CurrentRatio,echo=TRUE}
+
+Current_Ratio<-AnnualCompanyData%>%
+  select(CompanyName,FiscalYear,CurrentAssets,CurrentLiab)%>%
+  mutate(Current_Ratio=CurrentAssets/CurrentLiab)
+  
+```
+
+```{r}
+
+knitr::kable(Current_Ratio)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+#$\color{red}{\text{Current ratio}}$
+```
+
+You give it a shot.
+
+[Acid-test Ratio]{style="color:red;"} measures a company's ability to pay off short-term liabilities with quick assets:
+
+```{=tex}
+\begin{equation}
+\mbox{Acid-test ratio} = \frac{\mbox{Current assets - Inventory}}{\mbox{Current liabilities}}
+\end{equation}
+```
+Use mutate and construct the acid-test ratio.
+
+<details>
+
+<summary>
+
+Don't look 👀
+
+</summary>
+
+<p>
+
+```{r Acidtestratio,echo=TRUE}
+
+    AcidTest_Ratio<-AnnualCompanyData%>%
+      select(CompanyName,FiscalYear,CurrentAssets,TotalInventory,CurrentLiab)%>%
+      mutate(AcidTest_Ratio=(CurrentAssets-TotalInventory)/CurrentLiab)
+      
+```
+
+```{r}
+
+knitr::kable(AcidTest_Ratio)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+
+```
+
+</p>
+
+</details>
+
+Let's look at some summary statistics of the `AcidTest_Ratio` variable by considering multiple summary functions at once in the same `summarize()` code:
+
+```{r AcidSummary, echo=TRUE}
+
+AcidTest_summary <- AcidTest_Ratio %>% 
+  summarize(
+    min = min(AcidTest_Ratio, na.rm = TRUE),
+    q1 = quantile(AcidTest_Ratio, 0.25, na.rm = TRUE),
+    median = quantile(AcidTest_Ratio, 0.5, na.rm = TRUE),
+    q3 = quantile(AcidTest_Ratio, 0.75, na.rm = TRUE),
+    max = max(AcidTest_Ratio, na.rm = TRUE),
+    mean = mean(AcidTest_Ratio, na.rm = TRUE),
+    sd = sd(AcidTest_Ratio, na.rm = TRUE),
+    missing = sum(is.na(AcidTest_Ratio))
+  )
+
+AcidTest_summary
+
+```
+
+### Arrange
+
+One of the most commonly performed data wrangling tasks is to sort a data frame's rows in the alphanumeric order of one of the variables. The `dplyr` package's `arrange()` function allows us to sort/reorder a data frame's rows according to the values of the specified variable.
+
+`arrange()` works similarly to [`filter()`](https://rdrr.io/r/stats/filter.html) except that instead of selecting rows, it changes their order. It takes a data frame and a set of column names (or more complicated expressions) to order by. If you provide more than one column name, each additional column will be used to break ties in the values of preceding columns.
+
+```{r arrange1,echo=TRUE}
+
+Arranged_Acid<-AcidTest_Ratio%>%
+  arrange(AcidTest_Ratio)
+
+head(Arranged_Acid,5)
+```
+
+[Acid Test Explanation](https://www.investopedia.com/terms/a/acidtest.asp)
+
+Use `desc()` to re-order by a column in descending order:
+
+Before we look at desc ...what companies do we expect to see with the highest Acid Test?
+
+<details>
+
+<summary>
+
+We just read it 📖
+
+</summary>
+
+<p>
+
+```{r arrange2,echo=TRUE}
+
+Arranged_Acid_desc<-AcidTest_Ratio%>%
+  arrange(desc(AcidTest_Ratio))
+
+head(Arranged_Acid_desc,5)
+```
+
+</p>
+
+</details>
+
+As mentioned above we can arrange the data a based multiple columns.
+
+```{r arrange3,echo=TRUE}
+
+    Multple_Arrange<-AnnualCompanyData%>%
+      select(CompanyName,FiscalYear,CurrentAssets,TotalInventory,CurrentLiab)%>%
+      mutate(AcidTest_Ratio=(CurrentAssets-TotalInventory)/CurrentLiab,
+             Current_Ratio=CurrentAssets/CurrentLiab)%>%
+      arrange(desc(AcidTest_Ratio,Current_Ratio))
+      
+```
+
+```{r}
+
+knitr::kable(Multple_Arrange)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+
+```
+
+# Exercise \#3
+
+Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work.
+
+1.  With the AnnualCompanyData dataset construct a dataset that contains CompanyName, FiscalYear, CurrentAssets, TotalInventory, CurrentLiab AND the necessary variables to construct Debt ratio. Using mutate construct AcidTest_Ratio, Current_Ratio, and Debt_Ratio.
+
+    <details>
+
+    <summary>
+
+    Results 💥
+
+    </summary>
+
+    <p>
+
+    ```{r}
+
+    Exercise.M4.3.1<-AnnualCompanyData%>%
+          select(CompanyName,FiscalYear,CurrentAssets,TotalInventory,CurrentLiab,TotalLiab,TotalAssets)%>%
+          mutate(AcidTest_Ratio=(CurrentAssets-TotalInventory)/CurrentLiab,
+                 Current_Ratio=CurrentAssets/CurrentLiab,
+                 Debt_Ratio=TotalLiab/TotalAssets)
+
+    knitr::kable(Exercise.M4.3.1)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+    ```
+
+    </p>
+
+    </details>
+
+2.  Using the dataset in the previous question. Compute the summary statistics for Debt_Ratio and discuss what the summary stats tell you.
+
+    <details>
+
+    <summary>
+
+    Results 🔥
+
+    </summary>
+
+    <p>
+
+    ```{r}
+
+    Exercise.M4.3.2 <- Exercise.M4.3.1 %>% 
+      summarize(
+        min = min(Debt_Ratio, na.rm = TRUE),
+        q1 = quantile(Debt_Ratio, 0.25, na.rm = TRUE),
+        median = quantile(Debt_Ratio, 0.5, na.rm = TRUE),
+        q3 = quantile(Debt_Ratio, 0.75, na.rm = TRUE),
+        max = max(Debt_Ratio, na.rm = TRUE),
+        mean = mean(Debt_Ratio, na.rm = TRUE),
+        sd = sd(Debt_Ratio, na.rm = TRUE),
+        missing = sum(is.na(Debt_Ratio))
+      )
+
+
+    knitr::kable(Exercise.M4.3.2)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="100px")
+    ```
+
+    The data above show that .....
+
+    </p>
+
+    </details>
+
+3.  With your explanation from question 2, arrange your data based on Debt_Ratio explain why you see the certain companies with high/low debt ratio.
+
+    <details>
+
+    <summary>
+
+    Results 💪
+
+    </summary>
+
+    <p>
+
+    ```{r}
+
+    Exercise.M4.3.3.A<-Exercise.M4.3.1%>%
+      arrange(Debt_Ratio)
+
+    knitr::kable(Exercise.M4.3.3.A)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+
+    Exercise.M4.3.3.B<-Exercise.M4.3.1%>%
+      arrange(desc(Debt_Ratio))
+
+    knitr::kable(Exercise.M4.3.3.B)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+    ```
+
+    The data above show that .....
+
+    </p>
+
+    </details>
+
+4.  Arrange the data based on Debt_Ratio and AcidTest_Ratio (ascending) and pick a company in the top 20 and explain why they appear there.
+
+    <details>
+
+    <summary>
+
+    Results 👋
+
+    </summary>
+
+    <p>
+
+    ```{r}
+
+    Exercise.M4.3.4<-Exercise.M4.3.1%>%
+      arrange(Debt_Ratio,AcidTest_Ratio)
+
+    knitr::kable(Exercise.M4.3.4)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+    ```
+
+    Blah Blah company has low ....
+
+</p>
+
+</details>
+
+------------------------------------------------------------------------
+
+### Join
+
+It's rare that a data analysis involves only a single table of data. Typically you have many tables of data, and you must combine them to answer the questions that you're interested in. Collectively, multiple tables of data are called **relational data** because it is the relations, not just the individual datasets, that are important.
+
+Relations are always defined between a pair of tables. All other relations are built up from this simple idea: the relations of three or more tables are always a property of the relations between each pair. Sometimes both elements of a pair can be the same table! This is needed if, for example, you have a table of people, and each person has a reference to their parents.
+
+To work with relational data you need verbs that work with pairs of tables. There are three families of verbs designed to work with relational data:
+
+-   **Mutating joins**, which add new variables to one data frame from matching observations in another.
+
+-   **Filtering joins**, which filter observations from one data frame based on whether or not they match an observation in the other table.
+
+-   **Set operations**, which treat observations as if they were set elements.
+
+The most common place to find relational data is in a *relational* database management system (or RDBMS), a term that encompasses almost all modern databases. If you've used a database before, you've almost certainly used SQL. If so, you should find the concepts in this chapter familiar, although their expression in dplyr is a little different. Generally, dplyr is a little easier to use than SQL because dplyr is specialized to do data analysis: it makes common data analysis operations easier, at the expense of making it more difficult to do other things that aren't commonly needed for data analysis.
+
+Lets get some data:
+
+```{r, echo=TRUE}
+    library(DBI)
+    library(RSQLite)
+    db = dbConnect(RSQLite::SQLite(), dbname = "data/03-Data-file-classroom-exercise-Chinook_Sqlite.sqlite")
+
+    #list tables
+    dbListTables(db)
+
+```
+
+![](images/Chinook_database.png){width="100%"}
+
+Import some data
+
+```{r,echo=TRUE}
+
+Track<-dbReadTable(db, "Track")
+
+InvoiceLine<-dbReadTable(db, "InvoiceLine")
+
+```
+
+The variables used to connect each pair of tables are called **keys**. A key is a variable (or set of variables) that uniquely identifies an observation. In simple cases, a single variable is sufficient to identify an observation. For track, each song is uniquely identified by its `TrackId`. In other cases, multiple variables may be needed. For example `CompanyName` and `FiscalYear` like in our financial dataset (*AnnualCompanyData*).
+
+There are two types of keys:
+
+-   A **primary key** uniquely identifies an observation in its own table. For example, `Track$TrackId` is a primary key because it uniquely identifies each song in the `Track` table.
+
+-   A **foreign key** uniquely identifies an observation in another table. For example, `InvoiceLine$TrackId` is a foreign key because it appears in the `Track` table where it matches each track ID to a unique song.
+
+A variable can be both a primary key *and* a foreign key.
+
+Once you've identified the primary keys in your tables, it's good practice to verify that they do indeed uniquely identify each observation. One way to do that is to `count()` the primary keys and look for entries where `n` is greater than one:
+
+```{r,echo=TRUE}
+Track%>%
+  count(TrackId)%>%
+  filter(n>1)
+
+```
+
+So, no instances where TrackId appears more than once. Lets look at TrackId as a foreign key in the InvoiceLine dataset.
+
+```{r}
+
+knitr::kable(InvoiceLine%>%
+  count(TrackId)%>%
+  filter(n>1),align = "ll")%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+
+```
+
+The tracks appear a couple times in InvoiceLine.
+
+If a table lacks a primary key, it's sometimes useful to add one with `mutate()` and `row_number()`. That makes it easier to match observations if you've done some filtering and want to check back in with the original data. This is called a **surrogate key**.
+
+A primary key and the corresponding foreign key in another table form a **relation**. Relations are typically one-to-many. In other data, you'll occasionally see a 1-to-1 relationship. You can think of this as a special case of 1-to-many. You can model many-to-many relations with a many-to-1 relation plus a 1-to-many relation. These usually involve linking tables.
+
+To help you learn how joins work, I'm going to use a visual representation:
+
+![](https://d33wubrfki0l68.cloudfront.net/108c0749d084c03103f8e1e8276c20e06357b124/5f113/diagrams/join-setup.png)
+
+```{r, echo=TRUE}
+x <- tribble(
+  ~key, ~val_x,
+     1, "x1",
+     2, "x2",
+     3, "x3"
+)
+y <- tribble(
+  ~key, ~val_y,
+     1, "y1",
+     2, "y2",
+     4, "y3"
+)
+```
+
+The colored column represents the "key" variable: these are used to match the rows between the tables. The grey column represents the "value" column that is carried along for the ride. In these examples I'll show a single key variable, but the idea generalizes in a straightforward way to multiple keys and multiple values.
+
+A join is a way of connecting each row in `x` to zero, one, or more rows in `y`. The following diagram shows each potential match as an intersection of a pair of lines.
+
+![](https://d33wubrfki0l68.cloudfront.net/820b012580731f2134f90ee9c6388994c2343683/27703/diagrams/join-setup2.png)
+
+(If you look closely, you might notice that we've switched the order of the key and value columns in `x`. This is to emphasise that joins match based on the key; the value is just carried along for the ride.)
+
+In an actual join, matches will be indicated with dots. The number of dots = the number of matches = the number of rows in the output.
+
+![](https://d33wubrfki0l68.cloudfront.net/3abea0b730526c3f053a3838953c35a0ccbe8980/7f29b/diagrams/join-inner.png)
+
+#### Inner Join
+
+The simplest type of join is the **inner join**. An inner join matches pairs of observations whenever their keys are equal:
+
+![](https://d33wubrfki0l68.cloudfront.net/3abea0b730526c3f053a3838953c35a0ccbe8980/7f29b/diagrams/join-inner.png)
+
+(To be precise, this is an inner **equijoin** because the keys are matched using the equality operator. Since most joins are equijoins we usually drop that specification.)
+
+The output of an inner join is a new data frame that contains the key, the x values, and the y values. We use `by` to tell dplyr which variable is the key:
+
+```{r,echo=TRUE}
+x %>% 
+  inner_join(y, by = "key")
+
+```
+
+The most important property of an inner join is that [unmatched rows are not included in the result]{style="color:red;"}. This means that generally inner joins are usually not appropriate for use in analysis because it's too easy to lose observations.
+
+#### Outer Join
+
+An inner join keeps observations that appear in both tables. An **outer join** keeps observations that appear in at least one of the tables. There are three types of outer joins:
+
+-   A **left join** keeps all observations in `x`.
+
+-   A **right join** keeps all observations in `y`.
+
+-   A **full join** keeps all observations in `x` and `y`.
+
+These joins work by adding an additional "virtual" observation to each table. This observation has a key that always matches (if no other key matches), and a value filled with `NA`.
+
+Graphically, that looks like:
+
+![](https://d33wubrfki0l68.cloudfront.net/9c12ca9e12ed26a7c5d2aa08e36d2ac4fb593f1e/79980/diagrams/join-outer.png)
+
+[The most commonly used join is the left join]{style="color:red;"}: you use this whenever you look up additional data from another table, because it preserves the original observations even when there isn't a match. The left join should be your default join: use it unless you have a strong reason to prefer one of the others.
+
+Another way to depict the different types of joins is with a Venn diagram:
+
+![](https://d33wubrfki0l68.cloudfront.net/aeab386461820b029b7e7606ccff1286f623bae1/ef0d4/diagrams/join-venn.png)
+
+However, this is not a great representation. It might jog your memory about which join preserves the observations in which table, but it suffers from a major limitation: a Venn diagram can't show what happens when keys don't uniquely identify an observation.
+
+##### Duplicate Keys
+
+So far all the diagrams have assumed that the keys are unique. But that's not always the case. This section explains what happens when the keys are not unique. There are two possibilities:
+
+1.  One table has duplicate keys. This is useful when you want to add in additional information as there is typically a one-to-many relationship.
+
+    ![](https://d33wubrfki0l68.cloudfront.net/6faac3e996263827cb57fc5803df6192541a9a4b/c7d74/diagrams/join-one-to-many.png)
+
+    Note that I've put the key column in a slightly different position in the output. This reflects that the key is a primary key in `y` and a foreign key in `x`.
+
+    ```{r, echo=TRUE}
+    x <- tribble(
+      ~key, ~val_x,
+         1, "x1",
+         2, "x2",
+         2, "x3",
+         1, "x4"
+    )
+    y <- tribble(
+      ~key, ~val_y,
+         1, "y1",
+         2, "y2"
+    )
+    left_join(x, y, by = "key")
+
+    ```
+
+2.  Both tables have duplicate keys. This is usually an error because in neither table do the keys uniquely identify an observation. When you join duplicated keys, you get all possible combinations, the Cartesian product:
+
+![](https://d33wubrfki0l68.cloudfront.net/d37530bbf7749f48c02684013ae72b2996b07e25/37510/diagrams/join-many-to-many.png)
+
+```{r,echo=TRUE}
+x <- tribble(
+  ~key, ~val_x,
+     1, "x1",
+     2, "x2",
+     2, "x3",
+     3, "x4"
+)
+y <- tribble(
+  ~key, ~val_y,
+     1, "y1",
+     2, "y2",
+     2, "y3",
+     3, "y4"
+)
+left_join(x, y, by = "key")
+
+
+```
+
+##### Defining the key columns
+
+So far, the pairs of tables have always been joined by a single variable, and that variable has the same name in both tables. That constraint was encoded by `by = "key"`. You can use other values for `by` to connect the tables in other ways:
+
+-   The default, `by = NULL`, uses all variables that appear in both tables, the so called **natural** join.
+
+A character vector, `by = "x"`. This is like a natural join, but uses only some of the common variables. For example `Track` and `InvoiceLine` have `TrackId` variables.
+
+```{r, echo=TRUE}
+
+InvoiceLine_Track<-InvoiceLine%>%
+  left_join(Track, by="TrackId")
+
+```
+
+```{r}
+
+knitr::kable(InvoiceLine_Track)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+```
+
+Note that the `UnitPrice` variables (which appear in both input data frames, but are not constrained to be equal) are disambiguated in the output with a suffix.
+
+What happens if we swap `InvoiceLine` and `Track` in the above `left_join()`?
+
+<details>
+
+<summary>
+
+Think about it 💭
+
+</summary>
+
+<p>
+
+```{r, echo=TRUE}
+
+Track_InvoiceLine<-Track%>%
+  left_join(InvoiceLine, by="TrackId")
+
+```
+
+```{r}
+
+knitr::kable(Track_InvoiceLine)%>%
+  kableExtra::kable_styling("striped")%>%
+  kableExtra::scroll_box(width = "100%",height="300px")
+```
+
+How many rows and columns are present? How is this different from what we previously saw?
+
+</p>
+
+</details>
+
+-   A named character vector: `by = c("a" = "b")`. This will match variable `a` in table `x` to variable `b` in table `y`. The variables from `x` will be used in the output. Below is a poor example, but you get the idea. If the keys have different names, then this is the approach to take.
+
+    ```{r, echo=TRUE}
+
+    InvoiceLineTrack<-InvoiceLine%>%
+      left_join(Track, by=c("TrackId"="TrackId"))
+
+    # note that the first TrackId comes from InvoiceLine 
+    # and the second comes from Track
+
+    ```
+
+    ```{r}
+
+    knitr::kable(InvoiceLineTrack)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+    ```
+
+------------------------------------------------------------------------
+
+SQL is the inspiration for dplyr's conventions, so the translation is straightforward:
+
+| dplyr                        | SQL                                            |
+|------------------------------|------------------------------------------------|
+| `inner_join(x, y, by = "z")` | `SELECT * FROM x INNER JOIN y USING (z)`       |
+| `left_join(x, y, by = "z")`  | `SELECT * FROM x LEFT OUTER JOIN y USING (z)`  |
+| `right_join(x, y, by = "z")` | `SELECT * FROM x RIGHT OUTER JOIN y USING (z)` |
+| `full_join(x, y, by = "z")`  | `SELECT * FROM x FULL OUTER JOIN y USING (z)`  |
+
+Note that "INNER" and "OUTER" are optional, and often omitted.
+
+Joining different variables between the tables, e.g. `inner_join(x, y, by = c("a" = "b"))` uses a slightly different syntax in SQL: `SELECT * FROM x INNER JOIN y ON x.a = y.b`. As this syntax suggests, SQL supports a wider range of join types than dplyr because you can connect the tables using constraints other than equality (sometimes called non-equijoins).
+
+# Exercise \#4
+
+Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work. Answer the following questions using the Chinook Database.
+
+1.  Return the top five most downloaded tracks with the full name of the track and number of downloads.
+
+    <details>
+
+    <summary>
+
+    To look or not to look...🤔....definitely 👀
+
+    </summary>
+
+    <p>
+
+    ```{r Exercise.M4.4.1,echo=TRUE}
+
+    top5DL<-Track%>%
+      inner_join(InvoiceLine, by="TrackId")%>%
+      group_by(TrackId)%>%
+      mutate(Downloads=sum(Quantity, na.rm = TRUE))%>%
+      select(TrackId,Name,Downloads)%>%
+      distinct(TrackId, .keep_all = TRUE)%>%
+      arrange(desc(Downloads))
+
+    ```
+
+    ```{r}
+
+    knitr::kable(top5DL)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+    ```
+
+    </p>
+
+    </details>
+
+2.  How many distinct albums have actually been downloaded? Hint we need the Album table.
+
+    <details>
+
+    <summary>
+
+    We are not even pretending here....just 👀
+
+    </summary>
+
+    <p>
+
+    ```{r, echo=TRUE}
+        library(DBI)
+        library(RSQLite)
+        db = dbConnect(RSQLite::SQLite(), dbname = "data/03-Data-file-classroom-exercise-Chinook_Sqlite.sqlite")
+        
+        Album<-dbReadTable(db, "Album")
+        
+        dbDisconnect(db)
+        
+    ```
+
+    ```{r Exercise.M4.4.2,echo=TRUE}
+    #To get to downloads we need InvoiceLine...to get to InvoiceLine we need Track
+    #Because Album has TrackId
+    Albums_Downloaded<-InvoiceLine%>%
+      inner_join(Track, by="TrackId")%>%
+      inner_join(Album, by="AlbumId")%>%
+      distinct(AlbumId)%>%
+      summarise(Number_Albums_Downloaded=n())
+
+    Albums_Downloaded
+
+    ```
+
+    </p>
+
+    </details>
+
+3.  What is the most popular genre? Hint you need the Genre table.
+
+    <details>
+
+    <summary>
+
+    No code on this one 😢
+
+    </summary>
+
+    <p>
+
+    ```{r}
+        library(DBI)
+        library(RSQLite)
+        db = dbConnect(RSQLite::SQLite(), dbname = "data/03-Data-file-classroom-exercise-Chinook_Sqlite.sqlite")
+        
+        Genre<-dbReadTable(db, "Genre")
+        
+        dbDisconnect(db)
+    ```
+
+    ```{r Exercise.M4.4.3}
+
+    Popular_Genre<-InvoiceLine%>%
+      inner_join(Track, by="TrackId")%>%
+      inner_join(Genre, by="GenreId")%>%
+      group_by(GenreId)%>%
+      summarise(Popular_Genre=n())%>%
+      left_join(Genre,by="GenreId")%>%
+      select(GenreId,Name,Popular_Genre)%>%
+      arrange(desc(Popular_Genre))
+
+
+    ```
+
+    ```{r}
+
+    knitr::kable(Popular_Genre)%>%
+      kableExtra::kable_styling("striped")%>%
+      kableExtra::scroll_box(width = "100%",height="300px")
+    ```
+
+    </p>
+
+    </details>
+
+# Summary
+
+| **Verb**       | **Data wrangling operation**                                                                                            |
+|:---------------|:------------------------------------------------------------------------------------------------------------------------|
+| `filter()`     | Pick out a subset of rows                                                                                               |
+| `summarize()`  | Summarize many values to one using a summary statistic function like `mean()`, `median()`, etc.                         |
+| `group_by()`   | Add grouping structure to rows in data frame. Note this does not change values in data frame, rather only the meta-data |
+| `mutate()`     | Create new variables by mutating existing ones                                                                          |
+| `arrange()`    | Arrange rows of a data variable in ascending (default) or `desc`ending order                                            |
+| `inner_join()` | Join/merge two data frames, matching rows by a key variable                                                             |

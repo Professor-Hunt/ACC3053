@@ -34,6 +34,8 @@ navbar:
           href: Module_2_A.html
         - text: "Module 3"
           href: Module_3_A.html
+        - text: "Module 4"
+          href: Module_4_A.html          
             
 output: distill::distill_article
 theme: "theme.css"
