@@ -1672,11 +1672,18 @@ Include the **question**, **code**, and the **results**. I provide the results, 
 
 # Summary
 
-| **Verb**       | **Data wrangling operation**                                                                                            |
-|:---------------|:------------------------------------------------------------------------------------------------------------------------|
-| `filter()`     | Pick out a subset of rows                                                                                               |
-| `summarize()`  | Summarize many values to one using a summary statistic function like `mean()`, `median()`, etc.                         |
-| `group_by()`   | Add grouping structure to rows in data frame. Note this does not change values in data frame, rather only the meta-data |
-| `mutate()`     | Create new variables by mutating existing ones                                                                          |
-| `arrange()`    | Arrange rows of a data variable in ascending (default) or `desc`ending order                                            |
-| `inner_join()` | Join/merge two data frames, matching rows by a key variable                                                             |
++-----------------+-------------------------------------------------------------------------------------------------------------------------+
+| **Verb**        | **Data wrangling operation**                                                                                            |
++:================+:========================================================================================================================+
+| `filter()`      | Pick out a subset of rows                                                                                               |
++-----------------+-------------------------------------------------------------------------------------------------------------------------+
+| `summarize()`   | Summarize many values to one using a summary statistic function like `mean()`, `median()`, etc.                         |
++-----------------+-------------------------------------------------------------------------------------------------------------------------+
+| `group_by()`    | Add grouping structure to rows in data frame. Note this does not change values in data frame, rather only the meta-data |
++-----------------+-------------------------------------------------------------------------------------------------------------------------+
+| `mutate()`      | Create new variables by mutating existing ones                                                                          |
++-----------------+-------------------------------------------------------------------------------------------------------------------------+
+| `arrange()`     | Arrange rows of a data variable in ascending (default) or `desc`ending order                                            |
++-----------------+-------------------------------------------------------------------------------------------------------------------------+
+| `inner_join()`  | Join/merge two data frames, matching rows by a key variable                                                             |
++-----------------+-------------------------------------------------------------------------------------------------------------------------+
