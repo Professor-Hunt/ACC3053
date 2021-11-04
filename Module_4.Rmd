@@ -1,7 +1,7 @@
 ---
 title: "Module 4"
 description: |
-  This module is an introductiont to data wrangling and the tidyverse.
+  This module is an introduction to data wrangling and the tidyverse.
 output: 
   distill::distill_article:
     #code_folding: true
@@ -158,7 +158,7 @@ Invoice<-dbReadTable(db,"Invoice")
 
 You can also accomplish the same task in a RMarkdown document using SQL with the following code:
 
-```` {.r}
+```` r
 ```{sql, connection=db, echo=TRUE, output.var="Customer"}`r ''`
 SELECT * 
 FROM Customer
@@ -303,17 +303,17 @@ dplyr package is loaded whenever you run library(tidyverse)
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | qnorm(p)                                                                              | normal quantile. value at the p percentile of normal distribution qnorm(.9) is 1.28 \# 90th percentile                                                                                                                                             |
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| rnorm(n, m=0, sd=1)                                                                   | n random normal deviates with mean m and standard deviation sd. \#50 random normal variates with mean=50, sd=10x \<- rnorm(50, m=50, sd=10)                                                                                                        |
+| rnorm(n, m=0, sd=1)                                                                   | n random normal deviates with mean m and standard deviation sd. #50 random normal variates with mean=50, sd=10x \<- rnorm(50, m=50, sd=10)                                                                                                         |
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | dbinom(x, size, prob), pbinom(p, size,prob), qbinom(q,size,prob), rbinom(n,size,prob) | binomial distribution where size is the sample size and prob is the probability of a heads (pi) \# prob of 0 to 5 heads of fair coin out of 10 flips dbinom(0:5, 10, .5) \# prob of 5 or less heads of fair coin out of 10 flips pbinom(5, 10, .5) |
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| dpois(x, lamda), ppois(q,lamda), qpois(p,lamda), rpois(n,lamda)                       | poisson distribution with m=std=lamda \#probability of 0,1, or 2 events with lamda=4 dpois(0:2, 4) \# probability of at least 3 events with lamda=4 1- ppois(2,4)                                                                                  |
+| dpois(x, lamda), ppois(q,lamda), qpois(p,lamda), rpois(n,lamda)                       | poisson distribution with m=std=lamda #probability of 0,1, or 2 events with lamda=4 dpois(0:2, 4) \# probability of at least 3 events with lamda=4 1- ppois(2,4)                                                                                   |
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | dunif(x,min,max=1)                                                                    | uniform distribution, follows the same pattern                                                                                                                                                                                                     |
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | punif(q,min=0,max=1)                                                                  | as the normal distribution above.                                                                                                                                                                                                                  |
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| qunif(p,min=0,max=1)                                                                  | \#10 uniform random variates                                                                                                                                                                                                                       |
+| qunif(p,min=0,max=1)                                                                  | #10 uniform random variates                                                                                                                                                                                                                        |
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | runif(n,min=0,max=1)                                                                  | x \<- runif(10)                                                                                                                                                                                                                                    |
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -323,7 +323,7 @@ dplyr package is loaded whenever you run library(tidyverse)
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | median(x)                                                                             | median                                                                                                                                                                                                                                             |
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| quantile(x)                                                                           | quantiles where x is the numeric vector whose quantiles are desired and probs is a numeric vector with probabilities in [0,1]. \# 30th and 84th percentiles of x, y \<- quantile(x, c(.3,.84))                                                     |
+| quantile(x)                                                                           | quantiles where x is the numeric vector whose quantiles are desired and probs is a numeric vector with probabilities in \[0,1\]. \# 30th and 84th percentiles of x, y \<- quantile(x, c(.3,.84))                                                   |
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | range(x)                                                                              | range                                                                                                                                                                                                                                              |
 +---------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -340,41 +340,41 @@ dplyr package is loaded whenever you run library(tidyverse)
 
 ### Other Functions {#other-functions}
 
-+----------------------------+---------------------------------------------------------------------------+
-| **Function**               | **Description**                                                           |
-+:===========================+:==========================================================================+
-| seq(from, to, by)          | generate a sequence indices \<- seq(1,10,2) \#indices is c(1, 3, 5, 7, 9) |
-+----------------------------+---------------------------------------------------------------------------+
-| rep(x,ntimes)              | repeat x n times y \<- rep(1:3, 2) \# y is c(1, 2, 3, 1, 2, 3)            |
-+----------------------------+---------------------------------------------------------------------------+
-| cut(x,n)                   | divide continuous variable in factor with n levels y \<- cut(x, 5)        |
-+----------------------------+---------------------------------------------------------------------------+
-| length(object)             | number of elements or components                                          |
-+----------------------------+---------------------------------------------------------------------------+
-| str(object)                | structure of an object                                                    |
-+----------------------------+---------------------------------------------------------------------------+
-| class(object)              | class or type of an object                                                |
-+----------------------------+---------------------------------------------------------------------------+
-| names(object)              | names                                                                     |
-+----------------------------+---------------------------------------------------------------------------+
-| c(object, object,...)      | combine objects into a vector                                             |
-+----------------------------+---------------------------------------------------------------------------+
-| cbind(object, object,...)  | combine objects as columns                                                |
-+----------------------------+---------------------------------------------------------------------------+
-| rbind(object, object,...)  | combine objects as rows                                                   |
-+----------------------------+---------------------------------------------------------------------------+
-| ls()                       | list current objects                                                      |
-+----------------------------+---------------------------------------------------------------------------+
-| rm(object)                 | delete an object                                                          |
-+----------------------------+---------------------------------------------------------------------------+
-| newobject \<- edit(object) | create a new object                                                       |
-+----------------------------+---------------------------------------------------------------------------+
-| fix(object)                | edit an object in place                                                   |
-+----------------------------+---------------------------------------------------------------------------+
++----------------------------+--------------------------------------------------------------------------+
+| **Function**               | **Description**                                                          |
++:===========================+:=========================================================================+
+| seq(from, to, by)          | generate a sequence indices \<- seq(1,10,2) #indices is c(1, 3, 5, 7, 9) |
++----------------------------+--------------------------------------------------------------------------+
+| rep(x,ntimes)              | repeat x n times y \<- rep(1:3, 2) \# y is c(1, 2, 3, 1, 2, 3)           |
++----------------------------+--------------------------------------------------------------------------+
+| cut(x,n)                   | divide continuous variable in factor with n levels y \<- cut(x, 5)       |
++----------------------------+--------------------------------------------------------------------------+
+| length(object)             | number of elements or components                                         |
++----------------------------+--------------------------------------------------------------------------+
+| str(object)                | structure of an object                                                   |
++----------------------------+--------------------------------------------------------------------------+
+| class(object)              | class or type of an object                                               |
++----------------------------+--------------------------------------------------------------------------+
+| names(object)              | names                                                                    |
++----------------------------+--------------------------------------------------------------------------+
+| c(object, object,...)      | combine objects into a vector                                            |
++----------------------------+--------------------------------------------------------------------------+
+| cbind(object, object,...)  | combine objects as columns                                               |
++----------------------------+--------------------------------------------------------------------------+
+| rbind(object, object,...)  | combine objects as rows                                                  |
++----------------------------+--------------------------------------------------------------------------+
+| ls()                       | list current objects                                                     |
++----------------------------+--------------------------------------------------------------------------+
+| rm(object)                 | delete an object                                                         |
++----------------------------+--------------------------------------------------------------------------+
+| newobject \<- edit(object) | create a new object                                                      |
++----------------------------+--------------------------------------------------------------------------+
+| fix(object)                | edit an object in place                                                  |
++----------------------------+--------------------------------------------------------------------------+
 
 # [Dplyr](https://dplyr.tidyverse.org/)
 
-### Pipes %\>%
+### Pipes %>%
 
 Before we start data wrangling, let's first introduce a tool that gets loaded with the `dplyr` package: the pipe operator `%>%`. The pipe operator allows us to combine multiple operations in R into a single sequential *chain* of actions.
 
@@ -558,9 +558,9 @@ knitr::kable(Customer %>%
 
 </details>
 
-# Exercise \#1 {#exercise-1}
+# Exercise #1 {#exercise-1}
 
-In an Rmd file answer the following questions. Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work. *note: in order to keep the output of tables to a minimum use the function* `head(table_name, 5)` *to include the first 5 results in the table.*
+In an Rmd file answer the following questions. Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit html of your work. *note: in order to keep the output of tables to a minimum use the function* `head(table_name, 5)` *to include the first 5 results in the table.*
 
 <aside>
 
@@ -852,9 +852,9 @@ summary_dept_st_payroll<-Payroll4%>%
 
 Why?
 
-# Exercise \#2
+# Exercise #2
 
-Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work.
+Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit html of your work.
 
 1.  What is the mean invoice total for the USA?
 
@@ -1117,9 +1117,9 @@ knitr::kable(Multple_Arrange)%>%
 
 ```
 
-# Exercise \#3
+# Exercise #3
 
-Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work.
+Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit html of your work.
 
 1.  With the AnnualCompanyData dataset construct a dataset that contains CompanyName, FiscalYear, CurrentAssets, TotalInventory, CurrentLiab AND the necessary variables to construct Debt ratio. Using mutate construct AcidTest_Ratio, Current_Ratio, and Debt_Ratio.
 
@@ -1544,9 +1544,9 @@ Note that "INNER" and "OUTER" are optional, and often omitted.
 
 Joining different variables between the tables, e.g. `inner_join(x, y, by = c("a" = "b"))` uses a slightly different syntax in SQL: `SELECT * FROM x INNER JOIN y ON x.a = y.b`. As this syntax suggests, SQL supports a wider range of join types than dplyr because you can connect the tables using constraints other than equality (sometimes called non-equijoins).
 
-# Exercise \#4
+# Exercise #4
 
-Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit PDF of your work. Answer the following questions using the Chinook Database.
+Include the **question**, **code**, and the **results**. I provide the results, but you have to come up with the code. Turn in the Rmd and a knit html of your work. Answer the following questions using the Chinook Database.
 
 1.  Return the top five most downloaded tracks with the full name of the track and number of downloads.
 
@@ -1672,11 +1672,18 @@ Include the **question**, **code**, and the **results**. I provide the results, 
 
 # Summary
 
++----------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Verb**       | **Data wrangling operation**                                                                                            |
-|:---------------|:------------------------------------------------------------------------------------------------------------------------|
++:===============+:========================================================================================================================+
 | `filter()`     | Pick out a subset of rows                                                                                               |
++----------------+-------------------------------------------------------------------------------------------------------------------------+
 | `summarize()`  | Summarize many values to one using a summary statistic function like `mean()`, `median()`, etc.                         |
++----------------+-------------------------------------------------------------------------------------------------------------------------+
 | `group_by()`   | Add grouping structure to rows in data frame. Note this does not change values in data frame, rather only the meta-data |
++----------------+-------------------------------------------------------------------------------------------------------------------------+
 | `mutate()`     | Create new variables by mutating existing ones                                                                          |
++----------------+-------------------------------------------------------------------------------------------------------------------------+
 | `arrange()`    | Arrange rows of a data variable in ascending (default) or `desc`ending order                                            |
++----------------+-------------------------------------------------------------------------------------------------------------------------+
 | `inner_join()` | Join/merge two data frames, matching rows by a key variable                                                             |
++----------------+-------------------------------------------------------------------------------------------------------------------------+
