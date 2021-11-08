@@ -35,6 +35,8 @@ library(curl)
 load(curl("https://raw.githubusercontent.com/Professor-Hunt/ACC3053/main/data/AnnualCompanyData.Rda"))
 ```
 
+## Graph Introduction
+
 [Scatter Plots](https://moderndive.com/2-viz.html#scatterplots)
 
 ```{r}
@@ -101,11 +103,11 @@ There are other components of the grammar of graphics we can control as well. As
 
 -   `position` adjustments for barplots
 
-Other more complex components like `scales` and `coord`inate systems are left for a more advanced text such as [*R for Data Science*](http://r4ds.had.co.nz/data-visualisation.html#aesthetic-mappings) (Grolemund and Wickham [2017](https://moderndive.com/2-viz.html#ref-rds2016)). Generally speaking, the grammar of graphics allows for a high degree of customization of plots and also a consistent framework for easily updating and modifying them.
+Other more complex components like `scales` and `coord`inate systems can be found in [*R for Data Science*](http://r4ds.had.co.nz/data-visualisation.html#aesthetic-mappings) (Grolemund and Wickham [2017](https://moderndive.com/2-viz.html#ref-rds2016)). Generally speaking, the grammar of graphics allows for a high degree of customization of plots and also a consistent framework for easily updating and modifying them.
 
 ## ggplot2 package
 
-we will use the `ggplot2` package for data visualization, which is an implementation of the `g`rammar of `g`raphics for R (Wickham, Chang, et al. [2021](https://moderndive.com/2-viz.html#ref-R-ggplot2)). As we noted earlier, a lot of the previous section was written in a computer code type font. This is because the various components of the grammar of graphics are specified in the `ggplot()` function included in the `ggplot2` package. For the purposes of this book, we'll always provide the `ggplot()` function with the following arguments (i.e., inputs) at a minimum:
+we will use the `ggplot2` package for data visualization, which is an implementation of the `g`rammar of `g`raphics for R (Wickham, Chang, et al. [2021](https://moderndive.com/2-viz.html#ref-R-ggplot2)). As we noted earlier, a lot of the previous section was written in a computer code type font. This is because the various components of the grammar of graphics are specified in the `ggplot()` function included in the `ggplot2` package. For the purposes of this class, we'll always provide the `ggplot()` function with the following arguments (i.e., inputs) at a minimum:
 
 -   The data frame where the variables exist: the `data` argument.
 

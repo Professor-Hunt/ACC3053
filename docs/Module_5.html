@@ -2403,6 +2403,7 @@ Modules
 <a href="Module_2.html">Module 2</a>
 <a href="Module_3.html">Module 3</a>
 <a href="Module_4.html">Module 4</a>
+<a href="Module_5.html">Module 5</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2441,7 +2442,8 @@ Lagniappe Material
 <ul>
 <li><a href="#the-grammar-of-graphics">The grammar of graphics</a>
 <ul>
-<li><a href="#components-of-the-grammar-in-short-the-grammar-tells-us-that">Components of the grammar In short, the grammar tells us that:</a>
+<li><a href="#components-of-the-grammar-in-short-the-grammar-tells-us-that">Components of the grammar In short, the grammar tells us that:</a></li>
+<li><a href="#graph-introduction">Graph Introduction</a>
 <ul>
 <li><a href="#other-components">Other components</a></li>
 </ul></li>
@@ -2472,6 +2474,7 @@ Lagniappe Material
 </code></pre>
 </div>
 </div>
+<h2 id="graph-introduction">Graph Introduction</h2>
 <p><a href="https://moderndive.com/2-viz.html#scatterplots">Scatter Plots</a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2549,9 +2552,9 @@ Lagniappe Material
 <li><p><code>facet</code>ing breaks up a plot into several plots split by the values of another variable</p></li>
 <li><p><code>position</code> adjustments for barplots</p></li>
 </ul>
-<p>Other more complex components like <code>scales</code> and <code>coord</code>inate systems are left for a more advanced text such as <a href="http://r4ds.had.co.nz/data-visualisation.html#aesthetic-mappings"><em>R for Data Science</em></a> (Grolemund and Wickham <a href="https://moderndive.com/2-viz.html#ref-rds2016">2017</a>). Generally speaking, the grammar of graphics allows for a high degree of customization of plots and also a consistent framework for easily updating and modifying them.</p>
+<p>Other more complex components like <code>scales</code> and <code>coord</code>inate systems can be found in <a href="http://r4ds.had.co.nz/data-visualisation.html#aesthetic-mappings"><em>R for Data Science</em></a> (Grolemund and Wickham <a href="https://moderndive.com/2-viz.html#ref-rds2016">2017</a>). Generally speaking, the grammar of graphics allows for a high degree of customization of plots and also a consistent framework for easily updating and modifying them.</p>
 <h2 id="ggplot2-package">ggplot2 package</h2>
-<p>we will use the <code>ggplot2</code> package for data visualization, which is an implementation of the <code>g</code>rammar of <code>g</code>raphics for R (Wickham, Chang, et al. <a href="https://moderndive.com/2-viz.html#ref-R-ggplot2">2021</a>). As we noted earlier, a lot of the previous section was written in a computer code type font. This is because the various components of the grammar of graphics are specified in the <code>ggplot()</code> function included in the <code>ggplot2</code> package. For the purposes of this book, we’ll always provide the <code>ggplot()</code> function with the following arguments (i.e., inputs) at a minimum:</p>
+<p>we will use the <code>ggplot2</code> package for data visualization, which is an implementation of the <code>g</code>rammar of <code>g</code>raphics for R (Wickham, Chang, et al. <a href="https://moderndive.com/2-viz.html#ref-R-ggplot2">2021</a>). As we noted earlier, a lot of the previous section was written in a computer code type font. This is because the various components of the grammar of graphics are specified in the <code>ggplot()</code> function included in the <code>ggplot2</code> package. For the purposes of this class, we’ll always provide the <code>ggplot()</code> function with the following arguments (i.e., inputs) at a minimum:</p>
 <ul>
 <li><p>The data frame where the variables exist: the <code>data</code> argument.</p></li>
 <li><p>The mapping of the variables to aesthetic attributes: the <code>mapping</code> argument which specifies the <code>aes</code>thetic attributes involved.</p></li>
