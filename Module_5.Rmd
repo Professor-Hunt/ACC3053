@@ -1,0 +1,130 @@
+---
+title: "Module 5"
+description: |
+  This module is an introduction to data visualization and ggplot.
+output: 
+  distill::distill_article:
+    #code_folding: true
+    toc: true
+    toc_depth: 3
+---
+
+# The grammar of graphics
+
+We start with a discussion of a theoretical framework for data visualization known as "the grammar of graphics." This framework serves as the foundation for the ggplot2 package which we'll use extensively in this chapter. Think of how we construct and form sentences in English by combining different elements, like nouns, verbs, articles, subjects, objects, etc. We can't just combine these elements in any arbitrary order; we must do so following a set of rules known as a linguistic grammar. Similarly to a linguistic grammar, "the grammar of graphics" defines a set of rules for constructing statistical graphics by combining different types of layers. This grammar was created by Leland Wilkinson (Wilkinson 2005) and has been implemented in a variety of data visualization software platforms like R, but also Plotly and Tableau.
+
+## Components of the grammar In short, the grammar tells us that:
+
+A statistical graphic is a mapping of data variables to aesthetic attributes of geometric objects.
+
+**A statistical graphic is a `mapping` of `data` variables to `aes`thetic attributes of `geom`etric objects.**
+
+Specifically, we can break a graphic into the following three essential components:
+
+data: the dataset containing the variables of interest. geom: the geometric object in question. This refers to the type of object we can observe in a plot. For example: points, lines, and bars. aes: aesthetic attributes of the geometric object. For example, x/y position, color, shape, and size. Aesthetic attributes are mapped to variables in the dataset. You might be wondering why we wrote the terms data, geom, and aes in a computer code type font. We'll see very shortly that we'll specify the elements of the grammar in R using these terms. However, let's first break down the grammar with an example.
+
+```{r loaddata}
+#load data. 
+#curl package lets us download data from a website with the proper location
+#check the packages tab and see if you have curl
+#try following
+  #?curl
+library(tidyverse)
+library(curl)
+
+load(curl("https://raw.githubusercontent.com/Professor-Hunt/ACC3053/main/data/AnnualCompanyData.Rda"))
+```
+
+[Scatter Plots](https://moderndive.com/2-viz.html#scatterplots)
+
+```{r}
+
+ggplot(data = AnnualCompanyData, mapping = aes(x = NetIncome, y = LongtermDebt)) + 
+  geom_point()
+
+ggplot(data = AnnualCompanyData, mapping = aes(x = NetIncome, y = LongtermDebt)) + 
+  geom_point()+xlim(-20000,20000)+ylim(0,100000)
+```
+
+[Line Graph](https://moderndive.com/2-viz.html#linegraphs)
+
+```{r,echo=TRUE}
+#line graph..
+
+linegraph1<-AnnualCompanyData
+
+ggplot(data=linegraph1,mapping = aes(x=FiscalYear,y=TotalAssets))+geom_line()
+
+
+linegraph2<-AnnualCompanyData%>%
+  filter(CompanyName=="APPLE INC")
+
+ggplot(data=linegraph2,mapping = aes(x=FiscalYear,y=TotalAssets))+geom_line()
+
+
+linegraph3<-AnnualCompanyData%>%
+  group_by(FiscalYear)%>%
+  summarise(mean_TotalAssets=mean(TotalAssets,na.rm=TRUE))
+
+ggplot(data=linegraph3,mapping = aes(x=FiscalYear,y=mean_TotalAssets))+geom_line()
+
+```
+
+[Histograms](https://moderndive.com/2-viz.html#histograms)
+
+```{r,echo=TRUE}
+
+ggplot(data=AnnualCompanyData,mapping = aes(x=NetIncome,fill=factor(FiscalYear)))+geom_histogram(position = "dodge")
+```
+
+[Boxplots](https://moderndive.com/2-viz.html#boxplots)
+
+```{r,echo=TRUE}
+ggplot(data=AnnualCompanyData,mapping = aes(x=NetIncome,y=factor(FiscalYear)))+geom_boxplot()
+```
+
+[Bar plots](https://moderndive.com/2-viz.html#geombar)
+
+```{r,echo=TRUE}
+
+bardata<-AnnualCompanyData%>%
+  mutate(sic1=factor(substr(sic,0,1)))
+  
+ggplot(data=bardata,mapping = aes(x=sic1, fill=sic1))+geom_bar()
+```
+
+### Other components
+
+There are other components of the grammar of graphics we can control as well. As you start to delve deeper into the grammar of graphics, you'll start to encounter these topics more frequently. In this book, we'll keep things simple and only work with these two additional components:
+
+-   `facet`ing breaks up a plot into several plots split by the values of another variable
+
+-   `position` adjustments for barplots
+
+Other more complex components like `scales` and `coord`inate systems are left for a more advanced text such as [*R for Data Science*](http://r4ds.had.co.nz/data-visualisation.html#aesthetic-mappings) (Grolemund and Wickham [2017](https://moderndive.com/2-viz.html#ref-rds2016)). Generally speaking, the grammar of graphics allows for a high degree of customization of plots and also a consistent framework for easily updating and modifying them.
+
+## ggplot2 package
+
+we will use the `ggplot2` package for data visualization, which is an implementation of the `g`rammar of `g`raphics for R (Wickham, Chang, et al. [2021](https://moderndive.com/2-viz.html#ref-R-ggplot2)). As we noted earlier, a lot of the previous section was written in a computer code type font. This is because the various components of the grammar of graphics are specified in the `ggplot()` function included in the `ggplot2` package. For the purposes of this book, we'll always provide the `ggplot()` function with the following arguments (i.e., inputs) at a minimum:
+
+-   The data frame where the variables exist: the `data` argument.
+
+-   The mapping of the variables to aesthetic attributes: the `mapping` argument which specifies the `aes`thetic attributes involved.
+
+After we've specified these components, we then add *layers* to the plot using the `+` sign. The most essential layer to add to a plot is the layer that specifies which type of `geom`etric object we want the plot to involve: points, lines, bars, and others. Other layers we can add to a plot include the plot title, axes labels, visual themes for the plots, and facets
+
+# Five named graphs
+
+In order to keep things simple in this book, we will only focus on five different types of graphics, each with a commonly given name. We term these "five named graphs" or in abbreviated form, the **5NG**:
+
+1.  scatterplots
+
+2.  linegraphs
+
+3.  histograms
+
+4.  boxplots
+
+5.  barplots
+
+We'll also present some variations of these plots, but with this basic repertoire of five graphics in your toolbox, you can visualize a wide array of different variable types. Note that certain plots are only appropriate for categorical variables, while others are only appropriate for numerical variables.
