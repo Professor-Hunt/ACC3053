@@ -59,7 +59,7 @@ A dashboard is a business intelligence management tool used to determine perform
 
 # Using R for Visualizations
 
-## The grammar of graphics 
+## The grammar of graphics
 
 The specific content largely comes from [ModernDive](https://moderndive.com/index.html) and [R for Data Science](https://r4ds.had.co.nz/index.html).
 
@@ -265,8 +265,7 @@ Here, the color doesn't convey information about a variable, but only changes th
 
 -   The size of a point in mm.
 
--   The shape of a point as a number
-    ![](images/shapes-1.png){width="50%"}
+-   The shape of a point as a number ![](images/shapes-1.png){width="50%"}
 
 # Exercise 1
 
@@ -379,3 +378,214 @@ ggplot(data = Orders_Data) +
 3.  What are some other features of the plot that stand out to you?
 4.  Why is setting the `alpha` argument value useful with scatterplots? What further information does it give you that a regular scatterplot cannot?
 
+## Line Graphs
+
+Linegraphs show the relationship between two numerical variables when the variable on the x-axis, also called the *explanatory* variable, is of a sequential nature. In other words, there is an inherent ordering to the variable.
+
+The most common examples of linegraphs have some notion of time on the x-axis: hours, days, weeks, years, etc. Since time is sequential, we connect consecutive observations of the variable on the y-axis with a line. Linegraphs that have some notion of time on the x-axis are also called *time series* plots.
+
+Lets experiment with the orders data. We need a time on the x-axis...lets use Order Date.
+
+```{r linegraph1}
+#line graph
+ggplot(data=Orders_Data)+
+  geom_line(mapping=aes(x=`Order Date`, y=Quantity))
+```
+
+This is not very informative. What can we do? 😖
+
+We need to do some data wrangling:
+
+```{r dw1}
+
+OrdersData_LG<-Orders_Data%>%
+  group_by(`Order ID`)%>%
+  mutate(Tot_Ord_Quant=sum(Quantity))%>%
+  select(`Order ID`,`Order Date`,Tot_Ord_Quant)%>%
+  distinct(`Order ID`,.keep_all = TRUE)
+```
+
+Did that help?
+
+```{r linegraph2}
+#line graph
+ggplot(data=OrdersData_LG)+
+  geom_line(mapping=aes(x=`Order Date`, y=Tot_Ord_Quant))
+```
+
+That helped, but not much...
+
+What about this?
+
+```{r dw2}
+
+OrdersData_LG<-Orders_Data%>%
+  group_by(`Order Date`)%>%
+  summarise(Tot_Ord_Quant=sum(Quantity))%>%
+  distinct(`Order Date`,.keep_all = TRUE)
+
+
+```
+
+```{r linegraph3}
+#line graph
+ggplot(data=OrdersData_LG)+
+  geom_line(mapping=aes(x=`Order Date`, y=Tot_Ord_Quant))
+```
+
+Closer but it still looks rough.
+
+More wrangling...
+
+```{r dw3}
+library(lubridate)
+
+OrdersData_LG<-Orders_Data%>%
+  mutate(yearmonth= ym(paste0(year(`Order Date`),"-",month(`Order Date`))))%>%
+  group_by(yearmonth)%>%
+  summarise(Tot_Ord_Quant=sum(Quantity))
+```
+
+```{r linegraph4}
+#line graph
+ggplot(data=OrdersData_LG)+
+  geom_line(mapping=aes(x=yearmonth, y=Tot_Ord_Quant))
+```
+
+That is better. What do we learn from this graph? How can we take this information and advise our client? How can we improve the look of this graph?
+
+Linegraphs, just like scatterplots, display the relationship between two numerical variables. However, it is preferred to use linegraphs over scatterplots when the variable on the x-axis (i.e., the explanatory variable) has an inherent ordering, such as some notion of time.
+
+# Exercise 3
+
+1.  Why should line graphs be avoided when there is not a clear ordering of the horizontal axis?
+2.  Why are line graphs frequently used when time is the explanatory variable on the x-axis?
+3.  Make a line graph using shipping date and discount. What do we learn from this graph?
+
+## Histograms
+
+Lets say that we only care about how the values of a particular variable **distribute**. In other words:
+
+1.  What are the smallest and largest values?
+2.  What is the "center" or "most typical" value?
+3.  How do the values spread out?
+4.  What are frequent and infrequent values?
+
+A histogram is a plot that visualizes the *distribution* of a numerical value as follows:
+
+1.  We first cut up the x-axis into a series of *bins*, where each bin represents a range of values.
+2.  For each bin, we count the number of observations that fall in the range corresponding to that bin.
+3.  Then for each bin, we draw a bar whose height marks the corresponding count.
+
+Let's now present the `ggplot()` code to plot your first histogram! Unlike with scatterplots and linegraphs, there is now only one variable being mapped in `aes()`: the single numerical variable `Profit`. The y-aesthetic of a histogram, the count of the observations in each bin, gets computed for you automatically. Furthermore, the geometric object layer is now a `geom_histogram()`.
+
+```{r hist1}
+
+summary(Orders_Data$Profit)
+
+ggplot(data=Orders_Data)+
+  geom_histogram(mapping = aes(x=Profit))+
+  xlim(-1000,1000)
+```
+
+This does not look great. The message is telling us that the histogram was constructed using `bins = 30` for 30 equally spaced bins. This is known in computer programming as a default value; unless you override this default number of bins with a number you specify, R will choose 30 by default. Let's improve this by adjusting the number of bins in our histogram in one of two ways:
+
+1.  By adjusting the number of bins via the `bins` argument to `geom_histogram()`.
+
+2.  By adjusting the width of the bins via the `binwidth` argument to `geom_histogram()`.
+
+Using the first method, we have the power to specify how many bins we would like to cut the x-axis up in. As mentioned in the previous section, the default number of bins is 30. We can override this default, to say 100 bins, as follows:
+
+```{r hist2}
+ggplot(data=Orders_Data)+
+  geom_histogram(mapping = aes(x=Profit), bins = 100)+
+  xlim(-1000,1000)
+  
+```
+
+Using the second method, instead of specifying the number of bins, we specify the width of the bins by using the `binwidth` argument in the `geom_histogram()` layer.
+
+```{r hist3}
+
+ggplot(data=Orders_Data)+
+  geom_histogram(mapping = aes(x=Profit), binwidth=10)+
+  xlim(-1000,1000)
+
+```
+
+We can add some edges and color. 🤠
+
+```{r hist4}
+ggplot(data=Orders_Data)+
+  geom_histogram(mapping = aes(x=Profit), binwidth=100, color="darkred")+
+  xlim(-1000,1000)
+
+ggplot(data=Orders_Data)+
+  geom_histogram(mapping = aes(x=Profit), binwidth=100, fill="darkred")+
+  xlim(-1000,1000)
+
+ggplot(data=Orders_Data)+
+  geom_histogram(mapping = aes(x=Profit), binwidth=100, color="darkred", fill="pink")+
+  xlim(-1000,1000)
+
+ggplot(data=Orders_Data)+
+  geom_histogram(mapping = aes(x=Profit), binwidth=10, color="darkred", fill="pink")+
+  xlim(-1000,1000)
+```
+
+What are these graphs missing? How could we improve their look?
+
+# Exercise 4
+
+1.  What does changing the number of bins from 30 to 100 tell us about the distribution of Profit?
+
+2.  Would you classify the distribution of Profit as symmetric or skewed in one direction or another?
+
+3.  What would you guess is the "center" value in this distribution? Why did you make that choice?
+
+4.  Is this data spread out greatly from the center or is it close? Why?
+
+Histograms, unlike scatter plots and line graphs, present information on only a single numerical variable. Specifically, they are visualizations of the distribution of the numerical variable in question.
+
+## Facets
+
+Let's briefly introduce a new concept called *faceting*. Faceting is used when we'd like to split a particular visualization by the values of another variable. This will create multiple copies of the same type of plot with matching x and y axes, but whose content will differ.
+
+```{r hist5}
+
+ggplot(data=Orders_Data)+
+  geom_histogram(mapping = aes(x=Profit), binwidth=10, color="darkred", fill="pink")+
+  xlim(-200,200)+
+  facet_wrap(~year(`Order Date`))
+
+ggplot(data=Orders_Data)+
+  geom_histogram(mapping = aes(x=Profit), binwidth=10, color="darkred", fill="pink")+
+  xlim(-100,100)+
+  facet_wrap(~month(`Order Date`))
+
+```
+
+Change the number of rows:
+
+```{r hist6}
+ggplot(data=Orders_Data)+
+  geom_histogram(mapping = aes(x=Profit), binwidth=10, color="darkred", fill="pink")+
+  xlim(-100,100)+
+  facet_wrap(~month(`Order Date`),nrow = 4)
+```
+
+What other things do you notice about this faceted plot? How does a faceted plot help us see relationships between two variables?
+
+Lets do a join for fun:
+
+```{r join1}
+
+Order_People<-Orders_Data%>%
+  inner_join(People_Data, by="Region")
+
+ggplot(data=Order_People)+
+  geom_histogram(mapping = aes(x=Profit), binwidth=10, color="darkred", fill="pink")+
+  xlim(-200,200)+
+  facet_wrap(~Person)
+
+```

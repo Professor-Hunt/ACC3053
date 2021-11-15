@@ -2468,7 +2468,18 @@ Lagniappe Material
 <li><a href="#summary">Summary</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#exercise-2">Exercise 2</a></li>
+<li><a href="#exercise-2">Exercise 2</a>
+<ul>
+<li><a href="#line-graphs">Line Graphs</a></li>
+</ul></li>
+<li><a href="#exercise-3">Exercise 3</a>
+<ul>
+<li><a href="#histograms">Histograms</a></li>
+</ul></li>
+<li><a href="#exercise-4">Exercise 4</a>
+<ul>
+<li><a href="#facets">Facets</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -2820,7 +2831,233 @@ Lagniappe Material
 <li>What are some other features of the plot that stand out to you?</li>
 <li>Why is setting the <code>alpha</code> argument value useful with scatterplots? What further information does it give you that a regular scatterplot cannot?</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="line-graphs">Line Graphs</h2>
+<p>Linegraphs show the relationship between two numerical variables when the variable on the x-axis, also called the <em>explanatory</em> variable, is of a sequential nature. In other words, there is an inherent ordering to the variable.</p>
+<p>The most common examples of linegraphs have some notion of time on the x-axis: hours, days, weeks, years, etc. Since time is sequential, we connect consecutive observations of the variable on the y-axis with a line. Linegraphs that have some notion of time on the x-axis are also called <em>time series</em> plots.</p>
+<p>Lets experiment with the orders data. We need a time on the x-axis…lets use Order Date.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#line graph</span>
+<span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>`Order Date`</span>, y<span class='op'>=</span><span class='va'>Quantity</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/linegraph1-1.png" width="624" /></p>
+</div>
+<p>This is not very informative. What can we do? 😖</p>
+<p>We need to do some data wrangling:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>OrdersData_LG</span><span class='op'>&lt;-</span><span class='va'>Orders_Data</span><span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>`Order ID`</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>Tot_Ord_Quant<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Quantity</span><span class='op'>)</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>`Order ID`</span>,<span class='va'>`Order Date`</span>,<span class='va'>Tot_Ord_Quant</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>distinct</span><span class='op'>(</span><span class='va'>`Order ID`</span>,.keep_all <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Did that help?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#line graph</span>
+<span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>OrdersData_LG</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>`Order Date`</span>, y<span class='op'>=</span><span class='va'>Tot_Ord_Quant</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/linegraph2-1.png" width="624" /></p>
+</div>
+<p>That helped, but not much…</p>
+<p>What about this?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>OrdersData_LG</span><span class='op'>&lt;-</span><span class='va'>Orders_Data</span><span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>`Order Date`</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>Tot_Ord_Quant<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Quantity</span><span class='op'>)</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>distinct</span><span class='op'>(</span><span class='va'>`Order Date`</span>,.keep_all <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#line graph</span>
+<span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>OrdersData_LG</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>`Order Date`</span>, y<span class='op'>=</span><span class='va'>Tot_Ord_Quant</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/linegraph3-1.png" width="624" /></p>
+</div>
+<p>Closer but it still looks rough.</p>
+<p>More wrangling…</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://lubridate.tidyverse.org'>lubridate</a></span><span class='op'>)</span>
+
+<span class='va'>OrdersData_LG</span><span class='op'>&lt;-</span><span class='va'>Orders_Data</span><span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>yearmonth<span class='op'>=</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ym</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='va'>`Order Date`</span><span class='op'>)</span>,<span class='st'>"-"</span>,<span class='fu'><a href='https://lubridate.tidyverse.org/reference/month.html'>month</a></span><span class='op'>(</span><span class='va'>`Order Date`</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>yearmonth</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>Tot_Ord_Quant<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Quantity</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#line graph</span>
+<span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>OrdersData_LG</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_line</span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>yearmonth</span>, y<span class='op'>=</span><span class='va'>Tot_Ord_Quant</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/linegraph4-1.png" width="624" /></p>
+</div>
+<p>That is better. What do we learn from this graph? How can we take this information and advise our client? How can we improve the look of this graph?</p>
+<p>Linegraphs, just like scatterplots, display the relationship between two numerical variables. However, it is preferred to use linegraphs over scatterplots when the variable on the x-axis (i.e., the explanatory variable) has an inherent ordering, such as some notion of time.</p>
+<h1 id="exercise-3">Exercise 3</h1>
+<ol type="1">
+<li>Why should line graphs be avoided when there is not a clear ordering of the horizontal axis?</li>
+<li>Why are line graphs frequently used when time is the explanatory variable on the x-axis?</li>
+<li>Make a line graph using shipping date and discount. What do we learn from this graph?</li>
+</ol>
+<h2 id="histograms">Histograms</h2>
+<p>Lets say that we only care about how the values of a particular variable <strong>distribute</strong>. In other words:</p>
+<ol type="1">
+<li>What are the smallest and largest values?</li>
+<li>What is the “center” or “most typical” value?</li>
+<li>How do the values spread out?</li>
+<li>What are frequent and infrequent values?</li>
+</ol>
+<p>A histogram is a plot that visualizes the <em>distribution</em> of a numerical value as follows:</p>
+<ol type="1">
+<li>We first cut up the x-axis into a series of <em>bins</em>, where each bin represents a range of values.</li>
+<li>For each bin, we count the number of observations that fall in the range corresponding to that bin.</li>
+<li>Then for each bin, we draw a bar whose height marks the corresponding count.</li>
+</ol>
+<p>Let’s now present the <code>ggplot()</code> code to plot your first histogram! Unlike with scatterplots and linegraphs, there is now only one variable being mapped in <code>aes()</code>: the single numerical variable <code>Profit</code>. The y-aesthetic of a histogram, the count of the observations in each bin, gets computed for you automatically. Furthermore, the geometric object layer is now a <code>geom_histogram()</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>Orders_Data</span><span class='op'>$</span><span class='va'>Profit</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-6599.978     1.729     8.666    28.657    29.364  8399.976 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1000</span>,<span class='fl'>1000</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/hist1-1.png" width="624" /></p>
+</div>
+<p>This does not look great. The message is telling us that the histogram was constructed using <code>bins = 30</code> for 30 equally spaced bins. This is known in computer programming as a default value; unless you override this default number of bins with a number you specify, R will choose 30 by default. Let’s improve this by adjusting the number of bins in our histogram in one of two ways:</p>
+<ol type="1">
+<li><p>By adjusting the number of bins via the <code>bins</code> argument to <code>geom_histogram()</code>.</p></li>
+<li><p>By adjusting the width of the bins via the <code>binwidth</code> argument to <code>geom_histogram()</code>.</p></li>
+</ol>
+<p>Using the first method, we have the power to specify how many bins we would like to cut the x-axis up in. As mentioned in the previous section, the default number of bins is 30. We can override this default, to say 100 bins, as follows:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span>, bins <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1000</span>,<span class='fl'>1000</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/hist2-1.png" width="624" /></p>
+</div>
+<p>Using the second method, instead of specifying the number of bins, we specify the width of the bins by using the <code>binwidth</code> argument in the <code>geom_histogram()</code> layer.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span>, binwidth<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1000</span>,<span class='fl'>1000</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/hist3-1.png" width="624" /></p>
+</div>
+<p>We can add some edges and color. 🤠</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span>, binwidth<span class='op'>=</span><span class='fl'>100</span>, color<span class='op'>=</span><span class='st'>"darkred"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1000</span>,<span class='fl'>1000</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="Module_5_files/figure-html5/hist4-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span>, binwidth<span class='op'>=</span><span class='fl'>100</span>, fill<span class='op'>=</span><span class='st'>"darkred"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1000</span>,<span class='fl'>1000</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="Module_5_files/figure-html5/hist4-2.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span>, binwidth<span class='op'>=</span><span class='fl'>100</span>, color<span class='op'>=</span><span class='st'>"darkred"</span>, fill<span class='op'>=</span><span class='st'>"pink"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1000</span>,<span class='fl'>1000</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="Module_5_files/figure-html5/hist4-3.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span>, binwidth<span class='op'>=</span><span class='fl'>10</span>, color<span class='op'>=</span><span class='st'>"darkred"</span>, fill<span class='op'>=</span><span class='st'>"pink"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1000</span>,<span class='fl'>1000</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/hist4-4.png" width="624" /></p>
+</div>
+<p>What are these graphs missing? How could we improve their look?</p>
+<h1 id="exercise-4">Exercise 4</h1>
+<ol type="1">
+<li><p>What does changing the number of bins from 30 to 100 tell us about the distribution of Profit?</p></li>
+<li><p>Would you classify the distribution of Profit as symmetric or skewed in one direction or another?</p></li>
+<li><p>What would you guess is the “center” value in this distribution? Why did you make that choice?</p></li>
+<li><p>Is this data spread out greatly from the center or is it close? Why?</p></li>
+</ol>
+<p>Histograms, unlike scatter plots and line graphs, present information on only a single numerical variable. Specifically, they are visualizations of the distribution of the numerical variable in question.</p>
+<h2 id="facets">Facets</h2>
+<p>Let’s briefly introduce a new concept called <em>faceting</em>. Faceting is used when we’d like to split a particular visualization by the values of another variable. This will create multiple copies of the same type of plot with matching x and y axes, but whose content will differ.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span>, binwidth<span class='op'>=</span><span class='fl'>10</span>, color<span class='op'>=</span><span class='st'>"darkred"</span>, fill<span class='op'>=</span><span class='st'>"pink"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>200</span>,<span class='fl'>200</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='va'>`Order Date`</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="Module_5_files/figure-html5/hist5-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span>, binwidth<span class='op'>=</span><span class='fl'>10</span>, color<span class='op'>=</span><span class='st'>"darkred"</span>, fill<span class='op'>=</span><span class='st'>"pink"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>100</span>,<span class='fl'>100</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/month.html'>month</a></span><span class='op'>(</span><span class='va'>`Order Date`</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/hist5-2.png" width="624" /></p>
+</div>
+<p>Change the number of rows:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span>, binwidth<span class='op'>=</span><span class='fl'>10</span>, color<span class='op'>=</span><span class='st'>"darkred"</span>, fill<span class='op'>=</span><span class='st'>"pink"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>100</span>,<span class='fl'>100</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/month.html'>month</a></span><span class='op'>(</span><span class='va'>`Order Date`</span><span class='op'>)</span>,nrow <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/hist6-1.png" width="624" /></p>
+</div>
+<p>What other things do you notice about this faceted plot? How does a faceted plot help us see relationships between two variables?</p>
+<p>Lets do a join for fun:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Order_People</span><span class='op'>&lt;-</span><span class='va'>Orders_Data</span><span class='op'>%&gt;%</span>
+  <span class='fu'>inner_join</span><span class='op'>(</span><span class='va'>People_Data</span>, by<span class='op'>=</span><span class='st'>"Region"</span><span class='op'>)</span>
+
+<span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Order_People</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span>, binwidth<span class='op'>=</span><span class='fl'>10</span>, color<span class='op'>=</span><span class='st'>"darkred"</span>, fill<span class='op'>=</span><span class='st'>"pink"</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>xlim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>200</span>,<span class='fl'>200</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span><span class='va'>Person</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/join1-1.png" width="624" /></p>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
