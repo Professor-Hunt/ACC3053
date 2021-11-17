@@ -2479,7 +2479,22 @@ Lagniappe Material
 <li><a href="#exercise-4">Exercise 4</a>
 <ul>
 <li><a href="#facets">Facets</a></li>
+<li><a href="#box-plots">Box Plots</a></li>
 </ul></li>
+<li><a href="#exercise-5">Exercise 5</a>
+<ul>
+<li><a href="#summary-1">Summary</a></li>
+<li><a href="#bar-plots">Bar Plots</a></li>
+</ul></li>
+<li><a href="#exercise-6">Exercise 6</a>
+<ul>
+<li><a href="#section"></a></li>
+</ul></li>
+<li><a href="#exercise-7">Exercise 7</a>
+<ul>
+<li><a href="#summary-2">Summary</a></li>
+</ul></li>
+<li><a href="#graphs">5 Graphs</a></li>
 </ul>
 </nav>
 </div>
@@ -3011,7 +3026,7 @@ Lagniappe Material
 <li><p>Is this data spread out greatly from the center or is it close? Why?</p></li>
 </ol>
 <p>Histograms, unlike scatter plots and line graphs, present information on only a single numerical variable. Specifically, they are visualizations of the distribution of the numerical variable in question.</p>
-<h2 id="facets">Facets</h2>
+<h3 id="facets">Facets</h3>
 <p>Let’s briefly introduce a new concept called <em>faceting</em>. Faceting is used when we’d like to split a particular visualization by the values of another variable. This will create multiple copies of the same type of plot with matching x and y axes, but whose content will differ.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -3057,7 +3072,198 @@ Lagniappe Material
 </div>
 <p><img src="Module_5_files/figure-html5/join1-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="box-plots">Box Plots</h2>
+<p>While faceted histograms are one type of visualization used to compare the distribution of a numerical variable split by the values of another variable, another type of visualization that achieves this same goal is a <em>side-by-side boxplot</em>. A boxplot is constructed from the information provided in the <em>five-number summary</em> of a numerical variable. The <em>five-number summary</em> consists of five summary statistics: the minimum, the first quantile AKA 25th percentile, the second quantile AKA median or 50th percentile, the third quantile AKA 75th, and the maximum.</p>
+<p>The quantiles are calculated as</p>
+<ul>
+<li><p>first quantile (<span class="math inline">\(Q_1\)</span>): the median of the first half of the sorted data</p></li>
+<li><p>third quantile (<span class="math inline">\(Q_3\)</span>): the median of the second half of the sorted data</p></li>
+</ul>
+<p>The <em>interquartile range (IQR)</em> is defined as <span class="math inline">\(Q_3−Q_1\)</span> and is a measure of how spread out the middle 50% of values are. The IQR corresponds to the length of the box in a boxplot.</p>
+<p>The median and the IQR are not influenced by the presence of outliers in the ways that the mean and standard deviation are. They are, thus, recommended for skewed datasets. We say in this case that the median and IQR are more <em>robust to outliers</em>. <em>Outliers</em> correspond to values in the dataset that fall far outside the range of “ordinary” values. In the context of a boxplot, by default they correspond to values below <span class="math inline">\(Q_1 - (1.5 \cdot IQR)\)</span> or above <span class="math inline">\(Q_3 + (1.5 \cdot IQR)\)</span></p>
+<p>Let’s now create a side-by-side <a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">boxplot</a></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#library(tidyverse)</span>
+<span class='co'>#library(lubridate)</span>
+
+<span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_boxplot</span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'>aes</span><span class='op'>(</span>y<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="Module_5_files/figure-html5/boxplot-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_boxplot</span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='va'>`Order Date`</span><span class='op'>)</span>,y<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="Module_5_files/figure-html5/boxplot-2.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_boxplot</span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='va'>`Order Date`</span><span class='op'>)</span><span class='op'>)</span>,y<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="Module_5_files/figure-html5/boxplot-3.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_boxplot</span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='va'>`Order Date`</span><span class='op'>)</span><span class='op'>)</span>,y<span class='op'>=</span><span class='va'>Profit</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>ylim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>30</span>,<span class='fl'>30</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/boxplot-4.png" width="624" /></p>
+</div>
+<h1 id="exercise-5">Exercise 5</h1>
+<ol type="1">
+<li>What do the dots correspond to in the above box plots?</li>
+<li>Are the years that different?</li>
+<li>We looked at the distribution of the numerical variable <code>Profit</code> split by the numerical variable <code>year</code> that we converted using the <code>factor()</code> function in order to make a side-by-side boxplot. Why would a boxplot of <code>Profit</code> split by the numerical variable <code>Sales</code> similarly converted to a categorical variable using the <code>factor()</code> not be informative?</li>
+<li>Boxplots provide a simple way to identify outliers. Why may outliers be easier to identify when looking at a boxplot instead of a faceted histogram?</li>
+</ol>
+<h3 id="summary-1">Summary</h3>
+<p>Side-by-side boxplots provide us with a way to compare the distribution of a numerical variable across multiple values of another variable. One can see where the median falls across the different groups by comparing the solid lines in the center of the boxes.</p>
+<p>To study the spread of a numerical variable within one of the boxes, look at both the length of the box and also how far the whiskers extend from either end of the box. Outliers are even more easily identified when looking at a boxplot than when looking at a histogram as they are marked with distinct points.</p>
+<h2 id="bar-plots">Bar Plots</h2>
+<p>Both histograms and boxplots are tools to visualize the distribution of numerical variables. Another commonly desired task is to visualize the distribution of a categorical variable. This is a simpler task, as we are simply counting different categories within a categorical variable, also known as the <em>levels</em> of the categorical variable. Often the best way to visualize these different counts, also known as <em>frequencies</em>, is with barplots (also called barcharts).</p>
+<p>One complication, however, is how your data is represented. Is the categorical variable of interest “pre-counted” or not?</p>
+<p>Lets create a <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">bar plot</a></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_bar</span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Category</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/bar-1.png" width="624" /></p>
+</div>
+<p>What if the data where already counted?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Orders_Data_Count</span><span class='op'>&lt;-</span><span class='va'>Orders_Data</span><span class='op'>%&gt;%</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>Category</span><span class='op'>)</span><span class='op'>%&gt;%</span>
+  <span class='fu'>summarise</span><span class='op'>(</span>Cat_Count<span class='op'>=</span><span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>Orders_Data_Count</span><span class='op'>)</span>
+</code></pre>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Category</th>
+<th style="text-align: right;">Cat_Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Furniture</td>
+<td style="text-align: right;">2121</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Office Supplies</td>
+<td style="text-align: right;">6026</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Technology</td>
+<td style="text-align: right;">1847</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data_Count</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_col</span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Category</span>,y<span class='op'>=</span><span class='va'>Cat_Count</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/bar2-1.png" width="624" /></p>
+</div>
+<p>They are identical because they reflect counts of the same 3 Categories. However, depending on how our categorical data is represented, either “pre-counted” or not, we must add a different <code>geom</code> layer. When the categorical variable whose distribution you want to visualize</p>
+<ul>
+<li><p>Is <em>not</em> pre-counted in your data frame, we use <code>geom_bar()</code>.</p></li>
+<li><p>Is pre-counted in your data frame, we use <code>geom_col()</code> with the y-position aesthetic mapped to the variable that has the counts.</p></li>
+</ul>
+<h1 id="exercise-6">Exercise 6</h1>
+<ol type="1">
+<li>Why are histograms inappropriate for categorical variables?</li>
+<li>What is the difference between histograms and bar plots?</li>
+<li>Make a bar plot, using the Orders_Data, of <code>Sub-Category</code>.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>Orders_Data)<span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span> ? ))</span></code></pre></div>
+</div>
+<h3 id="section"></h3>
+<p>Two categorical variables</p>
+<p>Barplots are a very common way to visualize the frequency of different categories, or levels, of a single categorical variable. Another use of barplots is to visualize the <em>joint</em> distribution of two categorical variables at the same time.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_bar</span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Category</span>,fill<span class='op'>=</span><span class='va'>Segment</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="Module_5_files/figure-html5/unnamed-chunk-6-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>Orders_Data</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>geom_bar</span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>Category</span>,fill<span class='op'>=</span><span class='va'>Segment</span><span class='op'>)</span>,position <span class='op'>=</span> <span class='st'>"dodge"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Module_5_files/figure-html5/unnamed-chunk-6-2.png" width="624" /></p>
+</div>
+<h1 id="exercise-7">Exercise 7</h1>
+<ol type="1">
+<li>Why might the side-by-side barplot be preferable to a stacked barplot in this case?</li>
+<li>What are the disadvantages of using a dodged bar plot, in general?</li>
+<li>Make a faceted barplot of <code>Category</code> facet wrapped by <code>Segment</code>.</li>
+<li>Which do you prefer…the facet wrapped version or the dodge position version of the bar plots?</li>
+</ol>
+<h3 id="summary-2">Summary</h3>
+<p>Barplots are a common way of displaying the distribution of a categorical variable, or in other words the frequency with which the different categories (also called <em>levels</em>) occur. They are easy to understand and make it easy to make comparisons across levels. Furthermore, when trying to visualize the relationship of two categorical variables, you have many options: stacked barplots, side-by-side barplots, and faceted barplots. Depending on what aspect of the relationship you are trying to emphasize, you will need to make a choice between these three types of barplots and own that choice.</p>
+<h1 id="graphs">5 Graphs</h1>
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 26%" />
+<col style="width: 30%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Named graph</strong></th>
+<th style="text-align: center;"><strong>Shows</strong></th>
+<th style="text-align: center;"><strong>Geometric object</strong></th>
+<th style="text-align: center;"><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Scatterplot</td>
+<td style="text-align: center;">Relationship between 2 numerical variables</td>
+<td style="text-align: center;"><code>geom_point()</code></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Linegraph</td>
+<td style="text-align: center;">Relationship between 2 numerical variables</td>
+<td style="text-align: center;"><code>geom_line()</code></td>
+<td style="text-align: center;">Used when there is a sequential order to x-variable, e.g., time</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Histogram</td>
+<td style="text-align: center;">Distribution of 1 numerical variable</td>
+<td style="text-align: center;"><code>geom_histogram()</code></td>
+<td style="text-align: center;">Facetted histograms show the distribution of 1 numerical variable split by the values of another variable</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Boxplot</td>
+<td style="text-align: center;">Distribution of 1 numerical variable split by the values of another variable</td>
+<td style="text-align: center;"><code>geom_boxplot()</code></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Barplot</td>
+<td style="text-align: center;">Distribution of 1 categorical variable</td>
+<td style="text-align: center;"><code>geom_bar()</code> when counts are not pre-counted, <code>geom_col()</code> when counts are pre-counted</td>
+<td style="text-align: center;">Stacked, side-by-side, and faceted barplots show the joint distribution of 2 categorical variables</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -3065,6 +3271,15 @@ Lagniappe Material
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->

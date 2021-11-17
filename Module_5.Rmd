@@ -547,7 +547,7 @@ What are these graphs missing? How could we improve their look?
 
 Histograms, unlike scatter plots and line graphs, present information on only a single numerical variable. Specifically, they are visualizations of the distribution of the numerical variable in question.
 
-## Facets
+### Facets
 
 Let's briefly introduce a new concept called *faceting*. Faceting is used when we'd like to split a particular visualization by the values of another variable. This will create multiple copies of the same type of plot with matching x and y axes, but whose content will differ.
 
@@ -589,3 +589,138 @@ ggplot(data=Order_People)+
   facet_wrap(~Person)
 
 ```
+
+## Box Plots
+
+While faceted histograms are one type of visualization used to compare the distribution of a numerical variable split by the values of another variable, another type of visualization that achieves this same goal is a *side-by-side boxplot*. A boxplot is constructed from the information provided in the *five-number summary* of a numerical variable. The *five-number summary* consists of five summary statistics: the minimum, the first quantile AKA 25th percentile, the second quantile AKA median or 50th percentile, the third quantile AKA 75th, and the maximum.
+
+The quantiles are calculated as
+
+-   first quantile ($Q_1$): the median of the first half of the sorted data
+
+-   third quantile ($Q_3$): the median of the second half of the sorted data
+
+The *interquartile range (IQR)* is defined as $Q_3−Q_1$ and is a measure of how spread out the middle 50% of values are. The IQR corresponds to the length of the box in a boxplot.
+
+The median and the IQR are not influenced by the presence of outliers in the ways that the mean and standard deviation are. They are, thus, recommended for skewed datasets. We say in this case that the median and IQR are more *robust to outliers*. *Outliers* correspond to values in the dataset that fall far outside the range of "ordinary" values. In the context of a boxplot, by default they correspond to values below $Q_1 - (1.5 \cdot IQR)$ or above $Q_3 + (1.5 \cdot IQR)$
+
+Let's now create a side-by-side [boxplot](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
+
+```{r boxplot}
+#library(tidyverse)
+#library(lubridate)
+
+ggplot(data=Orders_Data)+
+  geom_boxplot(mapping=aes(y=Profit))
+
+ggplot(data=Orders_Data)+
+  geom_boxplot(mapping=aes(x=year(`Order Date`),y=Profit))
+
+ggplot(data=Orders_Data)+
+  geom_boxplot(mapping=aes(x=factor(year(`Order Date`)),y=Profit))
+
+ggplot(data=Orders_Data)+
+  geom_boxplot(mapping=aes(x=factor(year(`Order Date`)),y=Profit))+
+  ylim(-30,30)
+```
+
+# Exercise 5
+
+1.  What do the dots correspond to in the above box plots?
+2.  Are the years that different?
+3.  We looked at the distribution of the numerical variable `Profit` split by the numerical variable `year` that we converted using the `factor()` function in order to make a side-by-side boxplot. Why would a boxplot of `Profit` split by the numerical variable `Sales` similarly converted to a categorical variable using the `factor()` not be informative?
+4.  Boxplots provide a simple way to identify outliers. Why may outliers be easier to identify when looking at a boxplot instead of a faceted histogram?
+
+### Summary
+
+Side-by-side boxplots provide us with a way to compare the distribution of a numerical variable across multiple values of another variable. One can see where the median falls across the different groups by comparing the solid lines in the center of the boxes.
+
+To study the spread of a numerical variable within one of the boxes, look at both the length of the box and also how far the whiskers extend from either end of the box. Outliers are even more easily identified when looking at a boxplot than when looking at a histogram as they are marked with distinct points.
+
+## Bar Plots
+
+Both histograms and boxplots are tools to visualize the distribution of numerical variables. Another commonly desired task is to visualize the distribution of a categorical variable. This is a simpler task, as we are simply counting different categories within a categorical variable, also known as the *levels* of the categorical variable. Often the best way to visualize these different counts, also known as *frequencies*, is with barplots (also called barcharts).
+
+One complication, however, is how your data is represented. Is the categorical variable of interest "pre-counted" or not?
+
+Lets create a [bar plot](https://ggplot2.tidyverse.org/reference/geom_bar.html)
+
+```{r bar}
+
+ggplot(data=Orders_Data)+
+  geom_bar(mapping=aes(x=Category))
+
+```
+
+What if the data where already counted?
+
+```{r bar2}
+
+Orders_Data_Count<-Orders_Data%>%
+  group_by(Category)%>%
+  summarise(Cat_Count=n())
+
+knitr::kable(Orders_Data_Count)
+
+ggplot(data=Orders_Data_Count)+
+  geom_col(mapping=aes(x=Category,y=Cat_Count))
+```
+
+They are identical because they reflect counts of the same 3 Categories. However, depending on how our categorical data is represented, either "pre-counted" or not, we must add a different `geom` layer. When the categorical variable whose distribution you want to visualize
+
+-   Is *not* pre-counted in your data frame, we use `geom_bar()`.
+
+-   Is pre-counted in your data frame, we use `geom_col()` with the y-position aesthetic mapped to the variable that has the counts.
+
+# Exercise 6
+
+1.  Why are histograms inappropriate for categorical variables?
+2.  What is the difference between histograms and bar plots?
+3.  Make a bar plot, using the Orders_Data, of `Sub-Category`.
+
+```{r ex6, eval=FALSE}
+
+ggplot(data=Orders_Data)+
+  geom_bar(mapping=aes(x= ? ))
+```
+
+### 
+Two categorical variables
+
+Barplots are a very common way to visualize the frequency of different categories, or levels, of a single categorical variable. Another use of barplots is to visualize the *joint* distribution of two categorical variables at the same time.
+
+```{r}
+
+ggplot(data=Orders_Data)+
+  geom_bar(mapping=aes(x=Category,fill=Segment))
+
+ggplot(data=Orders_Data)+
+  geom_bar(mapping=aes(x=Category,fill=Segment),position = "dodge")
+```
+
+# Exercise 7
+
+1.  Why might the side-by-side barplot be preferable to a stacked barplot in this case?
+2.  What are the disadvantages of using a dodged bar plot, in general?
+3.  Make a faceted barplot of `Category` facet wrapped by `Segment`.
+4.  Which do you prefer...the facet wrapped version or the dodge position version of the bar plots?
+
+### Summary
+
+Barplots are a common way of displaying the distribution of a categorical variable, or in other words the frequency with which the different categories (also called *levels*) occur. They are easy to understand and make it easy to make comparisons across levels. Furthermore, when trying to visualize the relationship of two categorical variables, you have many options: stacked barplots, side-by-side barplots, and faceted barplots. Depending on what aspect of the relationship you are trying to emphasize, you will need to make a choice between these three types of barplots and own that choice.
+
+# 5 Graphs
+
++------------------+------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| **Named graph**  | **Shows**                                                                    | **Geometric object**                                                                   | **Notes**                                                                                                 |
++:================:+:============================================================================:+:======================================================================================:+:=========================================================================================================:+
+| Scatterplot      | Relationship between 2 numerical variables                                   | `geom_point()`                                                                         |                                                                                                           |
++------------------+------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Linegraph        | Relationship between 2 numerical variables                                   | `geom_line()`                                                                          | Used when there is a sequential order to x-variable, e.g., time                                           |
++------------------+------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Histogram        | Distribution of 1 numerical variable                                         | `geom_histogram()`                                                                     | Facetted histograms show the distribution of 1 numerical variable split by the values of another variable |
++------------------+------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Boxplot          | Distribution of 1 numerical variable split by the values of another variable | `geom_boxplot()`                                                                       |                                                                                                           |
++------------------+------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| Barplot          | Distribution of 1 categorical variable                                       | `geom_bar()` when counts are not pre-counted, `geom_col()` when counts are pre-counted | Stacked, side-by-side, and faceted barplots show the joint distribution of 2 categorical variables        |
++------------------+------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
