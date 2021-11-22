@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>ACC3053: Module 0</title>
@@ -455,7 +456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1862,7 +1863,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -2349,7 +2353,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2399,6 +2403,19 @@ Modules
 <a href="Module_2.html">Module 2</a>
 <a href="Module_3.html">Module 3</a>
 <a href="Module_4.html">Module 4</a>
+<a href="Module_5.html">Module 5</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Dash Boards
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="Flexdashboard.html">Dash Boards</a>
+<a href="Flexdashboard_Iris_Ex.html">Example 1</a>
+<a href="Prof_Hunt_Flexdashboard.html">Prof. Hunt Example</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2411,6 +2428,7 @@ Lagniappe Material
 <a href="Module_1_A.html">Module 1</a>
 <a href="Module_2_A.html">Module 2</a>
 <a href="Module_3_A.html">Module 3</a>
+<a href="Module_4_A.html">Module 4</a>
 </div>
 </div>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2532,7 +2550,7 @@ Anyone can inspect the source code to see how R works. Because of this transpare
 <h3 id="predictive-analytics-whats-likely-to-happen"><strong><em>3- Predictive Analytics = “What’s likely to happen”?</em></strong></h3>
 <p>In the predictive analysis, data is used to access the likelihood of future outcomes. Accountants are experts in building forecasts and identifying patterns and trends that shape those forecasts.</p>
 <h3 id="prescriptive-analysis-what-should-we-do"><strong><em>4- Prescriptive Analysis =“What should we do?”</em></strong></h3>
-<p>Simulation and optimization of data are done to answer questions such as “what should we do?” It is something that is not just limited to recommendations and goes beyond that. It is actually executing actions or taking decisions that are right for a particular situation. The prescriptive analysis is used to answer" What steps or interventions need to be taken to achieve the required outcome?"</p>
+<p>Simulation and optimization of data are done to answer questions such as “what should we do?” It is something that is not just limited to recommendations and goes beyond that. It is actually executing actions or taking decisions that are right for a particular situation. The prescriptive analysis is used to answer” What steps or interventions need to be taken to achieve the required outcome?”</p>
 <p>Descriptive and diagnostic analytics usually depend on analytics tools that have the capacity to handle the manipulation of large sets of data. Examples include SQL, Oracle DB, Hadoop, Tableau, Microsoft Access, R, python etc.</p>
 <p>Predictive and Prescriptive analysis rely on analytics tools that have mathematical modeling capabilities. Examples include SAS, R, Python, optimization tools like Garrobi, Riverlogic; simulation tools like Analogic, natural Language processing tools like Natural Language Toolkit or OpenNLP.</p>
 <h3 id="the-future"><strong>The Future</strong></h3>

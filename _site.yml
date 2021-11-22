@@ -28,8 +28,14 @@ navbar:
           href: Module_4.html
         - text: "Module 5"
           href: Module_5.html
+    - text: "Dash Boards"
+      menu:
         - text: "Dash Boards"
           href: Flexdashboard.html
+        - text: "Example 1"
+          href: Flexdashboard_Iris_Ex.html
+        - text: "Prof. Hunt Example"
+          href: Prof_Hunt_Flexdashboard.html
     - text: "Lagniappe Material"
       menu:
         - text: "Module 1"
