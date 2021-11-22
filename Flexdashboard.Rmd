@@ -132,12 +132,8 @@ Lets try this one ⬇️
 
 [Click me](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-rbokeh-iris/htmlwidgets-rbokeh-iris.html#) then click Source Code in the upper right corner 😟
 
-[Output from above](https://professor-hunt.github.io/ACC3053/Flexdashboard_Iris_Ex.html)
-
 [Another Example](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-examples/htmlwidgets-ggplotly-examples.html)
 
 [Another Example](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/htmlwidgets-ggplotly-geoms.html#geom_density)
-
-[My Example](https://professor-hunt.github.io/ACC3053/Prof_Hunt_Flexdashboard.html)
 
 fin
