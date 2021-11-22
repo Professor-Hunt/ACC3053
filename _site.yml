@@ -32,10 +32,6 @@ navbar:
       menu:
         - text: "Dash Boards"
           href: Flexdashboard.html
-        - text: "Example 1"
-          href: Flexdashboard_Iris_Ex.html
-        - text: "Prof. Hunt Example"
-          href: Prof_Hunt_Flexdashboard.html
     - text: "Lagniappe Material"
       menu:
         - text: "Module 1"
