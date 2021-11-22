@@ -1,0 +1,79 @@
+---
+title: "Professor Hunt's Example"
+author: "Professor Hunt"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+    source_code: embed
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+library(plotly)
+library(dplyr)
+library(curl)
+
+load(curl("https://raw.githubusercontent.com/Professor-Hunt/ACC3053/main/data/Orders_Data.Rda"))
+```
+
+### Explanation
+    
+Explain main findings
+    
+### Scatter Plot
+
+```{r}
+g1<-ggplot(data = Orders_Data) + 
+  geom_point(mapping = aes(x = Profit, y = Sales))
+
+ggplotly(g1)
+```
+
+### Line Graph
+
+```{r}
+library(lubridate)
+
+OrdersData_LG<-Orders_Data%>%
+  mutate(yearmonth= ym(paste0(year(`Order Date`),"-",month(`Order Date`))))%>%
+  group_by(yearmonth)%>%
+  summarise(Tot_Ord_Quant=sum(Quantity))
+
+g2<-ggplot(data=OrdersData_LG)+
+  geom_line(mapping=aes(x=yearmonth, y=Tot_Ord_Quant))
+
+ggplotly(g2)
+```
+
+### Histogram
+
+```{r}
+g3<-ggplot(data=Orders_Data)+
+  geom_histogram(mapping = aes(x=Profit), binwidth=100, color="darkred", fill="pink")+
+  xlim(-1000,1000)
+
+ggplotly(g3)
+```
+
+### Box Plot
+
+This graph is a Scatter plot is shows ...
+```{r}
+g4<-ggplot(data=Orders_Data)+
+  geom_boxplot(mapping=aes(x=factor(year(`Order Date`)),y=Profit))+
+  ylim(-30,30)
+
+ggplotly(g4)
+```
+
+### Bar Plot
+
+This graph is a Scatter plot is shows ...
+```{r}
+g5<-ggplot(data=Orders_Data)+
+  geom_bar(mapping=aes(x=Category))
+
+ggplotly(g5)
+```
