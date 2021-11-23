@@ -76,7 +76,7 @@ install.packages("flexdashboard")
 
 To author a flexdashboard you create an [R Markdown](http://rmarkdown.rstudio.com/) document with the `flexdashboard::flex_dashboard` output format. You can do this from within RStudio using the **New R Markdown** dialog:
 
-![](C:/Users/joh105/AppData/Local/RStudio/tmp/paste-ACDD489C.png)
+![](images/flexdash.png){width="100%"}
 
 ## Dashboard Basics
 
@@ -136,8 +136,7 @@ Lets try this one ⬇️
 
 [Another Example](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-ggplotly-geoms/htmlwidgets-ggplotly-geoms.html#geom_density)
 
-```{r, eval=FALSE}
-
+```` r
 ---
 title: "Professor Hunt's Example"
 author: "Professor Hunt"
@@ -148,6 +147,7 @@ output:
     source_code: embed
 ---
 
+```{r setup, include=FALSE}`r ''`
 library(flexdashboard)
 library(ggplot2)
 library(plotly)
@@ -155,6 +155,7 @@ library(dplyr)
 library(curl)
 
 load(curl("https://raw.githubusercontent.com/Professor-Hunt/ACC3053/main/data/Orders_Data.Rda"))
+```
 
 ### Explanation
     
@@ -162,13 +163,16 @@ Explain main findings
     
 ### Scatter Plot
 
+```{r}`r ''`
 g1<-ggplot(data = Orders_Data) + 
   geom_point(mapping = aes(x = Profit, y = Sales))
 
 ggplotly(g1)
+```
 
 ### Line Graph
 
+```{r}`r ''`
 library(lubridate)
 
 OrdersData_LG<-Orders_Data%>%
@@ -180,33 +184,63 @@ g2<-ggplot(data=OrdersData_LG)+
   geom_line(mapping=aes(x=yearmonth, y=Tot_Ord_Quant))
 
 ggplotly(g2)
+```
 
 ### Histogram
 
+```{r}`r ''`
 g3<-ggplot(data=Orders_Data)+
   geom_histogram(mapping = aes(x=Profit), binwidth=100, color="darkred", fill="pink")+
   xlim(-1000,1000)
 
 ggplotly(g3)
+```
 
 ### Box Plot
 
 This graph is a Scatter plot is shows ...
+```{r}`r ''`
 g4<-ggplot(data=Orders_Data)+
   geom_boxplot(mapping=aes(x=factor(year(`Order Date`)),y=Profit))+
   ylim(-30,30)
 
 ggplotly(g4)
+```
 
 ### Bar Plot
 
 This graph is a Scatter plot is shows ...
+```{r}`r ''`
 g5<-ggplot(data=Orders_Data)+
   geom_bar(mapping=aes(x=Category))
 
 ggplotly(g5)
-
-
 ```
+````
+
+# What you have to do:
+
+## Find data
+
+### [Place to find data Link](https://www.kaggle.com/datasets)
+
+## Import CSV
+
+<iframe width="619" height="360" src="https://www.youtube.com/embed/I0r1OLxqZWg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+## After you import the data
+
+### [How to save a file link](https://www.r-bloggers.com/2017/04/load-save-and-rda-files/)
+
+Save the data and load it in the flexdashboard
+
+## Flexdashboard Vid
+
+<iframe width="576" height="360" src="https://www.youtube.com/embed/HbkgAUOYvCY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
 
 fin
